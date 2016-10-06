@@ -115,8 +115,23 @@ $(document).on('click', 'button[data-type=edit]', function (event) {
     $obj = $.parseHTML(_html);
     $(this).closest('tr').before($($obj).find('tbody tr').addClass('grid-editor').addClass('grid-row-selected'));
     $(this).closest('tr').addClass('grid-editing').hide();
+    if($(this).closest('.wrapper').find('form').length <= 0){
+        $(this).closest('.wrapper').append($($obj).find('form'));
+    }else
+        $(this).closest('.wrapper').find('form').html("");
 })
-
+$(document).on('click', 'button[data-type=save]',function(e){
+   e.preventDefault();
+   var _form = $(this).closest('.wrapper').find('form');
+   $(_form).html("");//limpiamos primero el formulario
+   $.each($(this).closest('table').find('tr.grid-editor input'), function(i,e){           
+                $(_form).append(this)
+       });
+   $.each($(this).closest('table').find('tr.grid-editor select'), function(i,e){           
+            $(_form).append(this)
+   });
+   $(_form).submit();
+});
 $(document).on('change', 'select[data-type=group_types]', function () {
 
     var _value = $(this).find('option:selected').val();
