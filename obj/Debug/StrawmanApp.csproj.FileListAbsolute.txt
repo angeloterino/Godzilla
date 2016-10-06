@@ -491,3 +491,11 @@ C:\Users\Angel Oterino\Documents\Visual Studio 2012\Projects\StrawmanApp\Strawma
 C:\Users\Angel Oterino\Documents\Visual Studio 2012\Projects\StrawmanApp\StrawmanApp\obj\Debug\StrawmanApp.csprojResolveAssemblyReference.cache
 C:\Users\Angel Oterino\Documents\Visual Studio 2012\Projects\StrawmanApp\StrawmanApp\obj\Debug\StrawmanApp.dll
 C:\Users\Angel Oterino\Documents\Visual Studio 2012\Projects\StrawmanApp\StrawmanApp\obj\Debug\StrawmanApp.pdb
+C:\Users\Angel\Documents\Visual Studio 2012\Projects\StrawmanApp\StrawmanApp\bin\Content\fontawesome\font-awesome.css
+C:\Users\Angel\Documents\Visual Studio 2012\Projects\StrawmanApp\StrawmanApp\bin\Content\fontawesome\font-awesome.min.css
+C:\Users\Angel\Documents\Visual Studio 2012\Projects\StrawmanApp\StrawmanApp\bin\Content\fonts\fontawesome-webfont.svg
+C:\Users\Angel\Documents\Visual Studio 2012\Projects\StrawmanApp\StrawmanApp\bin\Content\fonts\fontawesome-webfont.woff
+C:\Users\Angel\Documents\Visual Studio 2012\Projects\StrawmanApp\StrawmanApp\bin\Content\fonts\fontawesome-webfont.ttf
+C:\Users\Angel\Documents\Visual Studio 2012\Projects\StrawmanApp\StrawmanApp\bin\Content\fonts\fontawesome-webfont.eot
+C:\Users\Angel\Documents\Visual Studio 2012\Projects\StrawmanApp\StrawmanApp\bin\Content\fonts\FontAwesome.otf
+C:\Users\Angel\Documents\Visual Studio 2012\Projects\StrawmanApp\StrawmanApp\bin\es\System.Web.Mvc.resources.dll
