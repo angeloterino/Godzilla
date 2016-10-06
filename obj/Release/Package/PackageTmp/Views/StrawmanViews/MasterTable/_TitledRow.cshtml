@@ -1,8 +1,0 @@
-﻿@using StrawmanApp.Helpers;
-@{
-    var _text = ViewData["text"] == null ? @"&nbsp;" : ViewData["text"].ToString();
-    var _colspan = ViewData["colspan"].ToString();
-    var _bgColor = ViewData["bg_color"] == null ? StrawmanConstants.Colors.White : ViewData["bg_color"].ToString();
-    
-    <tr><td colspan="@_colspan" style="text-align:center;background-color:@_bgColor !important;">@Html.Raw(_text)</td></tr>
-}

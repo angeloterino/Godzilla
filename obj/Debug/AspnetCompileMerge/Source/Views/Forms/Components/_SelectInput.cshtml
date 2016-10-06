@@ -1,7 +1,0 @@
-﻿@model StrawmanApp.Models.FormUtilModel.SelectInputModel
-@if (Model.label != null) { @Html.LabelFor(m => Model, Model.label, null) }
-<div class="select-input">
-    @{Html.RenderPartial(Model.input.view, Model.input);}
-    @{Html.RenderPartial(Model.select.view, Model.select);}
-    @{Html.RenderPartial(Model.hidden.view, Model.hidden);}
-</div>

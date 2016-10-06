@@ -1,8 +1,0 @@
-﻿@model StrawmanApp.Models.FormUtilModel.InputModel
-@if (Model.type == StrawmanApp.Models.FormUtilModel.InputTypes.SUBMIT){
-    <input type="submit" @Model.data_attributes value="@Model.defalut_value" class="@Model.classes" />
-}
-else if (Model.type == StrawmanApp.Models.FormUtilModel.InputTypes.BUTTON)
-{
-    <button @Model.data_attributes class="@Model.classes">@Model.defalut_value</button>
-}
