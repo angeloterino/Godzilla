@@ -1,5 +1,0 @@
-﻿@using StrawmanApp.Classes
-@{
-    ViewDataDictionary cell = (ViewDataDictionary)ViewData[HtmlElements.CONTENT];
-    <td @cell[HtmlElements.DATA_ATTRIBUTES] class="@Html.Raw(cell[HtmlElements.CLASSES])">@cell[HtmlElements.CONTENT]</td>
-}

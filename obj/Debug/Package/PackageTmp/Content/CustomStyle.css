@@ -24,7 +24,7 @@ table, input {
     text-align: center;
 }
 .table-striped > tbody > tr:nth-of-type(2n+1) {
-    /*background-color: transparent;*/
+    background-color: transparent;
 }
 .table {
     width: 100%;
@@ -471,6 +471,7 @@ form .wrapper
 .wrapper {
     font-size: 12px;
     margin: 10px;
+    /* height: 100%; */
 }
 .wrapper.form-group {
     margin:5px;
@@ -633,7 +634,7 @@ ul.nav {
 .config-wrapper.float-left button.btn.btn-success {
     border-bottom: 3px solid gray!important;
 }
-.modal .modal-nav{
+.modal .modal-nav, .panel .panel-nav{
   width: 100%; height: 42px; box-shadow: 0px 1px 3px rgb(180,180,180); background-color: rgb(246, 246, 246);
 }
 .modal-nav .config-wrapper
@@ -658,3 +659,7 @@ form .select-input input[type=text]
 {
   position:relative;
 }
+.config table td.checkbox-control{padding:0!important;text-align:center!important;}
+.boy.config.wrapper, .groups.content.wrapper {top: 0;width: 100%;bottom: 0px;overflow: auto;position: absolute;margin:0;padding: 0 10px;font-size: 12px;}
+.groups{position:relative; width:100%;}
+.tools-bar{width: 100%;min-height: 42px;padding: 2px;box-shadow: 0px 1px 3px rgb(180,180,180);background-color: rgb(246, 246, 246);}

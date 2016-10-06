@@ -1,7 +1,0 @@
-﻿@model List<StrawmanApp.Models.UsersViewAccess>
-@using GridMvc.Html;
-@Html.Grid((List<StrawmanApp.Models.UsersViewAccess>)Model).Columns(columns =>
-    {
-        columns.Add().Encoded(false).Sanitized(false).SetWidth(10).Css("checkbox-control").RenderValueAs(o => Html.CheckBoxFor(m => o.isChecked, new { @data_type = "select", @data_market = o.MARKET, @data_brand = o.BRAND, @data_channel = o.CHANNEL, @data_value = o.ID, @value= "MARKET:" + o.MARKET.ToString() + "_BRAND:"+o.BRAND.ToString()+"_CHANNEL:" +o.CHANNEL.ToString() }));
-        columns.Add(foo => foo.NAME).Titled("NAME").Sortable(false);
-    })

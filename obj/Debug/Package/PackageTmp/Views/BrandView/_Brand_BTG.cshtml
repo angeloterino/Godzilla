@@ -23,6 +23,7 @@
             col1 = item == null ? null : (decimal?)item.col1,
             col2 = item == null ? null : (decimal?)item.col2,
             col3 = item == null ? null : (decimal?)item.pcvspy,
+            col1_wc = item == null ? null : (is_wc) ? item.col1_wc : null,
             col2_wc = item == null ? null : (is_wc) ? item.col2_wc : null,
             col3_wc = item == null ? null : (is_wc) ? item.pcvspy_wc : null,
         };
@@ -35,6 +36,7 @@
             col1 = (decimal?)item.col1,
             col2 = (decimal?)item.col2,
             col3 = (decimal?)item.pcvspy,
+            col1_wc = item == null ? null : (is_wc) ? item.col1_wc : null,
             col2_wc = item == null ? null : (is_wc) ? item.col2_wc : null,
             col3_wc = item == null ? null : (is_wc) ? item.pcvspy_wc : null,
         };

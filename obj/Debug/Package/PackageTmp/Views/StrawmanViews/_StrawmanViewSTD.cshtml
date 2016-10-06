@@ -15,7 +15,9 @@
         styleData = _styleData,
         _colAttr = Model.item != null && Model.item.col2_wc != null ? 
                                  _colType.Length == 3?
-                                        new string[] { "", _colType[1] != null && _colType[1] == "pc" ? "data-wc=\"" + Html.DisplayFor(m=>Model.item.col2_wc).ToString() + "\"" : "data-wc=\"" + Model.item.col2_wc + "\"", _colType[2] != null && _colType[2] == "pc" ? "data-wc=\"" + Html.DisplayFor(m => Model.item.col3_wc).ToString() + "\"" : "data-wc=\"" + Model.item.col3_wc + "\"" }
+                                        new string[] {  _colType[0] != null && _colType[0] == "pc" ? "data-wc=\"" + Html.DisplayFor(m=>Model.item.col1_wc).ToString() + "\"" : "data-wc=\"" + Model.item.col1_wc + "\"",
+                                                        _colType[1] != null && _colType[1] == "pc" ? "data-wc=\"" + Html.DisplayFor(m=>Model.item.col2_wc).ToString() + "\"" : "data-wc=\"" + Model.item.col2_wc + "\"", 
+                                                        _colType[2] != null && _colType[2] == "pc" ? "data-wc=\"" + Html.DisplayFor(m => Model.item.col3_wc).ToString() + "\"" : "data-wc=\"" + Model.item.col3_wc + "\"" }
                                        :new string[] { "","","", _colType[3] != null && _colType[3] == "pc" ? "data-wc=\"" + Html.DisplayFor(m=>Model.item.col2_wc).ToString() + "\"" : "data-wc=\"" + Model.item.col2_wc + "\"", _colType[4] != null && _colType[4] == "pc" ? "data-wc=\"" + Html.DisplayFor(m => Model.item.col3_wc).ToString() + "\"" : "data-wc=\"" + Model.item.col3_wc + "\"" } : null
         };
 

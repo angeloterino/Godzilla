@@ -23,8 +23,6 @@
             col1 = item == null ? null : (decimal?)item._internal,
             col2 = item == null ? null : (decimal?)item._le,
             col3 = item == null ? null : (decimal?)item._pbp,
-            col2_wc = item == null ? null : (is_wc) ? item._lewc : null,
-            col3_wc = item == null ? null : (is_wc) ? item._pbpwc : null,
         };
         StrawmanApp.Models.StrawmanSTDView view = item == null ? null : new StrawmanApp.Models.StrawmanSTDView
         {
@@ -35,8 +33,6 @@
             col1 = (decimal?)item._internal,
             col2 = (decimal?)item._le,
             col3 = (decimal?)item._pbp,
-            col2_wc = item == null ? null : (is_wc) ? item._lewc : null,
-            col3_wc = item == null ? null : (is_wc) ? item._pbpwc : null,
         };
         string[] _colData = item == null ? null : new string[] { Html.DisplayFor(m => item._internal).ToString(), Html.DisplayFor(m => item._le).ToString(), Html.DisplayFor(m => item._pbp).ToString() };
         string[] _colType = new string[] { "amount", "amount", "amount" };

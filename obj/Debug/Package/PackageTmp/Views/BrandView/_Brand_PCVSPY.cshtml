@@ -25,8 +25,6 @@
             col3 = item == null ? null : (decimal?)item.pcvspy3,
             col4 = item == null ? null : (decimal?)item.pcvspy4,
             col5 = item == null ? null : (decimal?)item.pcvspy5,
-            col2_wc = item == null ? null : (is_wc) ? item.pcvspy4_wc : null,
-            col3_wc = item == null ? null : (is_wc) ? item.pcvspy5_wc : null,
         };
         StrawmanApp.Models.StrawmanSTDView view = item == null ? null : new StrawmanApp.Models.StrawmanSTDView
         {
@@ -39,8 +37,6 @@
             col3 = (decimal?)item.pcvspy3,
             col4 = (decimal?)item.pcvspy4,
             col5 = (decimal?)item.pcvspy5,
-            col2_wc = item == null ? null : (is_wc) ? item.pcvspy4_wc : null,
-            col3_wc = item == null ? null : (is_wc) ? item.pcvspy5_wc : null,
         };
         string[] _colData = item == null ? null : new string[] { Html.DisplayFor(m => item.pcvspy1).ToString(), Html.DisplayFor(m => item.pcvspy2).ToString(), Html.DisplayFor(m => item.pcvspy3).ToString(), Html.DisplayFor(m => item.pcvspy4).ToString(), Html.DisplayFor(m => item.pcvspy5).ToString() };
         string[] _colType = new string[] { "pc", "pc", "pc","pc","pc" };

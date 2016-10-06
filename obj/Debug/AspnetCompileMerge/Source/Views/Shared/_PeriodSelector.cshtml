@@ -1,9 +1,0 @@
-﻿@model StrawmanApp.Entities.PeriodUtilModel
-
-<!--List Month Period-->
-<div class="date" style="float:right">
-    <div style="display:inline-block"> @Html.DropDownListFor(m => m.selected_year_period, Model.year_list, null, new { @id="select-year",@name="select-year",@class = "form-control" })</div>
-    <div style="display:inline-block">@Html.DropDownListFor(m => m.selected_month_period, Model.month_list, null, new { @id="select-month",@name="select-month",@class = "form-control" })</div>
-</div>
-<!--List Year Period -->
-

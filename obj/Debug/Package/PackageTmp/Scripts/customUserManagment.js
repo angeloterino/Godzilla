@@ -14,9 +14,9 @@ $(document).ready(function () {
                 $(this).attr('data-renamed', true);
             }
         });
+        $('input[type=hidden][id=user]').val($('select[id=user]').find('option:selected').text());
         $(form).submit();
     });
-    $('input[type=hidden][id=user]').val($('select[id=user]').find('option:selected').text());
     $(document).on('change', 'select[id=user]', function (e) {
        $('input[type=hidden][id=user]').val($(this).find('option:selected').text());
        var _url = 'UsersManagement' 

@@ -1,8 +1,0 @@
-﻿@model List<StrawmanApp.Models.UserMenuAccess>
-@using GridMvc.Html;
-@Html.Grid((List<StrawmanApp.Models.UserMenuAccess>)Model).Columns(columns =>
-    {
-        columns.Add().Encoded(false).Sanitized(false).SetWidth(10).Css("checkbox-control").RenderValueAs(o => Html.CheckBoxFor(m => o.isChecked, new { @id = o.ID, @name = "check_id" + o.ID, @data_value = o.ID }));
-        columns.Add(foo => foo.NAME).Titled("NAME").Sortable(false);
-        columns.Add().Titled("Permissions").Encoded(false).Sanitized(false).SetWidth(30).RenderValueAs(o => Html.DropDownListFor(m => o.Config.PERMISSION, new SelectList(o.Permissions, "Value", "Text", o.Config.PERMISSION), new { @class = "form-control", @name = "permission_id_" + o.ID, @data_value = o.ID }).ToHtmlString());
-    })
