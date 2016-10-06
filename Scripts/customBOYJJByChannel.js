@@ -1,15 +1,11 @@
-﻿strawmanVars = new Object();
-var _lastrow, _lastcolor, _lastfontcolor;
-var _paths = 'BOYJJByChannel';
-var _viewId = 'BoyViews';
-var _control = 'GetTotalByChannelType';
-var _path, _pathboys = ['/BoyMassMarket/'];
+strawmanVars = new Object();
+var _lastrow, _lastcolor, _lastfontcolor,
+    _paths,_viewId, _control,
+    _path, _pathboys,
+    _controls,_viewsids,_channel;
 var _loader = '<tr class="removeme"><td colspan="3" rowspan="5" style="border: 0px; border-image: none; text-align: center; vertical-align: middle; min-height:100px;"><img id ="rotate" src="../images/loading_anim.gif"/></td></tr>';
 var _dvloader = '<tr class="removeme"><td colspan="4" rowspan="5" style="border: 0px; border-image: none; text-align: center; vertical-align: middle; min-height:100px;"><img id="rotate" src="../images/loading_anim.gif"/></td></tr>';
 var _pvloader = '<tr class="removeme"><td colspan="5" rowspan="5" style="border: 0px; border-image: none; text-align: center; vertical-align: middle; min-height:100px;"><img id ="rotate" src="../images/loading_anim.gif"/></td></tr>';
-var _controls = ['GetBoyData', 'GetBoyYTD', 'GetBoyTOGO', 'GetBoyTotals', 'GetBoyINT', 'GetBoyLE', 'GetBoyPBP'];
-var _viewsids = ['_BoyData', '_BoyYTD', '_BoyTOGO', '_BoyTotals', '_BoyINT', '_BoyLE', '_BoyPBP'];
-var _channel = ['MASS', 'OTC', 'BEAUTY', 'TOTAL'];
 strawmanVars.cancelLoad = false;
 $(document).ready(function () {
     $(document).on("click", ["a[role=menuitem]", "a[role=tabitem]"], function () {
@@ -18,8 +14,17 @@ $(document).ready(function () {
    
     //Primera llamada a la carga ajax de las tablas
     $('.mastertable').hide();
-
-    startLoadTables();
+    //Inicializamos variables
+    $.get('GetBOYJJByChannelVars',null, function(_json){
+        _paths = _json._paths;
+        _viewId = _json._viewId;
+        _control = _json._control;
+        _pathboys = _json._pathboys;
+        _controls =_json._controls;
+        _viewsids = _json._viewsids;
+        _channel = _json._channel;
+        startLoadTables();
+    });
 });
 startLoadTables = function () {
     total_size = _channel.length * _controls.length;
