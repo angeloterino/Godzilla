@@ -10,10 +10,31 @@ namespace StrawmanApp.Controllers
     [Authorize]
     public class BoyMassMarketController : Controller
     {
+        [Authorize]
+        public JsonResult GetBOYJJByChannelVars()
+        {
+            var _paths = "BOYJJByChannel";
+            var _viewId = "BoyViews";
+            var _control = "GetTotalByChannelType"; 
+            string[] _pathboys = {@"/BoyMassMarket/"};
+            string[] _controls = {"GetBoyData", "GetBoyYTD", "GetBoyTOGO", "GetBoyTotals", "GetBoyINT", "GetBoyLE", "GetBoyPBP"};
+            string[] _viewsids = { "_BoyData", "_BoyYTD", "_BoyTOGO", "_BoyTotals", "_BoyINT", "_BoyLE", "_BoyPBP" };
+            string[] _channel = {"MASS", "OTC", "BEAUTY", "TOTAL"};
+            //Vamos a enviar los canales configurados por el grupo BOYJJByChannel (tipo 22);
+            List<StrawmanDBLibray.Entities.GROUP_MASTER> channels = (List<StrawmanDBLibray.Entities.GROUP_MASTER>)StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.GROUP_MASTER,true);
+            string type = this.GetGroupTypeByView(BY_CHANNEL_CONTROLLER);
+            decimal _type = 0;
+            if (type != null && decimal.TryParse(type, out _type))
+            {
+                _channel = channels.Where(m => m.TYPE == _type).Select(m => m.ID.ToString()).ToArray();
+            }
+
+            return Json(new {_paths = _paths, _viewId = _viewId, _control = _control, _pathboys = _pathboys, _controls = _controls, _viewsids = _viewsids, _channel = _channel }, JsonRequestBehavior.AllowGet);
+        }
 
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
         public ActionResult GetTotalByChannelType(string _channel, string _type)
-        {            
+        {
             ViewBag.BoyData = GetTotalData(_type, _channel);
             ViewBag.BoyCalc = ViewBag.BoyData;
             ViewBag.BoyYTD = ViewBag.BoyData;
@@ -54,7 +75,7 @@ namespace StrawmanApp.Controllers
             FormsController.ResetFormBOYSession();
             SetChannel(chan);
             ViewBag.YearPeriod = Helpers.PeriodUtil.Year; 
-            SetSessionData(BOYYTDDATA, GetBoyYTDData("YTD"));
+            SetSessionData(BOYYTDDATA, GetBoyYTDData("YTD").Where(m=>m.channel == channel).ToList());
             ViewBag.BoyData = GetSessionData(BOYYTDDATA);
 
             Session.Add("YTDData", ViewBag.BoyData);
@@ -65,7 +86,7 @@ namespace StrawmanApp.Controllers
         {
             SetChannel(chan);
             ViewBag.YearPeriod = Helpers.PeriodUtil.Year;
-            ViewBag.BoyYTD = GetBoyYTDData("YTD");
+            ViewBag.BoyYTD = GetBoyYTDData("YTD").Where(m => m.channel == channel).ToList();
             //if (Session["YTDData"] != null) BoyYTDData = (List<Models.BoyMassMarketModels>)Session["YTDData"];
             return PartialView(BOYYTD, GetSessionData(BOYYTDDATA));
         }
@@ -75,15 +96,15 @@ namespace StrawmanApp.Controllers
             
             SetChannel(chan);
             ViewBag.YearPeriod = Helpers.PeriodUtil.Year;
-            ViewBag.BoyYTD = GetBoyYTDData("TOTAL");
+            ViewBag.BoyYTD = GetBoyYTDData("TOTAL").Where(m => m.channel == channel).ToList();
             return PartialView(BOYTOTALS,GetSessionData(BOYYTDDATA));
         }
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
         public ActionResult GetBoyTOGO(string chan)
         {
             SetChannel(chan);
-            ViewBag.YearPeriod = Helpers.PeriodUtil.Year; 
-            ViewBag.BoyYTD = GetBoyYTDData("TOGO");
+            ViewBag.YearPeriod = Helpers.PeriodUtil.Year;
+            ViewBag.BoyYTD = GetBoyYTDData("TOGO").Where(m => m.channel == channel).ToList();
             return PartialView(BOYTOGO, GetSessionData(BOYYTDDATA));
         }
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
@@ -91,7 +112,7 @@ namespace StrawmanApp.Controllers
         {
             SetChannel(chan);
             ViewBag.YearPeriod = Helpers.PeriodUtil.Year;
-            ViewBag.BoyCALC = GetBoyCalcData("INT");
+            ViewBag.BoyCALC = GetBoyCalcData("INT").Where(m => m.channel == channel).ToList();
             return PartialView(BOYINT, GetSessionData(BOYYTDDATA));
         }
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
@@ -99,7 +120,7 @@ namespace StrawmanApp.Controllers
         {
             SetChannel(chan);
             ViewBag.YearPeriod = Helpers.PeriodUtil.Year;
-            ViewBag.BoyCALC = GetBoyCalcData("PBP");
+            ViewBag.BoyCALC = GetBoyCalcData("PBP").Where(m => m.channel == channel).ToList();
             return PartialView(BOYPBP, GetSessionData(BOYYTDDATA));
         }
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
@@ -107,7 +128,7 @@ namespace StrawmanApp.Controllers
         {
             SetChannel(chan);
             ViewBag.YearPeriod = Helpers.PeriodUtil.Year;
-            ViewBag.BoyCALC = GetBoyCalcData("LE");
+            ViewBag.BoyCALC = GetBoyCalcData("LE").Where(m => m.channel == channel).ToList();
             return PartialView(BOYLE, GetSessionData(BOYYTDDATA));
         }
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
@@ -115,7 +136,7 @@ namespace StrawmanApp.Controllers
         {
             SetChannel(chan);
             ViewBag.YearPeriod = Helpers.PeriodUtil.Year;
-            ViewBag.BoyCustom = GetBoyCalcCustomData("INT");
+            ViewBag.BoyCustom = GetBoyCalcCustomData("INT").Where(m => m.channel == channel).ToList();
             ViewBag.TableTitle = Helpers.PeriodUtil.Year.ToString() + " Int";
             return PartialView(BOYCUSTOM, GetSessionData(BOYYTDDATA));
         }
@@ -124,7 +145,7 @@ namespace StrawmanApp.Controllers
         {
             SetChannel(chan);
             ViewBag.YearPeriod = Helpers.PeriodUtil.Year;
-            ViewBag.BoyCustom = GetBoyCalcCustomData("PBP");
+            ViewBag.BoyCustom = GetBoyCalcCustomData("PBP").Where(m => m.channel == channel).ToList();
             ViewBag.TableTitle = (Helpers.PeriodUtil.Year + 1).ToString() + " PBP";
             return PartialView(BOYCUSTOM, GetSessionData(BOYYTDDATA));
         }
@@ -133,7 +154,7 @@ namespace StrawmanApp.Controllers
         {
             SetChannel(chan);
             ViewBag.YearPeriod = Helpers.PeriodUtil.Year;
-            ViewBag.BoyCustom = GetBoyCalcCustomData("LE");
+            ViewBag.BoyCustom = GetBoyCalcCustomData("LE").Where(m => m.channel == channel).ToList();
             ViewBag.TableTitle = "BTG " + Helpers.PeriodUtil.Year.ToString("YY");
             ViewBag.TableTitle2 = Helpers.PeriodUtil.Year.ToString() + " LE";
             return PartialView(BOYCUSTOM, GetSessionData(BOYYTDDATA));
@@ -144,21 +165,27 @@ namespace StrawmanApp.Controllers
         {
             List<Models.BoyMassMarketModels> lst = new List<Models.BoyMassMarketModels>();
             string key = _channel +"YTDData";
-            switch (_channel)
+            int _group = 0;
+            if (!int.TryParse(_channel, out _group))//Comprobamos que el grupo no viaje en el canal
             {
-                case "MASS":
-                    channel = 1;
-                    break;
-                case "BEAUTY":
-                    channel = 2;
-                    break;
-                case "OTC":
-                    channel = 3;
-                    break;
-                default:
-                    channel = 999999;
-                    break;
-            }
+                switch (_channel)
+                {
+                    case "MASS":
+                        channel = 1;
+                        break;
+                    case "BEAUTY":
+                        channel = 2;
+                        break;
+                    case "OTC":
+                        channel = 3;
+                        break;
+                    default:
+                        channel = 999999;
+                        break;
+                }
+
+            }else
+                SetGroupType(_group);//Llamamos a la función que establece el grupo según configuración en WRK_VARIABLES
 
             switch (_type)
             {
@@ -204,6 +231,12 @@ namespace StrawmanApp.Controllers
             switch (type)
             {
                 case "INT":
+                    if (group_type != null)
+                    {
+                        //Está definido el grupo, enviamos la información configurada
+                        return GetBoyCalcData(type).ToList();
+                    }
+                        
                     List<StrawmanDBLibray.Entities.v_WRK_BOY_BY_CHANNEL_CALC> lint = (List<StrawmanDBLibray.Entities.v_WRK_BOY_BY_CHANNEL_CALC>)GetSessionDataTable("v_WRK_BOY_BY_CHANNEL_CALC");
                     var i = lint
                                 .Where(m => m.TYPE == type && m.CHANNEL == channel
@@ -228,6 +261,11 @@ namespace StrawmanApp.Controllers
                     lst = i.ToList();
                     break;
                 case "LE":
+                    if (group_type != null)
+                    {
+                        //Está definido el grupo, enviamos la información configurada
+                        return GetBoyCalcData(type).ToList();
+                    }
                     List<StrawmanDBLibray.Entities.v_WRK_BOY_BY_CHANNEL_CALC> lle = (List<StrawmanDBLibray.Entities.v_WRK_BOY_BY_CHANNEL_CALC>)GetSessionDataTable("v_WRK_BOY_BY_CHANNEL_CALC");
                     var l = lle
                             .Where(m => m.TYPE == type && m.CHANNEL == channel
@@ -260,6 +298,11 @@ namespace StrawmanApp.Controllers
                     lst = l.ToList();
                     break;
                 case "PBP":
+                    if (group_type != null)
+                    {
+                        //Está definido el grupo, enviamos la información configurada
+                        return GetBoyCalcData(type).ToList();
+                    }
                     List<StrawmanDBLibray.Entities.v_WRK_BOY_BY_CHANNEL_CALC> lpbp = (List<StrawmanDBLibray.Entities.v_WRK_BOY_BY_CHANNEL_CALC>)GetSessionDataTable("v_WRK_BOY_BY_CHANNEL_CALC");
                     var b = lpbp
                         .Where(m => m.TYPE == type && m.CHANNEL == channel
@@ -284,6 +327,11 @@ namespace StrawmanApp.Controllers
                     lst = b.ToList();
                     break;
                 default:
+                    if (group_type != null)
+                    {
+                        //Está definido el grupo, enviamos la información configurada
+                        return GetBoyYTDData(type).ToList();
+                    }
                     List<StrawmanDBLibray.Entities.v_WRK_BOY_BY_CHANNEL_GENERAL> lcd = (List<StrawmanDBLibray.Entities.v_WRK_BOY_BY_CHANNEL_GENERAL>)GetSessionDataTable("v_WRK_BOY_BY_CHANNEL_GENERAL");
                     var q = lcd
                             .Where(m => m.TYPE == type && m.CHANNEL == channel
@@ -481,14 +529,14 @@ namespace StrawmanApp.Controllers
 
         private List<Models.BoyMassMarketModels> GetBoyCalcData(string type)
         {
-            List<Models.BoyMassMarketModels> query = null;
+            IEnumerable<Models.BoyMassMarketModels> query = null;
             
             switch (type)
             {
                 case "INT":
                     List<StrawmanDBLibray.Entities.WRK_BOY_DATA> lint = (List<StrawmanDBLibray.Entities.WRK_BOY_DATA>)GetSessionDataTable("WRK_BOY_DATA");
                     query = lint
-                            .Where(p => p.CHANNEL == channel && p.TYPE == type
+                            .Where(p => p.TYPE == type
                                 && (p.YEAR_PERIOD == Helpers.PeriodUtil.Year && p.MONTH_PERIOD == Helpers.PeriodUtil.Month))
                                 .OrderBy(m => m.NTS_ORDER)
                             .Select(p => new Models.BoyMassMarketModels
@@ -517,12 +565,12 @@ namespace StrawmanApp.Controllers
                                 type = p.TYPE,
                                 market_name = p.BRAND_NAME,
                                 boy_name = p.NTS_NAME
-                            }).ToList();
+                            }).AsEnumerable();
                     break;
                 case "PBP":
                     List<StrawmanDBLibray.Entities.WRK_BOY_DATA> lpbp = (List<StrawmanDBLibray.Entities.WRK_BOY_DATA>)GetSessionDataTable("WRK_BOY_DATA");
                     query = lpbp
-                            .Where(p => p.CHANNEL == channel && p.TYPE == type
+                            .Where(p => p.TYPE == type
                                 && (p.YEAR_PERIOD == Helpers.PeriodUtil.Year && p.MONTH_PERIOD == Helpers.PeriodUtil.Month))
                                 .OrderBy(m => m.NTS_ORDER)
                             .Select(p => new Models.BoyMassMarketModels
@@ -551,12 +599,12 @@ namespace StrawmanApp.Controllers
                                 type = p.TYPE,
                                 market_name = p.BRAND_NAME,
                                 boy_name = p.NTS_NAME
-                            }).ToList();
+                            }).AsEnumerable();
                     break;
                 case "LE":
                     List<StrawmanDBLibray.Entities.WRK_BOY_DATA> lle = (List<StrawmanDBLibray.Entities.WRK_BOY_DATA>)GetSessionDataTable("WRK_BOY_DATA");
                     query = lle
-                            .Where(p => p.CHANNEL == channel && p.TYPE == type
+                            .Where(p => p.TYPE == type
                                 && (p.YEAR_PERIOD == Helpers.PeriodUtil.Year && p.MONTH_PERIOD == Helpers.PeriodUtil.Month))
                                 .OrderBy(m => m.NTS_ORDER)
                             .Select(p => new Models.BoyMassMarketModels
@@ -587,11 +635,11 @@ namespace StrawmanApp.Controllers
                                 type = p.TYPE,
                                 market_name = p.BRAND_NAME,
                                 boy_name = p.NTS_NAME
-                            }).ToList();
+                            }).AsEnumerable();
                     break;
                 default:
                     query = ((List<StrawmanDBLibray.Entities.WRK_BOY_DATA>)GetSessionDataTable("WRK_BOY_DATA"))
-                            .Where(p => p.TYPE == type && p.CHANNEL == channel
+                            .Where(p => p.TYPE == type 
                                 && (p.YEAR_PERIOD == Helpers.PeriodUtil.Year && p.MONTH_PERIOD == Helpers.PeriodUtil.Month))
                                 .OrderBy(m => m.NTS_ORDER)
                             .Select(p => new Models.BoyMassMarketModels
@@ -618,17 +666,18 @@ namespace StrawmanApp.Controllers
                                 type = p.TYPE,
                                 market_name = p.BRAND_NAME,
                                 boy_name = p.NTS_NAME
-                            }).ToList();
+                            }).AsEnumerable();
                     break;
                 
             }
+            SetChannelTotalCalc(ref query, type);
             return query.ToList();
         }
         private List<Models.BoyMassMarketModels> GetBoyYTDData(string type)
         {
 
             var query = ((List<StrawmanDBLibray.Entities.WRK_BOY_DATA>)GetSessionDataTable("WRK_BOY_DATA"))
-                        .Where (p=>p.TYPE == type && p.CHANNEL == channel
+                        .Where (p=>p.TYPE == type
                                 && (p.YEAR_PERIOD == Helpers.PeriodUtil.Year && p.MONTH_PERIOD == Helpers.PeriodUtil.Month))
                                 .OrderBy(m=>m.NTS_ORDER).ThenBy(m=>m.BRAND)
                         .Select (p=>new Models.BoyMassMarketModels
@@ -655,39 +704,202 @@ namespace StrawmanApp.Controllers
                             share_pc = p.SHARE_PC,
                             type = p.TYPE
                         });
-            List<StrawmanDBLibray.Entities.GROUP_CONFIG> gchannels = (List<StrawmanDBLibray.Entities.GROUP_CONFIG>)StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.GROUP_CONFIG, true);
-            var chan = gchannels.Where(m=>m.TYPE_ID == 22).AsEnumerable()
-                .Join(query, m => new { _brand = m.BRAND, _market = m.MARKET }, l => new { _brand = l.brand, _market = l.market }, (m, l) => new { m = m, l = l })
-                .AsEnumerable()
-                .GroupBy(m=>new{_channel = m.l.channel, _type = m.l.type})
-                .Select(p => new Models.BoyMassMarketModels
-                {
-                    channel = p.Key._channel,
-                    brand = p.Max(s=>s.l.brand),
-                    brand_name = p.LastOrDefault().l.brand_name,
-                    boy_name = p.LastOrDefault().l.boy_name,
-                    conversion_rate1 = null,
-                    conversion_rate2 = null,
-                    vgroup = p.LastOrDefault().l.vgroup,
-                    market = p.LastOrDefault().l.market,
-                    market_col1 = (double)p.Sum(s => (decimal)s.l.market_col1 * s.m.CONFIG),
-                    market_col2 = (double)p.Sum(s => (decimal)s.l.market_col2 * s.m.CONFIG),
-                    market_pc = Helpers.StrawmanCalcs.CalcPCVSPY(p.Sum(s => (decimal)s.l.market_col1 * s.m.CONFIG), p.Sum(s => (decimal)s.l.market_col2 * s.m.CONFIG)),
-                    sellin_col1 = (double)p.Sum(s => (decimal)s.l.sellin_col1 * s.m.CONFIG),
-                    sellin_col2 = (double)p.Sum(s => (decimal)s.l.sellin_col2 * s.m.CONFIG),
-                    sellin_pc = Helpers.StrawmanCalcs.CalcPCVSPY(p.Sum(s => (decimal)s.l.sellin_col1 * s.m.CONFIG), p.Sum(s => (decimal)s.l.sellin_col2 * s.m.CONFIG)),
-                    sellout_col1 = (double)p.Sum(s => (decimal)s.l.sellout_col1 * s.m.CONFIG),
-                    sellout_col2 = (double)p.Sum(s => (decimal)s.l.sellout_col2 * s.m.CONFIG),
-                    sellout_pc = Helpers.StrawmanCalcs.CalcPCVSPY(p.Sum(s => (decimal)s.l.sellout_col1 * s.m.CONFIG), p.Sum(s => (decimal)s.l.sellout_col2 * s.m.CONFIG)),
-                    share_col1 = Helpers.StrawmanCalcs.CalcShare(p.Sum(s => (decimal)s.l.market_col1 * s.m.CONFIG),p.Sum(s => (decimal)s.l.sellout_col1 * s.m.CONFIG)),
-                    share_col2 = Helpers.StrawmanCalcs.CalcShare(p.Sum(s => (decimal)s.l.market_col2 * s.m.CONFIG), p.Sum(s => (decimal)s.l.sellout_col2 * s.m.CONFIG)),
-                    share_pc = Helpers.StrawmanCalcs.CalcShare(p.Sum(s => (decimal)s.l.market_col1 * s.m.CONFIG),p.Sum(s => (decimal)s.l.sellout_col1 * s.m.CONFIG))
-                    - Helpers.StrawmanCalcs.CalcShare(p.Sum(s => (decimal)s.l.market_col2 * s.m.CONFIG), p.Sum(s => (decimal)s.l.sellout_col2 * s.m.CONFIG)),
-                    type = p.Key._type
-
-                });
-
+            SetChannelTotalCalc(ref query, type);
             return query.ToList();
+            
+        }
+        
+        public void SetChannelTotalCalc(ref IEnumerable<Models.BoyMassMarketModels> query, string type)
+        {
+            List<Models.BoyMassMarketModels> total = new List<Models.BoyMassMarketModels>();
+            List<Models.BoyMassMarketModels> _le = new List<Models.BoyMassMarketModels>();
+            List<Models.BoyMassMarketModels> _int = new List<Models.BoyMassMarketModels>();
+            
+            var chan = GetGroupedChannels(query);
+            
+            switch (type)
+            {
+                case "INT":
+                    total = GetBoyYTDData("TOTAL");
+                    chan = chan
+                        .GroupBy(m => new {_type = m.type, _id = m._id })
+                        .Select(p => new Models.BoyMassMarketModels
+                        {
+                            _id = p.Key._id,
+                            channel = p.Sum(s => s.channel),
+                            brand = p.Max(s => s.brand),
+                            boy_name = p.LastOrDefault().boy_name,
+                            vgroup = p.LastOrDefault().vgroup,
+                            market = p.Max(s => s.market),
+                            market_col1 = p.Sum(s => s.market_col1),
+                            market_pc = Helpers.StrawmanCalcs.CalcPCVSPY((decimal)total.FirstOrDefault(m=>m._id == p.Key._id).market_col2, (decimal)p.Sum(s => s.market_col1)),
+                            sellin_col1 = p.Sum(s => s.sellin_col1),
+                            sellin_pc = Helpers.StrawmanCalcs.CalcPCVSPY((decimal)total.FirstOrDefault(m=>m._id == p.Key._id).sellin_col2,(decimal)p.Sum(s => s.sellin_col1)),
+                            sellout_col1 = p.Sum(s => s.sellout_col1),
+                            sellout_pc = Helpers.StrawmanCalcs.CalcPCVSPY((decimal)total.FirstOrDefault(m=>m._id == p.Key._id).sellout_col2,(decimal)p.Sum(s => s.sellout_col1)),
+                            share_col1 = Helpers.StrawmanCalcs.CalcShare((decimal)p.Sum(s => s.market_col1), (decimal)p.Sum(s => s.sellout_col1)),
+                            share_pc = 
+                                    Helpers.StrawmanCalcs.CalcShare((decimal)p.Sum(s => s.market_col1), (decimal)p.Sum(s => s.sellout_col1))
+                                - (decimal)total.FirstOrDefault(m => m._id == p.Key._id).share_col2,
+                            type = p.Key._type
+
+                        });
+
+                    break;
+                case "LE":
+                    total = GetBoyYTDData("TOTAL");
+                    _int = GetBoyCalcData("INT");
+                    chan = chan
+                        .GroupBy(m => new {_type = m.type, _id = m._id })
+                        .Select(p => new Models.BoyMassMarketModels
+                        {
+                            _id = p.Key._id,
+                            channel = p.Sum(s=>s.channel),
+                            brand = p.Max(s => s.brand),
+                            boy_name = p.LastOrDefault().boy_name,
+                            vgroup = p.LastOrDefault().vgroup,
+                            market = p.Max(s => s.market),
+                            market_col1 = p.Sum(s => s.market_col1),
+                            market_col2 = p.Sum(s => s.market_col1) - _int.FirstOrDefault(m=>m._id == p.Key._id).market_col1,
+                            market_pc = Helpers.StrawmanCalcs.CalcPCVSPY((decimal)total.FirstOrDefault(m => m._id == p.Key._id).market_col2, (decimal)p.Sum(s => s.market_col1)),
+                            market_pc_int = Helpers.StrawmanCalcs.CalcPCVSPY((decimal)_int.FirstOrDefault(m => m._id == p.Key._id).market_col1, (decimal)p.Sum(s => s.market_col1)),
+                            sellin_col1 = p.Sum(s => s.sellin_col1),
+                            sellin_col2 = p.Sum(s => s.sellin_col1) - _int.FirstOrDefault(m => m._id == p.Key._id).sellin_col1,
+                            sellin_pc = Helpers.StrawmanCalcs.CalcPCVSPY((decimal)total.FirstOrDefault(m => m._id == p.Key._id).sellin_col2, (decimal)p.Sum(s => s.sellin_col1)),
+                            sellin_pc_int = Helpers.StrawmanCalcs.CalcPCVSPY((decimal)_int.FirstOrDefault(m => m._id == p.Key._id).sellin_col1, (decimal)p.Sum(s => s.sellin_col1)),
+                            sellout_col1 = p.Sum(s => s.sellout_col1),
+                            sellout_col2 = p.Sum(s => s.sellout_col1) - _int.FirstOrDefault(m => m._id == p.Key._id).sellout_col1,
+                            sellout_pc = Helpers.StrawmanCalcs.CalcPCVSPY((decimal)total.FirstOrDefault(m => m._id == p.Key._id).sellout_col2, (decimal)p.Sum(s => s.sellout_col1)),
+                            sellout_pc_int = Helpers.StrawmanCalcs.CalcPCVSPY((decimal)_int.FirstOrDefault(m => m._id == p.Key._id).sellout_col1, (decimal)p.Sum(s => s.sellout_col1)),
+                            share_col1 = Helpers.StrawmanCalcs.CalcShare((decimal)p.Sum(s => s.market_col1), (decimal)p.Sum(s => s.sellout_col1)),
+                            share_pc = 
+                                    Helpers.StrawmanCalcs.CalcShare((decimal)p.Sum(s => s.market_col1), (decimal)p.Sum(s => s.sellout_col1))
+                                - (decimal)total.FirstOrDefault(m => m._id == p.Key._id).share_col2,
+                            share_pc_int =
+                                Helpers.StrawmanCalcs.CalcShare((decimal)p.Sum(s => s.market_col1), (decimal)p.Sum(s => s.sellout_col1))
+                            - (decimal)_int.FirstOrDefault(m => m._id == p.Key._id).share_col1,
+                            type = p.Key._type
+
+                        });
+
+                    break;
+                case "PBP":
+                    _le = GetBoyCalcData("LE");
+                    chan = chan
+                        .GroupBy(m => new { _type = m.type, _id = m._id })
+                        .Select(p => new Models.BoyMassMarketModels
+                        {
+                            _id = p.Key._id,
+                            channel = p.Sum(s => s.channel),
+                            brand = p.Max(s => s.brand),
+                            boy_name = p.LastOrDefault().boy_name,
+                            vgroup = p.LastOrDefault().vgroup,
+                            market = p.Max(s => s.market),
+                            market_col1 = p.Sum(s => s.market_col1),
+                            market_pc = Helpers.StrawmanCalcs.CalcPCVSPY((decimal)_le.FirstOrDefault(m => m._id == p.Key._id).market_col1, (decimal)p.Sum(s => s.market_col1)),
+                            sellin_col1 = p.Sum(s => s.sellin_col1),
+                            sellin_pc = Helpers.StrawmanCalcs.CalcPCVSPY((decimal)_le.FirstOrDefault(m => m._id == p.Key._id).sellin_col1, (decimal)p.Sum(s => s.sellin_col1)),
+                            sellout_col1 = p.Sum(s => s.sellout_col1),
+                            sellout_pc = Helpers.StrawmanCalcs.CalcPCVSPY((decimal)_le.FirstOrDefault(m => m._id == p.Key._id).sellout_col1, (decimal)p.Sum(s => s.sellout_col1)),
+                            share_col1 = Helpers.StrawmanCalcs.CalcShare((decimal)p.Sum(s => s.market_col1), (decimal)p.Sum(s => s.sellout_col1)),
+                            share_pc = 
+                                    Helpers.StrawmanCalcs.CalcShare((decimal)p.Sum(s => s.market_col1), (decimal)p.Sum(s => s.sellout_col1))
+                                -   (decimal)_le.FirstOrDefault(m => m._id == p.Key._id).share_col1,
+                            type = p.Key._type
+
+                        });
+
+                    break;
+                default:
+                    chan = chan
+                        .GroupBy(m => new { _type = m.type, _id = m._id })
+                        .Select(p => new Models.BoyMassMarketModels
+                        {
+                            _id = p.Key._id,
+                            channel = p.Sum(s=>s.channel),
+                            brand = p.Max(s => s.brand),
+                            boy_name = p.LastOrDefault().boy_name,
+                            vgroup = p.LastOrDefault().vgroup,
+                            market = p.Max(s => s.market),
+                            market_col1 = p.Sum(s => s.market_col1),
+                            market_col2 = p.Sum(s => s.market_col2),
+                            market_pc = Helpers.StrawmanCalcs.CalcPCVSPY((decimal)p.Sum(s => s.market_col1), (decimal)p.Sum(s => s.market_col2)),
+                            sellin_col1 = p.Sum(s => s.sellin_col1),
+                            sellin_col2 = p.Sum(s => s.sellin_col2),
+                            sellin_pc = Helpers.StrawmanCalcs.CalcPCVSPY((decimal)p.Sum(s => s.sellin_col1), (decimal)p.Sum(s => s.sellin_col2)),
+                            sellout_col1 = p.Sum(s => s.sellout_col1),
+                            sellout_col2 = p.Sum(s => s.sellout_col2),
+                            sellout_pc = Helpers.StrawmanCalcs.CalcPCVSPY((decimal)p.Sum(s => s.sellout_col1), (decimal)p.Sum(s => s.sellout_col2)),
+                            share_col1 = Helpers.StrawmanCalcs.CalcShare((decimal)p.Sum(s => s.market_col1), (decimal)p.Sum(s => s.sellout_col1)),
+                            share_col2 = Helpers.StrawmanCalcs.CalcShare((decimal)p.Sum(s => s.market_col2), (decimal)p.Sum(s => s.sellout_col2)),
+                            share_pc = Helpers.StrawmanCalcs.CalcShare((decimal)p.Sum(s => s.market_col1), (decimal)p.Sum(s => s.sellout_col1))
+                            - Helpers.StrawmanCalcs.CalcShare((decimal)p.Sum(s => s.market_col2), (decimal)p.Sum(s => s.sellout_col2)),
+                            type = p.Key._type
+
+                        });
+                    break;
+            }
+            query = query.Union(chan).ToList();            
+        }
+
+        private IEnumerable<Models.BoyMassMarketModels> GetGroupedChannels(IEnumerable<Models.BoyMassMarketModels> query)
+        {
+            List<StrawmanDBLibray.Entities.GROUP_CONFIG> gchannels = (List<StrawmanDBLibray.Entities.GROUP_CONFIG>)StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.GROUP_CONFIG, true);
+            List<StrawmanDBLibray.Entities.GROUP_MASTER> gmaster = (List<StrawmanDBLibray.Entities.GROUP_MASTER>)StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.GROUP_MASTER, true);
+            List<StrawmanDBLibray.Entities.BOY_CONFIG> gconfig = (List<StrawmanDBLibray.Entities.BOY_CONFIG>)StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.BOY_CONFIG, true);
+            var grp = gchannels.Where(m => m.TYPE_ID == (decimal?)group_type).AsEnumerable()
+                .Join(gconfig, c => new { c.MARKET, c.BRAND }, n => new { n.MARKET, n.BRAND }, (c, n) => new
+                {
+                    id = c.GROUP_ID,
+                    base_id = gmaster.FirstOrDefault(m => m.ID == c.GROUP_ID).BASE_ID,
+                    market = c.MARKET,
+                    brand = c.BRAND,
+                    channel = n.CHANNEL,
+                    market_config = n.MARKET_CONFIG,
+                    sellout_config = n.SELLOUT_CONFIG,
+                    sellin_config = n.SELLIN_CONFIG,
+                    name = gmaster.FirstOrDefault(m => m.ID == c.GROUP_ID).NAME
+                }).AsEnumerable();
+            var chan =  grp
+                .Join(query, m => new { _brand = m.brand, _market = m.market, _channel = m.channel}, l => new { _brand = l.brand, _market = l.market, _channel = l.channel },
+                        (m, l) => new Models.BoyMassMarketModels
+                        {
+                            _id = (decimal)m.id,
+                            channel = m.channel,
+                            brand = m.brand * m.base_id,
+                            boy_name = m.name,
+                            market = m.market * m.base_id,
+                            market_col1 = l.market_col1 * (double)(m.market_config == null ? 1 : m.market_config),
+                            market_col2 = l.market_col2 * (double)(m.market_config == null ? 1 : m.market_config),
+                            sellin_col1 = l.sellin_col1 * (double)(m.sellin_config == null ? 1 : m.sellin_config),
+                            sellin_col2 = l.sellin_col2 * (double)(m.sellin_config == null ? 1 : m.sellin_config),
+                            sellout_col1 = l.sellout_col1 * (double)(m.sellout_config == null ? 1 : m.sellout_config),
+                            sellout_col2 = l.sellout_col2 * (double)(m.sellout_config == null ? 1 : m.sellout_config),
+                            type = l.type,
+                            vgroup = l.vgroup
+
+                        })
+                .AsEnumerable();
+
+            return chan
+                        .GroupBy(m => new { _type = m.type, _id = m._id, _channel = m.channel })
+                        .Select(p => new Models.BoyMassMarketModels
+                        {
+                            _id = p.Key._id,
+                            channel = p.Key._channel,
+                            brand = p.Max(s => s.brand),
+                            boy_name = p.LastOrDefault().boy_name,
+                            vgroup = p.LastOrDefault().vgroup,
+                            market = p.Max(s => s.market),
+                            market_col1 = p.Sum(s => s.market_col1),
+                            market_col2 = p.Sum(s => s.market_col2),
+                            sellin_col1 = p.Sum(s => s.sellin_col1),
+                            sellin_col2 = p.Sum(s => s.sellin_col2),
+                            sellout_col1 = p.Sum(s => s.sellout_col1),
+                            sellout_col2 = p.Sum(s => s.sellout_col2),
+                            type = p.Key._type
+
+                        });
             
         }
 
@@ -818,8 +1030,10 @@ namespace StrawmanApp.Controllers
         private const string BOYLECUSTOM = _PATH + "_BoyLECustom.cshtml";
         private const string BOYCUSTOM = _PATH + "_BoyCustom.cshtml";
         private int channel;
+        private int? group_type;
         private static string BOYYTDDATA = "YTDData";
         private const string CONTROLLER = "BoyMassMarket";
+        private const string BY_CHANNEL_CONTROLLER = "BOYJJByChannel";
 
         //StrawmanConstants sc = new StrawmanConstants();
 
@@ -877,6 +1091,22 @@ namespace StrawmanApp.Controllers
                     break;
             }
             
+        }
+
+        private void SetGroupType(int? type)
+        {
+            string by_channel_view = GetGroupTypeByView(BY_CHANNEL_CONTROLLER);
+            string channel_view = GetGroupTypeByView(CONTROLLER);
+            if (type == null)
+                group_type = by_channel_view == null ? 23 : int.Parse(by_channel_view);
+            else
+                group_type = type;
+        }
+
+        private string GetGroupTypeByView(string view)
+        {
+            List<StrawmanDBLibray.Entities.WRK_VIEWS_VARIABLES> vars = (List<StrawmanDBLibray.Entities.WRK_VIEWS_VARIABLES>)StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.WRK_VIEWS_VARIABLES, true);
+            return vars.FirstOrDefault(m => m.VIEW == view).VALUE;
         }
     }
 }
