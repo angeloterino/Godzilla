@@ -655,6 +655,38 @@ namespace StrawmanApp.Controllers
                             share_pc = p.SHARE_PC,
                             type = p.TYPE
                         });
+            List<StrawmanDBLibray.Entities.GROUP_CONFIG> gchannels = (List<StrawmanDBLibray.Entities.GROUP_CONFIG>)StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.GROUP_CONFIG, true);
+            var chan = gchannels.Where(m=>m.TYPE_ID == 22).AsEnumerable()
+                .Join(query, m => new { _brand = m.BRAND, _market = m.MARKET }, l => new { _brand = l.brand, _market = l.market }, (m, l) => new { m = m, l = l })
+                .AsEnumerable()
+                .GroupBy(m=>new{_channel = m.l.channel, _type = m.l.type})
+                .Select(p => new Models.BoyMassMarketModels
+                {
+                    channel = p.Key._channel,
+                    brand = p.Max(s=>s.l.brand),
+                    brand_name = p.LastOrDefault().l.brand_name,
+                    boy_name = p.LastOrDefault().l.boy_name,
+                    conversion_rate1 = null,
+                    conversion_rate2 = null,
+                    vgroup = p.LastOrDefault().l.vgroup,
+                    market = p.LastOrDefault().l.market,
+                    market_col1 = (double)p.Sum(s => (decimal)s.l.market_col1 * s.m.CONFIG),
+                    market_col2 = (double)p.Sum(s => (decimal)s.l.market_col2 * s.m.CONFIG),
+                    market_pc = Helpers.StrawmanCalcs.CalcPCVSPY(p.Sum(s => (decimal)s.l.market_col1 * s.m.CONFIG), p.Sum(s => (decimal)s.l.market_col2 * s.m.CONFIG)),
+                    sellin_col1 = (double)p.Sum(s => (decimal)s.l.sellin_col1 * s.m.CONFIG),
+                    sellin_col2 = (double)p.Sum(s => (decimal)s.l.sellin_col2 * s.m.CONFIG),
+                    sellin_pc = Helpers.StrawmanCalcs.CalcPCVSPY(p.Sum(s => (decimal)s.l.sellin_col1 * s.m.CONFIG), p.Sum(s => (decimal)s.l.sellin_col2 * s.m.CONFIG)),
+                    sellout_col1 = (double)p.Sum(s => (decimal)s.l.sellout_col1 * s.m.CONFIG),
+                    sellout_col2 = (double)p.Sum(s => (decimal)s.l.sellout_col2 * s.m.CONFIG),
+                    sellout_pc = Helpers.StrawmanCalcs.CalcPCVSPY(p.Sum(s => (decimal)s.l.sellout_col1 * s.m.CONFIG), p.Sum(s => (decimal)s.l.sellout_col2 * s.m.CONFIG)),
+                    share_col1 = Helpers.StrawmanCalcs.CalcShare(p.Sum(s => (decimal)s.l.market_col1 * s.m.CONFIG),p.Sum(s => (decimal)s.l.sellout_col1 * s.m.CONFIG)),
+                    share_col2 = Helpers.StrawmanCalcs.CalcShare(p.Sum(s => (decimal)s.l.market_col2 * s.m.CONFIG), p.Sum(s => (decimal)s.l.sellout_col2 * s.m.CONFIG)),
+                    share_pc = Helpers.StrawmanCalcs.CalcShare(p.Sum(s => (decimal)s.l.market_col1 * s.m.CONFIG),p.Sum(s => (decimal)s.l.sellout_col1 * s.m.CONFIG))
+                    - Helpers.StrawmanCalcs.CalcShare(p.Sum(s => (decimal)s.l.market_col2 * s.m.CONFIG), p.Sum(s => (decimal)s.l.sellout_col2 * s.m.CONFIG)),
+                    type = p.Key._type
+
+                });
+
             return query.ToList();
             
         }

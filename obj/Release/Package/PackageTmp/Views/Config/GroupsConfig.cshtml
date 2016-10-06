@@ -1,9 +1,0 @@
-﻿@{
-    ViewBag.Title = "GroupsConfig";
-    Layout = "~/Views/Shared/_StrwLayout.cshtml";
-}
-
-<h2>Groups Config</h2>
-<div class="tab wrapper">@{Html.RenderAction("GetTabs",new{ type = 1 });}</div>
-<div class="master wrapper" data-target=".config.wrapper" data-controller ="GetMasterData"><div class="panel-body">@{Html.RenderAction("GetMasterData", new { type = 1 });}</div></div>
-<div class="config wrapper" data-controller ="GetConfigData"><div class="panel-body">@{Html.RenderAction("GetConfigData", new { type = 1, group = 1 });}</div></div>

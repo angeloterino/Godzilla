@@ -1,9 +1,0 @@
-﻿@model StrawmanApp.Models.StrawmanViewModel
-@using StrawmanApp.Helpers
-@{
-    StrawmanApp.Models.MarketViewChannelModels item = Model.item;
-    if (item == null) { item = new StrawmanApp.Models.MarketViewChannelModels(); }
-    string[] _colData = new string[] { Html.DisplayFor(m => item.col1).ToString(), Html.DisplayFor(m => item.col2).ToString(), Html.DisplayFor(m => item.col3).ToString() };
-    string[] _colType = new string[] { "amount", "amount", "amount" };
-}
-@{Html.RenderPartial("~/Views/StrawmanViews/_StrawmanViewFranchiseSTD.cshtml", Model, new ViewDataDictionary { { "_colData", _colData }, { "_colType", _colType } });}

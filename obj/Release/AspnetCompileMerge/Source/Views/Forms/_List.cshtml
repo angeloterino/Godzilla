@@ -1,6 +1,0 @@
-﻿@model StrawmanApp.Entities.ListModel
-
-@using (Ajax.BeginForm("InsertField", "Forms",new AjaxOptions {HttpMethod = "Post"})){
-@Html.DropDownListFor(m => m.selectedId, Model.brand_master, new { })
-<input type = "submit" value = "Guardar" />
-}
