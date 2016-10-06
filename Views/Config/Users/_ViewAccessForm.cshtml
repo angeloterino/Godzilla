@@ -1,0 +1,22 @@
+﻿@model StrawmanApp.Models.UsersManageModel
+@{
+  
+    using(Ajax.BeginForm("UpdateViewAccess", new AjaxOptions{HttpMethod = "Post", OnSuccess="UpdateSuccess", OnFailure="UpdateFailure"}))
+    {
+       List<string> channels = Model.ViewAccess.Select(m=>m.channel_name).Distinct().ToList(); 
+       string _active = " active in";
+       <div class="tab-content">
+       @foreach(string channel in channels){
+           <div class="tab-pane fade@_active" id="@channel.ToLower()">
+             @{Html.RenderPartial("Users/_ViewsAccess", Model.ViewAccess.Where(m=>m.channel_name == channel).Select(m=>m).ToList());}
+           </div>
+           _active = "";
+        }
+        </div>
+        <div class="config-wrapper float-right">
+           <button type="submit" class="btn btn-success" value="Save" id="SaveUsersViewAccess" ><li class="fa fa-save"></li></button>    
+            @Html.HiddenFor(m => Model.user)
+            @Html.HiddenFor(m => Model.ViewTable)
+        </div>
+    }
+}

@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="materTableDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'godzilla.dbo.STRWM_BMC_DATA_BCK' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="STRWM_BMC_DATA_BCK">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="255" />
+    <Property Name="MKT GP ACT" Type="numeric" Precision="18" Scale="8" />
+    <Property Name="BME ACT" Type="numeric" Precision="18" Scale="8" />
+    <Property Name="BMC ACT" Type="numeric" Precision="18" Scale="8" />
+    <Property Name="MKT GP NTAR" Type="numeric" Precision="18" Scale="8" />
+    <Property Name="BME NTAR" Type="numeric" Precision="18" Scale="8" />
+    <Property Name="BMC NTAR" Type="numeric" Precision="18" Scale="8" />
+    <Property Name="MARKET" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="BRAND" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="CHANNEL" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="CHANNEL SHORT" Type="nvarchar" MaxLength="255" />
+    <Property Name="TRANSACTION_ID" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="USER" Type="nvarchar" MaxLength="255" />
+    <Property Name="YEAR" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="GFO" Type="nvarchar" MaxLength="255" />
+    <Property Name="PRIORITIZATION" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'godzilla.dbo.STRWM_BOY_DATA_BCK' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="STRWM_BOY_DATA_BCK">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="MARKET" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="GROUP" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="MARKET_NAME" Type="nvarchar" MaxLength="255" />
+    <Property Name="BRAND_NAME" Type="nvarchar" MaxLength="255" />
+    <Property Name="DATA" Type="nvarchar" MaxLength="255" />
+    <Property Name="SOURCE" Type="nvarchar" MaxLength="255" />
+    <Property Name="INT" Type="float" />
+    <Property Name="BTG" Type="float" />
+    <Property Name="PBP" Type="float" />
+    <Property Name="YEAR" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="TYPE" Type="nvarchar" MaxLength="255" />
+    <Property Name="CHANNEL" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="BRAND" Type="numeric" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="STRWM_BRAND_DATA_BCK">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DATA" Type="nvarchar" MaxLength="255" />
+    <Property Name="SOURCE" Type="nvarchar" MaxLength="255" />
+    <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="255" />
+    <Property Name="MARKET" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="BRAND" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="YEAR PERIOD" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="MONTH PERIOD" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="TOTAL" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="MONTH" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="YTD" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="MAT" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="WC" Type="nvarchar" MaxLength="255" />
+    <Property Name="SB" Type="nvarchar" MaxLength="255" />
+    <Property Name="TRANSACTION_ID" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="USER" Type="nvarchar" MaxLength="255" />
+    <Property Name="LAST DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="STRWM_MARKET_DATA_BCK">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DATA" Type="nvarchar" MaxLength="255" />
+    <Property Name="SOURCE" Type="nvarchar" MaxLength="255" />
+    <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="255" />
+    <Property Name="MARKET" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="YEAR PERIOD" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="MONTH PERIOD" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="TOTAL" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="MONTH" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="YTD" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="MAT" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="WC" Type="nvarchar" MaxLength="255" />
+    <Property Name="SB" Type="nvarchar" MaxLength="255" />
+    <Property Name="TRANSACTION_ID" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="USER" Type="nvarchar" MaxLength="255" />
+    <Property Name="LAST DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="STRWM_NTS_DATA_BCK">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CHANNEL" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="MARKET" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="BRAND" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="NTS CFG" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="MONTH_AMOUNT_ACTUAL" Type="decimal" Precision="18" Scale="10" />
+    <Property Name="MONTH_AMOUNT_FBP" Type="decimal" Precision="18" Scale="10" />
+    <Property Name="MONTH_AMOUNT_PY" Type="decimal" Precision="18" Scale="10" />
+    <Property Name="MONTH_CHANGE_FBP" Type="decimal" Precision="18" Scale="10" />
+    <Property Name="MONTH_CHANGE_PY" Type="decimal" Precision="18" Scale="10" />
+    <Property Name="YTD_AMOUNT_ACTUAL" Type="decimal" Precision="18" Scale="10" />
+    <Property Name="YTD_AMOUNT_FBP" Type="decimal" Precision="18" Scale="10" />
+    <Property Name="YTD_AMOUNT_PY" Type="decimal" Precision="18" Scale="10" />
+    <Property Name="YTD_CHANGE_FBP" Type="decimal" Precision="18" Scale="10" />
+    <Property Name="YTD_CHANGE_PY" Type="decimal" Precision="18" Scale="10" />
+    <Property Name="TRANSACTION_ID" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="YEAR PERIOD" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="MONTH PERIOD" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="USER" Type="nvarchar" MaxLength="255" />
+    <Property Name="LAST DATE" Type="datetime" />
+  </EntityType>
+  <EntityContainer Name="materTableDataModelStoreContainer">
+    <EntitySet Name="STRWM_BRAND_DATA_BCK" EntityType="Self.STRWM_BRAND_DATA_BCK" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STRWM_MARKET_DATA_BCK" EntityType="Self.STRWM_MARKET_DATA_BCK" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STRWM_NTS_DATA_BCK" EntityType="Self.STRWM_NTS_DATA_BCK" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STRWM_BMC_DATA_BCK" EntityType="Self.STRWM_BMC_DATA_BCK" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[STRWM_BMC_DATA_BCK].[ID] AS [ID], 
+[STRWM_BMC_DATA_BCK].[NAME] AS [NAME], 
+[STRWM_BMC_DATA_BCK].[MKT GP ACT] AS [MKT GP ACT], 
+[STRWM_BMC_DATA_BCK].[BME ACT] AS [BME ACT], 
+[STRWM_BMC_DATA_BCK].[BMC ACT] AS [BMC ACT], 
+[STRWM_BMC_DATA_BCK].[MKT GP NTAR] AS [MKT GP NTAR], 
+[STRWM_BMC_DATA_BCK].[BME NTAR] AS [BME NTAR], 
+[STRWM_BMC_DATA_BCK].[BMC NTAR] AS [BMC NTAR], 
+[STRWM_BMC_DATA_BCK].[MARKET] AS [MARKET], 
+[STRWM_BMC_DATA_BCK].[BRAND] AS [BRAND], 
+[STRWM_BMC_DATA_BCK].[CHANNEL] AS [CHANNEL], 
+[STRWM_BMC_DATA_BCK].[CHANNEL SHORT] AS [CHANNEL SHORT], 
+[STRWM_BMC_DATA_BCK].[TRANSACTION_ID] AS [TRANSACTION_ID], 
+[STRWM_BMC_DATA_BCK].[USER] AS [USER], 
+[STRWM_BMC_DATA_BCK].[YEAR] AS [YEAR], 
+[STRWM_BMC_DATA_BCK].[GFO] AS [GFO], 
+[STRWM_BMC_DATA_BCK].[PRIORITIZATION] AS [PRIORITIZATION]
+FROM [dbo].[STRWM_BMC_DATA_BCK] AS [STRWM_BMC_DATA_BCK]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="STRWM_BOY_DATA_BCK" EntityType="Self.STRWM_BOY_DATA_BCK" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[STRWM_BOY_DATA_BCK].[ID] AS [ID], 
+[STRWM_BOY_DATA_BCK].[MARKET] AS [MARKET], 
+[STRWM_BOY_DATA_BCK].[GROUP] AS [GROUP], 
+[STRWM_BOY_DATA_BCK].[MARKET_NAME] AS [MARKET_NAME], 
+[STRWM_BOY_DATA_BCK].[BRAND_NAME] AS [BRAND_NAME], 
+[STRWM_BOY_DATA_BCK].[DATA] AS [DATA], 
+[STRWM_BOY_DATA_BCK].[SOURCE] AS [SOURCE], 
+[STRWM_BOY_DATA_BCK].[INT] AS [INT], 
+[STRWM_BOY_DATA_BCK].[BTG] AS [BTG], 
+[STRWM_BOY_DATA_BCK].[PBP] AS [PBP], 
+[STRWM_BOY_DATA_BCK].[YEAR] AS [YEAR], 
+[STRWM_BOY_DATA_BCK].[TYPE] AS [TYPE], 
+[STRWM_BOY_DATA_BCK].[CHANNEL] AS [CHANNEL], 
+[STRWM_BOY_DATA_BCK].[BRAND] AS [BRAND]
+FROM [dbo].[STRWM_BOY_DATA_BCK] AS [STRWM_BOY_DATA_BCK]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

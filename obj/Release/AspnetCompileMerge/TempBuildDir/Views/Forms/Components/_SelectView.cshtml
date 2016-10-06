@@ -1,0 +1,10 @@
+﻿@model StrawmanApp.Models.FormUtilModel.SelectModel
+@if (Model.label != null) { Html.LabelFor(m => Model, Model.label, null); }
+@{
+    List<SelectListItem> opts = new List<SelectListItem>();
+    foreach (StrawmanApp.Models.FormUtilModel.OptionModel option in Model.options)
+    {
+        opts.Add(new SelectListItem(){ Text = option.text, Value = option.value});
+    }
+} 
+@Html.DropDownListFor(m => Model.id, opts, new { @class = "form-control", @data_type = Html.Raw(Model.data_attributes) })

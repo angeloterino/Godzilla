@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EntitiesStoreContainer" CdmEntityContainer="godzillaCommentsEntities">
+    <EntitySetMapping Name="LETTERS_COMMENT_DATA">
+      <EntityTypeMapping TypeName="Entities.LETTERS_COMMENT_DATA">
+        <MappingFragment StoreEntitySet="LETTERS_COMMENT_DATA">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LETTER_ID" ColumnName="LETTER_ID" />
+          <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
+          <ScalarProperty Name="USER" ColumnName="USER" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MANAGEMENT_LETTERS_MASTER">
+      <EntityTypeMapping TypeName="Entities.MANAGEMENT_LETTERS_MASTER">
+        <MappingFragment StoreEntitySet="MANAGEMENT_LETTERS_MASTER">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="MAIN_GROUP" ColumnName="MAIN GROUP" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="CHANNEL_GROUP" ColumnName="CHANNEL GROUP" />
+          <ScalarProperty Name="COUNTRY" ColumnName="COUNTRY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_MANAGEMENT_LETTERS">
+      <EntityTypeMapping TypeName="Entities.v_WRK_MANAGEMENT_LETTERS">
+        <MappingFragment StoreEntitySet="v_WRK_MANAGEMENT_LETTERS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="GROUP_ID" ColumnName="GROUP ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="COUNTRY" ColumnName="COUNTRY" />
+          <ScalarProperty Name="MAIN_NAME" ColumnName="MAIN NAME" />
+          <ScalarProperty Name="MAIN_GROUP" ColumnName="MAIN GROUP" />
+          <ScalarProperty Name="CHANNEL_NAME" ColumnName="CHANNEL NAME" />
+          <ScalarProperty Name="CHANNEL_GROUP" ColumnName="CHANNEL GROUP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_MONTHLY_COMMENTS_DATA">
+      <EntityTypeMapping TypeName="Entities.v_WRK_MONTHLY_COMMENTS_DATA">
+        <MappingFragment StoreEntitySet="v_WRK_MONTHLY_COMMENTS_DATA">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="YTD_PT" ColumnName="YTD PT" />
+          <ScalarProperty Name="YTD_MARKET_SHARE" ColumnName="YTD MARKET SHARE" />
+          <ScalarProperty Name="YTD_BRAND_GROWTH" ColumnName="YTD BRAND GROWTH" />
+          <ScalarProperty Name="YTD_MARKET_GROWTH" ColumnName="YTD MARKET GROWTH" />
+          <ScalarProperty Name="MONTH_PT" ColumnName="MONTH PT" />
+          <ScalarProperty Name="MONTH_MARKET_SHARE" ColumnName="MONTH MARKET SHARE" />
+          <ScalarProperty Name="MONTH_BRAND_GROWTH" ColumnName="MONTH BRAND GROWTH" />
+          <ScalarProperty Name="MONTH_MARKET_GROWTH" ColumnName="MONTH MARKET GROWTH" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_MANAGEMENT_LETTERS_DATA">
+      <EntityTypeMapping TypeName="Entities.v_WRK_MANAGEMENT_LETTERS_DATA">
+        <MappingFragment StoreEntitySet="v_WRK_MANAGEMENT_LETTERS_DATA">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="LATEST_COL3" ColumnName="LATEST COL3" />
+          <ScalarProperty Name="LATEST_COL2" ColumnName="LATEST COL2" />
+          <ScalarProperty Name="LATEST_COL1" ColumnName="LATEST COL1" />
+          <ScalarProperty Name="YTD_COL3" ColumnName="YTD COL3" />
+          <ScalarProperty Name="YTD_COL2" ColumnName="YTD COL2" />
+          <ScalarProperty Name="YTD_COL1" ColumnName="YTD COL1" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SHORT_NAME" ColumnName="SHORT NAME" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CHANNEL_MASTER">
+      <EntityTypeMapping TypeName="Entities.CHANNEL_MASTER">
+        <MappingFragment StoreEntitySet="CHANNEL_MASTER">
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

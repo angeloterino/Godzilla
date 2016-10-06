@@ -1,0 +1,1072 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8CC40C5C-2BBE-4B72-910D-DE91D4349BA2}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StrawmanApp</RootNamespace>
+    <AssemblyName>StrawmanApp</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.3.4.13329\lib\net40-full\DotNetOpenAuth.AspNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.3.4.13329\lib\net40-full\DotNetOpenAuth.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.3.4.13329\lib\net40-full\DotNetOpenAuth.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.3.4.13329\lib\net40-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.3.4.13329\lib\net40-full\DotNetOpenAuth.OpenId.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.3.4.13329\lib\net40-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Excel, Version=2.1.2.3, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.2.1.2.3\lib\net20\Excel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ExcelApi, Version=1.7.2.0, Culture=neutral, PublicKeyToken=9084b9221296229e, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetOffice.Excel.Net40.1.7.2.0\lib\net40\ExcelApi.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Grid.Mvc.Ajax, Version=1.0.2.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Grid.Mvc.Ajax.1.0.31\lib\Grid.Mvc.Ajax.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GridMvc, Version=2.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Grid.Mvc.Redux.1.0.4\lib\GridMvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.Build.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel">
+      <HintPath>..\..\..\..\..\..\..\Proyects\dlls\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop, Version=1.0.168.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Web.v20, Version=6.9.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="NetOffice, Version=1.7.2.0, Culture=neutral, PublicKeyToken=297f57b43ae7c1de, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetOffice.Core.Net40.1.7.2.0\lib\net40\NetOffice.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OFFICE">
+      <HintPath>..\..\..\..\..\..\..\Proyects\dlls\OFFICE.DLL</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="OfficeApi, Version=1.7.2.0, Culture=neutral, PublicKeyToken=a39beb0835c43c8e, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetOffice.Core.Net40.1.7.2.0\lib\net40\OfficeApi.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.IO.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net40\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net40\System.Net.Http.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net40\System.Net.Http.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Threading.Tasks, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.Threading.Tasks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Entity">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.ApplicationServices">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Abstractions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Routing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Transactions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.EnterpriseServices">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="VBIDEApi, Version=1.7.2.0, Culture=neutral, PublicKeyToken=931cec8882205047, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetOffice.Core.Net40.1.7.2.0\lib\net40\VBIDEApi.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.1.0\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebMatrix.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.2.0.20710.0\lib\net40\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.2.0.20710.0\lib\net40\Microsoft.Web.WebPages.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.2.0.20710.0\lib\net40\WebMatrix.WebData.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AuthConfig.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\FontAwesomeBundleConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Classes\Default.cs" />
+    <Compile Include="Classes\HtmlElements.cs" />
+    <Compile Include="Classes\NTSColumns.cs" />
+    <Compile Include="Classes\NTSPeriod.cs" />
+    <Compile Include="Classes\NTSTypes.cs" />
+    <Compile Include="Classes\StrawmanColumns.cs" />
+    <Compile Include="Classes\StrawmanViews.cs" />
+    <Compile Include="Classes\ViewsStrings.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BrandCategorisationController.cs" />
+    <Compile Include="Controllers\ChartBOYChannelController.cs" />
+    <Compile Include="Controllers\ChartJJVInternalController.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
+    <Compile Include="Controllers\ConfigController.cs" />
+    <Compile Include="Controllers\NTSViewKeybrandsController.cs" />
+    <Compile Include="Controllers\NTSViewFranchiseController.cs" />
+    <Compile Include="Controllers\ExcelExportController.cs" />
+    <Compile Include="Controllers\FormUtilController.cs" />
+    <Compile Include="Controllers\ItemsConfigController.cs" />
+    <Compile Include="Controllers\NTSViewChannelController.cs" />
+    <Compile Include="Controllers\NTSViewController.cs" />
+    <Compile Include="Helpers\Session.cs" />
+    <Compile Include="Helpers\StrawmanCalcs.cs" />
+    <Compile Include="Helpers\StrawmanDBLibrayData.cs" />
+    <Compile Include="Helpers\StyleUtils.cs" />
+    <Compile Include="Models\ConfigOperationsModel.cs" />
+    <Compile Include="Models\ItemsConfigModel.cs" />
+    <Compile Include="Controllers\ManagementLetterController.cs" />
+    <Compile Include="Controllers\MonthlyCommentsController.cs" />
+    <Compile Include="Controllers\YearTransactionModel.cs" />
+    <Compile Include="Entities\BrandCategorisationModel1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BrandCategorisationModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ChartsModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChartsModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CommentsDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CommentsDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\GodzillaEntity\GodzillaEntityDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GodzillaEntityDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\MasterTable\MasterTableDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MasterTableDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BOYFormModel.cs" />
+    <Compile Include="Controllers\BoyMassMarketController.cs" />
+    <Compile Include="Controllers\BrandViewController.cs" />
+    <Compile Include="Controllers\BrandViewChannelController.cs" />
+    <Compile Include="Controllers\BrandViewFranchiseController.cs" />
+    <Compile Include="Controllers\BrandViewKeybrandsController.cs" />
+    <Compile Include="Controllers\ChartByChannelController.cs" />
+    <Compile Include="Controllers\FormsController.cs" />
+    <Compile Include="Controllers\KPIController.cs" />
+    <Compile Include="Controllers\MarketViewController.cs" />
+    <Compile Include="Controllers\MarketViewKeybrandsController.cs" />
+    <Compile Include="Controllers\MarketViewFranchiseController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MarketDataController.cs" />
+    <Compile Include="Controllers\MarketViewChannelController.cs" />
+    <Compile Include="Controllers\Market_YTDController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\ShareBoardController.cs" />
+    <Compile Include="Controllers\TabsController.cs" />
+    <Compile Include="Entities\BoyConfigModel.cs" />
+    <Compile Include="Entities\ListModel.cs" />
+    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\StrawmanConstants.cs" />
+    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\BOYDataClasses.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BOYDataClasses.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BoyMassMarketModels.cs" />
+    <Compile Include="Models\BOYVariablesModels.cs" />
+    <Compile Include="Models\ConfigModels.cs" />
+    <Compile Include="Models\FromUtilModel.cs" />
+    <Compile Include="Models\ChannelsDataClasses.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChannelsDataClasses.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChartByChannelModels.cs" />
+    <Compile Include="Models\ChartModel.cs" />
+    <Compile Include="Models\ChartsClasses.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChartsClasses.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FranchiseDataClasses.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FranchiseDataClasses.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GodzillaWRK.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GodzillaWRK.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KeybrandsDataClasses.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KeybrandsDataClasses.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MarketViewChannelModels.cs" />
+    <Compile Include="Models\Market_MATModels.cs" />
+    <Compile Include="Models\DataClasses1.cs">
+      <DependentUpon>DataClasses1.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Market_BOYModels.cs" />
+    <Compile Include="Models\Market_MonthModels.cs" />
+    <Compile Include="Models\Market_PCVSPYModels.cs" />
+    <Compile Include="Models\Market_TotalCustomModels.cs" />
+    <Compile Include="Models\MarketTotalModels.cs" />
+    <Compile Include="Models\MarketDataModels.cs" />
+    <Compile Include="Models\DataClasses1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataClasses1.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Market_BTGModels.cs" />
+    <Compile Include="Models\Market_YTDModels.cs" />
+    <Compile Include="Models\MenuDataClasses1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MenuDataClasses.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MenuModels.cs" />
+    <Compile Include="Models\StrawmanViewModel.cs" />
+    <Compile Include="Models\UsersManageModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\CustomStyle.css" />
+    <Content Include="Content\defaultTheme.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\fontawesome\font-awesome.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\fontawesome\font-awesome.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\fonts\fontawesome-webfont.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Gridmvc.css" />
+    <Content Include="Content\gridmvc.datepicker.css" />
+    <Content Include="Content\gridmvc.datepicker.min.css" />
+    <Content Include="Content\jansybootstrap\jasny-bootstrap.min.css" />
+    <Content Include="Content\ladda-bootstrap\ladda-themeless.min.css" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Content\yeti\bootstrap.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\gif_godzilla.gif" />
+    <Content Include="Images\loading_anim.gif" />
+    <Content Include="Images\Godzilla_n.jpg" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Scripts\bootstrap.inputs\bootstrap.file-inputs.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\combo\init.js" />
+    <Content Include="Scripts\combo\period.js" />
+    <Content Include="Scripts\comments\comments.js" />
+    <Content Include="Scripts\common\gridutil.js" />
+    <Content Include="Scripts\forms\commentsForm.js" />
+    <Content Include="Scripts\common\functions.js" />
+    <Content Include="Scripts\customItemsConfig.js" />
+    <Content Include="Scripts\customPreview.js" />
+    <Content Include="Scripts\customChartJJVInternal.js" />
+    <Content Include="Scripts\customBOYJJByChannel.js" />
+    <Content Include="Scripts\customBrandCategorisation.js" />
+    <Content Include="Scripts\customChartBOYChannel.js" />
+    <Content Include="Scripts\customConfig.js" />
+    <Content Include="Scripts\customLoaderView.js" />
+    <Content Include="Scripts\customMasterData.js" />
+    <Content Include="Scripts\customMonthlyComments.js" />
+    <Content Include="Scripts\customManagementLetter.js" />
+    <Content Include="Scripts\customBOYConfigure.js" />
+    <Content Include="Scripts\customCharts.js" />
+    <Content Include="Scripts\custom.js" />
+    <Content Include="Scripts\customBOY.js" />
+    <Content Include="Scripts\customForms.js" />
+    <Content Include="Scripts\customKPI.js" />
+    <Content Include="Scripts\customShareBoard.js" />
+    <Content Include="Scripts\customUserManagment.js" />
+    <Content Include="Scripts\forms\boyForms.js" />
+    <Content Include="Scripts\gridmvc-ext.js" />
+    <Content Include="Scripts\gridmvc.customwidgets.js" />
+    <Content Include="Scripts\gridmvc.js" />
+    <Content Include="Scripts\gridmvc.lang.fr.js" />
+    <Content Include="Scripts\gridmvc.lang.ru.js" />
+    <Content Include="Scripts\gridmvc.min.js" />
+    <Content Include="Scripts\jansybootstrap\jasny-bootstrap.min.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <EntityDeploy Include="Entities\BrandCategorisationModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BrandCategorisationModel1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="Entities\MasterTable\MasterTableDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MasterTableDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Entities\MasterTable\MasterTableDataModel.edmx.diagram">
+      <DependentUpon>MasterTableDataModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Entities\GodzillaEntity\GodzillaEntityDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>GodzillaEntityDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Entities\GodzillaEntity\GodzillaEntityDataModel.edmx.diagram">
+      <DependentUpon>GodzillaEntityDataModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Content\fonts\fontawesome-webfont.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\fonts\fontawesome-webfont.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\fonts\fontawesome-webfont.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\fonts\FontAwesome.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Properties\PublishProfiles\Perfil3.pubxml" />
+    <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.4.js" />
+    <Content Include="Scripts\jquery-2.1.4.min.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
+    <Content Include="Scripts\jquery.fixedheadertable.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout-3.3.0.debug.js" />
+    <Content Include="Scripts\knockout-3.3.0.js" />
+    <Content Include="Scripts\ladda-bootstrap\ladda.min.js" />
+    <Content Include="Scripts\ladda-bootstrap\spin.min.js" />
+    <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\strawman.helpers.js" />
+    <Content Include="Scripts\customGroupsConfig.js" />
+    <Content Include="Scripts\table.utils\customMasterData.js" />
+    <Content Include="Scripts\table.utils\table.blocker.js" />
+    <Content Include="Scripts\URI.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Images\accent.png" />
+    <Content Include="Images\bullet.png" />
+    <Content Include="Images\heroAccent.png" />
+    <Content Include="Images\orderedList0.png" />
+    <Content Include="Images\orderedList1.png" />
+    <Content Include="Images\orderedList2.png" />
+    <Content Include="Images\orderedList3.png" />
+    <Content Include="Images\orderedList4.png" />
+    <Content Include="Images\orderedList5.png" />
+    <Content Include="Images\orderedList6.png" />
+    <Content Include="Images\orderedList7.png" />
+    <Content Include="Images\orderedList8.png" />
+    <Content Include="Images\orderedList9.png" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Shared\_PeriodSelector.cshtml" />
+    <Content Include="Views\Shared\_PeriodBanner.cshtml" />
+    <Content Include="Views\BoyMassMarket\_BOYStdView.cshtml" />
+    <Content Include="Views\BoyMassMarket\_BoyStdCalcView.cshtml" />
+    <Content Include="Views\StrawmanViews\MasterTable\_TdView.cshtml" />
+    <Content Include="Views\StrawmanViews\MasterTable\_TrView.cshtml" />
+    <Content Include="Views\StrawmanViews\_StrawmanViewFranchiseSTD.cshtml" />
+    <Content Include="Views\StrawmanViews\_StrawmanViewSTD.cshtml" />
+    <Content Include="Views\Shared\_CurrencyBanner.cshtml" />
+    <Content Include="Views\FormUtil\_SelectOptions.cshtml" />
+    <Content Include="Views\Shared\_Modal.cshtml" />
+    <Content Include="Views\Shared\_CurrencyAdjust.cshtml" />
+    <Content Include="Views\ItemsConfig\Index.cshtml" />
+    <Content Include="Views\ItemsConfig\_ItemsList.cshtml" />
+    <Content Include="Views\ItemsConfig\_ItemDATA.cshtml" />
+    <Content Include="Views\ItemsConfig\ShowItemCaracts.cshtml" />
+    <Content Include="Views\ItemsConfig\_ItemEdit.cshtml" />
+    <Content Include="Views\NTSView\_NTSData.cshtml" />
+    <Content Include="Views\StrawmanViews\_StrawmanViewFranchiseNTS.cshtml" />
+    <Content Include="Views\NTSView\_NTSDataChannelModel.cshtml" />
+    <Content Include="Views\NTSView\_NTSDataFranchise.cshtml" />
+    <Content Include="Views\NTSView\_NTSDataChannel.cshtml" />
+    <Content Include="Views\NTSView\_NTSDataKeybrands.cshtml" />
+    <Content Include="Views\Config\_LoadConfig.cshtml" />
+    <Content Include="Views\Config\GroupsConfig.cshtml" />
+    <Content Include="Views\Tabs\_BootstrapTabs.cshtml" />
+    <Content Include="Views\Config\Groups\_GroupMaster.cshtml" />
+    <Content Include="Views\Config\Groups\_GroupConfig.cshtml" />
+    <Content Include="Views\Forms\Tables\_NTS.cshtml" />
+    <Content Include="Views\Forms\Tables\_Nielsen_IMS.cshtml" />
+    <Content Include="Views\Forms\Tables\_LoaderPrev.cshtml" />
+    <Content Include="Views\Forms\Components\_InputView.cshtml" />
+    <Content Include="Views\Forms\Components\_SelectView.cshtml" />
+    <Content Include="Views\Forms\Components\_ButtonView.cshtml" />
+    <Content Include="Views\Forms\Tables\Components\_TrView.cshtml" />
+    <Content Include="Views\Forms\Tables\Components\_TdView.cshtml" />
+    <Content Include="Views\StrawmanViews\_StrawmanViewSTDShareBoard.cshtml" />
+    <Content Include="Views\ShareBoard\_ShareBoard_Channel.cshtml" />
+    <Content Include="Views\Comments\_Comments.cshtml" />
+    <Content Include="Views\Comments\_Edit_Buttons.cshtml" />
+    <Content Include="Views\Forms\Components\_TextAreaView.cshtml" />
+    <Content Include="Views\Comments\_EditComment.cshtml" />
+    <Content Include="Views\Config\Components\_DropDownList.cshtml" />
+    <Content Include="Views\Config\Users\Index.cshtml" />
+    <Content Include="Views\Config\Users\_Permissions.cshtml" />
+    <Content Include="Views\Config\Users\_MenuAccess.cshtml" />
+    <Content Include="Views\Config\Users\_ViewsAccess.cshtml" />
+    <Content Include="Views\Config\Users\_ViewAccessForm.cshtml" />
+    <Content Include="Views\Shared\_ScriptsEnableManagement.cshtml" />
+    <Content Include="Views\Shared\_VoidScript.cshtml" />
+    <Content Include="Views\Config\BOY\_EditEnabled.cshtml" />
+    <Content Include="Views\Config\BOY\_EditForm.cshtml" />
+    <Content Include="Views\Config\BOY\_EditHeader.cshtml" />
+    <Content Include="Views\BoyMassMarket\_BoyRow.cshtml" />
+    <Content Include="Views\Config\BOY\_BlankForm.cshtml" />
+    <Content Include="Views\Forms\_ReturnBOYForm.cshtml" />
+    <Content Include="Views\Config\BOY\_EditedForm.cshtml" />
+    <Content Include="Views\Shared\_ScriptsCommentsEnableManagement.cshtml" />
+    <Content Include="Views\Config\MasterData\_ModalForm.cshtml" />
+    <Content Include="Views\Forms\Components\_FormSTD.cshtml" />
+    <Content Include="Views\Forms\Components\_ModalContent.cshtml" />
+    <Content Include="Views\Forms\Components\_SelectInput.cshtml" />
+    <Content Include="Views\Config\_BoyConfigGrid.cshtml" />
+    <Content Include="Views\Config\Users\_UsersTabs.cshtml" />
+    <Content Include="Views\Config\Users\_ChannelsTabs.cshtml" />
+    <Content Include="Views\Config\BOYConfig\Index.cshtml" />
+    <Content Include="Views\Config\BOYConfig\_DataGrid.cshtml" />
+    <Content Include="Views\Config\Components\_ChannelPills.cshtml" />
+    <Content Include="Views\Config\BOYConfig\_Content.cshtml" />
+    <Content Include="Views\Config\BOYConfig\_Header.cshtml" />
+    <Content Include="Views\Config\BOYConfig\_Footer.cshtml" />
+    <Content Include="Views\Config\Components\_DropDownListFor.cshtml" />
+    <Content Include="Views\Config\Groups\_GroupConfigEdit.cshtml" />
+    <Content Include="Views\Config\Groups\_BlankForm.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_GridPager.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Grid.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Entities\CommentsDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CommentsDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="Entities\ChartsModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ChartsModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Grid.Mvc.Ajax.readme" />
+    <None Include="Grid.mvc.readme" />
+    <None Include="Models\BOYDataClasses.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>BOYDataClasses.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Models\BOYDataClasses.dbml.layout">
+      <DependentUpon>BOYDataClasses.dbml</DependentUpon>
+    </None>
+    <None Include="Models\ChannelsDataClasses.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>ChannelsDataClasses.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Models\ChannelsDataClasses.dbml.layout">
+      <DependentUpon>ChannelsDataClasses.dbml</DependentUpon>
+    </None>
+    <None Include="Models\ChartsClasses.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>ChartsClasses.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Models\ChartsClasses.dbml.layout">
+      <DependentUpon>ChartsClasses.dbml</DependentUpon>
+    </None>
+    <None Include="Models\DataClasses1.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>DataClasses1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Models\DataClasses1.dbml.layout">
+      <DependentUpon>DataClasses1.dbml</DependentUpon>
+    </None>
+    <None Include="Models\FranchiseDataClasses.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>FranchiseDataClasses.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Models\FranchiseDataClasses.dbml.layout">
+      <DependentUpon>FranchiseDataClasses.dbml</DependentUpon>
+    </None>
+    <Content Include="Models\GodzillaWRK.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>GodzillaWRK.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Models\GodzillaWRK.dbml.layout">
+      <DependentUpon>GodzillaWRK.dbml</DependentUpon>
+    </None>
+    <None Include="Models\KeybrandsDataClasses.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>KeybrandsDataClasses.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Models\KeybrandsDataClasses.dbml.layout">
+      <DependentUpon>KeybrandsDataClasses.dbml</DependentUpon>
+    </None>
+    <None Include="Models\MenuDataClasses.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>MenuDataClasses1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Models\MenuDataClasses.dbml.layout">
+      <DependentUpon>MenuDataClasses.dbml</DependentUpon>
+    </None>
+    <None Include="Properties\PublishProfiles\Perfil1.pubxml" />
+    <None Include="Properties\PublishProfiles\Perfil2.pubxml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Scripts\gridmvc.min.js.map" />
+    <Content Include="Views\MarketData\_MarketDataView.cshtml" />
+    <Content Include="Views\MarketData\Index.cshtml" />
+    <Content Include="Views\Market_YTD\_Market_YTD.cshtml" />
+    <Content Include="Views\Market_YTD\View1.cshtml" />
+    <Content Include="Views\Market_YTD\View2.cshtml" />
+    <Content Include="Views\Home\MarketView.cshtml" />
+    <Content Include="Views\Shared\_StrwLayout.cshtml" />
+    <Content Include="Views\Market_BTG\_Market_BTG.cshtml" />
+    <Content Include="Views\Market_TotalCustom\_Market_TotalCustom.cshtml" />
+    <Content Include="Views\Market_Month\_Market_Month.cshtml" />
+    <Content Include="Views\MarketView\_Market_BOY.cshtml" />
+    <Content Include="Views\Market_MAT\_Market_MAT.cshtml" />
+    <Content Include="Views\Market_PCVSPY\_Market_PCVSPY.cshtml" />
+    <Content Include="Views\Home\BrandView.cshtml" />
+    <Content Include="Views\BrandView\_BrandDataView.cshtml" />
+    <Content Include="Views\BrandView\_Brand_Month.cshtml" />
+    <Content Include="Views\BrandView\_Brand_YTD.cshtml" />
+    <Content Include="Views\BrandView\_Brand_MAT.cshtml" />
+    <Content Include="Views\BrandView\_Brand_BTG.cshtml" />
+    <Content Include="Views\BrandView\_Brand_TotalCustom.cshtml" />
+    <Content Include="Views\BrandView\_Brand_BOY.cshtml" />
+    <Content Include="Views\BrandView\_Brand_PCVSPY.cshtml" />
+    <Content Include="Views\Home\AsyncView.cshtml" />
+    <Content Include="Views\MarketViewChannel\_MarketDataView.cshtml" />
+    <Content Include="Views\MarketViewChannel\_Market_MAT.cshtml" />
+    <Content Include="Views\MarketViewChannel\_Market_Month.cshtml" />
+    <Content Include="Views\MarketViewChannel\_Market_YTD.cshtml" />
+    <Content Include="Views\MarketViewChannel\_Market_BTG.cshtml" />
+    <Content Include="Views\MarketViewChannel\_Market_TotalCustom.cshtml" />
+    <Content Include="Views\MarketViewChannel\_Market_BOY.cshtml" />
+    <Content Include="Views\MarketViewChannel\_Market_PCVSPY.cshtml" />
+    <Content Include="Views\BrandViewChannel\_Brand_BOY.cshtml" />
+    <Content Include="Views\BrandViewChannel\_BrandDataView.cshtml" />
+    <Content Include="Views\BrandViewChannel\_Brand_BTG.cshtml" />
+    <Content Include="Views\BrandViewChannel\_Brand_MAT.cshtml" />
+    <Content Include="Views\BrandViewChannel\_Brand_Month.cshtml" />
+    <Content Include="Views\BrandViewChannel\_Brand_PCVSPY.cshtml" />
+    <Content Include="Views\BrandViewChannel\_Brand_TotalCustom.cshtml" />
+    <Content Include="Views\BrandViewChannel\_Brand_YTD.cshtml" />
+    <Content Include="Views\MarketViewFranchise\_Market_BOY.cshtml" />
+    <Content Include="Views\MarketViewFranchise\_Market_BTG.cshtml" />
+    <Content Include="Views\MarketViewFranchise\_Market_MAT.cshtml" />
+    <Content Include="Views\MarketViewFranchise\_Market_Month.cshtml" />
+    <Content Include="Views\MarketViewFranchise\_Market_PCVSPY.cshtml" />
+    <Content Include="Views\MarketViewFranchise\_Market_TotalCustom.cshtml" />
+    <Content Include="Views\MarketViewFranchise\_Market_YTD.cshtml" />
+    <Content Include="Views\MarketViewFranchise\_MarketDataView.cshtml" />
+    <Content Include="Views\BrandViewFranchise\_Brand_BOY.cshtml" />
+    <Content Include="Views\BrandViewFranchise\_Brand_BTG.cshtml" />
+    <Content Include="Views\BrandViewFranchise\_Brand_MAT.cshtml" />
+    <Content Include="Views\BrandViewFranchise\_Brand_Month.cshtml" />
+    <Content Include="Views\BrandViewFranchise\_Brand_PCVSPY.cshtml" />
+    <Content Include="Views\BrandViewFranchise\_Brand_TotalCustom.cshtml" />
+    <Content Include="Views\BrandViewFranchise\_Brand_YTD.cshtml" />
+    <Content Include="Views\BrandViewFranchise\_BrandDataView.cshtml" />
+    <Content Include="Views\MarketViewKeybrands\_Market_BOY.cshtml" />
+    <Content Include="Views\MarketViewKeybrands\_MarketDataView.cshtml" />
+    <Content Include="Views\MarketViewKeybrands\_Market_BTG.cshtml" />
+    <Content Include="Views\MarketViewKeybrands\_Market_MAT.cshtml" />
+    <Content Include="Views\MarketViewKeybrands\_Market_Month.cshtml" />
+    <Content Include="Views\MarketViewKeybrands\_Market_PCVSPY.cshtml" />
+    <Content Include="Views\MarketViewKeybrands\_Market_TotalCustom.cshtml" />
+    <Content Include="Views\MarketViewKeybrands\_Market_YTD.cshtml" />
+    <Content Include="Views\BrandViewKeybrands\_Brand_BOY.cshtml" />
+    <Content Include="Views\BrandViewKeybrands\_Brand_BTG.cshtml" />
+    <Content Include="Views\BrandViewKeybrands\_Brand_MAT.cshtml" />
+    <Content Include="Views\BrandViewKeybrands\_Brand_Month.cshtml" />
+    <Content Include="Views\BrandViewKeybrands\_Brand_PCVSPY.cshtml" />
+    <Content Include="Views\BrandViewKeybrands\_Brand_TotalCustom.cshtml" />
+    <Content Include="Views\BrandViewKeybrands\_Brand_YTD.cshtml" />
+    <Content Include="Views\BrandViewKeybrands\_BrandDataView.cshtml" />
+    <Content Include="Views\Home\StrawmanApp.cshtml" />
+    <Content Include="Views\Market_BOY\_Market_BOY.cshtml" />
+    <Content Include="Views\MarketView\_Market_BTG.cshtml" />
+    <Content Include="Views\MarketView\_Market_MAT.cshtml" />
+    <Content Include="Views\MarketView\_Market_Month.cshtml" />
+    <Content Include="Views\MarketView\_Market_PCVSPY.cshtml" />
+    <Content Include="Views\MarketView\_Market_TotalCustom.cshtml" />
+    <Content Include="Views\MarketView\_Market_YTD.cshtml" />
+    <Content Include="Views\MarketView\_MarketDataView.cshtml" />
+    <Content Include="Views\Home\BoyMassMarket.cshtml" />
+    <Content Include="Views\BoyMassMarket\_BoyYTD.cshtml" />
+    <Content Include="Views\BoyMassMarket\_BoyData.cshtml" />
+    <Content Include="Views\BoyMassMarket\_BoyTotals.cshtml" />
+    <Content Include="Views\BoyMassMarket\_BoyTOGO.cshtml" />
+    <Content Include="Views\BoyMassMarket\_BoyINT.cshtml" />
+    <Content Include="Views\BoyMassMarket\_BoyLE.cshtml" />
+    <Content Include="Views\BoyMassMarket\_BoyPBP.cshtml" />
+    <Content Include="Views\BoyMassMarket\_BoyINTCustom.cshtml" />
+    <Content Include="Views\BoyMassMarket\_BoyPBPCustom.cshtml" />
+    <Content Include="Views\BoyMassMarket\_BoyLECustom.cshtml" />
+    <Content Include="Views\Home\BoyBeauty.cshtml" />
+    <Content Include="Views\Home\BoyOTC.cshtml" />
+    <Content Include="Views\Home\StrawmanCfg.cshtml" />
+    <Content Include="Views\Home\Dummy.cshtml" />
+    <Content Include="Views\ChartByChannel\Index.cshtml" />
+    <Content Include="Views\ChartByChannel\_ByChannel.cshtml" />
+    <Content Include="Views\Forms\Index.cshtml" />
+    <Content Include="Views\Forms\_Result.cshtml" />
+    <Content Include="Views\Forms\_List.cshtml" />
+    <Content Include="Views\ChartByChannel\_GenericChart.cshtml" />
+    <Content Include="Views\Forms\BOYConfigure.cshtml" />
+    <Content Include="Views\Menu\Menu.cshtml" />
+    <Content Include="Views\Forms\GroupsConfigure.cshtml" />
+    <Content Include="Views\Forms\_GroupList.cshtml" />
+    <Content Include="Views\Forms\_NewGroup.cshtml" />
+    <Content Include="Views\Forms\_EditGroup.cshtml" />
+    <Content Include="Views\Forms\_GroupItemsView.cshtml" />
+    <Content Include="Views\Forms\_BOYTable.cshtml" />
+    <Content Include="Views\ShareBoard\_DataView.cshtml" />
+    <Content Include="Views\ShareBoard\_DataViewChannel.cshtml" />
+    <Content Include="Views\ShareBoard\_DataViewFranchise.cshtml" />
+    <Content Include="Views\ShareBoard\_ShareBoardFranchise.cshtml" />
+    <Content Include="Views\ShareBoard\_DataViewKeybrands.cshtml" />
+    <Content Include="Views\ShareBoard\_Market_PCVSPY.cshtml" />
+    <Content Include="Views\ShareBoard\Index.cshtml" />
+    <Content Include="Views\ShareBoard\_ShareBoard_Month.cshtml" />
+    <Content Include="Views\ShareBoard\_ShareBoard_MAT.cshtml" />
+    <Content Include="Views\ShareBoard\_ShareBoard_YTD.cshtml" />
+    <Content Include="Views\ShareBoard\_ShareBoard_MATChannel.cshtml" />
+    <Content Include="Views\ShareBoard\_ShareBoard_MonthChannel.cshtml" />
+    <Content Include="Views\ShareBoard\_ShareBoard_YTDChannel.cshtml" />
+    <Content Include="Views\ShareBoard\_ShareBoard_MATFranchise.cshtml" />
+    <Content Include="Views\ShareBoard\_ShareBoard_MonthFranchise.cshtml" />
+    <Content Include="Views\ShareBoard\_ShareBoard_YTDFranchise.cshtml" />
+    <Content Include="Views\ShareBoard\Copia de _DataViewKeybrands.cshtml" />
+    <Content Include="Views\ShareBoard\_ShareBoard_MATKeybrands.cshtml" />
+    <Content Include="Views\ShareBoard\_ShareBoard_MonthKeybrands.cshtml" />
+    <Content Include="Views\ShareBoard\_ShareBoard_YTDKeybrands.cshtml" />
+    <Content Include="Views\Tabs\Tabs.cshtml" />
+    <Content Include="Views\Forms\LoaderView.cshtml" />
+    <Content Include="Views\Forms\LoaderPreview.cshtml" />
+    <Content Include="Views\Forms\KPIConfigure.cshtml" />
+    <Content Include="Views\Forms\_KPIList.cshtml" />
+    <Content Include="Views\Forms\_KPIItemsList.cshtml" />
+    <Content Include="Views\KPI\Index.cshtml" />
+    <Content Include="Views\KPI\_Column.cshtml" />
+    <Content Include="Views\KPI\_Head.cshtml" />
+    <Content Include="Views\Forms\_BOYForm.cshtml" />
+    <Content Include="Views\Forms\_BOYEdit.cshtml" />
+    <Content Include="Views\Shared\_LoadMask.cshtml" />
+    <Content Include="Views\Forms\GetBOYMassMarket.cshtml" />
+    <Content Include="Views\Shared\_Scripts.cshtml" />
+    <Content Include="Views\Forms\LettersForm.cshtml" />
+    <Content Include="Views\BoyMassMarket\Index.cshtml" />
+    <Content Include="Views\BoyMassMarket\_BoyCustom.cshtml" />
+    <Content Include="Views\ManagementLetter\Index.cshtml" />
+    <Content Include="Views\ManagementLetter\_Data.cshtml" />
+    <Content Include="Views\ManagementLetter\_Comments.cshtml" />
+    <Content Include="Views\MonthlyComments\Index.cshtml" />
+    <Content Include="Views\MonthlyComments\_Data.cshtml" />
+    <Content Include="Views\MonthlyComments\_Comments.cshtml" />
+    <Content Include="Views\Forms\_CommentForm.cshtml" />
+    <Content Include="Views\MonthlyComments\_CommentsContainer.cshtml" />
+    <Content Include="Views\ChartBOYChannel\Index.cshtml" />
+    <Content Include="Views\ChartGeneric\_Header.cshtml" />
+    <Content Include="Views\ChartGeneric\_Growth.cshtml" />
+    <Content Include="Views\ChartGeneric\_Size.cshtml" />
+    <Content Include="Views\ChartGeneric\_Share.cshtml" />
+    <Content Include="Views\ChartGeneric\Index.cshtml" />
+    <Content Include="Views\BrandCategorisation\Index.cshtml" />
+    <Content Include="Views\BrandCategorisation\_Header.cshtml" />
+    <Content Include="Views\BrandCategorisation\_Data.cshtml" />
+    <Content Include="Scripts\jquery-2.1.4.min.map" />
+    <Content Include="Templates\Excel\7.2 Graf OTC.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Config\Index.cshtml" />
+    <Content Include="Views\BoyMassMarket\BOYJJByChannel.cshtml" />
+    <Content Include="Views\BoyMassMarket\_BOYTable.cshtml" />
+    <Content Include="Views\ChartJJVInternal\Index.cshtml" />
+    <Content Include="Views\ChartJJVInternal\_GenericChart.cshtml" />
+    <Content Include="Views\ChartJJVInternal\_ByChannel.cshtml" />
+    <Content Include="Views\StrawmanViews\_StrawmanViewFranchise.cshtml" />
+    <Content Include="Views\StrawmanViews\_StrawmanViewFranchisePCVSPY.cshtml" />
+    <Content Include="Views\StrawmanViews\_StrawmanViewFranchiseTotal.cshtml" />
+    <Content Include="Views\StrawmanViews\_StrawmanViewFranchiseBOY.cshtml" />
+    <Content Include="Views\Shared\_ButtonGroup.cshtml" />
+    <Content Include="Views\Forms\_CommentsList.cshtml" />
+    <Content Include="Views\Config\MasterData.cshtml" />
+    <Content Include="Views\Shared\_AjaxGridPager.cshtml" />
+    <Content Include="Views\Config\_MasterDataGrid.cshtml" />
+    <Content Include="Views\Config\_MasterDataEditRow.cshtml" />
+    <Content Include="Views\StrawmanViews\MasterTable\_TrStyle.cshtml" />
+    <Content Include="Views\StrawmanViews\MasterTable\_TrStyleFranchise.cshtml" />
+    <Content Include="Views\StrawmanViews\MasterTable\_TrStyleChannel.cshtml" />
+    <Content Include="Views\StrawmanViews\MasterTable\_TrStyleKeybrands.cshtml" />
+    <Content Include="Views\StrawmanViews\MasterTable\_BlankRow.cshtml" />
+    <Content Include="Views\StrawmanViews\MasterTable\_TitledRow.cshtml" />
+    <Content Include="Views\Config\Preview\Index.cshtml" />
+    <Content Include="Views\Config\Preview\_DataEditRow.cshtml" />
+    <Content Include="Views\Config\Preview\_DataGrid.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StrawmanDBLibray\StrawmanDBLibray.csproj">
+      <Project>{e9877f52-bc50-4b72-a5b0-c115b3c80cbe}</Project>
+      <Name>StrawmanDBLibray</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50688</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

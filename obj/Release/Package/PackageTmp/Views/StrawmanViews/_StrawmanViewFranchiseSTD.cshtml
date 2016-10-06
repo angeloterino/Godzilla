@@ -1,0 +1,17 @@
+﻿@model StrawmanApp.Models.StrawmanViewModel
+
+@{    
+    string[] _colData = (string[])ViewData["_colData"];
+    string[] _colType = (string[])ViewData["_colType"];
+    StrawmanApp.Models.MarketViewChannelModels itemaux = Model.itemaux;
+    string _style = "text-align:center;";
+    string _styleView = "_TrStyleFranchise";
+    ViewDataDictionary _styleData = new ViewDataDictionary() { { "_style", _style }, { "has_child", itemaux.vhas_child }, { "id", itemaux.vid }, { "parent", itemaux.vparent }, { "order", itemaux.vorder } };
+    StrawmanApp.Models.StrwawmanTrViewModel model = new StrawmanApp.Models.StrwawmanTrViewModel{
+        _colData = _colData,
+        _colType = _colType,
+        styleView = _styleView,
+        styleData = _styleData
+        };
+}    
+@{Html.RenderPartial("~/Views/StrawmanViews/MasterTable/_TrView.cshtml", model);}

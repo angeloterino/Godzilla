@@ -1,0 +1,2020 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="godzillaEntityDataModelStoreContainer" CdmEntityContainer="GodzillaEntities">
+    <EntitySetMapping Name="v_CHART_BOY_JJ_BY_CHANNEL">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_CHART_BOY_JJ_BY_CHANNEL">
+        <MappingFragment StoreEntitySet="v_CHART_BOY_JJ_BY_CHANNEL">
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="MARKET_SIZE" ColumnName="MARKET SIZE" />
+          <ScalarProperty Name="PREVIOUS" ColumnName="PREVIOUS" />
+          <ScalarProperty Name="LATEST" ColumnName="LATEST" />
+          <ScalarProperty Name="GROWTH_CATHEGORY" ColumnName="GROWTH CATHEGORY" />
+          <ScalarProperty Name="GROWTH_J_J" ColumnName="GROWTH J&amp;J" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="CHART" ColumnName="CHART" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_CHART_BTG_ADULTS_SKINCARE">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_CHART_BTG_ADULTS_SKINCARE">
+        <MappingFragment StoreEntitySet="v_CHART_BTG_ADULTS_SKINCARE">
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="MARKET_SIZE" ColumnName="MARKET SIZE" />
+          <ScalarProperty Name="PREVIOUS" ColumnName="PREVIOUS" />
+          <ScalarProperty Name="LATEST" ColumnName="LATEST" />
+          <ScalarProperty Name="GROUTH_CATEGORY" ColumnName="GROUTH_CATEGORY" />
+          <ScalarProperty Name="GROUTH_J_J" ColumnName="GROUTH_J_J" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="CHART" ColumnName="CHART" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_CHART_BTG_FRANCHISE">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_CHART_BTG_FRANCHISE">
+        <MappingFragment StoreEntitySet="v_CHART_BTG_FRANCHISE">
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="MARKET_SIZE" ColumnName="MARKET SIZE" />
+          <ScalarProperty Name="PREVIOUS" ColumnName="PREVIOUS" />
+          <ScalarProperty Name="LATEST" ColumnName="LATEST" />
+          <ScalarProperty Name="GROUTH_CATEGORY" ColumnName="GROUTH CATEGORY" />
+          <ScalarProperty Name="GROUTH_J_J" ColumnName="GROUTH J&amp;J" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="CHART" ColumnName="CHART" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_CHART_JJ_V_INTERNAL_BY_CHANNEL">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_CHART_JJ_V_INTERNAL_BY_CHANNEL">
+        <MappingFragment StoreEntitySet="v_CHART_JJ_V_INTERNAL_BY_CHANNEL">
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="MARKET_SIZE" ColumnName="MARKET SIZE" />
+          <ScalarProperty Name="MARKET_SHARE_PREVIOUS" ColumnName="MARKET SHARE PREVIOUS" />
+          <ScalarProperty Name="MARKET_SHARE_LATEST" ColumnName="MARKET SHARE LATEST" />
+          <ScalarProperty Name="MAT_GROWTH_CATEGORY" ColumnName="MAT GROWTH CATEGORY" />
+          <ScalarProperty Name="MAT_GROWTH_JJ" ColumnName="MAT GROWTH JJ" />
+          <ScalarProperty Name="YTD_GROWTH_CATEGORY" ColumnName="YTD GROWTH CATEGORY" />
+          <ScalarProperty Name="YTD_GROWTH_JJ" ColumnName="YTD GROWTH JJ" />
+          <ScalarProperty Name="BTG_GROWTH_CATEGORY" ColumnName="BTG GROWTH CATEGORY" />
+          <ScalarProperty Name="BTG_GROWTH_JJ" ColumnName="BTG GROWTH JJ" />
+          <ScalarProperty Name="LM_GROWTH_CATEGORY" ColumnName="LM GROWTH CATEGORY" />
+          <ScalarProperty Name="LM_GROWTH_JJ" ColumnName="LM GROWTH JJ" />
+          <ScalarProperty Name="YTD_SHARE_PREVIOUS" ColumnName="YTD SHARE PREVIOUS" />
+          <ScalarProperty Name="YTD_SHARE_LATEST" ColumnName="YTD SHARE LATEST" />
+          <ScalarProperty Name="BTG_SHARE_PREVIOUS" ColumnName="BTG SHARE PREVIOUS" />
+          <ScalarProperty Name="BTG_SHARE_LATEST" ColumnName="BTG SHARE LATEST" />
+          <ScalarProperty Name="MTG_SHARE_PREVIOUS" ColumnName="MTG SHARE PREVIOUS" />
+          <ScalarProperty Name="MTG_SHARE_LATEST" ColumnName="MTG SHARE LATEST" />
+          <ScalarProperty Name="PBP_MARKET_SIZE" ColumnName="PBP MARKET SIZE" />
+          <ScalarProperty Name="PBP_SHARE_PREVIOUS" ColumnName="PBP SHARE PREVIOUS" />
+          <ScalarProperty Name="PBP_SHARE_LATEST" ColumnName="PBP SHARE LATEST" />
+          <ScalarProperty Name="PBP_GROWTH_CATEGORY" ColumnName="PBP GROWTH CATEGORY" />
+          <ScalarProperty Name="PBP_GROWTH_JJ" ColumnName="PBP GROWTH JJ" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_CHART_JJ_V_INTERNAL_BY_FRANCHISE">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_CHART_JJ_V_INTERNAL_BY_FRANCHISE">
+        <MappingFragment StoreEntitySet="v_CHART_JJ_V_INTERNAL_BY_FRANCHISE">
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="MARKET_SIZE" ColumnName="MARKET SIZE" />
+          <ScalarProperty Name="MARKET_SHARE_PREVIOUS" ColumnName="MARKET SHARE PREVIOUS" />
+          <ScalarProperty Name="MARKET_SHARE_LATEST" ColumnName="MARKET SHARE LATEST" />
+          <ScalarProperty Name="MAT_GROWTH_CATEGORY" ColumnName="MAT GROWTH CATEGORY" />
+          <ScalarProperty Name="MAT_GROWTH_JJ" ColumnName="MAT GROWTH JJ" />
+          <ScalarProperty Name="YTD_GROWTH_CATEGORY" ColumnName="YTD GROWTH CATEGORY" />
+          <ScalarProperty Name="YTD_GROWTH_JJ" ColumnName="YTD GROWTH JJ" />
+          <ScalarProperty Name="BTG_GROWTH_CATEGORY" ColumnName="BTG GROWTH CATEGORY" />
+          <ScalarProperty Name="BTG_GROWTH_JJ" ColumnName="BTG GROWTH JJ" />
+          <ScalarProperty Name="LM_GROWTH_CATEGORY" ColumnName="LM GROWTH CATEGORY" />
+          <ScalarProperty Name="LM_GROWTH_JJ" ColumnName="LM GROWTH JJ" />
+          <ScalarProperty Name="YTD_SHARE_PREVIOUS" ColumnName="YTD SHARE PREVIOUS" />
+          <ScalarProperty Name="YTD_SHARE_LATEST" ColumnName="YTD SHARE LATEST" />
+          <ScalarProperty Name="BTG_SHARE_PREVIOUS" ColumnName="BTG SHARE PREVIOUS" />
+          <ScalarProperty Name="BTG_SHARE_LATEST" ColumnName="BTG SHARE LATEST" />
+          <ScalarProperty Name="MTG_SHARE_PREVIOUS" ColumnName="MTG SHARE PREVIOUS" />
+          <ScalarProperty Name="MTG_SHARE_LATEST" ColumnName="MTG SHARE LATEST" />
+          <ScalarProperty Name="PBP_MARKET_SIZE" ColumnName="PBP MARKET SIZE" />
+          <ScalarProperty Name="PBP_SHARE_PREVIOUS" ColumnName="PBP SHARE PREVIOUS" />
+          <ScalarProperty Name="PBP_SHARE_LATEST" ColumnName="PBP SHARE LATEST" />
+          <ScalarProperty Name="PBP_GROWTH_CATEGORY" ColumnName="PBP GROWTH CATEGORY" />
+          <ScalarProperty Name="PBP_GROWTH_JJ" ColumnName="PBP GROWTH JJ" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_CHART_PBP_ADULTS_SKINCARE">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_CHART_PBP_ADULTS_SKINCARE">
+        <MappingFragment StoreEntitySet="v_CHART_PBP_ADULTS_SKINCARE">
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="MARKET_SIZE" ColumnName="MARKET SIZE" />
+          <ScalarProperty Name="PREVIOUS" ColumnName="PREVIOUS" />
+          <ScalarProperty Name="LATEST" ColumnName="LATEST" />
+          <ScalarProperty Name="GROUTH_CATEGORY" ColumnName="GROUTH_CATEGORY" />
+          <ScalarProperty Name="GROUTH_J_J" ColumnName="GROUTH_J_J" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="CHART" ColumnName="CHART" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_CHART_PBP_FRANCHISE">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_CHART_PBP_FRANCHISE">
+        <MappingFragment StoreEntitySet="v_CHART_PBP_FRANCHISE">
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="MARKET_SIZE" ColumnName="MARKET SIZE" />
+          <ScalarProperty Name="PREVIOUS" ColumnName="PREVIOUS" />
+          <ScalarProperty Name="LATEST" ColumnName="LATEST" />
+          <ScalarProperty Name="GROUTH_CATEGORY" ColumnName="GROUTH_CATEGORY" />
+          <ScalarProperty Name="GROUTH_J_J" ColumnName="GROUTH_J_J" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="CHART" ColumnName="CHART" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_CHARTS_BTG">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_CHARTS_BTG">
+        <MappingFragment StoreEntitySet="v_CHARTS_BTG">
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="MARKET_SIZE" ColumnName="MARKET SIZE" />
+          <ScalarProperty Name="PREVIOUS" ColumnName="PREVIOUS" />
+          <ScalarProperty Name="LATEST" ColumnName="LATEST" />
+          <ScalarProperty Name="GROUTH_CATEGORY" ColumnName="GROUTH CATEGORY" />
+          <ScalarProperty Name="GROUTH_J_J" ColumnName="GROUTH J&amp;J" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="CHART" ColumnName="CHART" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_CHARTS_LM">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_CHARTS_LM">
+        <MappingFragment StoreEntitySet="v_CHARTS_LM">
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="MARKET_SIZE" ColumnName="MARKET SIZE" />
+          <ScalarProperty Name="PREVIOUS" ColumnName="PREVIOUS" />
+          <ScalarProperty Name="LATEST" ColumnName="LATEST" />
+          <ScalarProperty Name="GROUTH_CATEGORY" ColumnName="GROUTH CATEGORY" />
+          <ScalarProperty Name="GROUTH_J_J" ColumnName="GROUTH J&amp;J" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="CHART" ColumnName="CHART" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_CHARTS_MAT_MARKET">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_CHARTS_MAT_MARKET">
+        <MappingFragment StoreEntitySet="v_CHARTS_MAT_MARKET">
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="MARKET_SIZE" ColumnName="MARKET SIZE" />
+          <ScalarProperty Name="PREVIOUS" ColumnName="PREVIOUS" />
+          <ScalarProperty Name="LATEST" ColumnName="LATEST" />
+          <ScalarProperty Name="GROUTH_CATEGORY" ColumnName="GROUTH CATEGORY" />
+          <ScalarProperty Name="GROUTH_J_J" ColumnName="GROUTH J&amp;J" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="CHART" ColumnName="CHART" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_CHARTS_PBP">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_CHARTS_PBP">
+        <MappingFragment StoreEntitySet="v_CHARTS_PBP">
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="MARKET_SIZE" ColumnName="MARKET SIZE" />
+          <ScalarProperty Name="PREVIOUS" ColumnName="PREVIOUS" />
+          <ScalarProperty Name="LATEST" ColumnName="LATEST" />
+          <ScalarProperty Name="GROUTH_CATEGORY" ColumnName="GROUTH_CATEGORY" />
+          <ScalarProperty Name="GROUTH_J_J" ColumnName="GROUTH_J_J" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="CHART" ColumnName="CHART" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_CHARTS_YTD">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_CHARTS_YTD">
+        <MappingFragment StoreEntitySet="v_CHARTS_YTD">
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="MARKET_SIZE" ColumnName="MARKET SIZE" />
+          <ScalarProperty Name="PREVIOUS" ColumnName="PREVIOUS" />
+          <ScalarProperty Name="LATEST" ColumnName="LATEST" />
+          <ScalarProperty Name="GROUTH_CATEGORY" ColumnName="GROUTH CATEGORY" />
+          <ScalarProperty Name="GROUTH_J_J" ColumnName="GROUTH J&amp;J" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="CHART" ColumnName="CHART" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_MARKET_GROUPS_TOTAL">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_MARKET_GROUPS_TOTAL">
+        <MappingFragment StoreEntitySet="v_MARKET_GROUPS_TOTAL">
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="YTD" ColumnName="YTD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="GROUP_NAME" ColumnName="GROUP_NAME" />
+          <ScalarProperty Name="MARKET_NAME" ColumnName="MARKET_NAME" />
+          <ScalarProperty Name="BRAND_NAME" ColumnName="BRAND_NAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_MENU_MASTER">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_MENU_MASTER">
+        <MappingFragment StoreEntitySet="v_MENU_MASTER">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="CONTROLLER" ColumnName="CONTROLLER" />
+          <ScalarProperty Name="PARENT" ColumnName="PARENT" />
+          <ScalarProperty Name="PERMISSION" ColumnName="PERMISSION" />
+          <ScalarProperty Name="USER" ColumnName="USER" />
+          <ScalarProperty Name="DIVIDER_BEFORE" ColumnName="DIVIDER BEFORE" />
+          <ScalarProperty Name="DISABLED" ColumnName="DISABLED" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_SHAREBOARD_MAT">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_SHAREBOARD_MAT">
+        <MappingFragment StoreEntitySet="v_SHAREBOARD_MAT">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="GROUP_ORDER" ColumnName="GROUP_ORDER" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET_GROUTH" ColumnName="MARKET GROUTH" />
+          <ScalarProperty Name="BRAND_GROUTH" ColumnName="BRAND GROUTH" />
+          <ScalarProperty Name="MARKET_SHARE" ColumnName="MARKET SHARE" />
+          <ScalarProperty Name="PT_PLUS_MINUS" ColumnName="PT PLUS MINUS" />
+          <ScalarProperty Name="MARKET_SIZE" ColumnName="MARKET SIZE" />
+          <ScalarProperty Name="BRAND_SIZE" ColumnName="BRAND SIZE" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_SHAREBOARD_MONTH">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_SHAREBOARD_MONTH">
+        <MappingFragment StoreEntitySet="v_SHAREBOARD_MONTH">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="GROUP_ORDER" ColumnName="GROUP_ORDER" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET_GROUTH" ColumnName="MARKET GROUTH" />
+          <ScalarProperty Name="BRAND_GROUTH" ColumnName="BRAND GROUTH" />
+          <ScalarProperty Name="MARKET_SHARE" ColumnName="MARKET SHARE" />
+          <ScalarProperty Name="PT_PLUS_MINUS" ColumnName="PT PLUS MINUS" />
+          <ScalarProperty Name="MARKET_SIZE" ColumnName="MARKET SIZE" />
+          <ScalarProperty Name="BRAND_SIZE" ColumnName="BRAND SIZE" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_SHAREBOARD_YTD">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_SHAREBOARD_YTD">
+        <MappingFragment StoreEntitySet="v_SHAREBOARD_YTD">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="GROUP_ORDER" ColumnName="GROUP_ORDER" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET_GROUTH" ColumnName="MARKET GROUTH" />
+          <ScalarProperty Name="BRAND_GROUTH" ColumnName="BRAND GROUTH" />
+          <ScalarProperty Name="MARKET_SHARE" ColumnName="MARKET SHARE" />
+          <ScalarProperty Name="PT_PLUS_MINUS" ColumnName="PT PLUS MINUS" />
+          <ScalarProperty Name="MARKET_SIZE" ColumnName="MARKET SIZE" />
+          <ScalarProperty Name="BRAND_SIZE" ColumnName="BRAND SIZE" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_TAB_MASTER">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_TAB_MASTER">
+        <MappingFragment StoreEntitySet="v_TAB_MASTER">
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="CONTROLLER" ColumnName="CONTROLLER" />
+          <ScalarProperty Name="SELECT_DEFAULT" ColumnName="SELECT_DEFAULT" />
+          <ScalarProperty Name="MENU_URL" ColumnName="MENU URL" />
+          <ScalarProperty Name="MENU_ID" ColumnName="MENU ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BGM">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BGM">
+        <MappingFragment StoreEntitySet="v_WRK_BGM">
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="BGM_2013" ColumnName="BGM 2013" />
+          <ScalarProperty Name="BGM_2014" ColumnName="BGM 2014" />
+          <ScalarProperty Name="PC_VS_PY" ColumnName="PC_VS_PY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BOY_BASE">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BOY_BASE">
+        <MappingFragment StoreEntitySet="v_WRK_BOY_BASE">
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="NTS_ORDER" ColumnName="NTS_ORDER" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="MARKET_NAME" ColumnName="MARKET NAME" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="BRAND_NAME" ColumnName="BRAND NAME" />
+          <ScalarProperty Name="NTS_NAME" ColumnName="NTS_NAME" />
+          <ScalarProperty Name="BRAND_COL1" ColumnName="BRAND COL1" />
+          <ScalarProperty Name="BRAND_COL2" ColumnName="BRAND COL2" />
+          <ScalarProperty Name="MARKET_COL1" ColumnName="MARKET COL1" />
+          <ScalarProperty Name="MARKET_COL2" ColumnName="MARKET COL2" />
+          <ScalarProperty Name="NTS_COL1" ColumnName="NTS COL1" />
+          <ScalarProperty Name="NTS_COL2" ColumnName="NTS COL2" />
+          <ScalarProperty Name="SUM_ROWS" ColumnName="SUM ROWS" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BOY_BASE_TOTAL">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BOY_BASE_TOTAL">
+        <MappingFragment StoreEntitySet="v_WRK_BOY_BASE_TOTAL">
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="NTS_ORDER" ColumnName="NTS_ORDER" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="MARKET_NAME" ColumnName="MARKET NAME" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="BRAND_NAME" ColumnName="BRAND NAME" />
+          <ScalarProperty Name="NTS_NAME" ColumnName="NTS_NAME" />
+          <ScalarProperty Name="BRAND_COL1" ColumnName="BRAND COL1" />
+          <ScalarProperty Name="BRAND_COL2" ColumnName="BRAND COL2" />
+          <ScalarProperty Name="MARKET_COL1" ColumnName="MARKET COL1" />
+          <ScalarProperty Name="MARKET_COL2" ColumnName="MARKET COL2" />
+          <ScalarProperty Name="NTS_COL1" ColumnName="NTS COL1" />
+          <ScalarProperty Name="NTS_COL2" ColumnName="NTS COL2" />
+          <ScalarProperty Name="SUM_ROWS" ColumnName="SUM ROWS" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BOY_CUSTOM_BASE">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BOY_CUSTOM_BASE">
+        <MappingFragment StoreEntitySet="v_WRK_BOY_CUSTOM_BASE">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="NTS_ORDER" ColumnName="NTS_ORDER" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="MARKET_NAME" ColumnName="MARKET NAME" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="BRAND_NAME" ColumnName="BRAND NAME" />
+          <ScalarProperty Name="NTS_NAME" ColumnName="NTS_NAME" />
+          <ScalarProperty Name="MARKET_PBP" ColumnName="MARKET PBP" />
+          <ScalarProperty Name="MARKET_PBP_PC" ColumnName="MARKET PBP PC" />
+          <ScalarProperty Name="MARKET_2_PBP" ColumnName="MARKET 2 PBP" />
+          <ScalarProperty Name="MARKET_2_PBP_ID" ColumnName="MARKET 2 PBP ID" />
+          <ScalarProperty Name="BRAND_PBP" ColumnName="BRAND PBP" />
+          <ScalarProperty Name="BRAND_PBP_PC" ColumnName="BRAND PBP PC" />
+          <ScalarProperty Name="SELLOUT_2_PBP" ColumnName="SELLOUT 2 PBP" />
+          <ScalarProperty Name="SELLOUT_2_PBP_ID" ColumnName="SELLOUT 2 PBP ID" />
+          <ScalarProperty Name="SELLIN_LE" ColumnName="SELLIN LE" />
+          <ScalarProperty Name="SELLIN_2_PBP" ColumnName="SELLIN 2 PBP" />
+          <ScalarProperty Name="SELLIN_2_PBP_ID" ColumnName="SELLIN 2 PBP ID" />
+          <ScalarProperty Name="MARKET_2_TYPE" ColumnName="MARKET 2 TYPE" />
+          <ScalarProperty Name="SELLOUT_2_TYPE" ColumnName="SELLOUT 2 TYPE" />
+          <ScalarProperty Name="SELLIN_2_TYPE" ColumnName="SELLIN 2 TYPE" />
+          <ScalarProperty Name="MARKET_INT" ColumnName="MARKET INT" />
+          <ScalarProperty Name="MARKET_INT_PC" ColumnName="MARKET INT PC" />
+          <ScalarProperty Name="MARKET_1_INT" ColumnName="MARKET 1 INT" />
+          <ScalarProperty Name="MARKET_1_INT_ID" ColumnName="MARKET 1 INT ID" />
+          <ScalarProperty Name="BRAND_INT" ColumnName="BRAND INT" />
+          <ScalarProperty Name="BRAND_INT_PC" ColumnName="BRAND INT PC" />
+          <ScalarProperty Name="SELLOUT_1_INT" ColumnName="SELLOUT 1 INT" />
+          <ScalarProperty Name="SELLOUT_1_INT_ID" ColumnName="SELLOUT 1 INT ID" />
+          <ScalarProperty Name="TOTALS_SHARE_COL1" ColumnName="TOTALS SHARE COL1" />
+          <ScalarProperty Name="TOTALS_SHARE_COL2" ColumnName="TOTALS SHARE COL2" />
+          <ScalarProperty Name="SELLIN_TOTALS" ColumnName="SELLIN TOTALS" />
+          <ScalarProperty Name="SELLIN_1_INT" ColumnName="SELLIN 1 INT" />
+          <ScalarProperty Name="SELLIN_1_INT_ID" ColumnName="SELLIN 1 INT ID" />
+          <ScalarProperty Name="MARKET_1_TYPE" ColumnName="MARKET 1 TYPE" />
+          <ScalarProperty Name="SELLOUT_1_TYPE" ColumnName="SELLOUT 1 TYPE" />
+          <ScalarProperty Name="SELLIN_1_TYPE" ColumnName="SELLIN 1 TYPE" />
+          <ScalarProperty Name="MARKET_TOGO" ColumnName="MARKET TOGO" />
+          <ScalarProperty Name="MARKET_LE" ColumnName="MARKET LE" />
+          <ScalarProperty Name="MARKET_LE_PC" ColumnName="MARKET LE PC" />
+          <ScalarProperty Name="MARKET_1_BTG" ColumnName="MARKET 1 BTG" />
+          <ScalarProperty Name="MARKET_1_BTG_ID" ColumnName="MARKET 1 BTG ID" />
+          <ScalarProperty Name="SELLOUT_TOGO" ColumnName="SELLOUT TOGO" />
+          <ScalarProperty Name="BRAND_LE" ColumnName="BRAND LE" />
+          <ScalarProperty Name="BRAND_LE_PC" ColumnName="BRAND LE PC" />
+          <ScalarProperty Name="SELLOUT_1_BTG" ColumnName="SELLOUT 1 BTG" />
+          <ScalarProperty Name="SELLOUT_1_BTG_ID" ColumnName="SELLOUT 1 BTG ID" />
+          <ScalarProperty Name="SELLIN_TOGO" ColumnName="SELLIN TOGO" />
+          <ScalarProperty Name="SELLIN_YTD" ColumnName="SELLIN YTD" />
+          <ScalarProperty Name="SELLIN_1_BTG" ColumnName="SELLIN 1 BTG" />
+          <ScalarProperty Name="SELLIN_1_BTG_ID" ColumnName="SELLIN 1 BTG ID" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BOY_CUSTOM_BASE_INT">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BOY_CUSTOM_BASE_INT">
+        <MappingFragment StoreEntitySet="v_WRK_BOY_CUSTOM_BASE_INT">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="NTS_ORDER" ColumnName="NTS_ORDER" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="MARKET_NAME" ColumnName="MARKET NAME" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="BRAND_NAME" ColumnName="BRAND NAME" />
+          <ScalarProperty Name="NTS_NAME" ColumnName="NTS_NAME" />
+          <ScalarProperty Name="MARKET_INT" ColumnName="MARKET INT" />
+          <ScalarProperty Name="MARKET_INT_PC" ColumnName="MARKET INT PC" />
+          <ScalarProperty Name="MARKET_1_INT" ColumnName="MARKET 1 INT" />
+          <ScalarProperty Name="MARKET_1_INT_ID" ColumnName="MARKET 1 INT ID" />
+          <ScalarProperty Name="BRAND_INT" ColumnName="BRAND INT" />
+          <ScalarProperty Name="BRAND_INT_PC" ColumnName="BRAND INT PC" />
+          <ScalarProperty Name="SELLOUT_INT" ColumnName="SELLOUT INT" />
+          <ScalarProperty Name="SELLOUT_INT_ID" ColumnName="SELLOUT INT ID" />
+          <ScalarProperty Name="TOTALS_SHARE_COL1" ColumnName="TOTALS SHARE COL1" />
+          <ScalarProperty Name="TOTALS_SHARE_COL2" ColumnName="TOTALS SHARE COL2" />
+          <ScalarProperty Name="SELLIN_TOTALS" ColumnName="SELLIN TOTALS" />
+          <ScalarProperty Name="SELLIN_1_INT" ColumnName="SELLIN 1 INT" />
+          <ScalarProperty Name="SELLIN_1_INT_ID" ColumnName="SELLIN 1 INT ID" />
+          <ScalarProperty Name="MARKET_TYPE" ColumnName="MARKET TYPE" />
+          <ScalarProperty Name="SELLOUT_TYPE" ColumnName="SELLOUT TYPE" />
+          <ScalarProperty Name="SELLIN_TYPE" ColumnName="SELLIN TYPE" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BOY_CUSTOM_BASE_LE">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BOY_CUSTOM_BASE_LE">
+        <MappingFragment StoreEntitySet="v_WRK_BOY_CUSTOM_BASE_LE">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="NTS_ORDER" ColumnName="NTS_ORDER" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="BRAND_NAME" ColumnName="BRAND NAME" />
+          <ScalarProperty Name="NTS_NAME" ColumnName="NTS_NAME" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="MARKET_COL" ColumnName="MARKET COL" />
+          <ScalarProperty Name="MARKET_BTG" ColumnName="MARKET BTG" />
+          <ScalarProperty Name="MARKET_YTD" ColumnName="MARKET YTD" />
+          <ScalarProperty Name="SELLOUT_YTD" ColumnName="SELLOUT YTD" />
+          <ScalarProperty Name="SELLIN_YTD" ColumnName="SELLIN YTD" />
+          <ScalarProperty Name="MARKET_COL1" ColumnName="MARKET COL1" />
+          <ScalarProperty Name="MARKET_COL2" ColumnName="MARKET COL2" />
+          <ScalarProperty Name="SELLOUT_COL" ColumnName="SELLOUT COL" />
+          <ScalarProperty Name="SELLOUT_BTG" ColumnName="SELLOUT BTG" />
+          <ScalarProperty Name="SELLOUT_COL1" ColumnName="SELLOUT COL1" />
+          <ScalarProperty Name="SELLOUT_COL2" ColumnName="SELLOUT COL2" />
+          <ScalarProperty Name="SELLIN_COL" ColumnName="SELLIN COL" />
+          <ScalarProperty Name="SELLIN_BTG" ColumnName="SELLIN BTG" />
+          <ScalarProperty Name="SELLIN_COL1" ColumnName="SELLIN COL1" />
+          <ScalarProperty Name="SELLIN_COL2" ColumnName="SELLIN COL2" />
+          <ScalarProperty Name="MARKET_PC" ColumnName="MARKET PC" />
+          <ScalarProperty Name="SHARE_TOTAL" ColumnName="SHARE TOTAL" />
+          <ScalarProperty Name="SHARE_COL1" ColumnName="SHARE COL1" />
+          <ScalarProperty Name="SHARE_PC" ColumnName="SHARE PC" />
+          <ScalarProperty Name="SELLOUT_PC" ColumnName="SELLOUT PC" />
+          <ScalarProperty Name="SELLIN_PC" ColumnName="SELLIN PC" />
+          <ScalarProperty Name="CONVERSION_RATE" ColumnName="CONVERSION RATE" />
+          <ScalarProperty Name="MARKET_DIFF" ColumnName="MARKET DIFF" />
+          <ScalarProperty Name="SELLOUT_DIFF" ColumnName="SELLOUT DIFF" />
+          <ScalarProperty Name="SELLIN_DIFF" ColumnName="SELLIN DIFF" />
+          <ScalarProperty Name="MARKET_PC_INT" ColumnName="MARKET PC INT" />
+          <ScalarProperty Name="SELLOUT_PC_INT" ColumnName="SELLOUT PC INT" />
+          <ScalarProperty Name="SELLIN_PC_INT" ColumnName="SELLIN PC INT" />
+          <ScalarProperty Name="SHARE_PC_INT" ColumnName="SHARE PC INT" />
+          <ScalarProperty Name="MARKET_ID" ColumnName="MARKET ID" />
+          <ScalarProperty Name="SELLOUT_ID" ColumnName="SELLOUT ID" />
+          <ScalarProperty Name="SELLIN_ID" ColumnName="SELLIN ID" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BOY_CUSTOM_BASE_PBP">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BOY_CUSTOM_BASE_PBP">
+        <MappingFragment StoreEntitySet="v_WRK_BOY_CUSTOM_BASE_PBP">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="NTS_ORDER" ColumnName="NTS_ORDER" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="BRAND_NAME" ColumnName="BRAND NAME" />
+          <ScalarProperty Name="NTS_NAME" ColumnName="NTS_NAME" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="MARKET_COL" ColumnName="MARKET COL" />
+          <ScalarProperty Name="MARKET_PBP" ColumnName="MARKET PBP" />
+          <ScalarProperty Name="MARKET_COL1" ColumnName="MARKET COL1" />
+          <ScalarProperty Name="SELLOUT_COL" ColumnName="SELLOUT COL" />
+          <ScalarProperty Name="SELLOUT_PBP" ColumnName="SELLOUT PBP" />
+          <ScalarProperty Name="SELLOUT_COL1" ColumnName="SELLOUT COL1" />
+          <ScalarProperty Name="SELLIN_COL" ColumnName="SELLIN COL" />
+          <ScalarProperty Name="SELLIN_PBP" ColumnName="SELLIN PBP" />
+          <ScalarProperty Name="SELLIN_COL1" ColumnName="SELLIN COL1" />
+          <ScalarProperty Name="MARKET_PC" ColumnName="MARKET PC" />
+          <ScalarProperty Name="SHARE_TOTAL" ColumnName="SHARE TOTAL" />
+          <ScalarProperty Name="SHARE_COL1" ColumnName="SHARE COL1" />
+          <ScalarProperty Name="SHARE_PC" ColumnName="SHARE PC" />
+          <ScalarProperty Name="SELLOUT_PC" ColumnName="SELLOUT PC" />
+          <ScalarProperty Name="SELLIN_PC" ColumnName="SELLIN PC" />
+          <ScalarProperty Name="CONVERSION_RATE" ColumnName="CONVERSION RATE" />
+          <ScalarProperty Name="MARKET_ID" ColumnName="MARKET ID" />
+          <ScalarProperty Name="SELLOUT_ID" ColumnName="SELLOUT ID" />
+          <ScalarProperty Name="SELLIN_ID" ColumnName="SELLIN ID" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BOY_CUSTOM_BASE_TOTAL">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BOY_CUSTOM_BASE_TOTAL">
+        <MappingFragment StoreEntitySet="v_WRK_BOY_CUSTOM_BASE_TOTAL">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="NTS_ORDER" ColumnName="NTS_ORDER" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="MARKET_NAME" ColumnName="MARKET NAME" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="BRAND_NAME" ColumnName="BRAND NAME" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="NTS_NAME" ColumnName="NTS_NAME" />
+          <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+          <ScalarProperty Name="MARKET_COL1" ColumnName="MARKET COL1" />
+          <ScalarProperty Name="MARKET_COL2" ColumnName="MARKET COL2" />
+          <ScalarProperty Name="MARKET_PC_INT" ColumnName="MARKET PC INT" />
+          <ScalarProperty Name="MARKET_PC" ColumnName="MARKET PC" />
+          <ScalarProperty Name="SELLOUT_COL1" ColumnName="SELLOUT COL1" />
+          <ScalarProperty Name="SELLOUT_COL2" ColumnName="SELLOUT COL2" />
+          <ScalarProperty Name="SELLOUT_PC_INT" ColumnName="SELLOUT PC INT" />
+          <ScalarProperty Name="SELLOUT_PC" ColumnName="SELLOUT PC" />
+          <ScalarProperty Name="SHARE_COL1" ColumnName="SHARE COL1" />
+          <ScalarProperty Name="SHARE_COL2" ColumnName="SHARE COL2" />
+          <ScalarProperty Name="SELLIN_COL2" ColumnName="SELLIN COL2" />
+          <ScalarProperty Name="SELLIN__PC_INT" ColumnName="SELLIN  PC INT" />
+          <ScalarProperty Name="SELLIN_PC" ColumnName="SELLIN PC" />
+          <ScalarProperty Name="CONVERSION_RATE" ColumnName="CONVERSION RATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BOY_CUSTOM_BASE_TOTAL_INT">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BOY_CUSTOM_BASE_TOTAL_INT">
+        <MappingFragment StoreEntitySet="v_WRK_BOY_CUSTOM_BASE_TOTAL_INT">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="NTS_ORDER" ColumnName="NTS_ORDER" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="MARKET_NAME" ColumnName="MARKET NAME" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="BRAND_NAME" ColumnName="BRAND NAME" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="NTS_NAME" ColumnName="NTS_NAME" />
+          <ScalarProperty Name="MARKET_COL1" ColumnName="MARKET COL1" />
+          <ScalarProperty Name="MARKET_COL2" ColumnName="MARKET COL2" />
+          <ScalarProperty Name="MARKET_PC" ColumnName="MARKET PC" />
+          <ScalarProperty Name="MARKET_BOY" ColumnName="MARKET BOY" />
+          <ScalarProperty Name="MARKET_ID" ColumnName="MARKET ID" />
+          <ScalarProperty Name="SELLOUT_COL1" ColumnName="SELLOUT COL1" />
+          <ScalarProperty Name="SELLOUT_COL2" ColumnName="SELLOUT COL2" />
+          <ScalarProperty Name="SELLOUT_PC" ColumnName="SELLOUT PC" />
+          <ScalarProperty Name="SELLOUT_BOY" ColumnName="SELLOUT BOY" />
+          <ScalarProperty Name="SELLOUT_ID" ColumnName="SELLOUT ID" />
+          <ScalarProperty Name="SHARE_COL1" ColumnName="SHARE COL1" />
+          <ScalarProperty Name="SHARE_COL2" ColumnName="SHARE COL2" />
+          <ScalarProperty Name="SELLIN_COL1" ColumnName="SELLIN COL1" />
+          <ScalarProperty Name="SELLIN_COL2" ColumnName="SELLIN COL2" />
+          <ScalarProperty Name="SELLIN_PC" ColumnName="SELLIN PC" />
+          <ScalarProperty Name="SELLIN_BOY" ColumnName="SELLIN BOY" />
+          <ScalarProperty Name="SELLIN_ID" ColumnName="SELLIN ID" />
+          <ScalarProperty Name="CONVERSION_RATE" ColumnName="CONVERSION RATE" />
+          <ScalarProperty Name="MARKET_TYPE" ColumnName="MARKET TYPE" />
+          <ScalarProperty Name="SELLOUT_TYPE" ColumnName="SELLOUT TYPE" />
+          <ScalarProperty Name="SELLIN_TYPE" ColumnName="SELLIN TYPE" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BOY_CUSTOM_BASE_TOTAL_LE">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BOY_CUSTOM_BASE_TOTAL_LE">
+        <MappingFragment StoreEntitySet="v_WRK_BOY_CUSTOM_BASE_TOTAL_LE">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="NTS_ORDER" ColumnName="NTS_ORDER" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="MARKET_NAME" ColumnName="MARKET NAME" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="BRAND_NAME" ColumnName="BRAND NAME" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="NTS_NAME" ColumnName="NTS_NAME" />
+          <ScalarProperty Name="MARKET_COL1" ColumnName="MARKET COL1" />
+          <ScalarProperty Name="MARKET_COL2" ColumnName="MARKET COL2" />
+          <ScalarProperty Name="MARKET_PC" ColumnName="MARKET PC" />
+          <ScalarProperty Name="MARKET_BOY" ColumnName="MARKET BOY" />
+          <ScalarProperty Name="MARKET_ID" ColumnName="MARKET ID" />
+          <ScalarProperty Name="SELLOUT_COL1" ColumnName="SELLOUT COL1" />
+          <ScalarProperty Name="SELLOUT_COL2" ColumnName="SELLOUT COL2" />
+          <ScalarProperty Name="SELLOUT_PC" ColumnName="SELLOUT PC" />
+          <ScalarProperty Name="SELLOUT_BOY" ColumnName="SELLOUT BOY" />
+          <ScalarProperty Name="SELLOUT_ID" ColumnName="SELLOUT ID" />
+          <ScalarProperty Name="SHARE_COL1" ColumnName="SHARE COL1" />
+          <ScalarProperty Name="SHARE_COL2" ColumnName="SHARE COL2" />
+          <ScalarProperty Name="SELLIN_COL1" ColumnName="SELLIN COL1" />
+          <ScalarProperty Name="SELLIN_COL2" ColumnName="SELLIN COL2" />
+          <ScalarProperty Name="SELLIN_PC" ColumnName="SELLIN PC" />
+          <ScalarProperty Name="SELLIN_BOY" ColumnName="SELLIN BOY" />
+          <ScalarProperty Name="SELLIN_ID" ColumnName="SELLIN ID" />
+          <ScalarProperty Name="CONVERSION_RATE" ColumnName="CONVERSION RATE" />
+          <ScalarProperty Name="MARKET_TYPE" ColumnName="MARKET TYPE" />
+          <ScalarProperty Name="SELLOUT_TYPE" ColumnName="SELLOUT TYPE" />
+          <ScalarProperty Name="SELLIN_TYPE" ColumnName="SELLIN TYPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BOY_CUSTOM_BASE_TOTAL_PBP">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BOY_CUSTOM_BASE_TOTAL_PBP">
+        <MappingFragment StoreEntitySet="v_WRK_BOY_CUSTOM_BASE_TOTAL_PBP">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="NTS_ORDER" ColumnName="NTS_ORDER" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="MARKET_NAME" ColumnName="MARKET NAME" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="BRAND_NAME" ColumnName="BRAND NAME" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="NTS_NAME" ColumnName="NTS_NAME" />
+          <ScalarProperty Name="MARKET_COL1" ColumnName="MARKET COL1" />
+          <ScalarProperty Name="MARKET_COL2" ColumnName="MARKET COL2" />
+          <ScalarProperty Name="MARKET_PC" ColumnName="MARKET PC" />
+          <ScalarProperty Name="MARKET_BOY" ColumnName="MARKET BOY" />
+          <ScalarProperty Name="MARKET_ID" ColumnName="MARKET ID" />
+          <ScalarProperty Name="SELLOUT_COL1" ColumnName="SELLOUT COL1" />
+          <ScalarProperty Name="SELLOUT_COL2" ColumnName="SELLOUT COL2" />
+          <ScalarProperty Name="SELLOUT_PC" ColumnName="SELLOUT PC" />
+          <ScalarProperty Name="SELLOUT_BOY" ColumnName="SELLOUT BOY" />
+          <ScalarProperty Name="SELLOUT_ID" ColumnName="SELLOUT ID" />
+          <ScalarProperty Name="SHARE_COL1" ColumnName="SHARE COL1" />
+          <ScalarProperty Name="SHARE_COL2" ColumnName="SHARE COL2" />
+          <ScalarProperty Name="SELLIN_COL1" ColumnName="SELLIN COL1" />
+          <ScalarProperty Name="SELLIN_COL2" ColumnName="SELLIN COL2" />
+          <ScalarProperty Name="SELLIN_PC" ColumnName="SELLIN PC" />
+          <ScalarProperty Name="SELLIN_BOY" ColumnName="SELLIN BOY" />
+          <ScalarProperty Name="SELLIN_ID" ColumnName="SELLIN ID" />
+          <ScalarProperty Name="CONVERSION_RATE" ColumnName="CONVERSION RATE" />
+          <ScalarProperty Name="MARKET_TYPE" ColumnName="MARKET TYPE" />
+          <ScalarProperty Name="SELLOUT_TYPE" ColumnName="SELLOUT TYPE" />
+          <ScalarProperty Name="SELLIN_TYPE" ColumnName="SELLIN TYPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BOY_CUSTOM_DATA">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BOY_CUSTOM_DATA">
+        <MappingFragment StoreEntitySet="v_WRK_BOY_CUSTOM_DATA">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="MARKET_NAME" ColumnName="MARKET NAME" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="BRAND_NAME" ColumnName="BRAND NAME" />
+          <ScalarProperty Name="NTS_NAME" ColumnName="NTS_NAME" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="MARKET_COL1" ColumnName="MARKET COL1" />
+          <ScalarProperty Name="MARKET_COL2" ColumnName="MARKET COL2" />
+          <ScalarProperty Name="MARKET_PC" ColumnName="MARKET PC" />
+          <ScalarProperty Name="MARKET_BOY" ColumnName="MARKET BOY" />
+          <ScalarProperty Name="MARKET_ID" ColumnName="MARKET ID" />
+          <ScalarProperty Name="SELLOUT_COL1" ColumnName="SELLOUT COL1" />
+          <ScalarProperty Name="SELLOUT_COL2" ColumnName="SELLOUT COL2" />
+          <ScalarProperty Name="SELLOUT_PC" ColumnName="SELLOUT PC" />
+          <ScalarProperty Name="SELLOUT_BOY" ColumnName="SELLOUT BOY" />
+          <ScalarProperty Name="SELLOUT_ID" ColumnName="SELLOUT ID" />
+          <ScalarProperty Name="SELLIN_COL1" ColumnName="SELLIN COL1" />
+          <ScalarProperty Name="SELLIN_COL2" ColumnName="SELLIN COL2" />
+          <ScalarProperty Name="SELLIN_PC" ColumnName="SELLIN PC" />
+          <ScalarProperty Name="SELLIN_BOY" ColumnName="SELLIN BOY" />
+          <ScalarProperty Name="SELLIN_ID" ColumnName="SELLIN ID" />
+          <ScalarProperty Name="MARKET_TYPE" ColumnName="MARKET TYPE" />
+          <ScalarProperty Name="SELLOUT_TYPE" ColumnName="SELLOUT TYPE" />
+          <ScalarProperty Name="SELLIN_TYPE" ColumnName="SELLIN TYPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BOY_CUSTOM_DATA_INT">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BOY_CUSTOM_DATA_INT">
+        <MappingFragment StoreEntitySet="v_WRK_BOY_CUSTOM_DATA_INT">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="NTS_ORDER" ColumnName="NTS_ORDER" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="MARKET_NAME" ColumnName="MARKET NAME" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="BRAND_NAME" ColumnName="BRAND NAME" />
+          <ScalarProperty Name="NTS_NAME" ColumnName="NTS_NAME" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="MARKET_COL1" ColumnName="MARKET COL1" />
+          <ScalarProperty Name="MARKET_COL2" ColumnName="MARKET COL2" />
+          <ScalarProperty Name="MARKET_PC_INT" ColumnName="MARKET PC INT" />
+          <ScalarProperty Name="MARKET_PC" ColumnName="MARKET PC" />
+          <ScalarProperty Name="SELLOUT_COL1" ColumnName="SELLOUT COL1" />
+          <ScalarProperty Name="SELLOUT_COL2" ColumnName="SELLOUT COL2" />
+          <ScalarProperty Name="SELLOUT_PC_INT" ColumnName="SELLOUT PC INT" />
+          <ScalarProperty Name="SELLOUT_PC" ColumnName="SELLOUT PC" />
+          <ScalarProperty Name="SHARE_COL1" ColumnName="SHARE COL1" />
+          <ScalarProperty Name="SHARE_COL2" ColumnName="SHARE COL2" />
+          <ScalarProperty Name="SELLIN_COL1" ColumnName="SELLIN COL1" />
+          <ScalarProperty Name="SELLIN_COL2" ColumnName="SELLIN COL2" />
+          <ScalarProperty Name="SELLIN__PC_INT" ColumnName="SELLIN  PC INT" />
+          <ScalarProperty Name="SELLIN_PC" ColumnName="SELLIN PC" />
+          <ScalarProperty Name="CONVERSION_RATE" ColumnName="CONVERSION RATE" />
+          <ScalarProperty Name="MARKET_BOY" ColumnName="MARKET BOY" />
+          <ScalarProperty Name="MARKET_TYPE" ColumnName="MARKET TYPE" />
+          <ScalarProperty Name="MARKET_ID" ColumnName="MARKET ID" />
+          <ScalarProperty Name="SELLIN_BOY" ColumnName="SELLIN BOY" />
+          <ScalarProperty Name="SELLIN_TYPE" ColumnName="SELLIN TYPE" />
+          <ScalarProperty Name="SELLIN_ID" ColumnName="SELLIN ID" />
+          <ScalarProperty Name="SELLOUT_BOY" ColumnName="SELLOUT BOY" />
+          <ScalarProperty Name="SELLOUT_TYPE" ColumnName="SELLOUT TYPE" />
+          <ScalarProperty Name="SELLOUT_ID" ColumnName="SELLOUT ID" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BOY_CUSTOM_DATA_LE">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BOY_CUSTOM_DATA_LE">
+        <MappingFragment StoreEntitySet="v_WRK_BOY_CUSTOM_DATA_LE">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="NTS_ORDER" ColumnName="NTS_ORDER" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="MARKET_NAME" ColumnName="MARKET NAME" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="BRAND_NAME" ColumnName="BRAND NAME" />
+          <ScalarProperty Name="NTS_NAME" ColumnName="NTS_NAME" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="MARKET_COL1" ColumnName="MARKET COL1" />
+          <ScalarProperty Name="MARKET_COL2" ColumnName="MARKET COL2" />
+          <ScalarProperty Name="MARKET_PC_INT" ColumnName="MARKET PC INT" />
+          <ScalarProperty Name="MARKET_PC" ColumnName="MARKET PC" />
+          <ScalarProperty Name="SELLOUT_COL1" ColumnName="SELLOUT COL1" />
+          <ScalarProperty Name="SELLOUT_COL2" ColumnName="SELLOUT COL2" />
+          <ScalarProperty Name="SELLOUT_PC_INT" ColumnName="SELLOUT PC INT" />
+          <ScalarProperty Name="SELLOUT_PC" ColumnName="SELLOUT PC" />
+          <ScalarProperty Name="SHARE_COL1" ColumnName="SHARE COL1" />
+          <ScalarProperty Name="SHARE_COL2" ColumnName="SHARE COL2" />
+          <ScalarProperty Name="SELLIN_COL1" ColumnName="SELLIN COL1" />
+          <ScalarProperty Name="SELLIN_COL2" ColumnName="SELLIN COL2" />
+          <ScalarProperty Name="SELLIN__PC_INT" ColumnName="SELLIN  PC INT" />
+          <ScalarProperty Name="SELLIN_PC" ColumnName="SELLIN PC" />
+          <ScalarProperty Name="CONVERSION_RATE" ColumnName="CONVERSION RATE" />
+          <ScalarProperty Name="MARKET_BOY" ColumnName="MARKET BOY" />
+          <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+          <ScalarProperty Name="MARKET_ID" ColumnName="MARKET ID" />
+          <ScalarProperty Name="SELLIN_BOY" ColumnName="SELLIN BOY" />
+          <ScalarProperty Name="Expr2" ColumnName="Expr2" />
+          <ScalarProperty Name="SELLIN_ID" ColumnName="SELLIN ID" />
+          <ScalarProperty Name="SELLOUT_BOY" ColumnName="SELLOUT BOY" />
+          <ScalarProperty Name="Expr3" ColumnName="Expr3" />
+          <ScalarProperty Name="SELLOUT_ID" ColumnName="SELLOUT ID" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="Expr4" ColumnName="Expr4" />
+          <ScalarProperty Name="Expr5" ColumnName="Expr5" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BOY_CUSTOM_DATA_PBP">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BOY_CUSTOM_DATA_PBP">
+        <MappingFragment StoreEntitySet="v_WRK_BOY_CUSTOM_DATA_PBP">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="NTS_ORDER" ColumnName="NTS_ORDER" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="MARKET_COL2" ColumnName="MARKET COL2" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="BRAND_NAME" ColumnName="BRAND NAME" />
+          <ScalarProperty Name="NTS_NAME" ColumnName="NTS_NAME" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="MARKET_COL1" ColumnName="MARKET COL1" />
+          <ScalarProperty Name="MARKET_PC_INT" ColumnName="MARKET PC INT" />
+          <ScalarProperty Name="SELLOUT_COL2" ColumnName="SELLOUT COL2" />
+          <ScalarProperty Name="MARKET_PC" ColumnName="MARKET PC" />
+          <ScalarProperty Name="SELLOUT_COL1" ColumnName="SELLOUT COL1" />
+          <ScalarProperty Name="SELLOUT_PC_INT" ColumnName="SELLOUT PC INT" />
+          <ScalarProperty Name="SHARE_COL1" ColumnName="SHARE COL1" />
+          <ScalarProperty Name="SELLOUT_PC" ColumnName="SELLOUT PC" />
+          <ScalarProperty Name="SHARE_COL2" ColumnName="SHARE COL2" />
+          <ScalarProperty Name="SELLIN_COL2" ColumnName="SELLIN COL2" />
+          <ScalarProperty Name="SELLIN_COL1" ColumnName="SELLIN COL1" />
+          <ScalarProperty Name="SELLIN__PC_INT" ColumnName="SELLIN  PC INT" />
+          <ScalarProperty Name="CONVERSION_RATE" ColumnName="CONVERSION RATE" />
+          <ScalarProperty Name="SELLIN_PC" ColumnName="SELLIN PC" />
+          <ScalarProperty Name="MARKET_BOY" ColumnName="MARKET BOY" />
+          <ScalarProperty Name="MARKET_TYPE" ColumnName="MARKET TYPE" />
+          <ScalarProperty Name="SELLIN_BOY" ColumnName="SELLIN BOY" />
+          <ScalarProperty Name="MARKET_ID" ColumnName="MARKET ID" />
+          <ScalarProperty Name="SELLIN_TYPE" ColumnName="SELLIN TYPE" />
+          <ScalarProperty Name="SELLOUT_BOY" ColumnName="SELLOUT BOY" />
+          <ScalarProperty Name="SELLIN_ID" ColumnName="SELLIN ID" />
+          <ScalarProperty Name="SELLOUT_TYPE" ColumnName="SELLOUT TYPE" />
+          <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+          <ScalarProperty Name="SELLOUT_ID" ColumnName="SELLOUT ID" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BRAND_BOY_CHANNEL">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BRAND_BOY_CHANNEL">
+        <MappingFragment StoreEntitySet="v_WRK_BRAND_BOY_CHANNEL">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="INTERNAL" ColumnName="INTERNAL" />
+          <ScalarProperty Name="LE" ColumnName="LE" />
+          <ScalarProperty Name="PBP" ColumnName="PBP" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BRAND_BOY_FRANCHISE">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BRAND_BOY_FRANCHISE">
+        <MappingFragment StoreEntitySet="v_WRK_BRAND_BOY_FRANCHISE">
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="COL1" ColumnName="COL1" />
+          <ScalarProperty Name="COL2" ColumnName="COL2" />
+          <ScalarProperty Name="COL3" ColumnName="COL3" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BRAND_BTG_CHANNEL">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BRAND_BTG_CHANNEL">
+        <MappingFragment StoreEntitySet="v_WRK_BRAND_BTG_CHANNEL">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="GROUP_ORDER" ColumnName="GROUP_ORDER" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="COL1" ColumnName="COL1" />
+          <ScalarProperty Name="COL2" ColumnName="COL2" />
+          <ScalarProperty Name="PCVSPY" ColumnName="PCVSPY" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BRAND_BTG_FRANCHISE">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BRAND_BTG_FRANCHISE">
+        <MappingFragment StoreEntitySet="v_WRK_BRAND_BTG_FRANCHISE">
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="COL1" ColumnName="COL1" />
+          <ScalarProperty Name="COL2" ColumnName="COL2" />
+          <ScalarProperty Name="COL3" ColumnName="COL3" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BRAND_BY_CHANNEL">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BRAND_BY_CHANNEL">
+        <MappingFragment StoreEntitySet="v_WRK_BRAND_BY_CHANNEL">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="YTD_COL1" ColumnName="YTD COL1" />
+          <ScalarProperty Name="YTD_COL2" ColumnName="YTD COL2" />
+          <ScalarProperty Name="MAT_COL1" ColumnName="MAT COL1" />
+          <ScalarProperty Name="MAT_COL2" ColumnName="MAT COL2" />
+          <ScalarProperty Name="TOTAL_COL1" ColumnName="TOTAL COL1" />
+          <ScalarProperty Name="TOTAL_COL2" ColumnName="TOTAL COL2" />
+          <ScalarProperty Name="MONTH_COL1" ColumnName="MONTH COL1" />
+          <ScalarProperty Name="MONTH_COL2" ColumnName="MONTH COL2" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BRAND_BY_CUSTOM_GROUP">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BRAND_BY_CUSTOM_GROUP">
+        <MappingFragment StoreEntitySet="v_WRK_BRAND_BY_CUSTOM_GROUP">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="CUSTOM" ColumnName="CUSTOM" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="YTD_COL1" ColumnName="YTD COL1" />
+          <ScalarProperty Name="YTD_COL2" ColumnName="YTD COL2" />
+          <ScalarProperty Name="MAT_COL1" ColumnName="MAT COL1" />
+          <ScalarProperty Name="MAT_COL2" ColumnName="MAT COL2" />
+          <ScalarProperty Name="TOTAL_COL1" ColumnName="TOTAL COL1" />
+          <ScalarProperty Name="TOTAL_COL2" ColumnName="TOTAL COL2" />
+          <ScalarProperty Name="MONTH_COL1" ColumnName="MONTH COL1" />
+          <ScalarProperty Name="MONTH_COL2" ColumnName="MONTH COL2" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BRAND_BY_SUPER">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BRAND_BY_SUPER">
+        <MappingFragment StoreEntitySet="v_WRK_BRAND_BY_SUPER">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="SUPER" ColumnName="SUPER" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="YTD_COL1" ColumnName="YTD COL1" />
+          <ScalarProperty Name="YTD_COL2" ColumnName="YTD COL2" />
+          <ScalarProperty Name="MAT_COL1" ColumnName="MAT COL1" />
+          <ScalarProperty Name="MAT_COL2" ColumnName="MAT COL2" />
+          <ScalarProperty Name="TOTAL_COL1" ColumnName="TOTAL COL1" />
+          <ScalarProperty Name="TOTAL_COL2" ColumnName="TOTAL COL2" />
+          <ScalarProperty Name="MONTH_COL1" ColumnName="MONTH COL1" />
+          <ScalarProperty Name="MONTH_COL2" ColumnName="MONTH COL2" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BRAND_CATEGORISATION">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BRAND_CATEGORISATION">
+        <MappingFragment StoreEntitySet="v_WRK_BRAND_CATEGORISATION">
+          <ScalarProperty Name="GROUP_LEVEL" ColumnName="GROUP LEVEL" />
+          <ScalarProperty Name="GROUP_NAME" ColumnName="GROUP NAME" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND_NAME" ColumnName="BRAND_NAME" />
+          <ScalarProperty Name="CONFIG" ColumnName="CONFIG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BRAND_CATEGORISATION_DATA">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BRAND_CATEGORISATION_DATA">
+        <MappingFragment StoreEntitySet="v_WRK_BRAND_CATEGORISATION_DATA">
+          <ScalarProperty Name="GROUP_LEVEL" ColumnName="GROUP LEVEL" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="GROUP_NAME" ColumnName="GROUP NAME" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ACT" ColumnName="ACT" />
+          <ScalarProperty Name="PY" ColumnName="PY" />
+          <ScalarProperty Name="YTD_SHARE_VS_PY" ColumnName="YTD SHARE VS PY" />
+          <ScalarProperty Name="YTD_CATEGORY_VS_PY" ColumnName="YTD CATEGORY VS PY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BRAND_CATEGORISATION_MASTER">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BRAND_CATEGORISATION_MASTER">
+        <MappingFragment StoreEntitySet="v_WRK_BRAND_CATEGORISATION_MASTER">
+          <ScalarProperty Name="GROUP_LEVEL" ColumnName="GROUP LEVEL" />
+          <ScalarProperty Name="GROUP_NAME" ColumnName="GROUP NAME" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BRAND_MAT_CHANNEL">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BRAND_MAT_CHANNEL">
+        <MappingFragment StoreEntitySet="v_WRK_BRAND_MAT_CHANNEL">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="GROUP_ORDER" ColumnName="GROUP_ORDER" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MAT_COL1" ColumnName="MAT COL1" />
+          <ScalarProperty Name="MAT_COL2" ColumnName="MAT COL2" />
+          <ScalarProperty Name="PCVSPY" ColumnName="PCVSPY" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BRAND_MAT_FRANCHISE">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BRAND_MAT_FRANCHISE">
+        <MappingFragment StoreEntitySet="v_WRK_BRAND_MAT_FRANCHISE">
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="COL1" ColumnName="COL1" />
+          <ScalarProperty Name="COL2" ColumnName="COL2" />
+          <ScalarProperty Name="COL3" ColumnName="COL3" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BRAND_MONTH_CHANNEL">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BRAND_MONTH_CHANNEL">
+        <MappingFragment StoreEntitySet="v_WRK_BRAND_MONTH_CHANNEL">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="GROUP_ORDER" ColumnName="GROUP_ORDER" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MONTH_COL1" ColumnName="MONTH COL1" />
+          <ScalarProperty Name="MONTH_COL2" ColumnName="MONTH COL2" />
+          <ScalarProperty Name="PCVSPY" ColumnName="PCVSPY" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BRAND_MONTH_FRANCHISE">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BRAND_MONTH_FRANCHISE">
+        <MappingFragment StoreEntitySet="v_WRK_BRAND_MONTH_FRANCHISE">
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="COL1" ColumnName="COL1" />
+          <ScalarProperty Name="COL2" ColumnName="COL2" />
+          <ScalarProperty Name="COL3" ColumnName="COL3" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BRAND_PCVSPY_CHANNEL">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BRAND_PCVSPY_CHANNEL">
+        <MappingFragment StoreEntitySet="v_WRK_BRAND_PCVSPY_CHANNEL">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="COL1" ColumnName="COL1" />
+          <ScalarProperty Name="COL2" ColumnName="COL2" />
+          <ScalarProperty Name="COL3" ColumnName="COL3" />
+          <ScalarProperty Name="COL4" ColumnName="COL4" />
+          <ScalarProperty Name="INTERNAL" ColumnName="INTERNAL" />
+          <ScalarProperty Name="LE" ColumnName="LE" />
+          <ScalarProperty Name="PBP" ColumnName="PBP" />
+          <ScalarProperty Name="PCVSPY_COL1" ColumnName="PCVSPY COL1" />
+          <ScalarProperty Name="PCVSPY_COL2" ColumnName="PCVSPY COL2" />
+          <ScalarProperty Name="PCVSPY_COL3" ColumnName="PCVSPY COL3" />
+          <ScalarProperty Name="PCVSPY_COL4" ColumnName="PCVSPY COL4" />
+          <ScalarProperty Name="PCVSPY_COL5" ColumnName="PCVSPY COL5" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BRAND_PCVSPY_FRANCHISE">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BRAND_PCVSPY_FRANCHISE">
+        <MappingFragment StoreEntitySet="v_WRK_BRAND_PCVSPY_FRANCHISE">
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="COL1" ColumnName="COL1" />
+          <ScalarProperty Name="COL2" ColumnName="COL2" />
+          <ScalarProperty Name="COL3" ColumnName="COL3" />
+          <ScalarProperty Name="COL4" ColumnName="COL4" />
+          <ScalarProperty Name="INTERNAL" ColumnName="INTERNAL" />
+          <ScalarProperty Name="LE" ColumnName="LE" />
+          <ScalarProperty Name="PBP" ColumnName="PBP" />
+          <ScalarProperty Name="PCVSPY_COL1" ColumnName="PCVSPY COL1" />
+          <ScalarProperty Name="PCVSPY_COL2" ColumnName="PCVSPY COL2" />
+          <ScalarProperty Name="PCVSPY_COL3" ColumnName="PCVSPY COL3" />
+          <ScalarProperty Name="PCVSPY_COL4" ColumnName="PCVSPY COL4" />
+          <ScalarProperty Name="PCVSPY_COL5" ColumnName="PCVSPY COL5" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BRAND_TOTAL_CUSTOM_CHANNEL">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BRAND_TOTAL_CUSTOM_CHANNEL">
+        <MappingFragment StoreEntitySet="v_WRK_BRAND_TOTAL_CUSTOM_CHANNEL">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="COL1" ColumnName="COL1" />
+          <ScalarProperty Name="COL2" ColumnName="COL2" />
+          <ScalarProperty Name="COL3" ColumnName="COL3" />
+          <ScalarProperty Name="COL4" ColumnName="COL4" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BRAND_TOTAL_CUSTOM_FRANCHISE">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BRAND_TOTAL_CUSTOM_FRANCHISE">
+        <MappingFragment StoreEntitySet="v_WRK_BRAND_TOTAL_CUSTOM_FRANCHISE">
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="COL1" ColumnName="COL1" />
+          <ScalarProperty Name="COL2" ColumnName="COL2" />
+          <ScalarProperty Name="COL3" ColumnName="COL3" />
+          <ScalarProperty Name="COL4" ColumnName="COL4" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BRAND_YTD_CHANNEL">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BRAND_YTD_CHANNEL">
+        <MappingFragment StoreEntitySet="v_WRK_BRAND_YTD_CHANNEL">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="GROUP_ORDER" ColumnName="GROUP_ORDER" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="YTD_COL1" ColumnName="YTD COL1" />
+          <ScalarProperty Name="YTD_COL2" ColumnName="YTD COL2" />
+          <ScalarProperty Name="PCVSPY" ColumnName="PCVSPY" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BRAND_YTD_FRANCHISE">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BRAND_YTD_FRANCHISE">
+        <MappingFragment StoreEntitySet="v_WRK_BRAND_YTD_FRANCHISE">
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="COL1" ColumnName="COL1" />
+          <ScalarProperty Name="COL2" ColumnName="COL2" />
+          <ScalarProperty Name="COL3" ColumnName="COL3" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_CHANNEL_DATA">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_CHANNEL_DATA">
+        <MappingFragment StoreEntitySet="v_WRK_CHANNEL_DATA">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_CHART_BASE">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_CHART_BASE">
+        <MappingFragment StoreEntitySet="v_WRK_CHART_BASE">
+          <ScalarProperty Name="GROUPING" ColumnName="GROUPING" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="COL1" ColumnName="COL1" />
+          <ScalarProperty Name="COL2" ColumnName="COL2" />
+          <ScalarProperty Name="PCVSPY" ColumnName="PCVSPY" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_FRANCHISE_BASE">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_FRANCHISE_BASE">
+        <MappingFragment StoreEntitySet="v_WRK_FRANCHISE_BASE">
+          <ScalarProperty Name="DATA" ColumnName="DATA" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+          <ScalarProperty Name="MONTH1" ColumnName="MONTH1" />
+          <ScalarProperty Name="YTD1" ColumnName="YTD1" />
+          <ScalarProperty Name="MAT1" ColumnName="MAT1" />
+          <ScalarProperty Name="TOTAL_1" ColumnName="TOTAL+1" />
+          <ScalarProperty Name="MONTH2" ColumnName="MONTH2" />
+          <ScalarProperty Name="YTD2" ColumnName="YTD2" />
+          <ScalarProperty Name="MAT2" ColumnName="MAT2" />
+          <ScalarProperty Name="TOTAL_11" ColumnName="TOTAL-1" />
+          <ScalarProperty Name="TOTAL_2" ColumnName="TOTAL-2" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_FRANCHISE_CUSTOM_BASE">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_FRANCHISE_CUSTOM_BASE">
+        <MappingFragment StoreEntitySet="v_WRK_FRANCHISE_CUSTOM_BASE">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="DATA" ColumnName="DATA" />
+          <ScalarProperty Name="FRANCHISE" ColumnName="FRANCHISE" />
+          <ScalarProperty Name="YTD_COL1" ColumnName="YTD COL1" />
+          <ScalarProperty Name="YTD_COL2" ColumnName="YTD COL2" />
+          <ScalarProperty Name="MAT_COL1" ColumnName="MAT COL1" />
+          <ScalarProperty Name="MAT_COL2" ColumnName="MAT COL2" />
+          <ScalarProperty Name="MONTH_COL1" ColumnName="MONTH COL1" />
+          <ScalarProperty Name="MONTH_COL2" ColumnName="MONTH COL2" />
+          <ScalarProperty Name="THREE_AGO" ColumnName="THREE AGO" />
+          <ScalarProperty Name="TWO_AGO" ColumnName="TWO AGO" />
+          <ScalarProperty Name="LAST" ColumnName="LAST" />
+          <ScalarProperty Name="CURRENT" ColumnName="CURRENT" />
+          <ScalarProperty Name="LE" ColumnName="LE" />
+          <ScalarProperty Name="INTERNAL" ColumnName="INTERNAL" />
+          <ScalarProperty Name="PBP" ColumnName="PBP" />
+          <ScalarProperty Name="BTG_COL1" ColumnName="BTG COL1" />
+          <ScalarProperty Name="BTG_COL2" ColumnName="BTG COL2" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_FRANCHISE_CUSTOM_DATA">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_FRANCHISE_CUSTOM_DATA">
+        <MappingFragment StoreEntitySet="v_WRK_FRANCHISE_CUSTOM_DATA">
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DATA" ColumnName="DATA" />
+          <ScalarProperty Name="MAT_LAST" ColumnName="MAT LAST" />
+          <ScalarProperty Name="MAT_CURRENT" ColumnName="MAT CURRENT" />
+          <ScalarProperty Name="MAT_PCVSPY" ColumnName="MAT PCVSPY" />
+          <ScalarProperty Name="YTD_LAST" ColumnName="YTD LAST" />
+          <ScalarProperty Name="YTD_CURRENT" ColumnName="YTD CURRENT" />
+          <ScalarProperty Name="YTD_PCVSPY" ColumnName="YTD PCVSPY" />
+          <ScalarProperty Name="MONTH_LAST" ColumnName="MONTH LAST" />
+          <ScalarProperty Name="MONTH_CURRENT" ColumnName="MONTH CURRENT" />
+          <ScalarProperty Name="MONTH_PCVSPY" ColumnName="MONTH PCVSPY" />
+          <ScalarProperty Name="TOTAL_3AGO" ColumnName="TOTAL 3AGO" />
+          <ScalarProperty Name="TOTAL_2AGO" ColumnName="TOTAL 2AGO" />
+          <ScalarProperty Name="TOTAL_LAST" ColumnName="TOTAL LAST" />
+          <ScalarProperty Name="TOTAL_CURRENT" ColumnName="TOTAL CURRENT" />
+          <ScalarProperty Name="INT" ColumnName="INT" />
+          <ScalarProperty Name="LE" ColumnName="LE" />
+          <ScalarProperty Name="PBP" ColumnName="PBP" />
+          <ScalarProperty Name="BTG_LAST" ColumnName="BTG LAST" />
+          <ScalarProperty Name="BTG_CURRENT" ColumnName="BTG CURRENT" />
+          <ScalarProperty Name="BTG_PCVSPY" ColumnName="BTG PCVSPY" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_FRANCHISE_DATA">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_FRANCHISE_DATA">
+        <MappingFragment StoreEntitySet="v_WRK_FRANCHISE_DATA">
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="HAS_CHILD" ColumnName="HAS_CHILD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_KEYBRANDS_BASE">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_KEYBRANDS_BASE">
+        <MappingFragment StoreEntitySet="v_WRK_KEYBRANDS_BASE">
+          <ScalarProperty Name="DATA" ColumnName="DATA" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="COL1" ColumnName="COL1" />
+          <ScalarProperty Name="COL2" ColumnName="COL2" />
+          <ScalarProperty Name="COL3" ColumnName="COL3" />
+          <ScalarProperty Name="PCVSPY" ColumnName="PCVSPY" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_KEYBRANDS_BOY">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_KEYBRANDS_BOY">
+        <MappingFragment StoreEntitySet="v_WRK_KEYBRANDS_BOY">
+          <ScalarProperty Name="DATA" ColumnName="DATA" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="COL1" ColumnName="COL1" />
+          <ScalarProperty Name="COL2" ColumnName="COL2" />
+          <ScalarProperty Name="COL3" ColumnName="COL3" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_KEYBRANDS_BTG">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_KEYBRANDS_BTG">
+        <MappingFragment StoreEntitySet="v_WRK_KEYBRANDS_BTG">
+          <ScalarProperty Name="DATA" ColumnName="DATA" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="COL1" ColumnName="COL1" />
+          <ScalarProperty Name="COL2" ColumnName="COL2" />
+          <ScalarProperty Name="PSVSPY" ColumnName="PSVSPY" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_KEYBRANDS_DATA">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_KEYBRANDS_DATA">
+        <MappingFragment StoreEntitySet="v_WRK_KEYBRANDS_DATA">
+          <ScalarProperty Name="DATA" ColumnName="DATA" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+          <ScalarProperty Name="MONTH1" ColumnName="MONTH1" />
+          <ScalarProperty Name="YTD1" ColumnName="YTD1" />
+          <ScalarProperty Name="MAT1" ColumnName="MAT1" />
+          <ScalarProperty Name="TOTAL_1" ColumnName="TOTAL+1" />
+          <ScalarProperty Name="MONTH2" ColumnName="MONTH2" />
+          <ScalarProperty Name="YTD2" ColumnName="YTD2" />
+          <ScalarProperty Name="MAT2" ColumnName="MAT2" />
+          <ScalarProperty Name="TOTAL_11" ColumnName="TOTAL-1" />
+          <ScalarProperty Name="TOTAL_2" ColumnName="TOTAL-2" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_KEYBRANDS_PCVSPY">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_KEYBRANDS_PCVSPY">
+        <MappingFragment StoreEntitySet="v_WRK_KEYBRANDS_PCVSPY">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DATA" ColumnName="DATA" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="COL1" ColumnName="COL1" />
+          <ScalarProperty Name="COL2" ColumnName="COL2" />
+          <ScalarProperty Name="COL3" ColumnName="COL3" />
+          <ScalarProperty Name="COL4" ColumnName="COL4" />
+          <ScalarProperty Name="COL5" ColumnName="COL5" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_KEYBRANDS_TOTALS_BOY">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_KEYBRANDS_TOTALS_BOY">
+        <MappingFragment StoreEntitySet="v_WRK_KEYBRANDS_TOTALS_BOY">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="DATA" ColumnName="DATA" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="COL1" ColumnName="COL1" />
+          <ScalarProperty Name="COL2" ColumnName="COL2" />
+          <ScalarProperty Name="COL3" ColumnName="COL3" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_KEYBRANDS_TOTALS_DATA">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_KEYBRANDS_TOTALS_DATA">
+        <MappingFragment StoreEntitySet="v_WRK_KEYBRANDS_TOTALS_DATA">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="DATA" ColumnName="DATA" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="COL1" ColumnName="COL1" />
+          <ScalarProperty Name="COL2" ColumnName="COL2" />
+          <ScalarProperty Name="COL3" ColumnName="COL3" />
+          <ScalarProperty Name="COL4" ColumnName="COL4" />
+          <ScalarProperty Name="PCVSPY" ColumnName="PCVSPY" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_MANAGEMENT_LETTERS">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_MANAGEMENT_LETTERS">
+        <MappingFragment StoreEntitySet="v_WRK_MANAGEMENT_LETTERS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="GROUP_ID" ColumnName="GROUP ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="COUNTRY" ColumnName="COUNTRY" />
+          <ScalarProperty Name="MAIN_NAME" ColumnName="MAIN NAME" />
+          <ScalarProperty Name="MAIN_GROUP" ColumnName="MAIN GROUP" />
+          <ScalarProperty Name="CHANNEL_NAME" ColumnName="CHANNEL NAME" />
+          <ScalarProperty Name="CHANNEL_GROUP" ColumnName="CHANNEL GROUP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_MANAGEMENT_LETTERS_DATA">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_MANAGEMENT_LETTERS_DATA">
+        <MappingFragment StoreEntitySet="v_WRK_MANAGEMENT_LETTERS_DATA">
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="SHORT_NAME" ColumnName="SHORT NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="YTD_COL1" ColumnName="YTD COL1" />
+          <ScalarProperty Name="YTD_COL2" ColumnName="YTD COL2" />
+          <ScalarProperty Name="YTD_COL3" ColumnName="YTD COL3" />
+          <ScalarProperty Name="LATEST_COL1" ColumnName="LATEST COL1" />
+          <ScalarProperty Name="LATEST_COL2" ColumnName="LATEST COL2" />
+          <ScalarProperty Name="LATEST_COL3" ColumnName="LATEST COL3" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_MARKET_BOY_CHANNEL">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_MARKET_BOY_CHANNEL">
+        <MappingFragment StoreEntitySet="v_WRK_MARKET_BOY_CHANNEL">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="INTERNAL" ColumnName="INTERNAL" />
+          <ScalarProperty Name="LE" ColumnName="LE" />
+          <ScalarProperty Name="PBP" ColumnName="PBP" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_MARKET_BOY_FRANCHISE">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_MARKET_BOY_FRANCHISE">
+        <MappingFragment StoreEntitySet="v_WRK_MARKET_BOY_FRANCHISE">
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="INTERNAL" ColumnName="INTERNAL" />
+          <ScalarProperty Name="LE" ColumnName="LE" />
+          <ScalarProperty Name="PBP" ColumnName="PBP" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_MARKET_BTG_CHANNEL">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_MARKET_BTG_CHANNEL">
+        <MappingFragment StoreEntitySet="v_WRK_MARKET_BTG_CHANNEL">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="GROUP_ORDER" ColumnName="GROUP_ORDER" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="BTG_COL1" ColumnName="BTG COL1" />
+          <ScalarProperty Name="BTG_COL2" ColumnName="BTG COL2" />
+          <ScalarProperty Name="PCVSPY" ColumnName="PCVSPY" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_MARKET_BTG_FRANCHISE">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_MARKET_BTG_FRANCHISE">
+        <MappingFragment StoreEntitySet="v_WRK_MARKET_BTG_FRANCHISE">
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="COL1" ColumnName="COL1" />
+          <ScalarProperty Name="COL2" ColumnName="COL2" />
+          <ScalarProperty Name="PCVSPY" ColumnName="PCVSPY" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_MARKET_BY_CHANNEL">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_MARKET_BY_CHANNEL">
+        <MappingFragment StoreEntitySet="v_WRK_MARKET_BY_CHANNEL">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="YTD_COL1" ColumnName="YTD COL1" />
+          <ScalarProperty Name="YTD_COL2" ColumnName="YTD COL2" />
+          <ScalarProperty Name="MAT_COL1" ColumnName="MAT COL1" />
+          <ScalarProperty Name="MAT_COL2" ColumnName="MAT COL2" />
+          <ScalarProperty Name="TOTAL_COL1" ColumnName="TOTAL COL1" />
+          <ScalarProperty Name="TOTAL_COL2" ColumnName="TOTAL COL2" />
+          <ScalarProperty Name="MONTH_COL1" ColumnName="MONTH COL1" />
+          <ScalarProperty Name="MONTH_COL2" ColumnName="MONTH COL2" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_MARKET_BY_SUPER">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_MARKET_BY_SUPER">
+        <MappingFragment StoreEntitySet="v_WRK_MARKET_BY_SUPER">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="SUPER" ColumnName="SUPER" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="YTD_COL1" ColumnName="YTD COL1" />
+          <ScalarProperty Name="YTD_COL2" ColumnName="YTD COL2" />
+          <ScalarProperty Name="MAT_COL1" ColumnName="MAT COL1" />
+          <ScalarProperty Name="MAT_COL2" ColumnName="MAT COL2" />
+          <ScalarProperty Name="TOTAL_COL1" ColumnName="TOTAL COL1" />
+          <ScalarProperty Name="TOTAL_COL2" ColumnName="TOTAL COL2" />
+          <ScalarProperty Name="MONTH_COL1" ColumnName="MONTH COL1" />
+          <ScalarProperty Name="MONTH_COL2" ColumnName="MONTH COL2" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_MARKET_MONTH_CHANNEL">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_MARKET_MONTH_CHANNEL">
+        <MappingFragment StoreEntitySet="v_WRK_MARKET_MONTH_CHANNEL">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="GROUP_ORDER" ColumnName="GROUP_ORDER" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MONTH_COL1" ColumnName="MONTH COL1" />
+          <ScalarProperty Name="MONTH_COL2" ColumnName="MONTH COL2" />
+          <ScalarProperty Name="PCVSPY" ColumnName="PCVSPY" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_MARKET_MONTH_FRANCHISE">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_MARKET_MONTH_FRANCHISE">
+        <MappingFragment StoreEntitySet="v_WRK_MARKET_MONTH_FRANCHISE">
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="COL1" ColumnName="COL1" />
+          <ScalarProperty Name="COL2" ColumnName="COL2" />
+          <ScalarProperty Name="PCVSPY" ColumnName="PCVSPY" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_MARKET_TOTAL">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_MARKET_TOTAL">
+        <MappingFragment StoreEntitySet="v_WRK_MARKET_TOTAL">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="THREE_AGO" ColumnName="THREE AGO" />
+          <ScalarProperty Name="TWO_AGO" ColumnName="TWO AGO" />
+          <ScalarProperty Name="LAST" ColumnName="LAST" />
+          <ScalarProperty Name="CURRENT" ColumnName="CURRENT" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_MARKET_TOTAL_CUSTOM_CHANNEL">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_MARKET_TOTAL_CUSTOM_CHANNEL">
+        <MappingFragment StoreEntitySet="v_WRK_MARKET_TOTAL_CUSTOM_CHANNEL">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="THREE_AGO" ColumnName="THREE AGO" />
+          <ScalarProperty Name="TWO_AGO" ColumnName="TWO AGO" />
+          <ScalarProperty Name="LAST" ColumnName="LAST" />
+          <ScalarProperty Name="CURRENT" ColumnName="CURRENT" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_MARKET_TOTAL_CUSTOM_FRANCHISE">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_MARKET_TOTAL_CUSTOM_FRANCHISE">
+        <MappingFragment StoreEntitySet="v_WRK_MARKET_TOTAL_CUSTOM_FRANCHISE">
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="THREE_AGO" ColumnName="THREE AGO" />
+          <ScalarProperty Name="TWO_AGO" ColumnName="TWO AGO" />
+          <ScalarProperty Name="LAST" ColumnName="LAST" />
+          <ScalarProperty Name="CURRENT" ColumnName="CURRENT" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_MARKET_YTD_FRANCHISE">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_MARKET_YTD_FRANCHISE">
+        <MappingFragment StoreEntitySet="v_WRK_MARKET_YTD_FRANCHISE">
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="COL1" ColumnName="COL1" />
+          <ScalarProperty Name="COL2" ColumnName="COL2" />
+          <ScalarProperty Name="COL3" ColumnName="COL3" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_MONTHLY_COMMENTS_DATA">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_MONTHLY_COMMENTS_DATA">
+        <MappingFragment StoreEntitySet="v_WRK_MONTHLY_COMMENTS_DATA">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="MONTH_MARKET_GROWTH" ColumnName="MONTH MARKET GROWTH" />
+          <ScalarProperty Name="MONTH_BRAND_GROWTH" ColumnName="MONTH BRAND GROWTH" />
+          <ScalarProperty Name="MONTH_MARKET_SHARE" ColumnName="MONTH MARKET SHARE" />
+          <ScalarProperty Name="MONTH_PT" ColumnName="MONTH PT" />
+          <ScalarProperty Name="YTD_MARKET_GROWTH" ColumnName="YTD MARKET GROWTH" />
+          <ScalarProperty Name="YTD_BRAND_GROWTH" ColumnName="YTD BRAND GROWTH" />
+          <ScalarProperty Name="YTD_MARKET_SHARE" ColumnName="YTD MARKET SHARE" />
+          <ScalarProperty Name="YTD_PT" ColumnName="YTD PT" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_SELLINOUT_MARKET_CHANNEL">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_SELLINOUT_MARKET_CHANNEL">
+        <MappingFragment StoreEntitySet="v_WRK_SELLINOUT_MARKET_CHANNEL">
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="GROUP_ORDER" ColumnName="GROUP_ORDER" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="YTD_COL1" ColumnName="YTD COL1" />
+          <ScalarProperty Name="YTD_COL2" ColumnName="YTD COL2" />
+          <ScalarProperty Name="PCVSPY" ColumnName="PCVSPY" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_TMP_IMS_DATA">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_TMP_IMS_DATA">
+        <MappingFragment StoreEntitySet="v_WRK_TMP_IMS_DATA">
+          <ScalarProperty Name="DATA" ColumnName="DATA" />
+          <ScalarProperty Name="SOURCE" ColumnName="SOURCE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="MONTH" ColumnName="MONTH" />
+          <ScalarProperty Name="TRANSACTION_ID" ColumnName="TRANSACTION ID" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_TMP_NIELSEN_DATA">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_TMP_NIELSEN_DATA">
+        <MappingFragment StoreEntitySet="v_WRK_TMP_NIELSEN_DATA">
+          <ScalarProperty Name="DATA" ColumnName="DATA" />
+          <ScalarProperty Name="SOURCE" ColumnName="SOURCE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="MONTH" ColumnName="MONTH" />
+          <ScalarProperty Name="TRANSACTION_ID" ColumnName="TRANSACTION ID" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_YTD">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_YTD">
+        <MappingFragment StoreEntitySet="v_WRK_YTD">
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="YTD_2013" ColumnName="YTD 2013" />
+          <ScalarProperty Name="YTD_2014" ColumnName="YTD 2014" />
+          <ScalarProperty Name="PC_VS_PY" ColumnName="PC_VS_PY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GROUP_MASTER">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.GROUP_MASTER">
+        <MappingFragment StoreEntitySet="GROUP_MASTER">
+          <ScalarProperty Name="BASE_ID" ColumnName="BASE_ID" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="LEVEL" ColumnName="LEVEL" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TRANSACTION_TABLE">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.TRANSACTION_TABLE">
+        <MappingFragment StoreEntitySet="TRANSACTION_TABLE">
+          <ScalarProperty Name="LAST_TRANSACTION_ID" ColumnName="LAST_TRANSACTION_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TRIGGER_TABLE">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.TRIGGER_TABLE">
+        <MappingFragment StoreEntitySet="TRIGGER_TABLE">
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="USER" ColumnName="USER" />
+          <ScalarProperty Name="PROCEDURE" ColumnName="PROCEDURE" />
+          <ScalarProperty Name="TRANSACTION_ID" ColumnName="TRANSACTION_ID" />
+          <ScalarProperty Name="NUMBER_REP" ColumnName="NUMBER_REP" />
+          <ScalarProperty Name="FILE_NAME" ColumnName="FILE_NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LOG_TABLE">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.LOG_TABLE">
+        <MappingFragment StoreEntitySet="LOG_TABLE">
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="ERROR_MESSAGE" ColumnName="ERROR MESSAGE" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+          <ScalarProperty Name="TRANSACTION_ID" ColumnName="TRANSACTION ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BOY_CONFIG">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.BOY_CONFIG">
+        <MappingFragment StoreEntitySet="BOY_CONFIG">
+          <ScalarProperty Name="NTS_ORDER" ColumnName="NTS_ORDER" />
+          <ScalarProperty Name="NTS_NAME" ColumnName="NTS_NAME" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BRAND_MASTER">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.BRAND_MASTER">
+        <MappingFragment StoreEntitySet="BRAND_MASTER">
+          <ScalarProperty Name="KEYBRANDS" ColumnName="KEYBRANDS" />
+          <ScalarProperty Name="BRAND_CALC" ColumnName="BRAND_CALC" />
+          <ScalarProperty Name="SUPER_CALC" ColumnName="SUPER_CALC" />
+          <ScalarProperty Name="SUPER_GROUP" ColumnName="SUPER_GROUP" />
+          <ScalarProperty Name="CHANNEL_CALC" ColumnName="CHANNEL_CALC" />
+          <ScalarProperty Name="FRANCHISE" ColumnName="FRANCHISE" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GROUP_TYPES">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.GROUP_TYPES">
+        <MappingFragment StoreEntitySet="GROUP_TYPES">
+          <ScalarProperty Name="BASE_ID" ColumnName="BASE_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KPI_CONFIG">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.KPI_CONFIG">
+        <MappingFragment StoreEntitySet="KPI_CONFIG">
+          <ScalarProperty Name="KPI_COLUMN" ColumnName="KPI COLUMN" />
+          <ScalarProperty Name="CONFIG" ColumnName="CONFIG" />
+          <ScalarProperty Name="KPI" ColumnName="KPI" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="BRAND_NAME" ColumnName="BRAND_NAME" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TMP_BMC_DATA">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.TMP_BMC_DATA">
+        <MappingFragment StoreEntitySet="TMP_BMC_DATA">
+          <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+          <ScalarProperty Name="USER" ColumnName="USER" />
+          <ScalarProperty Name="TRANSACTION_ID" ColumnName="TRANSACTION_ID" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BMC_NTAR" ColumnName="BMC NTAR" />
+          <ScalarProperty Name="BME_NTAR" ColumnName="BME NTAR" />
+          <ScalarProperty Name="MKT_GP_NTAR" ColumnName="MKT GP NTAR" />
+          <ScalarProperty Name="BMC_ACT" ColumnName="BMC ACT" />
+          <ScalarProperty Name="BME_ACT" ColumnName="BME ACT" />
+          <ScalarProperty Name="MKT_GP_ACT" ColumnName="MKT GP ACT" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TMP_IMS_DATA">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.TMP_IMS_DATA">
+        <MappingFragment StoreEntitySet="TMP_IMS_DATA">
+          <ScalarProperty Name="IMS_ID" ColumnName="IMS ID" />
+          <ScalarProperty Name="BRAND_NAME" ColumnName="BRAND NAME" />
+          <ScalarProperty Name="TRANSACTION_ID" ColumnName="TRANSACTION ID" />
+          <ScalarProperty Name="USER" ColumnName="USER" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="AMOUNTH" ColumnName="AMOUNTH" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="EUROCODE" ColumnName="EUROCODE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TMP_IMS_STOCK_DATA">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.TMP_IMS_STOCK_DATA">
+        <MappingFragment StoreEntitySet="TMP_IMS_STOCK_DATA">
+          <ScalarProperty Name="IMS_ID" ColumnName="IMS ID" />
+          <ScalarProperty Name="BRAND_NAME" ColumnName="BRAND NAME" />
+          <ScalarProperty Name="TRANSACTION_ID" ColumnName="TRANSACTION ID" />
+          <ScalarProperty Name="USER" ColumnName="USER" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="AMOUNTH" ColumnName="AMOUNTH" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="EUROCODE" ColumnName="EUROCODE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TMP_NIELSEN_DATA">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.TMP_NIELSEN_DATA">
+        <MappingFragment StoreEntitySet="TMP_NIELSEN_DATA">
+          <ScalarProperty Name="NIELSEN_ID" ColumnName="NIELSEN ID" />
+          <ScalarProperty Name="BRAND_NAME" ColumnName="BRAND NAME" />
+          <ScalarProperty Name="TRANSACTION_ID" ColumnName="TRANSACTION ID" />
+          <ScalarProperty Name="USER" ColumnName="USER" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="AMOUNTH" ColumnName="AMOUNTH" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="EUROCODE" ColumnName="EUROCODE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TMP_NTS_DATA">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.TMP_NTS_DATA">
+        <MappingFragment StoreEntitySet="TMP_NTS_DATA">
+          <ScalarProperty Name="TRANSACTION_ID" ColumnName="TRANSACTION ID" />
+          <ScalarProperty Name="YTD" ColumnName="YTD" />
+          <ScalarProperty Name="CHECK" ColumnName="CHECK" />
+          <ScalarProperty Name="LINK_CHANNEL" ColumnName="LINK CHANNEL" />
+          <ScalarProperty Name="CROSS_FRANCHISE" ColumnName="CROSS FRANCHISE" />
+          <ScalarProperty Name="MAPPING" ColumnName="MAPPING" />
+          <ScalarProperty Name="CONCAT_1" ColumnName="CONCAT 1" />
+          <ScalarProperty Name="EUROCODE" ColumnName="EUROCODE" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="NTS" ColumnName="NTS" />
+          <ScalarProperty Name="Fiscal_year_period" ColumnName="Fiscal year/period" />
+          <ScalarProperty Name="Material" ColumnName="Material" />
+          <ScalarProperty Name="Mat_Local_Class_1" ColumnName="Mat Local Class 1" />
+          <ScalarProperty Name="Local_CustGrp_1_name" ColumnName="Local CustGrp 1 name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MARKET_MASTER">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.MARKET_MASTER">
+        <MappingFragment StoreEntitySet="MARKET_MASTER">
+          <ScalarProperty Name="KEYBRANDS" ColumnName="KEYBRANDS" />
+          <ScalarProperty Name="FRANCHISE" ColumnName="FRANCHISE" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STRWM_BOY_DATA">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.STRWM_BOY_DATA">
+        <MappingFragment StoreEntitySet="STRWM_BOY_DATA">
+          <ScalarProperty Name="LAST_DATE" ColumnName="LAST DATE" />
+          <ScalarProperty Name="USER" ColumnName="USER" />
+          <ScalarProperty Name="TRANSACTION_ID" ColumnName="TRANSACTION_ID" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="PBP" ColumnName="PBP" />
+          <ScalarProperty Name="BTG" ColumnName="BTG" />
+          <ScalarProperty Name="INT" ColumnName="INT" />
+          <ScalarProperty Name="SOURCE" ColumnName="SOURCE" />
+          <ScalarProperty Name="DATA" ColumnName="DATA" />
+          <ScalarProperty Name="BRAND_NAME" ColumnName="BRAND_NAME" />
+          <ScalarProperty Name="MARKET_NAME" ColumnName="MARKET_NAME" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BRAND_TOTAL">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.v_WRK_BRAND_TOTAL">
+        <MappingFragment StoreEntitySet="v_WRK_BRAND_TOTAL">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="CURRENT" ColumnName="CURRENT" />
+          <ScalarProperty Name="LAST" ColumnName="LAST" />
+          <ScalarProperty Name="TWO_AGO" ColumnName="TWO AGO" />
+          <ScalarProperty Name="THREE_AGO" ColumnName="THREE AGO" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PERIOD_TABLE">
+      <EntityTypeMapping TypeName="godzillaEntityDataModel.PERIOD_TABLE">
+        <MappingFragment StoreEntitySet="PERIOD_TABLE">
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR_PERIOD" />
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH_PERIOD" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

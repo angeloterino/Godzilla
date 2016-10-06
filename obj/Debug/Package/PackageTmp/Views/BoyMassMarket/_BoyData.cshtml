@@ -1,0 +1,110 @@
+﻿@{string nname, tname = null, _style;
+  foreach (StrawmanApp.Models.BoyMassMarketModels item in ViewBag.BoyData)
+    {
+        string _yellow = StrawmanApp.Helpers.StrawmanConstants.Colors.Yellow;
+        string _red = StrawmanApp.Helpers.StrawmanConstants.Colors.Red;
+        string _white = StrawmanApp.Helpers.StrawmanConstants.Colors.White;
+        string _darkblue = StrawmanApp.Helpers.StrawmanConstants.Colors.DarkBlue;
+        _style = (item.brand > 9000 && item.market > 9000) ? "background-color:" + _red + ";color:" + _white + ";font-weight:bold;" : "";
+        nname = item.boy_name;
+        ViewData["market"] = (item.market_col1 != null);
+        ViewData["share"] = (item.share_col1 != null);
+        ViewData["sellout"] = (item.sellout_col1 != null);
+        ViewData["sellin"] = (item.sellin_col1 != null);
+        ViewData["conversion_rate"] = (item.conversion_rate != null || item.conversion_rate1 != null);
+    <div style="border:0; margin:5px;" data-type="data_wrapper">
+    <table class="table grid-table boytable" style="border: 0px currentColor; width: 256px;">
+        <thead>
+@*        @if (nname != tname && (item.brand < 9000 && item.market < 9000))
+        {            
+         <tr>
+            @if (String.IsNullOrEmpty(nname))
+            {
+                <th style="font-size: .9em;">&nbsp;</th>
+            }
+            else
+            {
+		string paddingTop = "padding-top:12px;"
+                if(item.boy_name.length>24){ paddingTop = "";}
+                <th style="padding:0;">
+                    <div style="height: 52px;@paddingTop font-size: 16px;border-color:rgb(56, 93, 138);@_style" class="boy_name">@Html.DisplayFor(m => item.boy_name)</div>
+                </th>
+            }
+        </tr>
+        }*@
+        <tr>
+        
+            @if ((item.boy_name != null || (item.brand > 9000 && item.market > 9000)) ||(nname != tname && (item.brand < 9000 && item.market < 9000)))
+            {
+                System.Web.Mvc.MvcHtmlString _name = string.IsNullOrEmpty(item.boy_name)? Html.DisplayFor(m=>item.brand_name): Html.DisplayFor(m => item.boy_name);
+                nname = _name.ToString();
+                string paddingTop = "padding-top:12px;";
+                if(nname.Length>=24){ paddingTop = "";}
+            <th style="padding:0;">
+                <div style="height: 52px;@paddingTop border-color:rgb(56, 93, 138);@_style" class="boy_name brand_name">@_name</div>
+            </th>
+
+            }
+            else
+            {
+             <th style="font-size: 13px;">&nbsp;</th>
+            }                
+        </tr>
+        </thead>
+    </table>
+        @if ((bool)ViewData["market"])
+        {
+        <table class="table grid-table boytable market"><tbody>
+        <tr class="grid-row">
+
+            <td class="grid-cell" style="text-align:center;">TOTAL CATEGORY</td>
+        </tr>
+        </tbody></table>
+        }
+    <table class="table grid-table boytable">
+    <tbody>
+        @if ((bool)ViewData["share"])
+        {
+        <tr class="grid-row share" style="">
+            @if(item.brand_name !=null && item.brand_name != item.boy_name){
+            <td class="grid-cell" style="text-align:left; vertical-align:middle; width:50%;" rowspan="3">@Html.DisplayFor(m => item.brand_name)</td>
+            }
+            <td class="grid-cell">
+                % SOM</td>
+        </tr>
+        }
+        @if ((bool)ViewData["sellout"])
+        {
+        <tr class="grid-row sellout" >
+            <td class="grid-cell">
+                Sell Out (Values)</td>
+        </tr>
+        }
+        @if ((bool)ViewData["sellin"])
+        {
+        <tr class="grid-row sellin">
+            <td class="grid-cell sellin">
+                NTS (values)</td>
+        </tr>    
+        }
+
+      </tbody>
+    </table>  
+    @if ((bool)ViewData["conversion_rate"])
+        {
+        <table class="table grid-table boytable" style="font-size: 12px;"><tbody>
+            <tr class="grid-row">
+                <td class="grid-cell" style="font-style:italic;">conversion rate</td>
+            </tr>    
+        </tbody></table>
+        }
+        
+    <div class="comments-button" style="height: 36px; margin-top: 5px; margin-bottom: 15px;">            
+            <button class="btn btn-default" style="margin: 0px; border: 1px solid rgb(255, 255, 255); width: 100%; color: rgb(255, 255, 255); background-color: rgb(150, 150, 255);" data-link="modal_comments"
+                data-type="btn-comment" data-value-market="@item.market" data-value-brand ="@item.brand" data-value-channel ="@item.channel" data-value-name="@nname"> Monthly Comments</button>
+    </div>
+       
+    </div> 
+        tname = nname;      
+    }
+}

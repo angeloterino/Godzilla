@@ -1,0 +1,702 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WRKEntityStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="WRK_BOY_BASIC_DATA">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_BOY_BASIC_DATA">
+        <MappingFragment StoreEntitySet="WRK_BOY_BASIC_DATA">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="NTS_ORDER" ColumnName="NTS_ORDER" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="BRAND_NAME" ColumnName="BRAND NAME" />
+          <ScalarProperty Name="NTS_NAME" ColumnName="NTS_NAME" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="MARKET_COL1" ColumnName="MARKET COL1" />
+          <ScalarProperty Name="MARKET_COL2" ColumnName="MARKET COL2" />
+          <ScalarProperty Name="MARKET_PC" ColumnName="MARKET PC" />
+          <ScalarProperty Name="SELLOUT_COL1" ColumnName="SELLOUT COL1" />
+          <ScalarProperty Name="SELLOUT_COL2" ColumnName="SELLOUT COL2" />
+          <ScalarProperty Name="SELLOUT_PC" ColumnName="SELLOUT PC" />
+          <ScalarProperty Name="SHARE_COL1" ColumnName="SHARE COL1" />
+          <ScalarProperty Name="SHARE_COL2" ColumnName="SHARE COL2" />
+          <ScalarProperty Name="SHARE_PC" ColumnName="SHARE PC" />
+          <ScalarProperty Name="SELLIN_COL1" ColumnName="SELLIN COL1" />
+          <ScalarProperty Name="SELLIN_COL2" ColumnName="SELLIN COL2" />
+          <ScalarProperty Name="SELLIN_PC" ColumnName="SELLIN PC" />
+          <ScalarProperty Name="CONVERSION_RATE1" ColumnName="CONVERSION RATE1" />
+          <ScalarProperty Name="CONVERSION_RATE2" ColumnName="CONVERSION RATE2" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_BOY_CALC_DATA_TOTAL">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_BOY_CALC_DATA_TOTAL">
+        <MappingFragment StoreEntitySet="WRK_BOY_CALC_DATA_TOTAL">
+          <ScalarProperty Name="SELLIN_ID" ColumnName="SELLIN ID" />
+          <ScalarProperty Name="SELLOUT_ID" ColumnName="SELLOUT ID" />
+          <ScalarProperty Name="MARKET_ID" ColumnName="MARKET ID" />
+          <ScalarProperty Name="SHARE_PC_INT" ColumnName="SHARE PC INT" />
+          <ScalarProperty Name="SELLIN_PC_INT" ColumnName="SELLIN PC INT" />
+          <ScalarProperty Name="SELLOUT_PC_INT" ColumnName="SELLOUT PC INT" />
+          <ScalarProperty Name="MARKET_PC_INT" ColumnName="MARKET PC INT" />
+          <ScalarProperty Name="SELLIN_DIFF" ColumnName="SELLIN DIFF" />
+          <ScalarProperty Name="SELLOUT_DIFF" ColumnName="SELLOUT DIFF" />
+          <ScalarProperty Name="MARKET_DIFF" ColumnName="MARKET DIFF" />
+          <ScalarProperty Name="CONVERSION_RATE" ColumnName="CONVERSION RATE" />
+          <ScalarProperty Name="SELLIN_PC" ColumnName="SELLIN PC" />
+          <ScalarProperty Name="SELLOUT_PC" ColumnName="SELLOUT PC" />
+          <ScalarProperty Name="SHARE_PC" ColumnName="SHARE PC" />
+          <ScalarProperty Name="SHARE_COL1" ColumnName="SHARE COL1" />
+          <ScalarProperty Name="SHARE_TOTAL" ColumnName="SHARE TOTAL" />
+          <ScalarProperty Name="MARKET_PC" ColumnName="MARKET PC" />
+          <ScalarProperty Name="SELLIN_COL2" ColumnName="SELLIN COL2" />
+          <ScalarProperty Name="SELLIN_COL1" ColumnName="SELLIN COL1" />
+          <ScalarProperty Name="SELLIN_TYPE" ColumnName="SELLIN TYPE" />
+          <ScalarProperty Name="SELLIN_COL" ColumnName="SELLIN COL" />
+          <ScalarProperty Name="SELLOUT_COL2" ColumnName="SELLOUT COL2" />
+          <ScalarProperty Name="SELLOUT_COL1" ColumnName="SELLOUT COL1" />
+          <ScalarProperty Name="SELLOUT_TYPE" ColumnName="SELLOUT TYPE" />
+          <ScalarProperty Name="SELLOUT_COL" ColumnName="SELLOUT COL" />
+          <ScalarProperty Name="MARKET_COL2" ColumnName="MARKET COL2" />
+          <ScalarProperty Name="MARKET_COL1" ColumnName="MARKET COL1" />
+          <ScalarProperty Name="SELLIN_YTD" ColumnName="SELLIN YTD" />
+          <ScalarProperty Name="SELLOUT_YTD" ColumnName="SELLOUT YTD" />
+          <ScalarProperty Name="MARKET_YTD" ColumnName="MARKET YTD" />
+          <ScalarProperty Name="MARKET_TYPE" ColumnName="MARKET TYPE" />
+          <ScalarProperty Name="MARKET_COL" ColumnName="MARKET COL" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="NTS_NAME" ColumnName="NTS_NAME" />
+          <ScalarProperty Name="BRAND_NAME" ColumnName="BRAND NAME" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="NTS_ORDER" ColumnName="NTS_ORDER" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_BRAND_BOY">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_BRAND_BOY">
+        <MappingFragment StoreEntitySet="WRK_BRAND_BOY">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="PBP" ColumnName="PBP" />
+          <ScalarProperty Name="LE" ColumnName="LE" />
+          <ScalarProperty Name="INTERNAL" ColumnName="INTERNAL" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="GROUP_ORDER" ColumnName="GROUP_ORDER" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_BRAND_BOY_CHANNEL">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_BRAND_BOY_CHANNEL">
+        <MappingFragment StoreEntitySet="WRK_BRAND_BOY_CHANNEL">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="PBP" ColumnName="PBP" />
+          <ScalarProperty Name="LE" ColumnName="LE" />
+          <ScalarProperty Name="INTERNAL" ColumnName="INTERNAL" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_BRAND_BTG">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_BRAND_BTG">
+        <MappingFragment StoreEntitySet="WRK_BRAND_BTG">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="COL3" ColumnName="COL3" />
+          <ScalarProperty Name="COL2" ColumnName="COL2" />
+          <ScalarProperty Name="COL1" ColumnName="COL1" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="GROUP_ORDER" ColumnName="GROUP_ORDER" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_BRAND_BTG_CHANNEL">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_BRAND_BTG_CHANNEL">
+        <MappingFragment StoreEntitySet="WRK_BRAND_BTG_CHANNEL">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="PCVSPY" ColumnName="PCVSPY" />
+          <ScalarProperty Name="COL2" ColumnName="COL2" />
+          <ScalarProperty Name="COL1" ColumnName="COL1" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="GROUP_ORDER" ColumnName="GROUP_ORDER" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_BRAND_BY_CHANNEL">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_BRAND_BY_CHANNEL">
+        <MappingFragment StoreEntitySet="WRK_BRAND_BY_CHANNEL">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="MONTH_COL2" ColumnName="MONTH COL2" />
+          <ScalarProperty Name="MONTH_COL1" ColumnName="MONTH COL1" />
+          <ScalarProperty Name="TOTAL_COL2" ColumnName="TOTAL COL2" />
+          <ScalarProperty Name="TOTAL_COL1" ColumnName="TOTAL COL1" />
+          <ScalarProperty Name="MAT_COL2" ColumnName="MAT COL2" />
+          <ScalarProperty Name="MAT_COL1" ColumnName="MAT COL1" />
+          <ScalarProperty Name="YTD_COL2" ColumnName="YTD COL2" />
+          <ScalarProperty Name="YTD_COL1" ColumnName="YTD COL1" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_BRAND_BY_CUSTOM_GROUP">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_BRAND_BY_CUSTOM_GROUP">
+        <MappingFragment StoreEntitySet="WRK_BRAND_BY_CUSTOM_GROUP">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="MONTH_COL2" ColumnName="MONTH COL2" />
+          <ScalarProperty Name="MONTH_COL1" ColumnName="MONTH COL1" />
+          <ScalarProperty Name="TOTAL_COL2" ColumnName="TOTAL COL2" />
+          <ScalarProperty Name="TOTAL_COL1" ColumnName="TOTAL COL1" />
+          <ScalarProperty Name="MAT_COL2" ColumnName="MAT COL2" />
+          <ScalarProperty Name="MAT_COL1" ColumnName="MAT COL1" />
+          <ScalarProperty Name="YTD_COL2" ColumnName="YTD COL2" />
+          <ScalarProperty Name="YTD_COL1" ColumnName="YTD COL1" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_BRAND_BY_SUPER">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_BRAND_BY_SUPER">
+        <MappingFragment StoreEntitySet="WRK_BRAND_BY_SUPER">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="MONTH_COL2" ColumnName="MONTH COL2" />
+          <ScalarProperty Name="MONTH_COL1" ColumnName="MONTH COL1" />
+          <ScalarProperty Name="TOTAL_COL2" ColumnName="TOTAL COL2" />
+          <ScalarProperty Name="TOTAL_COL1" ColumnName="TOTAL COL1" />
+          <ScalarProperty Name="MAT_COL2" ColumnName="MAT COL2" />
+          <ScalarProperty Name="MAT_COL1" ColumnName="MAT COL1" />
+          <ScalarProperty Name="YTD_COL2" ColumnName="YTD COL2" />
+          <ScalarProperty Name="YTD_COL1" ColumnName="YTD COL1" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="SUPER" ColumnName="SUPER" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_BRAND_MAT">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_BRAND_MAT">
+        <MappingFragment StoreEntitySet="WRK_BRAND_MAT">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="PCVSPY" ColumnName="PCVSPY" />
+          <ScalarProperty Name="MAT_COL2" ColumnName="MAT COL2" />
+          <ScalarProperty Name="MAT_COL1" ColumnName="MAT COL1" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="GROUP_ORDER" ColumnName="GROUP_ORDER" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_BRAND_MAT_CHANNEL">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_BRAND_MAT_CHANNEL">
+        <MappingFragment StoreEntitySet="WRK_BRAND_MAT_CHANNEL">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="PCVSPY" ColumnName="PCVSPY" />
+          <ScalarProperty Name="MAT_COL2" ColumnName="MAT COL2" />
+          <ScalarProperty Name="MAT_COL1" ColumnName="MAT COL1" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="GROUP_ORDER" ColumnName="GROUP_ORDER" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_BRAND_MONTH">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_BRAND_MONTH">
+        <MappingFragment StoreEntitySet="WRK_BRAND_MONTH">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="PCVSPY" ColumnName="PCVSPY" />
+          <ScalarProperty Name="MONTH_COL2" ColumnName="MONTH COL2" />
+          <ScalarProperty Name="MONTH_COL1" ColumnName="MONTH COL1" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="GROUP_ORDER" ColumnName="GROUP_ORDER" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_BRAND_MONTH_CHANNEL">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_BRAND_MONTH_CHANNEL">
+        <MappingFragment StoreEntitySet="WRK_BRAND_MONTH_CHANNEL">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="PCVSPY" ColumnName="PCVSPY" />
+          <ScalarProperty Name="MONTH_COL2" ColumnName="MONTH COL2" />
+          <ScalarProperty Name="MONTH_COL1" ColumnName="MONTH COL1" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="GROUP_ORDER" ColumnName="GROUP_ORDER" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_BRAND_PCVSPY">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_BRAND_PCVSPY">
+        <MappingFragment StoreEntitySet="WRK_BRAND_PCVSPY">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="PCVSPY_COL5" ColumnName="PCVSPY COL5" />
+          <ScalarProperty Name="PCVSPY_COL4" ColumnName="PCVSPY COL4" />
+          <ScalarProperty Name="PCVSPY_COL3" ColumnName="PCVSPY COL3" />
+          <ScalarProperty Name="PCVSPY_COL2" ColumnName="PCVSPY COL2" />
+          <ScalarProperty Name="PCVSPY_COL1" ColumnName="PCVSPY COL1" />
+          <ScalarProperty Name="PBP" ColumnName="PBP" />
+          <ScalarProperty Name="LE" ColumnName="LE" />
+          <ScalarProperty Name="INTERNAL" ColumnName="INTERNAL" />
+          <ScalarProperty Name="COL4" ColumnName="COL4" />
+          <ScalarProperty Name="COL3" ColumnName="COL3" />
+          <ScalarProperty Name="COL2" ColumnName="COL2" />
+          <ScalarProperty Name="COL1" ColumnName="COL1" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_BRAND_PCVSPY_CHANNEL">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_BRAND_PCVSPY_CHANNEL">
+        <MappingFragment StoreEntitySet="WRK_BRAND_PCVSPY_CHANNEL">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="PCVSPY_COL5" ColumnName="PCVSPY COL5" />
+          <ScalarProperty Name="PCVSPY_COL4" ColumnName="PCVSPY COL4" />
+          <ScalarProperty Name="PCVSPY_COL3" ColumnName="PCVSPY COL3" />
+          <ScalarProperty Name="PCVSPY_COL2" ColumnName="PCVSPY COL2" />
+          <ScalarProperty Name="PCVSPY_COL1" ColumnName="PCVSPY COL1" />
+          <ScalarProperty Name="PBP" ColumnName="PBP" />
+          <ScalarProperty Name="LE" ColumnName="LE" />
+          <ScalarProperty Name="INTERNAL" ColumnName="INTERNAL" />
+          <ScalarProperty Name="COL4" ColumnName="COL4" />
+          <ScalarProperty Name="COL3" ColumnName="COL3" />
+          <ScalarProperty Name="COL2" ColumnName="COL2" />
+          <ScalarProperty Name="COL1" ColumnName="COL1" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_BRAND_TOTAL">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_BRAND_TOTAL">
+        <MappingFragment StoreEntitySet="WRK_BRAND_TOTAL">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="CURRENT" ColumnName="CURRENT" />
+          <ScalarProperty Name="LAST" ColumnName="LAST" />
+          <ScalarProperty Name="TWO_AGO" ColumnName="TWO AGO" />
+          <ScalarProperty Name="THREE_AGO" ColumnName="THREE AGO" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_BRAND_TOTAL_CUSTOM">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_BRAND_TOTAL_CUSTOM">
+        <MappingFragment StoreEntitySet="WRK_BRAND_TOTAL_CUSTOM">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="CURRENT" ColumnName="CURRENT" />
+          <ScalarProperty Name="LAST" ColumnName="LAST" />
+          <ScalarProperty Name="TWO_AGO" ColumnName="TWO AGO" />
+          <ScalarProperty Name="THREE_AGO" ColumnName="THREE AGO" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_BRAND_TOTAL_CUSTOM_CHANNEL">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_BRAND_TOTAL_CUSTOM_CHANNEL">
+        <MappingFragment StoreEntitySet="WRK_BRAND_TOTAL_CUSTOM_CHANNEL">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="CURRENT" ColumnName="CURRENT" />
+          <ScalarProperty Name="LAST" ColumnName="LAST" />
+          <ScalarProperty Name="TWO_AGO" ColumnName="TWO AGO" />
+          <ScalarProperty Name="THREE_AGO" ColumnName="THREE AGO" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="GROUP_ORDER" ColumnName="GROUP_ORDER" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_BRAND_YTD">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_BRAND_YTD">
+        <MappingFragment StoreEntitySet="WRK_BRAND_YTD">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="PCVSPY" ColumnName="PCVSPY" />
+          <ScalarProperty Name="YTD_COL2" ColumnName="YTD COL2" />
+          <ScalarProperty Name="YTD_COL1" ColumnName="YTD COL1" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="GROUP_ORDER" ColumnName="GROUP_ORDER" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_BRAND_YTD_CHANNEL">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_BRAND_YTD_CHANNEL">
+        <MappingFragment StoreEntitySet="WRK_BRAND_YTD_CHANNEL">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="PCVSPY" ColumnName="PCVSPY" />
+          <ScalarProperty Name="YTD_COL2" ColumnName="YTD COL2" />
+          <ScalarProperty Name="YTD_COL1" ColumnName="YTD COL1" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="GROUP_ORDER" ColumnName="GROUP_ORDER" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_MARKET_BOY">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_MARKET_BOY">
+        <MappingFragment StoreEntitySet="WRK_MARKET_BOY">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="PBP" ColumnName="PBP" />
+          <ScalarProperty Name="LE" ColumnName="LE" />
+          <ScalarProperty Name="INTERNAL" ColumnName="INTERNAL" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="GROUP_ORDER" ColumnName="GROUP_ORDER" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_MARKET_BOY_CHANNEL">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_MARKET_BOY_CHANNEL">
+        <MappingFragment StoreEntitySet="WRK_MARKET_BOY_CHANNEL">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="PBP" ColumnName="PBP" />
+          <ScalarProperty Name="LE" ColumnName="LE" />
+          <ScalarProperty Name="INTERNAL" ColumnName="INTERNAL" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_MARKET_BTG">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_MARKET_BTG">
+        <MappingFragment StoreEntitySet="WRK_MARKET_BTG">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="PCVSPY" ColumnName="PCVSPY" />
+          <ScalarProperty Name="BTG_COL2" ColumnName="BTG COL2" />
+          <ScalarProperty Name="BTG_COL1" ColumnName="BTG COL1" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="GROUP_ORDER" ColumnName="GROUP_ORDER" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_MARKET_BTG_CHANNEL">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_MARKET_BTG_CHANNEL">
+        <MappingFragment StoreEntitySet="WRK_MARKET_BTG_CHANNEL">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="PCVSPY" ColumnName="PCVSPY" />
+          <ScalarProperty Name="BTG_COL2" ColumnName="BTG COL2" />
+          <ScalarProperty Name="BTG_COL1" ColumnName="BTG COL1" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="GROUP_ORDER" ColumnName="GROUP_ORDER" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_MARKET_GROUPS_CUSTOM">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_MARKET_GROUPS_CUSTOM">
+        <MappingFragment StoreEntitySet="WRK_MARKET_GROUPS_CUSTOM">
+          <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+          <ScalarProperty Name="INTERNAL_TARGET" ColumnName="INTERNAL_TARGET" />
+          <ScalarProperty Name="AU" ColumnName="AU" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_MARKET_MAT">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_MARKET_MAT">
+        <MappingFragment StoreEntitySet="WRK_MARKET_MAT">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="PCVSPY" ColumnName="PCVSPY" />
+          <ScalarProperty Name="MAT_COL2" ColumnName="MAT COL2" />
+          <ScalarProperty Name="MAT_COL1" ColumnName="MAT COL1" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="GROUP_ORDER" ColumnName="GROUP_ORDER" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_MARKET_MAT_CHANNEL">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_MARKET_MAT_CHANNEL">
+        <MappingFragment StoreEntitySet="WRK_MARKET_MAT_CHANNEL">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="PCVSPY" ColumnName="PCVSPY" />
+          <ScalarProperty Name="MAT_COL2" ColumnName="MAT COL2" />
+          <ScalarProperty Name="MAT_COL1" ColumnName="MAT COL1" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="GROUP_ORDER" ColumnName="GROUP_ORDER" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_MARKET_MONTH">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_MARKET_MONTH">
+        <MappingFragment StoreEntitySet="WRK_MARKET_MONTH">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="PCVSPY" ColumnName="PCVSPY" />
+          <ScalarProperty Name="MONTH_COL2" ColumnName="MONTH COL2" />
+          <ScalarProperty Name="MONTH_COL1" ColumnName="MONTH COL1" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="GROUP_ORDER" ColumnName="GROUP_ORDER" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_MARKET_MONTH_CHANNEL">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_MARKET_MONTH_CHANNEL">
+        <MappingFragment StoreEntitySet="WRK_MARKET_MONTH_CHANNEL">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="PCVSPY" ColumnName="PCVSPY" />
+          <ScalarProperty Name="MONTH_COL2" ColumnName="MONTH COL2" />
+          <ScalarProperty Name="MONTH_COL1" ColumnName="MONTH COL1" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="GROUP_ORDER" ColumnName="GROUP_ORDER" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_MARKET_PCVSPY">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_MARKET_PCVSPY">
+        <MappingFragment StoreEntitySet="WRK_MARKET_PCVSPY">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="PCVSPY_COL5" ColumnName="PCVSPY COL5" />
+          <ScalarProperty Name="PCVSPY_COL4" ColumnName="PCVSPY COL4" />
+          <ScalarProperty Name="PCVSPY_COL3" ColumnName="PCVSPY COL3" />
+          <ScalarProperty Name="PCVSPY_COL2" ColumnName="PCVSPY COL2" />
+          <ScalarProperty Name="PCVSPY_COL1" ColumnName="PCVSPY COL1" />
+          <ScalarProperty Name="PBP" ColumnName="PBP" />
+          <ScalarProperty Name="LE" ColumnName="LE" />
+          <ScalarProperty Name="INTERNAL" ColumnName="INTERNAL" />
+          <ScalarProperty Name="CURRENT" ColumnName="CURRENT" />
+          <ScalarProperty Name="LAST" ColumnName="LAST" />
+          <ScalarProperty Name="TWO_AGO" ColumnName="TWO AGO" />
+          <ScalarProperty Name="THREE_AGO" ColumnName="THREE AGO" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_MARKET_PCVSPY_CHANNEL">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_MARKET_PCVSPY_CHANNEL">
+        <MappingFragment StoreEntitySet="WRK_MARKET_PCVSPY_CHANNEL">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="PCVSPY_COL5" ColumnName="PCVSPY COL5" />
+          <ScalarProperty Name="PCVSPY_COL4" ColumnName="PCVSPY COL4" />
+          <ScalarProperty Name="PCVSPY_COL3" ColumnName="PCVSPY COL3" />
+          <ScalarProperty Name="PCVSPY_COL2" ColumnName="PCVSPY COL2" />
+          <ScalarProperty Name="PCVSPY_COL1" ColumnName="PCVSPY COL1" />
+          <ScalarProperty Name="PBP" ColumnName="PBP" />
+          <ScalarProperty Name="LE" ColumnName="LE" />
+          <ScalarProperty Name="INTERNAL" ColumnName="INTERNAL" />
+          <ScalarProperty Name="CURRENT" ColumnName="CURRENT" />
+          <ScalarProperty Name="LAST" ColumnName="LAST" />
+          <ScalarProperty Name="TWO_AGO" ColumnName="TWO AGO" />
+          <ScalarProperty Name="THREE_AGO" ColumnName="THREE AGO" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_MARKET_TOTAL">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_MARKET_TOTAL">
+        <MappingFragment StoreEntitySet="WRK_MARKET_TOTAL">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="CURRENT" ColumnName="CURRENT" />
+          <ScalarProperty Name="LAST" ColumnName="LAST" />
+          <ScalarProperty Name="TWO_AGO" ColumnName="TWO AGO" />
+          <ScalarProperty Name="THREE_AGO" ColumnName="THREE AGO" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_MARKET_TOTAL_CUSTOM">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_MARKET_TOTAL_CUSTOM">
+        <MappingFragment StoreEntitySet="WRK_MARKET_TOTAL_CUSTOM">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="CURRENT" ColumnName="CURRENT" />
+          <ScalarProperty Name="LAST" ColumnName="LAST" />
+          <ScalarProperty Name="TWO_AGO" ColumnName="TWO AGO" />
+          <ScalarProperty Name="THREE_AGO" ColumnName="THREE AGO" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_MARKET_TOTAL_CUSTOM_CHANNEL">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_MARKET_TOTAL_CUSTOM_CHANNEL">
+        <MappingFragment StoreEntitySet="WRK_MARKET_TOTAL_CUSTOM_CHANNEL">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="CURRENT" ColumnName="CURRENT" />
+          <ScalarProperty Name="LAST" ColumnName="LAST" />
+          <ScalarProperty Name="TWO_AGO" ColumnName="TWO AGO" />
+          <ScalarProperty Name="THREE_AGO" ColumnName="THREE AGO" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="GROUP_ORDER" ColumnName="GROUP_ORDER" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_MARKET_YTD">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_MARKET_YTD">
+        <MappingFragment StoreEntitySet="WRK_MARKET_YTD">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="PCVSPY" ColumnName="PCVSPY" />
+          <ScalarProperty Name="YTD_COL2" ColumnName="YTD COL2" />
+          <ScalarProperty Name="YTD_COL1" ColumnName="YTD COL1" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="GROUP_ORDER" ColumnName="GROUP_ORDER" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WRK_MARKET_YTD_CHANNEL">
+      <EntityTypeMapping TypeName="WRKEntity.WRK_MARKET_YTD_CHANNEL">
+        <MappingFragment StoreEntitySet="WRK_MARKET_YTD_CHANNEL">
+          <ScalarProperty Name="MONTH_PERIOD" ColumnName="MONTH PERIOD" />
+          <ScalarProperty Name="YEAR_PERIOD" ColumnName="YEAR PERIOD" />
+          <ScalarProperty Name="PCVSPY" ColumnName="PCVSPY" />
+          <ScalarProperty Name="YTD_COL2" ColumnName="YTD COL2" />
+          <ScalarProperty Name="YTD_COL1" ColumnName="YTD COL1" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+          <ScalarProperty Name="GROUP_ORDER" ColumnName="GROUP_ORDER" />
+          <ScalarProperty Name="CHANNEL" ColumnName="CHANNEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="godzillaCharts" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="godzillaChartsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="v_CHART_BTG_ADULTS_SKINCARE" EntityType="godzillaCharts.v_CHART_BTG_ADULTS_SKINCARE" />
+    <EntitySet Name="v_CHART_BTG_FRANCHISE" EntityType="godzillaCharts.v_CHART_BTG_FRANCHISE" />
+    <EntitySet Name="v_CHART_PBP_FRANCHISE" EntityType="godzillaCharts.v_CHART_PBP_FRANCHISE" />
+    <EntitySet Name="v_CHARTS_BTG" EntityType="godzillaCharts.v_CHARTS_BTG" />
+    <EntitySet Name="v_CHARTS_LM" EntityType="godzillaCharts.v_CHARTS_LM" />
+    <EntitySet Name="v_CHARTS_MAT_MARKET" EntityType="godzillaCharts.v_CHARTS_MAT_MARKET" />
+    <EntitySet Name="v_CHARTS_PBP" EntityType="godzillaCharts.v_CHARTS_PBP" />
+    <EntitySet Name="v_CHARTS_YTD" EntityType="godzillaCharts.v_CHARTS_YTD" />
+    <EntitySet Name="v_CHART_JJ_V_INTERNAL_BY_CHANNEL" EntityType="godzillaCharts.v_CHART_JJ_V_INTERNAL_BY_CHANNEL" />
+    <EntitySet Name="v_CHART_JJ_V_INTERNAL_BY_FRANCHISE" EntityType="godzillaCharts.v_CHART_JJ_V_INTERNAL_BY_FRANCHISE" />
+    <EntitySet Name="v_WRK_CHART_BASE" EntityType="godzillaCharts.v_WRK_CHART_BASE" />
+    <EntitySet Name="v_CHART_PBP_ADULTS_SKINCARE" EntityType="godzillaCharts.v_CHART_PBP_ADULTS_SKINCARE" />
+    <EntitySet Name="v_CHART_BOY_JJ_BY_CHANNEL" EntityType="godzillaCharts.v_CHART_BOY_JJ_BY_CHANNEL" />
+  </EntityContainer>
+  <EntityType Name="v_CHART_BTG_ADULTS_SKINCARE">
+    <Key>
+      <PropertyRef Name="GROUP" />
+      <PropertyRef Name="BRAND" />
+      <PropertyRef Name="TYPE" />
+      <PropertyRef Name="CHART" />
+    </Key>
+    <Property Name="GROUP" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="MARKET" Type="Decimal" Precision="24" Scale="0" />
+    <Property Name="BRAND" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="NAME" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="MARKET_SIZE" Type="Double" />
+    <Property Name="PREVIOUS" Type="Decimal" Precision="38" Scale="6" />
+    <Property Name="LATEST" Type="Double" />
+    <Property Name="GROUTH_CATEGORY" Type="Decimal" Precision="10" Scale="1" />
+    <Property Name="GROUTH_J_J" Type="Decimal" Precision="10" Scale="1" />
+    <Property Name="TYPE" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
+    <Property Name="CHART" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="v_CHART_BTG_FRANCHISE">
+    <Key>
+      <PropertyRef Name="GROUP" />
+      <PropertyRef Name="BRAND" />
+      <PropertyRef Name="TYPE" />
+      <PropertyRef Name="CHART" />
+    </Key>
+    <Property Name="GROUP" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="MARKET" Type="Decimal" Precision="24" Scale="0" />
+    <Property Name="BRAND" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="NAME" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="MARKET_SIZE" Type="Double" />
+    <Property Name="PREVIOUS" Type="Decimal" Precision="38" Scale="6" />
+    <Property Name="LATEST" Type="Double" />
+    <Property Name="GROUTH_CATEGORY" Type="Decimal" Precision="10" Scale="1" />
+    <Property Name="GROUTH_J_J" Type="Decimal" Precision="10" Scale="1" />
+    <Property Name="TYPE" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
+    <Property Name="CHART" Type="String" Nullable="false" MaxLength="9" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="v_CHART_PBP_FRANCHISE">
+    <Key>
+      <PropertyRef Name="GROUP" />
+      <PropertyRef Name="BRAND" />
+      <PropertyRef Name="TYPE" />
+      <PropertyRef Name="CHART" />
+    </Key>
+    <Property Name="GROUP" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="MARKET" Type="Decimal" Precision="24" Scale="0" />
+    <Property Name="BRAND" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="NAME" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="MARKET_SIZE" Type="Double" />
+    <Property Name="PREVIOUS" Type="Decimal" Precision="10" Scale="1" />
+    <Property Name="LATEST" Type="Decimal" Precision="10" Scale="1" />
+    <Property Name="GROUTH_CATEGORY" Type="Decimal" Precision="10" Scale="1" />
+    <Property Name="GROUTH_J_J" Type="Decimal" Precision="10" Scale="1" />
+    <Property Name="TYPE" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
+    <Property Name="CHART" Type="String" Nullable="false" MaxLength="9" Unicode="false" FixedLength="false" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="v_CHARTS_BTG">
+    <Key>
+      <PropertyRef Name="MARKET" />
+      <PropertyRef Name="BRAND" />
+      <PropertyRef Name="TYPE" />
+      <PropertyRef Name="CHART" />
+    </Key>
+    <Property Name="GROUP" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="MARKET" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="BRAND" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="NAME" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
+    <Property Name="MARKET_SIZE" Type="Double" />
+    <Property Name="PREVIOUS" Type="Decimal" Precision="38" Scale="6" />
+    <Property Name="LATEST" Type="Double" />
+    <Property Name="GROUTH_CATEGORY" Type="Decimal" Precision="3" Scale="1" />
+    <Property Name="GROUTH_J_J" Type="Decimal" Precision="10" Scale="1" />
+    <Property Name="TYPE" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
+    <Property Name="CHART" Type="String" Nullable="false" MaxLength="16" Unicode="false" FixedLength="false" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="v_CHARTS_LM">
+    <Key>
+      <PropertyRef Name="TYPE" />
+      <PropertyRef Name="CHART" />
+    </Key>
+    <Property Name="GROUP" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="MARKET" Type="Decimal" Precision="24" Scale="0" />
+    <Property Name="BRAND" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="NAME" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
+    <Property Name="MARKET_SIZE" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="PREVIOUS" Type="Decimal" Precision="10" Scale="1" />
+    <Property Name="LATEST" Type="Decimal" Precision="10" Scale="1" />
+    <Property Name="GROUTH_CATEGORY" Type="Decimal" Precision="14" Scale="3" />
+    <Property Name="GROUTH_J_J" Type="Decimal" Precision="14" Scale="3" />
+    <Property Name="TYPE" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+    <Property Name="CHART" Type="String" Nullable="false" MaxLength="16" Unicode="false" FixedLength="false" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="v_CHARTS_MAT_MARKET">
+    <Key>
+      <PropertyRef Name="TYPE" />
+      <PropertyRef Name="CHART" />
+    </Key>
+    <Property Name="GROUP" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="MARKET" Type="Decimal" Precision="24" Scale="0" />
+    <Property Name="BRAND" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="NAME" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
+    <Property Name="MARKET_SIZE" Type="Decimal" Precision="38" Scale="6" />
+    <Property Name="PREVIOUS" Type="Decimal" Precision="10" Scale="1" />
+    <Property Name="LATEST" Type="Decimal" Precision="10" Scale="1" />
+    <Property Name="GROUTH_CATEGORY" Type="Decimal" Precision="14" Scale="3" />
+    <Property Name="GROUTH_J_J" Type="Decimal" Precision="14" Scale="3" />
+    <Property Name="TYPE" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="CHART" Type="String" Nullable="false" MaxLength="16" Unicode="false" FixedLength="false" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="v_CHARTS_PBP">
+    <Key>
+      <PropertyRef Name="TYPE" />
+      <PropertyRef Name="CHART" />
+    </Key>
+    <Property Name="GROUP" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="MARKET" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="BRAND" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="NAME" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
+    <Property Name="MARKET_SIZE" Type="Double" />
+    <Property Name="PREVIOUS" Type="Decimal" Precision="10" Scale="1" />
+    <Property Name="LATEST" Type="Decimal" Precision="10" Scale="1" />
+    <Property Name="GROUTH_CATEGORY" Type="Decimal" Precision="11" Scale="2" />
+    <Property Name="GROUTH_J_J" Type="Decimal" Precision="11" Scale="2" />
+    <Property Name="TYPE" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
+    <Property Name="CHART" Type="String" Nullable="false" MaxLength="16" Unicode="false" FixedLength="false" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="v_CHARTS_YTD">
+    <Key>
+      <PropertyRef Name="TYPE" />
+      <PropertyRef Name="CHART" />
+    </Key>
+    <Property Name="GROUP" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="MARKET" Type="Decimal" Precision="24" Scale="0" />
+    <Property Name="BRAND" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="NAME" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
+    <Property Name="MARKET_SIZE" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="PREVIOUS" Type="Decimal" Precision="10" Scale="1" />
+    <Property Name="LATEST" Type="Decimal" Precision="10" Scale="1" />
+    <Property Name="GROUTH_CATEGORY" Type="Decimal" Precision="14" Scale="3" />
+    <Property Name="GROUTH_J_J" Type="Decimal" Precision="14" Scale="3" />
+    <Property Name="TYPE" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="CHART" Type="String" Nullable="false" MaxLength="16" Unicode="false" FixedLength="false" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="v_CHART_JJ_V_INTERNAL_BY_CHANNEL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="String" Name="TYPE" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="ORDER" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="ID" Precision="18" Scale="0" Nullable="false" />
+    <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="MARKET_SIZE" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="MARKET_SHARE_PREVIOUS" Precision="18" Scale="1" />
+    <Property Type="Decimal" Name="MARKET_SHARE_LATEST" Precision="18" Scale="1" />
+    <Property Type="Decimal" Name="MAT_GROWTH_CATEGORY" Precision="18" Scale="1" />
+    <Property Type="Decimal" Name="MAT_GROWTH_JJ" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="YTD_GROWTH_CATEGORY" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="YTD_GROWTH_JJ" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="BTG_GROWTH_CATEGORY" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="BTG_GROWTH_JJ" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="LM_GROWTH_CATEGORY" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="LM_GROWTH_JJ" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="YTD_SHARE_PREVIOUS" Precision="18" Scale="1" />
+    <Property Type="Decimal" Name="YTD_SHARE_LATEST" Precision="18" Scale="1" />
+    <Property Type="Decimal" Name="BTG_SHARE_PREVIOUS" Precision="18" Scale="1" />
+    <Property Type="Decimal" Name="BTG_SHARE_LATEST" Precision="18" Scale="1" />
+    <Property Type="Decimal" Name="MTG_SHARE_PREVIOUS" Precision="18" Scale="1" />
+    <Property Type="Decimal" Name="MTG_SHARE_LATEST" Precision="18" Scale="1" />
+    <Property Type="Decimal" Name="PBP_MARKET_SIZE" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="PBP_SHARE_PREVIOUS" Precision="18" Scale="1" />
+    <Property Type="Decimal" Name="PBP_SHARE_LATEST" Precision="18" Scale="1" />
+    <Property Type="Decimal" Name="PBP_GROWTH_CATEGORY" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="PBP_GROWTH_JJ" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="v_CHART_JJ_V_INTERNAL_BY_FRANCHISE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="String" Name="TYPE" Nullable="false" MaxLength="9" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="ORDER" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="ID" Precision="18" Scale="0" Nullable="false" />
+    <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="MARKET_SIZE" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="MARKET_SHARE_PREVIOUS" Precision="18" Scale="1" />
+    <Property Type="Decimal" Name="MARKET_SHARE_LATEST" Precision="18" Scale="1" />
+    <Property Type="Decimal" Name="MAT_GROWTH_CATEGORY" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="MAT_GROWTH_JJ" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="YTD_GROWTH_CATEGORY" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="YTD_GROWTH_JJ" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="BTG_GROWTH_CATEGORY" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="BTG_GROWTH_JJ" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="LM_GROWTH_CATEGORY" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="LM_GROWTH_JJ" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="YTD_SHARE_PREVIOUS" Precision="18" Scale="1" />
+    <Property Type="Decimal" Name="YTD_SHARE_LATEST" Precision="18" Scale="1" />
+    <Property Type="Decimal" Name="BTG_SHARE_PREVIOUS" Precision="18" Scale="1" />
+    <Property Type="Decimal" Name="BTG_SHARE_LATEST" Precision="18" Scale="1" />
+    <Property Type="Decimal" Name="MTG_SHARE_PREVIOUS" Precision="18" Scale="1" />
+    <Property Type="Decimal" Name="MTG_SHARE_LATEST" Precision="18" Scale="1" />
+    <Property Type="Decimal" Name="PBP_MARKET_SIZE" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="PBP_SHARE_PREVIOUS" Precision="18" Scale="1" />
+    <Property Type="Decimal" Name="PBP_SHARE_LATEST" Precision="18" Scale="1" />
+    <Property Type="Decimal" Name="PBP_GROWTH_CATEGORY" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="PBP_GROWTH_JJ" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="v_WRK_CHART_BASE">
+    <Key>
+      <PropertyRef Name="GROUPING" />
+      <PropertyRef Name="TYPE" />
+      <PropertyRef Name="PARENT_ID" />
+    </Key>
+    <Property Type="String" Name="GROUPING" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TYPE" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="PARENT_ID" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="ORDER" Precision="24" Scale="0" />
+    <Property Type="Decimal" Name="ID" Precision="18" Scale="0" />
+    <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="COL1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="COL2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PCVSPY" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="v_CHART_PBP_ADULTS_SKINCARE">
+    <Key>
+      <PropertyRef Name="GROUP" />
+      <PropertyRef Name="BRAND" />
+      <PropertyRef Name="TYPE" />
+      <PropertyRef Name="CHART" />
+    </Key>
+    <Property Type="Decimal" Name="GROUP" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MARKET" Precision="24" Scale="0" />
+    <Property Type="Decimal" Name="BRAND" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Double" Name="MARKET_SIZE" />
+    <Property Type="Decimal" Name="PREVIOUS" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="LATEST" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="GROUTH_CATEGORY" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="GROUTH_J_J" Precision="10" Scale="1" />
+    <Property Type="String" Name="TYPE" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CHART" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="v_CHART_BOY_JJ_BY_CHANNEL">
+    <Key>
+      <PropertyRef Name="TYPE" />
+      <PropertyRef Name="CHART" />
+    </Key>
+    <Property Type="Decimal" Name="ORDER" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MARKET" Precision="21" Scale="0" />
+    <Property Type="Decimal" Name="BRAND" Precision="21" Scale="0" />
+    <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="MARKET_SIZE" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="PREVIOUS" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="LATEST" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="GROWTH_CATHEGORY" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="GROWTH_J_J" Precision="10" Scale="2" />
+    <Property Type="String" Name="TYPE" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CHART" Nullable="false" MaxLength="18" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+</Schema>

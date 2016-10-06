@@ -1,0 +1,702 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WRKEntity" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="WRK_BOY_BASIC_DATA" EntityType="WRKEntity.WRK_BOY_BASIC_DATA" />
+    <EntitySet Name="WRK_BOY_CALC_DATA_TOTAL" EntityType="WRKEntity.WRK_BOY_CALC_DATA_TOTAL" />
+    <EntitySet Name="WRK_BRAND_BOY" EntityType="WRKEntity.WRK_BRAND_BOY" />
+    <EntitySet Name="WRK_BRAND_BOY_CHANNEL" EntityType="WRKEntity.WRK_BRAND_BOY_CHANNEL" />
+    <EntitySet Name="WRK_BRAND_BTG" EntityType="WRKEntity.WRK_BRAND_BTG" />
+    <EntitySet Name="WRK_BRAND_BTG_CHANNEL" EntityType="WRKEntity.WRK_BRAND_BTG_CHANNEL" />
+    <EntitySet Name="WRK_BRAND_BY_CHANNEL" EntityType="WRKEntity.WRK_BRAND_BY_CHANNEL" />
+    <EntitySet Name="WRK_BRAND_BY_CUSTOM_GROUP" EntityType="WRKEntity.WRK_BRAND_BY_CUSTOM_GROUP" />
+    <EntitySet Name="WRK_BRAND_BY_SUPER" EntityType="WRKEntity.WRK_BRAND_BY_SUPER" />
+    <EntitySet Name="WRK_BRAND_MAT" EntityType="WRKEntity.WRK_BRAND_MAT" />
+    <EntitySet Name="WRK_BRAND_MAT_CHANNEL" EntityType="WRKEntity.WRK_BRAND_MAT_CHANNEL" />
+    <EntitySet Name="WRK_BRAND_MONTH" EntityType="WRKEntity.WRK_BRAND_MONTH" />
+    <EntitySet Name="WRK_BRAND_MONTH_CHANNEL" EntityType="WRKEntity.WRK_BRAND_MONTH_CHANNEL" />
+    <EntitySet Name="WRK_BRAND_PCVSPY" EntityType="WRKEntity.WRK_BRAND_PCVSPY" />
+    <EntitySet Name="WRK_BRAND_PCVSPY_CHANNEL" EntityType="WRKEntity.WRK_BRAND_PCVSPY_CHANNEL" />
+    <EntitySet Name="WRK_BRAND_TOTAL" EntityType="WRKEntity.WRK_BRAND_TOTAL" />
+    <EntitySet Name="WRK_BRAND_TOTAL_CUSTOM" EntityType="WRKEntity.WRK_BRAND_TOTAL_CUSTOM" />
+    <EntitySet Name="WRK_BRAND_TOTAL_CUSTOM_CHANNEL" EntityType="WRKEntity.WRK_BRAND_TOTAL_CUSTOM_CHANNEL" />
+    <EntitySet Name="WRK_BRAND_YTD" EntityType="WRKEntity.WRK_BRAND_YTD" />
+    <EntitySet Name="WRK_BRAND_YTD_CHANNEL" EntityType="WRKEntity.WRK_BRAND_YTD_CHANNEL" />
+    <EntitySet Name="WRK_MARKET_BOY" EntityType="WRKEntity.WRK_MARKET_BOY" />
+    <EntitySet Name="WRK_MARKET_BOY_CHANNEL" EntityType="WRKEntity.WRK_MARKET_BOY_CHANNEL" />
+    <EntitySet Name="WRK_MARKET_BTG" EntityType="WRKEntity.WRK_MARKET_BTG" />
+    <EntitySet Name="WRK_MARKET_BTG_CHANNEL" EntityType="WRKEntity.WRK_MARKET_BTG_CHANNEL" />
+    <EntitySet Name="WRK_MARKET_GROUPS_CUSTOM" EntityType="WRKEntity.WRK_MARKET_GROUPS_CUSTOM" />
+    <EntitySet Name="WRK_MARKET_MAT" EntityType="WRKEntity.WRK_MARKET_MAT" />
+    <EntitySet Name="WRK_MARKET_MAT_CHANNEL" EntityType="WRKEntity.WRK_MARKET_MAT_CHANNEL" />
+    <EntitySet Name="WRK_MARKET_MONTH" EntityType="WRKEntity.WRK_MARKET_MONTH" />
+    <EntitySet Name="WRK_MARKET_MONTH_CHANNEL" EntityType="WRKEntity.WRK_MARKET_MONTH_CHANNEL" />
+    <EntitySet Name="WRK_MARKET_PCVSPY" EntityType="WRKEntity.WRK_MARKET_PCVSPY" />
+    <EntitySet Name="WRK_MARKET_PCVSPY_CHANNEL" EntityType="WRKEntity.WRK_MARKET_PCVSPY_CHANNEL" />
+    <EntitySet Name="WRK_MARKET_TOTAL" EntityType="WRKEntity.WRK_MARKET_TOTAL" />
+    <EntitySet Name="WRK_MARKET_TOTAL_CUSTOM" EntityType="WRKEntity.WRK_MARKET_TOTAL_CUSTOM" />
+    <EntitySet Name="WRK_MARKET_TOTAL_CUSTOM_CHANNEL" EntityType="WRKEntity.WRK_MARKET_TOTAL_CUSTOM_CHANNEL" />
+    <EntitySet Name="WRK_MARKET_YTD" EntityType="WRKEntity.WRK_MARKET_YTD" />
+    <EntitySet Name="WRK_MARKET_YTD_CHANNEL" EntityType="WRKEntity.WRK_MARKET_YTD_CHANNEL" />
+  </EntityContainer>
+  <EntityType Name="WRK_BOY_BASIC_DATA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CHANNEL" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="NTS_ORDER" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="GROUP" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="MARKET" Type="Decimal" Precision="19" Scale="0" />
+    <Property Name="BRAND" Type="Decimal" Precision="19" Scale="0" />
+    <Property Name="BRAND_NAME" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="NTS_NAME" Type="String" MaxLength="261" Unicode="true" FixedLength="false" />
+    <Property Name="TYPE" Type="String" MaxLength="6" Unicode="false" FixedLength="false" />
+    <Property Name="MARKET_COL1" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="MARKET_COL2" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="MARKET_PC" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="SELLOUT_COL1" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="SELLOUT_COL2" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="SELLOUT_PC" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="SHARE_COL1" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="SHARE_COL2" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="SHARE_PC" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="SELLIN_COL1" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="SELLIN_COL2" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="SELLIN_PC" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="CONVERSION_RATE1" Type="Decimal" Precision="10" Scale="0" />
+    <Property Name="CONVERSION_RATE2" Type="Decimal" Precision="10" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_BOY_CALC_DATA_TOTAL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="NTS_ORDER" Precision="20" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MARKET" Precision="20" Scale="0" />
+    <Property Type="Decimal" Name="BRAND" Precision="20" Scale="0" />
+    <Property Type="Int32" Name="BRAND_NAME" />
+    <Property Type="String" Name="NTS_NAME" MaxLength="267" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="TYPE" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="MARKET_COL" Precision="38" Scale="0" />
+    <Property Type="Double" Name="MARKET_TYPE" />
+    <Property Type="Decimal" Name="MARKET_YTD" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SELLOUT_YTD" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SELLIN_YTD" Precision="38" Scale="0" />
+    <Property Type="Double" Name="MARKET_COL1" />
+    <Property Type="Double" Name="MARKET_COL2" />
+    <Property Type="Decimal" Name="SELLOUT_COL" Precision="38" Scale="0" />
+    <Property Type="Double" Name="SELLOUT_TYPE" />
+    <Property Type="Double" Name="SELLOUT_COL1" />
+    <Property Type="Double" Name="SELLOUT_COL2" />
+    <Property Type="Decimal" Name="SELLIN_COL" Precision="38" Scale="0" />
+    <Property Type="Double" Name="SELLIN_TYPE" />
+    <Property Type="Double" Name="SELLIN_COL1" />
+    <Property Type="Double" Name="SELLIN_COL2" />
+    <Property Type="Decimal" Name="MARKET_PC" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="SHARE_TOTAL" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="SHARE_COL1" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="SHARE_PC" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="SELLOUT_PC" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="SELLIN_PC" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="CONVERSION_RATE" Precision="18" Scale="0" />
+    <Property Type="Double" Name="MARKET_DIFF" />
+    <Property Type="Double" Name="SELLOUT_DIFF" />
+    <Property Type="Double" Name="SELLIN_DIFF" />
+    <Property Type="Decimal" Name="MARKET_PC_INT" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="SELLOUT_PC_INT" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="SELLIN_PC_INT" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="SHARE_PC_INT" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="MARKET_ID" />
+    <Property Type="Int32" Name="SELLOUT_ID" />
+    <Property Type="Int32" Name="SELLIN_ID" />
+  </EntityType>
+  <EntityType Name="WRK_BRAND_BOY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="GROUP_ORDER" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MARKET" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="BRAND" Precision="19" Scale="0" />
+    <Property Type="Double" Name="INTERNAL" />
+    <Property Type="Double" Name="LE" />
+    <Property Type="Double" Name="PBP" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_BRAND_BOY_CHANNEL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="ORDER" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MARKET" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="BRAND" Precision="19" Scale="0" />
+    <Property Type="Double" Name="INTERNAL" />
+    <Property Type="Double" Name="LE" />
+    <Property Type="Double" Name="PBP" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_BRAND_BTG">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="GROUP_ORDER" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MARKET" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="BRAND" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="COL1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="COL2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="COL3" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_BRAND_BTG_CHANNEL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="GROUP_ORDER" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="MARKET" />
+    <Property Type="Int32" Name="BRAND" />
+    <Property Type="Decimal" Name="COL1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="COL2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PCVSPY" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_BRAND_BY_CHANNEL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="YTD_COL1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="YTD_COL2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="MAT_COL1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="MAT_COL2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TOTAL_COL1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TOTAL_COL2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_COL1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_COL2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="19" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_BRAND_BY_CUSTOM_GROUP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="YTD_COL1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="YTD_COL2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="MAT_COL1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="MAT_COL2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TOTAL_COL1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TOTAL_COL2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_COL1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_COL2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="MARKET" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="BRAND" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="19" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_BRAND_BY_SUPER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="SUPER" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="YTD_COL1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="YTD_COL2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="MAT_COL1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="MAT_COL2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TOTAL_COL1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TOTAL_COL2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_COL1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_COL2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="MARKET" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="BRAND" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="19" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_BRAND_MAT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="GROUP_ORDER" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MARKET" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="BRAND" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MAT_COL1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="MAT_COL2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PCVSPY" Precision="5" Scale="1" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_BRAND_MAT_CHANNEL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="GROUP_ORDER" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MARKET" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="BRAND" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MAT_COL1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="MAT_COL2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PCVSPY" Precision="5" Scale="1" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_BRAND_MONTH">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="GROUP_ORDER" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MARKET" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="BRAND" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_COL1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_COL2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PCVSPY" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_BRAND_MONTH_CHANNEL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="GROUP_ORDER" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MARKET" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="BRAND" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_COL1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_COL2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PCVSPY" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_BRAND_PCVSPY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="ORDER" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MARKET" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="BRAND" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="COL1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="COL2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="COL3" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="COL4" Precision="38" Scale="0" />
+    <Property Type="Double" Name="INTERNAL" />
+    <Property Type="Double" Name="LE" />
+    <Property Type="Double" Name="PBP" />
+    <Property Type="Decimal" Name="PCVSPY_COL1" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="PCVSPY_COL2" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="PCVSPY_COL3" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="PCVSPY_COL4" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="PCVSPY_COL5" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_BRAND_PCVSPY_CHANNEL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="ORDER" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MARKET" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="BRAND" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="COL1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="COL2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="COL3" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="COL4" Precision="38" Scale="0" />
+    <Property Type="Double" Name="INTERNAL" />
+    <Property Type="Double" Name="LE" />
+    <Property Type="Double" Name="PBP" />
+    <Property Type="Decimal" Name="PCVSPY_COL1" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="PCVSPY_COL2" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="PCVSPY_COL3" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="PCVSPY_COL4" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="PCVSPY_COL5" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_BRAND_TOTAL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="MARKET" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="BRAND" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="THREE_AGO" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="TWO_AGO" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="LAST" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="CURRENT" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_BRAND_TOTAL_CUSTOM">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="ORDER" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MARKET" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="BRAND" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="THREE_AGO" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TWO_AGO" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="LAST" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="CURRENT" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_BRAND_TOTAL_CUSTOM_CHANNEL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="GROUP_ORDER" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="MARKET" />
+    <Property Type="Int32" Name="BRAND" />
+    <Property Type="Decimal" Name="THREE_AGO" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TWO_AGO" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="LAST" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="CURRENT" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="19" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_BRAND_YTD">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="GROUP_ORDER" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MARKET" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="BRAND" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="YTD_COL1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="YTD_COL2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PCVSPY" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_BRAND_YTD_CHANNEL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="GROUP_ORDER" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="MARKET" />
+    <Property Type="Int32" Name="BRAND" />
+    <Property Type="Decimal" Name="YTD_COL1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="YTD_COL2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PCVSPY" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_MARKET_BOY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="GROUP_ORDER" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MARKET" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="BRAND" Precision="19" Scale="0" />
+    <Property Type="Double" Name="INTERNAL" />
+    <Property Type="Double" Name="LE" />
+    <Property Type="Double" Name="PBP" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_MARKET_BOY_CHANNEL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="ORDER" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="MARKET" />
+    <Property Type="Int32" Name="BRAND" />
+    <Property Type="Double" Name="INTERNAL" />
+    <Property Type="Double" Name="LE" />
+    <Property Type="Double" Name="PBP" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_MARKET_BTG">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="GROUP_ORDER" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MARKET" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="BRAND" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="BTG_COL1" Precision="38" Scale="0" />
+    <Property Type="Double" Name="BTG_COL2" />
+    <Property Type="Decimal" Name="PCVSPY" Precision="3" Scale="1" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_MARKET_BTG_CHANNEL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="GROUP_ORDER" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="MARKET" />
+    <Property Type="Int32" Name="BRAND" />
+    <Property Type="Decimal" Name="BTG_COL1" Precision="38" Scale="0" />
+    <Property Type="Double" Name="BTG_COL2" />
+    <Property Type="Decimal" Name="PCVSPY" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_MARKET_GROUPS_CUSTOM">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MARKET" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="AU" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="INTERNAL_TARGET" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="YEAR" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_MARKET_MAT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="GROUP_ORDER" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MARKET" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="BRAND" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MAT_COL1" Precision="38" Scale="0" />
+    <Property Type="Double" Name="MAT_COL2" />
+    <Property Type="Decimal" Name="PCVSPY" Precision="3" Scale="1" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_MARKET_MAT_CHANNEL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="GROUP_ORDER" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="MARKET" />
+    <Property Type="Int32" Name="BRAND" />
+    <Property Type="Decimal" Name="MAT_COL1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="MAT_COL2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PCVSPY" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_MARKET_MONTH">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="GROUP_ORDER" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MARKET" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="BRAND" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_COL1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_COL2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PCVSPY" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_MARKET_MONTH_CHANNEL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="GROUP_ORDER" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="MARKET" />
+    <Property Type="Int32" Name="BRAND" />
+    <Property Type="Decimal" Name="MONTH_COL1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_COL2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PCVSPY" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_MARKET_PCVSPY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="ORDER" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MARKET" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="BRAND" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="THREE_AGO" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TWO_AGO" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="LAST" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="CURRENT" Precision="38" Scale="0" />
+    <Property Type="Double" Name="INTERNAL" />
+    <Property Type="Double" Name="LE" />
+    <Property Type="Double" Name="PBP" />
+    <Property Type="Decimal" Name="PCVSPY_COL1" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="PCVSPY_COL2" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="PCVSPY_COL3" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="PCVSPY_COL4" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="PCVSPY_COL5" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_MARKET_PCVSPY_CHANNEL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="ORDER" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MARKET" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="BRAND" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="THREE_AGO" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TWO_AGO" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="LAST" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="CURRENT" Precision="38" Scale="0" />
+    <Property Type="Double" Name="INTERNAL" />
+    <Property Type="Double" Name="LE" />
+    <Property Type="Double" Name="PBP" />
+    <Property Type="Decimal" Name="PCVSPY_COL1" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="PCVSPY_COL2" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="PCVSPY_COL3" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="PCVSPY_COL4" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="PCVSPY_COL5" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_MARKET_TOTAL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="MARKET" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="BRAND" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="THREE_AGO" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="TWO_AGO" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="LAST" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="CURRENT" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_MARKET_TOTAL_CUSTOM">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="ORDER" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MARKET" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="BRAND" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="THREE_AGO" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TWO_AGO" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="LAST" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="CURRENT" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_MARKET_TOTAL_CUSTOM_CHANNEL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="GROUP_ORDER" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="MARKET" />
+    <Property Type="Int32" Name="BRAND" />
+    <Property Type="Decimal" Name="THREE_AGO" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TWO_AGO" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="LAST" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="CURRENT" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="19" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_MARKET_YTD">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="GROUP_ORDER" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MARKET" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="BRAND" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="YTD_COL1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="YTD_COL2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PCVSPY" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="WRK_MARKET_YTD_CHANNEL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Decimal" Name="CHANNEL" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="GROUP_ORDER" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="GROUP" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="MARKET" />
+    <Property Type="Int32" Name="BRAND" />
+    <Property Type="Decimal" Name="YTD_COL1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="YTD_COL2" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PCVSPY" Precision="10" Scale="1" />
+    <Property Type="Decimal" Name="YEAR_PERIOD" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="MONTH_PERIOD" Precision="18" Scale="0" />
+  </EntityType>
+</Schema>

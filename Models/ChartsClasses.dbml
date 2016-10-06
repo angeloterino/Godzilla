@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="godzilla" Class="ChartsClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=PARKINGPC04\SQLEXPRESS;Initial Catalog=godzilla;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="godzillaConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.v_CHART_BTG_ADULTS_SKINCARE" Member="v_CHART_BTG_ADULTS_SKINCARE">
+    <Type Name="v_CHART_BTG_ADULTS_SKINCARE">
+      <Column Name="[GROUP]" Member="GROUP" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="MARKET" Type="System.Decimal" DbType="Decimal(24,0)" CanBeNull="true" />
+      <Column Name="BRAND" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="NAME" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[MARKET SIZE]" Member="MARKET_SIZE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PREVIOUS" Type="System.Decimal" DbType="Decimal(38,6)" CanBeNull="true" />
+      <Column Name="LATEST" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[GROUTH CATEGORY]" Member="GROUTH_CATEGORY" Type="System.Decimal" DbType="Decimal(10,1)" CanBeNull="true" />
+      <Column Name="[GROUTH J&amp;J]" Member="GROUTH_J_J" Type="System.Decimal" DbType="Decimal(10,1)" CanBeNull="true" />
+      <Column Name="TYPE" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="CHART" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.v_CHART_BTG_FRANCHISE" Member="v_CHART_BTG_FRANCHISE">
+    <Type Name="v_CHART_BTG_FRANCHISE">
+      <Column Name="[GROUP]" Member="GROUP" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="MARKET" Type="System.Decimal" DbType="Decimal(24,0)" CanBeNull="true" />
+      <Column Name="BRAND" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="NAME" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[MARKET SIZE]" Member="MARKET_SIZE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PREVIOUS" Type="System.Decimal" DbType="Decimal(38,6)" CanBeNull="true" />
+      <Column Name="LATEST" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[GROUTH CATEGORY]" Member="GROUTH_CATEGORY" Type="System.Decimal" DbType="Decimal(10,1)" CanBeNull="true" />
+      <Column Name="[GROUTH J&amp;J]" Member="GROUTH_J_J" Type="System.Decimal" DbType="Decimal(10,1)" CanBeNull="true" />
+      <Column Name="TYPE" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="CHART" Type="System.String" DbType="VarChar(9) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.v_CHARTS_BTG" Member="v_CHARTS_BTG">
+    <Type Name="v_CHARTS_BTG">
+      <Column Name="[GROUP]" Member="GROUP" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="MARKET" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="BRAND" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="NAME" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="[MARKET SIZE]" Member="MARKET_SIZE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PREVIOUS" Type="System.Decimal" DbType="Decimal(38,6)" CanBeNull="true" />
+      <Column Name="LATEST" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[GROUTH CATEGORY]" Member="GROUTH_CATEGORY" Type="System.Decimal" DbType="Decimal(3,1)" CanBeNull="true" />
+      <Column Name="[GROUTH J&amp;J]" Member="GROUTH_J_J" Type="System.Decimal" DbType="Decimal(10,1)" CanBeNull="true" />
+      <Column Name="TYPE" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="CHART" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.v_CHART_PBP_ADULTS_SKINCARE" Member="v_CHART_PBP_ADULTS_SKINCARE">
+    <Type Name="v_CHART_PBP_ADULTS_SKINCARE">
+      <Column Name="[GROUP]" Member="GROUP" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="MARKET" Type="System.Decimal" DbType="Decimal(24,0)" CanBeNull="true" />
+      <Column Name="BRAND" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="NAME" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[MARKET SIZE]" Member="MARKET_SIZE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PREVIOUS" Type="System.Decimal" DbType="Decimal(10,1)" CanBeNull="true" />
+      <Column Name="LATEST" Type="System.Decimal" DbType="Decimal(10,1)" CanBeNull="true" />
+      <Column Name="GROUTH_CATEGORY" Type="System.Decimal" DbType="Decimal(10,1)" CanBeNull="true" />
+      <Column Name="GROUTH_J_J" Type="System.Decimal" DbType="Decimal(10,1)" CanBeNull="true" />
+      <Column Name="TYPE" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="CHART" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="[YEAR PERIOD]" Member="YEAR_PERIOD" Type="System.Decimal" DbType="Decimal(19,0)" CanBeNull="true" />
+      <Column Name="[MONTH PERIOD]" Member="MONTH_PERIOD" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.v_WRK_CHART_BY_CHANNEL" Member="v_WRK_CHART_BY_CHANNEL">
+    <Type Name="v_WRK_CHART_BY_CHANNEL">
+      <Column Name="[ORDER]" Member="ORDER" Type="System.Decimal" DbType="Decimal(24,0)" CanBeNull="true" />
+      <Column Name="ID" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="NAME" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[MAT MARKET SIZE]" Member="MAT_MARKET_SIZE" Type="System.Decimal" DbType="Decimal(38,6)" CanBeNull="true" />
+      <Column Name="[MAT MARKET SHARE P]" Member="MAT_MARKET_SHARE_P" Type="System.Decimal" DbType="Decimal(8,1)" CanBeNull="true" />
+      <Column Name="[YTD MARKET SHARE P]" Member="YTD_MARKET_SHARE_P" Type="System.Decimal" DbType="Decimal(8,1)" CanBeNull="true" />
+      <Column Name="[LM MARKET SHARE P]" Member="LM_MARKET_SHARE_P" Type="System.Decimal" DbType="Decimal(8,1)" CanBeNull="true" />
+      <Column Name="[MAT MARKET SHARE L]" Member="MAT_MARKET_SHARE_L" Type="System.Decimal" DbType="Decimal(8,1)" CanBeNull="true" />
+      <Column Name="[YTD MARKET SHARE L]" Member="YTD_MARKET_SHARE_L" Type="System.Decimal" DbType="Decimal(8,1)" CanBeNull="true" />
+      <Column Name="[LM MARKET SHARE L]" Member="LM_MARKET_SHARE_L" Type="System.Decimal" DbType="Decimal(8,1)" CanBeNull="true" />
+      <Column Name="[MAT GROUTH C]" Member="MAT_GROUTH_C" Type="System.Decimal" DbType="Decimal(10,1)" CanBeNull="true" />
+      <Column Name="[YTD GROUTH C]" Member="YTD_GROUTH_C" Type="System.Decimal" DbType="Decimal(10,1)" CanBeNull="true" />
+      <Column Name="[LM GROUTH C]" Member="LM_GROUTH_C" Type="System.Decimal" DbType="Decimal(10,1)" CanBeNull="true" />
+      <Column Name="[MAT GROUTH JJ]" Member="MAT_GROUTH_JJ" Type="System.Decimal" DbType="Decimal(10,1)" CanBeNull="true" />
+      <Column Name="[YTD GROUTH JJ]" Member="YTD_GROUTH_JJ" Type="System.Decimal" DbType="Decimal(10,1)" CanBeNull="true" />
+      <Column Name="[LM GROUTH JJ]" Member="LM_GROUTH_JJ" Type="System.Decimal" DbType="Decimal(10,1)" CanBeNull="true" />
+      <Column Name="[YEAR PERIOD]" Member="YEAR_PERIOD" Type="System.Decimal" DbType="Decimal(19,0)" CanBeNull="true" />
+      <Column Name="[MONTH PERIOD]" Member="MONTH_PERIOD" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.v_CHARTS_YTD" Member="v_CHARTS_YTD">
+    <Type Name="v_CHARTS_YTD">
+      <Column Name="[GROUP]" Member="GROUP" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="MARKET" Type="System.Decimal" DbType="Decimal(24,0)" CanBeNull="true" />
+      <Column Name="BRAND" Type="System.Decimal" DbType="Decimal(19,0)" CanBeNull="true" />
+      <Column Name="NAME" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="[MARKET SIZE]" Member="MARKET_SIZE" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
+      <Column Name="PREVIOUS" Type="System.Decimal" DbType="Decimal(10,1)" CanBeNull="true" />
+      <Column Name="LATEST" Type="System.Decimal" DbType="Decimal(10,1)" CanBeNull="true" />
+      <Column Name="[GROUTH CATEGORY]" Member="GROUTH_CATEGORY" Type="System.Decimal" DbType="Decimal(14,3)" CanBeNull="true" />
+      <Column Name="[GROUTH J&amp;J]" Member="GROUTH_J_J" Type="System.Decimal" DbType="Decimal(14,3)" CanBeNull="true" />
+      <Column Name="TYPE" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="CHART" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
+      <Column Name="[YEAR PERIOD]" Member="YEAR_PERIOD" Type="System.Decimal" DbType="Decimal(19,0)" CanBeNull="true" />
+      <Column Name="[MONTH PERIOD]" Member="MONTH_PERIOD" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.v_CHARTS_LM" Member="v_CHARTS_LM">
+    <Type Name="v_CHARTS_LM">
+      <Column Name="[GROUP]" Member="GROUP" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="MARKET" Type="System.Decimal" DbType="Decimal(24,0)" CanBeNull="true" />
+      <Column Name="BRAND" Type="System.Decimal" DbType="Decimal(19,0)" CanBeNull="true" />
+      <Column Name="NAME" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="[MARKET SIZE]" Member="MARKET_SIZE" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
+      <Column Name="PREVIOUS" Type="System.Decimal" DbType="Decimal(10,1)" CanBeNull="true" />
+      <Column Name="LATEST" Type="System.Decimal" DbType="Decimal(10,1)" CanBeNull="true" />
+      <Column Name="[GROUTH CATEGORY]" Member="GROUTH_CATEGORY" Type="System.Decimal" DbType="Decimal(14,3)" CanBeNull="true" />
+      <Column Name="[GROUTH J&amp;J]" Member="GROUTH_J_J" Type="System.Decimal" DbType="Decimal(14,3)" CanBeNull="true" />
+      <Column Name="TYPE" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="CHART" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
+      <Column Name="[YEAR PERIOD]" Member="YEAR_PERIOD" Type="System.Decimal" DbType="Decimal(19,0)" CanBeNull="true" />
+      <Column Name="[MONTH PERIOD]" Member="MONTH_PERIOD" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.v_CHART_PBP_FRANCHISE" Member="v_CHART_PBP_FRANCHISE">
+    <Type Name="v_CHART_PBP_FRANCHISE">
+      <Column Name="[GROUP]" Member="GROUP" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="MARKET" Type="System.Decimal" DbType="Decimal(24,0)" CanBeNull="true" />
+      <Column Name="BRAND" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="NAME" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[MARKET SIZE]" Member="MARKET_SIZE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PREVIOUS" Type="System.Decimal" DbType="Decimal(10,1)" CanBeNull="true" />
+      <Column Name="LATEST" Type="System.Decimal" DbType="Decimal(10,1)" CanBeNull="true" />
+      <Column Name="GROUTH_CATEGORY" Type="System.Decimal" DbType="Decimal(10,1)" CanBeNull="true" />
+      <Column Name="GROUTH_J_J" Type="System.Decimal" DbType="Decimal(10,1)" CanBeNull="true" />
+      <Column Name="TYPE" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="CHART" Type="System.String" DbType="VarChar(9) NOT NULL" CanBeNull="false" />
+      <Column Name="[YEAR PERIOD]" Member="YEAR_PERIOD" Type="System.Decimal" DbType="Decimal(19,0)" CanBeNull="true" />
+      <Column Name="[MONTH PERIOD]" Member="MONTH_PERIOD" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.v_CHARTS_PBP" Member="v_CHARTS_PBP">
+    <Type Name="v_CHARTS_PBP">
+      <Column Name="[GROUP]" Member="GROUP" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="MARKET" Type="System.Decimal" DbType="Decimal(19,0)" CanBeNull="true" />
+      <Column Name="BRAND" Type="System.Decimal" DbType="Decimal(19,0)" CanBeNull="true" />
+      <Column Name="NAME" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="[MARKET SIZE]" Member="MARKET_SIZE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PREVIOUS" Type="System.Decimal" DbType="Decimal(10,1)" CanBeNull="true" />
+      <Column Name="LATEST" Type="System.Decimal" DbType="Decimal(10,1)" CanBeNull="true" />
+      <Column Name="GROUTH_CATEGORY" Type="System.Decimal" DbType="Decimal(11,2)" CanBeNull="true" />
+      <Column Name="GROUTH_J_J" Type="System.Decimal" DbType="Decimal(11,2)" CanBeNull="true" />
+      <Column Name="TYPE" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="CHART" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
+      <Column Name="[YEAR PERIOD]" Member="YEAR_PERIOD" Type="System.Decimal" DbType="Decimal(19,0)" CanBeNull="true" />
+      <Column Name="[MONTH PERIOD]" Member="MONTH_PERIOD" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.v_CHARTS_MAT_MARKET" Member="v_CHARTS_MAT_MARKET">
+    <Type Name="v_CHARTS_MAT_MARKET">
+      <Column Name="[GROUP]" Member="GROUP" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="MARKET" Type="System.Decimal" DbType="Decimal(24,0)" CanBeNull="true" />
+      <Column Name="BRAND" Type="System.Decimal" DbType="Decimal(19,0)" CanBeNull="true" />
+      <Column Name="NAME" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="[MARKET SIZE]" Member="MARKET_SIZE" Type="System.Decimal" DbType="Decimal(38,6)" CanBeNull="true" />
+      <Column Name="PREVIOUS" Type="System.Decimal" DbType="Decimal(10,1)" CanBeNull="true" />
+      <Column Name="LATEST" Type="System.Decimal" DbType="Decimal(10,1)" CanBeNull="true" />
+      <Column Name="[GROUTH CATEGORY]" Member="GROUTH_CATEGORY" Type="System.Decimal" DbType="Decimal(14,3)" CanBeNull="true" />
+      <Column Name="[GROUTH J&amp;J]" Member="GROUTH_J_J" Type="System.Decimal" DbType="Decimal(14,3)" CanBeNull="true" />
+      <Column Name="TYPE" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="CHART" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
+      <Column Name="[YEAR PERIOD]" Member="YEAR_PERIOD" Type="System.Decimal" DbType="Decimal(19,0)" CanBeNull="true" />
+      <Column Name="[MONTH PERIOD]" Member="MONTH_PERIOD" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

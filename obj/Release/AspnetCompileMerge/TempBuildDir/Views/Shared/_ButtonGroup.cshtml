@@ -1,0 +1,17 @@
+﻿@model List<StrawmanApp.Models.FormUtilModel.ButtonsGroup>
+@foreach(StrawmanApp.Models.FormUtilModel.ButtonsGroup grp in Model){
+    string _align = !grp.right ? " float-left" : " float-right";
+   
+<div class="config-wrapper@_align" style="margin: 2px; display:inline-block;" > 
+    @if (grp.label_text != null)
+    {
+    <h5 class="h5" style="padding: 2px 1em;display:inline-block">@grp.label_text </h5>
+    }
+  @foreach (StrawmanApp.Models.FormUtilModel.Button btn in grp.Buttons)
+  {
+      string _class = btn.success != null ? btn.success : "btn-default";
+      string _dataController = btn.controller !=null?" data-btn-type=\""+btn.controller+"\" ": "";
+   <button type="button" class="btn @_class" data-btn-type="@btn.type"@Html.Raw(_dataController) data-btn-target="@btn.target" data-btn-variable="@btn.variable" >@btn.text</button>
+  }
+</div>
+}
