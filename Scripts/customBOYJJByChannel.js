@@ -71,7 +71,7 @@ loadTables = function (pathindex, controlindex, channelindex) {
             .done(function (result) {
                 //Agregamos el resultado a la tabla por id
                 //$('#' + _paths + _channel[channelindex]).find('#' + _viewId + _viewsids[controlindex]).append(result);
-                $(strawmanVars.vrow).append($(_vcell).clone().attr('id', _viewId + _viewsids[controlindex]).html(result));
+                $(strawmanVars.vrow).append($(_vcell).clone().attr('data-type', _viewId + _viewsids[controlindex]).html(result));
                 //Eliminamos el gif de carga
                 $('.removeme').remove();
                 //Seguimos con la siguiente función del controlador                
