@@ -1,3 +1,4 @@
+$.getScript('../../Scripts/table.utils/table.blocker.js');
 strawmanVars = new Object();
 var _lastrow, _lastcolor, _lastfontcolor,
     _paths,_viewId, _control,
@@ -6,6 +7,8 @@ var _lastrow, _lastcolor, _lastfontcolor,
 var _loader = '<tr class="removeme"><td colspan="3" rowspan="5" style="border: 0px; border-image: none; text-align: center; vertical-align: middle; min-height:100px;"><img id ="rotate" src="../images/loading_anim.gif"/></td></tr>';
 var _dvloader = '<tr class="removeme"><td colspan="4" rowspan="5" style="border: 0px; border-image: none; text-align: center; vertical-align: middle; min-height:100px;"><img id="rotate" src="../images/loading_anim.gif"/></td></tr>';
 var _pvloader = '<tr class="removeme"><td colspan="5" rowspan="5" style="border: 0px; border-image: none; text-align: center; vertical-align: middle; min-height:100px;"><img id ="rotate" src="../images/loading_anim.gif"/></td></tr>';
+var _vrow = $('<div/>').attr('style','display:table-row;margin-left:15px; vertical-align:top;');
+var _vcell = $('<div/>').attr('style','display:table-cell;vertical-align:top;');
 strawmanVars.cancelLoad = false;
 $(document).ready(function () {
     $(document).on("click", ["a[role=menuitem]", "a[role=tabitem]"], function () {
@@ -39,11 +42,8 @@ startLoadTables = function () {
     loadTables(0, 0, 0);
 }
 initializeTables = function () {
-    for (channelindex = 0; channelindex < _channel.length; channelindex++) {
-        for (i = 0; i < _viewsids.length; i++) {
-            $('#' + _paths + _channel[channelindex]).find('#' + _viewId + _viewsids[i] + '').html('');
-        }
-    }
+    $('.mastertable').html('');
+    strawmanVars.vrow = $(_vrow).clone();
 }
 loadTables = function (pathindex, controlindex, channelindex) {
     channelindex || (channelindex = 0);
@@ -70,7 +70,8 @@ loadTables = function (pathindex, controlindex, channelindex) {
             })
             .done(function (result) {
                 //Agregamos el resultado a la tabla por id
-                $('#' + _paths + _channel[channelindex]).find('#' + _viewId + _viewsids[controlindex]).append(result);
+                //$('#' + _paths + _channel[channelindex]).find('#' + _viewId + _viewsids[controlindex]).append(result);
+                $(strawmanVars.vrow).append($(_vcell).clone().attr('id', _viewId + _viewsids[controlindex]).html(result));
                 //Eliminamos el gif de carga
                 $('.removeme').remove();
                 //Seguimos con la siguiente función del controlador                
@@ -84,8 +85,11 @@ loadTables = function (pathindex, controlindex, channelindex) {
                         strawmanVars.cancelLoad = false;
                         loadTables(pathindex, controlindex, channelindex);
                     }
-                    else
+                    else{
+                        $('.mastertable').append(strawmanVars.vrow);
+                        strawmanVars.vrow = _vrow.clone();
                         loadTables(0, 0, channelindex + 1); //siguiente canal
+                    }
                 }
                 else {
                     loadTables(pathindex + 1, 0, 0); //Hemos finalizado el array de controladores. Seguimos con la siguiente carpeta de vista
@@ -103,6 +107,7 @@ loadTables = function (pathindex, controlindex, channelindex) {
         $('.loading-bar').animate({ width: '100%', 'border-color': 'rgb(0,220,0)' }, 'fast', function () {
             $periodCombo();
             $('.load-mask').animate({ opacity: 'hide' }, 'slow', function () { $(this).hide(); });
+            //if (!$.resetForms) CloneLeftBOYColumn('BoyViews_BoyData');  
         });
     }
 }

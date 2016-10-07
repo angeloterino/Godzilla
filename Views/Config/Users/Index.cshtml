@@ -3,13 +3,18 @@
     ViewBag.Title = "UserManagment";
     Layout = "~/Views/Shared/_StrwLayout.cshtml";
 }
-
-<h2>Manage User Accounts</h2>
-<div class="wrapper">
-    <div class="form-group">
-        @Html.LabelFor(m => Model.user)
-        @Html.DropDownListFor(m=>Model.user, new SelectList(Model.UsersList,"Value","Text"),new { @class = "form-control" })
+<div class="tools-bar">
+    <div class="wrapper form-group">
+            @Html.LabelFor(m => Model.user, new{@class = "col-md-1"})
+        <div class="col-md-5">
+            @Html.DropDownListFor(m=>Model.user, new SelectList(Model.UsersList,"Value","Text"),new { @class = "form-control" })
+        </div>
+        <div class="clearfix"></div>
     </div>
+</div>
+
+<div class="wrapper config main">
+    
     @{Html.RenderPartial("Users/_UsersTabs");}
     <div class="form wrapper config">
         @{Html.RenderAction("UsersManagement", new { _user = Model.UsersList.FirstOrDefault().Text, _channel = 1 });}

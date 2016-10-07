@@ -13,8 +13,8 @@
            _active = "";
         }
         </div>
-        <div class="config-wrapper float-right">
-           <button type="submit" class="btn btn-success" value="Save" id="SaveUsersViewAccess" ><li class="fa fa-save"></li></button>    
+        <div class="config-wrapper float-right" style ="margin: 2px; display:inline-block;">
+                <button type="submit" class="btn btn-success" value="Save" id="SaveUsersViewAccess" ><li class="fa fa-save"></li> @StrawmanApp.Helpers.MessageByLanguage.Save</button>    
             @Html.HiddenFor(m => Model.user)
             @Html.HiddenFor(m => Model.ViewTable)
         </div>

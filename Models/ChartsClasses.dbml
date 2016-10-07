@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="godzilla" Class="ChartsClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=PARKINGPC04\SQLEXPRESS;Initial Catalog=godzilla;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="godzillaConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=VM22078D0\SQLEXPRESS\SQLEXPRESS;Initial Catalog=godzilla;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="godzillaConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.v_CHART_BTG_ADULTS_SKINCARE" Member="v_CHART_BTG_ADULTS_SKINCARE">
     <Type Name="v_CHART_BTG_ADULTS_SKINCARE">
       <Column Name="[GROUP]" Member="GROUP" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />

@@ -22,9 +22,8 @@ namespace StrawmanApp.Controllers
             string[] _channel = {"MASS", "OTC", "BEAUTY", "TOTAL"};
             //Vamos a enviar los canales configurados por el grupo BOYJJByChannel (tipo 22);
             List<StrawmanDBLibray.Entities.GROUP_MASTER> channels = (List<StrawmanDBLibray.Entities.GROUP_MASTER>)StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.GROUP_MASTER,true);
-            string type = this.GetGroupTypeByView(BY_CHANNEL_CONTROLLER);
-            decimal _type = 0;
-            if (type != null && decimal.TryParse(type, out _type))
+            decimal? _type = this.GetGroupTypeByView(BY_CHANNEL_CONTROLLER);
+            if (_type != null)
             {
                 _channel = channels.Where(m => m.TYPE == _type).Select(m => m.ID.ToString()).ToArray();
             }
@@ -47,7 +46,7 @@ namespace StrawmanApp.Controllers
                     case "YTD":
                         view = BOYYTD;
                         break;
-                    case "TOTALS":
+                    case "TOTAL":
                         view = BOYTOTALS;
                         break;
                     case "TOGO":
@@ -184,34 +183,55 @@ namespace StrawmanApp.Controllers
                         break;
                 }
 
-            }else
-                SetGroupType(_group);//Llamamos a la función que establece el grupo según configuración en WRK_VARIABLES
+                switch (_type)
+                {
+                    case "GetBoyData":
+                    case "GetBoyYTD":
+                        if (GetSessionData(key) == null)
+                        {
+                            Session.Add(key, GetBOYByChannelData(GetDataType(_type)).Select(m => m).ToList());
+                        }
+                        lst = GetSessionData(key);
+                        break;
+                    case "GetBoyTOGO":
+                    case "GetBoyTotals":
+                        lst = GetBOYByChannelData(GetDataType(_type)).Select(m => m).ToList();
+                        break;
+                    case "GetBoyINT":
+                    case "GetBoyLE":
+                    case "GetBoyPBP":
+                        lst = GetBOYByChannelData(GetDataType(_type)).Select(m => m).ToList();
+                        break;
+                    case "GetBoyINTCustom":
+                    case "GetBoyLECustom":
+                    case "GetBoyPBPCustom":
+                        lst = GetBOYByChannelData(GetDataType(_type)).Select(m => m).ToList();
+                        break;
+                }
 
-            switch (_type)
+
+            }
+            else
             {
-                case "GetBoyData":
-                case "GetBoyYTD":
-                    if(GetSessionData(key)== null){
-                        Session.Add(key,GetBOYByChannelData(GetDataType(_type)).Select(m=>m).ToList());
+                SetGroupType(_group);//Llamamos a la función que establece el grupo según configuración en WRK_VARIABLES
+                if (group_type != null)
+                {
+                    //Está definido el grupo, enviamos la información configurada
+                    string type = GetDataType(_type);
+                    switch (type)
+                    {
+                        case "INT":
+                        case "LE":
+                        case "PBP":
+                            lst =  GetBoyCalcData(type).Where(m=>m._id == group_type).Select(m=>m).ToList();
+                            break;
+                        default:
+                            lst = GetBoyYTDData(type).Where(m => m._id == group_type).Select(m => m).ToList();
+                            break;
                     }
-                    lst = GetSessionData(key);                                                       
-                    break;
-                case "GetBoyTOGO":
-                case "GetBoyTotals":
-                    lst = GetBOYByChannelData(GetDataType(_type)).Select(m => m).ToList();
-                    break;
-                case "GetBoyINT":
-                case "GetBoyLE":
-                case "GetBoyPBP":
-                    lst = GetBOYByChannelData(GetDataType(_type)).Select(m => m).ToList();
-                    break;
-                case "GetBoyINTCustom":
-                case "GetBoyLECustom":
-                case "GetBoyPBPCustom":
-                    lst = GetBOYByChannelData(GetDataType(_type)).Select(m => m).ToList();
-                    break;
-            }                    
-            
+                    Helpers.Session.SetSession(key, lst);
+                }
+            }
             return lst;
         }
 
@@ -231,11 +251,6 @@ namespace StrawmanApp.Controllers
             switch (type)
             {
                 case "INT":
-                    if (group_type != null)
-                    {
-                        //Está definido el grupo, enviamos la información configurada
-                        return GetBoyCalcData(type).ToList();
-                    }
                         
                     List<StrawmanDBLibray.Entities.v_WRK_BOY_BY_CHANNEL_CALC> lint = (List<StrawmanDBLibray.Entities.v_WRK_BOY_BY_CHANNEL_CALC>)GetSessionDataTable("v_WRK_BOY_BY_CHANNEL_CALC");
                     var i = lint
@@ -382,7 +397,7 @@ namespace StrawmanApp.Controllers
                     ret = "TOGO";
                     break;
                 case "GetBoyTotals":
-                    ret = "TOTALS";
+                    ret = "TOTAL";
                     break;
                 case "GetBoyINT":
                 case "GetBoyINTCustom":
@@ -847,7 +862,7 @@ namespace StrawmanApp.Controllers
             List<StrawmanDBLibray.Entities.GROUP_CONFIG> gchannels = (List<StrawmanDBLibray.Entities.GROUP_CONFIG>)StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.GROUP_CONFIG, true);
             List<StrawmanDBLibray.Entities.GROUP_MASTER> gmaster = (List<StrawmanDBLibray.Entities.GROUP_MASTER>)StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.GROUP_MASTER, true);
             List<StrawmanDBLibray.Entities.BOY_CONFIG> gconfig = (List<StrawmanDBLibray.Entities.BOY_CONFIG>)StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.BOY_CONFIG, true);
-            var grp = gchannels.Where(m => m.TYPE_ID == (decimal?)group_type).AsEnumerable()
+            var grp = gchannels.Where(m => m.TYPE_ID == (decimal?)this.GetGroupTypeByView(BY_CHANNEL_CONTROLLER)).AsEnumerable()
                 .Join(gconfig, c => new { c.MARKET, c.BRAND }, n => new { n.MARKET, n.BRAND }, (c, n) => new
                 {
                     id = c.GROUP_ID,
@@ -1095,18 +1110,21 @@ namespace StrawmanApp.Controllers
 
         private void SetGroupType(int? type)
         {
-            string by_channel_view = GetGroupTypeByView(BY_CHANNEL_CONTROLLER);
-            string channel_view = GetGroupTypeByView(CONTROLLER);
+            decimal? by_channel_view = GetGroupTypeByView(BY_CHANNEL_CONTROLLER);
             if (type == null)
-                group_type = by_channel_view == null ? 23 : int.Parse(by_channel_view);
+                group_type = by_channel_view == null ? 23 : (int)by_channel_view;
             else
                 group_type = type;
         }
 
-        private string GetGroupTypeByView(string view)
+        private decimal? GetGroupTypeByView(string view)
         {
             List<StrawmanDBLibray.Entities.WRK_VIEWS_VARIABLES> vars = (List<StrawmanDBLibray.Entities.WRK_VIEWS_VARIABLES>)StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.WRK_VIEWS_VARIABLES, true);
-            return vars.FirstOrDefault(m => m.VIEW == view).VALUE;
+            string type = vars.FirstOrDefault(m => m.VIEW == view).VALUE;
+            decimal _type = 0;
+            if (type == null || !decimal.TryParse(type, out _type))
+                return null;
+            return _type;
         }
     }
 }

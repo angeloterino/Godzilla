@@ -325,6 +325,7 @@ namespace StrawmanApp.Helpers
     //Funcion que devuelve los textos definidos en Texts según lenguaje (inglés por defecto)
     public static class MessageByLanguage
     {
+        public static string Save { get { switch (LanguageUtil.Lang) { case Languages.ES:return Texts.SAVE_ES; default:return Texts.SAVE_EN; } } }
         public static string Substract { get { switch (LanguageUtil.Lang) { case Languages.ES:return Texts.SUBSTRACT_ES; default: return Texts.SUBSTRACT_EN; } } }
         public static string NoAdd { get { switch (LanguageUtil.Lang) { case Languages.ES: return Texts.NO_ADD_ES; default: return Texts.NO_ADD_EN; } } }
         public static string NotCofigError { get { switch (LanguageUtil.Lang) { case Languages.ES:return Texts.NOT_CONFIG_ERROR_ES; default:return Texts.NOT_CONFIG_ERROR_EN; } } }
@@ -562,6 +563,7 @@ namespace StrawmanApp.Helpers
         private const string _NOT_CONFIG_ERROR_EN = "No basic settings found. Please contact with the application's manager.";
         private const string _NO_ADD_EN = "Not Add";
         private const string _SUBSTRACT_EN = "Substract";
+        private const string _SAVE_EN = "Save";
         //Español
         private const string _NUEVO = "Nuevo";
         private const string _BORRAR = "Borrar";
@@ -589,6 +591,7 @@ namespace StrawmanApp.Helpers
         private const string _NOT_CONFIG_ERROR_ES = "No se ha encontrado la configuración básica del usuario. Por favor, póngase en contacto con el administrador de la aplicación";
         private const string _NO_ADD_ES = "No añadir";
         private const string _SUBSTRACT_ES = "Restar";
+        private const string _SAVE_ES = "Guardar";
 
         //Funciones GET
         //Inglés
@@ -615,6 +618,7 @@ namespace StrawmanApp.Helpers
         public static string NOT_CONFIG_ERROR_EN { get { return _NOT_CONFIG_ERROR_EN; } }
         public static string NO_ADD_EN { get { return _NO_ADD_EN; } }
         public static string SUBSTRACT_EN { get { return _SUBSTRACT_EN; } }
+        public static string SAVE_EN { get { return _SAVE_EN; } }
         //Español
         public static string NUEVO { get { return _NUEVO; } }
         public static string BORRAR { get { return _BORRAR; } }
@@ -639,6 +643,7 @@ namespace StrawmanApp.Helpers
         public static string NOT_CONFIG_ERROR_ES { get { return _NOT_CONFIG_ERROR_ES; } }
         public static string NO_ADD_ES { get { return _NO_ADD_ES; } }
         public static string SUBSTRACT_ES { get { return _SUBSTRACT_ES; } }
+        public static string SAVE_ES { get { return _SAVE_ES; } }
     }
 #endregion
 }

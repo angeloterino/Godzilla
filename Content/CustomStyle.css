@@ -481,7 +481,10 @@ form .wrapper
     height:30px;
     min-width:50px;
 }
-
+.wrapper.config.main
+{
+  top: 45px; width: 100%; bottom: 0px; overflow: scroll; position: absolute; margin:0;padding: 0 10px;
+}
 /* New rules */
 .menu {
     margin-top: 0px;
@@ -534,7 +537,17 @@ table.boytable td div.market, table.boytable.market {
     border: 2px solid rgb(125, 125, 125); width: 100%; text-align: center; color: rgb(0, 153, 255); font-size: 14px; margin-bottom: 5px; height:20px;
 }
 table.boytable th div.boy_name, table.boytable.boy_name {
-    padding: 5px; border-radius: 4px; border: 2px solid rgb(125, 125, 125); width: 100%; text-align: center; color: white; font-size: 15px; font-weight: bold; margin-bottom: 5px; border-spacing: 4px; background-color: rgb(0, 153, 255);
+    padding: 5px;
+    border-radius: 4px;
+    border: 2px solid rgb(125, 125, 125);
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    border-spacing: 4px;
+    background-color: rgb(0, 153, 255);
 }
 table.boytable > thead > tr > th {
     border:0;

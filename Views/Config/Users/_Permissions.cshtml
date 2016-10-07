@@ -6,16 +6,18 @@
         {
             Html.RenderPartial("Users/_MenuAccess", Model.MenuAccess);
             <div class="config-wrapper float-right">
-                <button type="submit" class="btn btn-success" value="Save" id="SaveUserMenuAccess"><li class="fa fa-save"></li></button>
+                <button type="submit" class="btn btn-success" value="Save" id="SaveUserMenuAccess"><li class="fa fa-save"></li> @StrawmanApp.Helpers.MessageByLanguage.Save</button>
             </div>
             @Html.HiddenFor(m => Model.user);
         }
     }
     </div>
     <div class="tab-pane fade" id="editable_views_access">
-        <div class="form-group">
-            @Html.LabelFor(m => Model.ViewTable)
-            @Html.DropDownListFor(m => Model.ViewTable, new SelectList(Model.ViewsList, "Value", "Text"), new { @class = "form-control" })
+        <div class="form-group tools-bar">
+            @Html.LabelFor(m => Model.ViewTable, new {@class="col-md-3" })
+            <div class="col-md-4">
+                @Html.DropDownListFor(m => Model.ViewTable, new SelectList(Model.ViewsList, "Value", "Text"), new { @class = "form-control" })
+            </div>
         </div>
     @{Html.RenderPartial("Users/_ChannelsTabs");}
     @{Html.RenderPartial("Users/_ViewAccessForm", Model);}
