@@ -19,13 +19,18 @@ namespace StrawmanApp.Controllers
             using (Entities.godzillaCommentsEntities db = new Entities.godzillaCommentsEntities())
             {
                 var q = db.LETTERS_COMMENT_DATA
-                        .Where(m => m.TYPE == Entities.CommentTypes.MANAGEMENT_LETTER 
-                        && (m.YEAR_PERIOD == Helpers.PeriodUtil.Year && m.MONTH_PERIOD == Helpers.PeriodUtil.Month))
-                        .Select(m => m).ToList();
-                ViewBag.LettersData = q.ToList();
+                        .Select(m => m).AsEnumerable();
 
-                var t = db.v_WRK_MANAGEMENT_LETTERS.Select(m => m).ToList();
-                lst = t.Select(m =>m).ToList();
+                var t = db.v_WRK_MANAGEMENT_LETTERS.Select(m => m).AsEnumerable()
+                        .GroupJoin(q, m => new { _id = (decimal)m.GROUP_ID }, l => new { _id = (decimal)l.LETTER_ID }, (m, l) => new { m = m, l = l })
+                        .SelectMany(f => f.l.DefaultIfEmpty(), (m, l) => new { m = m.m, l = l });
+                lst = t.Where(m=>m.l == null || (m.l.TYPE == Entities.CommentTypes.MANAGEMENT_LETTER
+                            && (m.l.YEAR_PERIOD == Helpers.PeriodUtil.Year && m.l.MONTH_PERIOD == Helpers.PeriodUtil.Month))).Select(m =>m.m).ToList();
+
+                ViewBag.LettersData = q
+                        .Where(m => m.TYPE == Entities.CommentTypes.MANAGEMENT_LETTER 
+                        && (m.YEAR_PERIOD == Helpers.PeriodUtil.Year && m.MONTH_PERIOD == Helpers.PeriodUtil.Month)).ToList();
+
             }
             return PartialView(MANAGEMENTLETTER_COMMENTS, lst);
         }
@@ -34,7 +39,7 @@ namespace StrawmanApp.Controllers
 
         public ActionResult GetData()
         {
-            List<Entities.v_WRK_MANAGEMENT_LETTERS_DATA> data = (List<Entities.v_WRK_MANAGEMENT_LETTERS_DATA>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.v_WRK_MANAGEMENT_LETTERS_DATA, true);
+            List<StrawmanDBLibray.Entities.v_WRK_MANAGEMENT_LETTERS_DATA> data = (List<StrawmanDBLibray.Entities.v_WRK_MANAGEMENT_LETTERS_DATA>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.v_WRK_MANAGEMENT_LETTERS_DATA, true);
             List<Entities.ManagementLetterModel>  lst = data
                 .Where(p => p.YEAR_PERIOD == Helpers.PeriodUtil.Year && p.MONTH_PERIOD == Helpers.PeriodUtil.Month)
                 .Select(m => new Entities.ManagementLetterModel
