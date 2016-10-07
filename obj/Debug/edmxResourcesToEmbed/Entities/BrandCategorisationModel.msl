@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="godzillaBrandCategorisationModelStoreContainer" CdmEntityContainer="godzillaBrandCategorisationEntities">
+    <EntitySetMapping Name="v_WRK_BRAND_CATEGORISATION">
+      <EntityTypeMapping TypeName="godzillaBrandCategorisationModel.v_WRK_BRAND_CATEGORISATION">
+        <MappingFragment StoreEntitySet="v_WRK_BRAND_CATEGORISATION">
+          <ScalarProperty Name="GROUP_LEVEL" ColumnName="GROUP LEVEL" />
+          <ScalarProperty Name="GROUP_NAME" ColumnName="GROUP NAME" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+          <ScalarProperty Name="BRAND_NAME" ColumnName="BRAND_NAME" />
+          <ScalarProperty Name="CONFIG" ColumnName="CONFIG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BRAND_CATEGORISATION_DATA">
+      <EntityTypeMapping TypeName="godzillaBrandCategorisationModel.v_WRK_BRAND_CATEGORISATION_DATA">
+        <MappingFragment StoreEntitySet="v_WRK_BRAND_CATEGORISATION_DATA">
+          <ScalarProperty Name="GROUP_LEVEL" ColumnName="GROUP LEVEL" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="GROUP_NAME" ColumnName="GROUP NAME" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ACT" ColumnName="ACT" />
+          <ScalarProperty Name="PY" ColumnName="PY" />
+          <ScalarProperty Name="YTD_SHARE_VS_PY" ColumnName="YTD SHARE VS PY" />
+          <ScalarProperty Name="YTD_CATEGORY_VS_PY" ColumnName="YTD CATEGORY VS PY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_WRK_BRAND_CATEGORISATION_MASTER">
+      <EntityTypeMapping TypeName="godzillaBrandCategorisationModel.v_WRK_BRAND_CATEGORISATION_MASTER">
+        <MappingFragment StoreEntitySet="v_WRK_BRAND_CATEGORISATION_MASTER">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="GROUP_NAME" ColumnName="GROUP NAME" />
+          <ScalarProperty Name="GROUP_LEVEL" ColumnName="GROUP LEVEL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
