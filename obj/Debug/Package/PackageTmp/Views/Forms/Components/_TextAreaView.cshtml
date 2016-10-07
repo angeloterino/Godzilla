@@ -1,3 +1,0 @@
-﻿@model StrawmanApp.Models.FormUtilModel.TextArea
-@if (Model.rows > 0 && Model.columns > 0) { @Html.TextArea(Model.name, Model.value, Model.rows, Model.columns, new { @data_type = Model.data_attributes}) }
-else { @Html.TextArea(Model.name, Model.value, new { @data_type = Model.data_attributes}) }

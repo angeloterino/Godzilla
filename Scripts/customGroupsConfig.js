@@ -131,8 +131,7 @@ $(document).on('click', 'button[data-type=save]',function(e){
             $(_form).append(this)
    });
    $(_form).submit();
-});
-$(document).on('change', 'select[data-type=group_types]', function () {
+});$(document).on('change', 'select[data-type=group_types]', function () {
 
     var _value = $(this).find('option:selected').val();
     var _controller = $(this).attr('data-controller');
