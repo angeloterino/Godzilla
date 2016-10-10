@@ -223,7 +223,7 @@ namespace StrawmanApp.Controllers
             List<Models.BoyMassMarketModels> lst = GetBoyYTDData("YTD").Where(m=> m.channel == channel).Select(m=>m).ToList();
             List<Models.BoyMassMarketModels> _int = GetBoyCalcCustomData("INT");
             List<Models.BoyMassMarketModels> _le = GetBoyCalcCustomData("LE");
-            List<Models.BoyMassMarketModels> _btg = GetBoyYTDData("TOGO");
+            List<Models.BoyMassMarketModels> _btg = GetBoyYTDData("TOGO").Where(m => m.channel == channel).Select(m => m).ToList();
             List<Models.BoyMassMarketModels> _pbp = GetBoyCalcCustomData("PBP");
             Models.BOYFormModel bf = null;
             foreach (Models.BoyMassMarketModels item in lst)

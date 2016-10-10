@@ -1,5 +1,4 @@
-body {
-}
+body {height: 99%;}
 td, th {
     padding: 0px;
 }
@@ -490,7 +489,18 @@ form .wrapper
     margin-top: 0px;
 }
 .menu_wrapper {
-    width: 100%; height: 40px; margin-top: 0px; border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 1px; border-bottom-width: 1px; border-top-style: solid; border-bottom-style: solid; position: relative; background-color: rgb(242, 242, 241);
+    width: 100%;
+    height: 44px;
+    margin-top: 0px;
+    margin-bottom: 2px;
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    position: relative;
+    background-color: rgb(242, 242, 241);
 }
 
 /* CustomStyle.css (23, 9) */
@@ -676,3 +686,27 @@ form .select-input input[type=text]
 .boy.config.wrapper, .groups.content.wrapper {top: 0;width: 100%;bottom: 0px;overflow: auto;position: absolute;margin:0;padding: 0 10px;font-size: 12px;}
 .groups{position:relative; width:100%;}
 .tools-bar{width: 100%;min-height: 42px;padding: 2px;box-shadow: 0px 1px 3px rgb(180,180,180);background-color: rgb(246, 246, 246);}
+
+.edit-wrapper{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    /* height:100%; */
+    display:none;
+  }
+
+  .edit-wrapper button{
+    background-color: white;
+    margin-right: 0px;
+    padding: 8px 10px;
+    box-shadow: 1px 1px .5px .5px gray;
+  }
+
+  .edit-wrapper button.float-left{
+    border-radius: 0px 0px 5px 0px;
+  }
+
+  .edit-wrapper button.float-right{
+    border-radius: 0px 0px 0px 5px;  
+  }

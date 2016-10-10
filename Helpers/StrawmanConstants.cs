@@ -197,11 +197,19 @@ namespace StrawmanApp.Helpers
         {
             public static string name = "Management Letters";
             public const string id = "MANAGEMENT_LETTERS";
+            public class Scripts
+            {
+                public static string forms = "~/Views/Shared/_ScriptsCommentsEnableManagement.cshtml";
+            }
         }
         public class MONTHLY_COMMENTS
         {
             public static string name = "Monthly Comments";
             public const string id = "MONTHLY_COMMENTS";
+            public class Scripts
+            {
+                public static string forms = "~/Views/Shared/_ScriptsCommentsEnableManagement.cshtml";
+            }
         }
 
         public class BOY

@@ -9,8 +9,9 @@
     string update_action = ViewBag.UpdateAction;
     foreach (StrawmanApp.Entities.v_WRK_MONTHLY_COMMENTS_DATA main_data in data)
     {
-        table_id = "comments" + main_data.CHANNEL.ToString();
-    <table class="table" id="table_@table_id" style="display:table; margin-top:20px;">
+        table_id = "comments_" + main_data.CHANNEL.ToString();
+    <div class="comment-wrapper" style="position:relative;" data-letter-id="@main_data.CHANNEL.ToString()" data-target="@StrawmanApp.Entities.CommentTypes.MONTHLY_COMMENTS" data-value-name="@Html.DisplayFor(m => main_data.NAME)">
+    <table class="table" id="table_@table_id" style="display:table; margin-top:20px;" >
         <tbody>   
         <tr>
             <td class="table-cell" style="display:table-cell;font-weight:bold;color:@style_red;">
@@ -24,21 +25,25 @@
           List<StrawmanApp.Entities.LETTERS_COMMENT_DATA> letters = Model.Where(m => m.LETTER_ID == main_data.CHANNEL).ToList();
           foreach (StrawmanApp.Entities.LETTERS_COMMENT_DATA item in letters)
           {
-            bool own = (item.USER == user);
-            if (item.COMMENT != null)
-            {
-                <p>@Html.DisplayFor(m => item.COMMENT)</p>
-            }
-            else
-            {
-                <p>&nbsp;</p>
-            }
-            channel_id = item.LETTER_ID;
+              <div>
+                @{bool own = (item.USER == user);}
+                @if (item.COMMENT != null)
+                {
+                    @Html.Raw(item.COMMENT)
+                }
+                else
+                {
+                    <span>&nbsp;</span>
+                }
+              </div>
+                channel_id = item.LETTER_ID;
           }
           } </div>
             </td>
         </tr>
         </tbody>       
     </table>
-        }
+    </div>
+    }
+    Html.RenderPartial("~/Views/Shared/_Modal.cshtml", new ViewDataDictionary {{"modal_name","modal_comments"}});
 }

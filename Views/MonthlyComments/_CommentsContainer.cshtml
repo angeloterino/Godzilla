@@ -5,11 +5,11 @@
         <div>
         @if (item.COMMENT != null)
         {
-            <p>@Html.DisplayFor(m => item.COMMENT)</p>
+            @Html.Raw(item.COMMENT)
         }
         else
         {
-            <p>&nbsp;</p>
+            <span>&nbsp;</span>
         }
         </div> 
         

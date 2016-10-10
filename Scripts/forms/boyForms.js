@@ -1,4 +1,4 @@
-﻿//Funcionalidad de los inputs del formulario BOY's
+//Funcionalidad de los inputs del formulario BOY's
 $.saveMenu = $('<div/>');
 $.formId = null;
 $(document).ready(function () {
@@ -91,7 +91,8 @@ $(document).ready(function () {
                             });
                             $(_this).css('position', 'relative').append($(_div).show());
                         }
-                    }
+                    }else
+                        $(_this).attr('data-editable','');
                 });
             } else {
                 $(_this).find('div[data-type=edit_enabled]').show();

@@ -84,5 +84,7 @@ namespace StrawmanApp.Models
         [Range(typeof(decimal), "0", "99.99")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText=@"&nbsp;", HtmlEncode = false)]
         public double? sellout_btg { get; set; }
+
+        public decimal? base_id { get; set; }
     }
 }

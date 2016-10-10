@@ -1,4 +1,16 @@
-﻿var newComment = function (market, brand, channel, button) {
+var initEditor = function(_editor){
+    tinymce.EditorManager.editors = []; 
+    tinymce.init({
+        selector: _editor,
+        setup: function (editor) {
+            editor.on('change', function () {
+                editor.save();
+            });
+        }
+    });  
+};
+
+var newComment = function (market, brand, channel, button) {
     var _market = market;
     var _brand = brand;
     var _channel = channel;
@@ -7,6 +19,8 @@
     var _save = $('<button>').attr({ "class": "btn btn-success", "data-type": "save_comment" }).html("Save Comment");
     var _cancel = $('<button>').attr({ "class": "btn btn-danger", "data-type": "cancel_comment" }).html("Cancel");
     var _name = $(button).attr('data-name');
+    var _source = $(button).attr('data-target');
+    var _id = $(button).attr('data-letter-id');
     $(_wrapper).append(_save);
     $(_wrapper).append(_cancel);
     $(button).hide();
@@ -19,8 +33,9 @@
     $(_wrapper).on('click', 'button[data-type=save_comment]', function () {
         $('form').submit();
     });
-    $.get("../Comments/NewComment", { "market": _market, "brand": _brand, "channel": _channel, "name": _name }, function (d, t, j) {
+    $.get("../Comments/NewComment", { "market": _market, "brand": _brand, "channel": _channel, "name": _name, "source":_source, "id":_id }, function (d, t, j) {
         $(_body).append(d);
+        initEditor('input.text-box');
     });
 };
 
@@ -47,6 +62,7 @@ var editComment = function (id) {
     });
     $.get("../Comments/EditComment", { "id": id }, function (d, t, j) {
         $(_body).append(d);
+        initEditor('input.text-box');
     });
 
 };
@@ -56,13 +72,20 @@ var UpdateCommentSuccess = function () {
     var _brand = $('form').find('input[id=brand]').val();
     var _channel = $('form').find('input[id=channel]').val();
     var _name = $('form').find('input[id=name]').val();
-    $.get("../Comments/Comments", { "market": _market, "brand": _brand, "channel": _channel }, function (d, t, j) {
+    var _source = $('form').find('input[id=source]').val();
+    var _id = $('form').find('input[id=letter_id]').val();
+    $.get("../Comments/Comments", { "market": _market, "brand": _brand, "channel": _channel, "id":_id, "source":_source }, function (d, t, j) {
         $('div[data-name=' + _modal + ']').find('.modal-dialog').html(d);
         $('div[data-name=' + _modal + ']').find('.modal-header h4').html($('div[data-name=' + _modal + ']').find('.modal-header h4').html() + ' ' + _name);
-        $('div[data-name=' + _modal + ']').modal('show');
-        $('button[data-type=new_comment]').attr({ 'data-market': _market, 'data-brand': _brand, 'data-channel': _channel, 'data-name': _name });
+        $('.comment-wrapper[data-letter-id='+_id+']').find('.comment-container').html($(d).find('.modal-body .comment.text').removeAttr('class').clone());
+        //$('div[data-name=' + _modal + ']').modal('show');
+        $('button[data-type=new_comment]').attr({ 'data-market': _market, 'data-brand': _brand, 'data-channel': _channel, 'data-name': _name,'data-target': _source,'data-letter-id':_id});
     });
 };
+
+var FormatEditorContent = function(){
+    return null;
+}
 
 $(document).ready(function () {
     $(document).on('click', 'button[data-type=new_comment]', function () {

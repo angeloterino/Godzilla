@@ -319,8 +319,8 @@ namespace StrawmanApp.Entities
     }
 
     public static class CommentTypes {
-        public static string MANAGEMENT_LETTER ="MANAGEMENT_LETTER";
-        public static string MONTHLY_COMMENTS = "MONTHLY_COMMENTS";
+        public const string MANAGEMENT_LETTER ="MANAGEMENT_LETTER";
+        public const string MONTHLY_COMMENTS = "MONTHLY_COMMENTS";
     }
 
     public class CommentType {

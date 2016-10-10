@@ -44,16 +44,18 @@
       case "LettersForm":
           {
             @Scripts.Render("~/bundles/jqueryval");
+            Html.RenderAction("CheckPermissions", "Config", new { view = StrawmanApp.Helpers.StrawmanViews.MONTHLY_COMMENTS.id });
             <script src="@Url.Content("~/Scripts/customForms.js")"></script>
 
           }
           break;
-          
-          
-      case"MonthlyComments":
+
+      case "ManagementLetter": 
+      case "MonthlyComments":
           {
                @Scripts.Render("~/bundles/jqueryval");
-                <script src="@Url.Content("~/Scripts/customMonthlyComments.js")"></script>
+                Html.RenderAction("CheckPermissions", "Config", new { view = StrawmanApp.Helpers.StrawmanViews.MONTHLY_COMMENTS.id });
+                <script src="@Url.Content(contentUrl)"></script>
           }
           break;
       case "Config":

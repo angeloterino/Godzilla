@@ -24,7 +24,7 @@
             {
                 border_transparent = "border-bottom-color:transparent;";
             }            
-            StrawmanApp.Entities.LETTERS_COMMENT_DATA letter = data.Where(m => m.LETTER_ID == item.GROUP_ID).FirstOrDefault();
+            List<StrawmanApp.Entities.LETTERS_COMMENT_DATA> letters = data.Where(m => m.LETTER_ID == item.GROUP_ID).Select(m=>m).ToList();
                
             <tr class="table-row" style="display:table-row">
                 <td class="table-cell" style="display:table-cell;width:60px;@border_transparent">
@@ -48,15 +48,21 @@
                     @Html.DisplayFor(m => item.NAME)
                 </td>
                 <td class="table-cell" style="display:table-cell">
-                    @if (letter != null)
-                    {
-                        @Html.DisplayFor(m => letter.COMMENT);
-                    }
-                    else
-                    {
+                    <div class="comment-wrapper" style="position:relative;" data-letter-id="@item.GROUP_ID.ToString()" data-target="@StrawmanApp.Entities.CommentTypes.MANAGEMENT_LETTER" data-value-name="@Html.DisplayFor(m => item.NAME)">
+                        <div class="comment-container">
+                            @if (letters != null)
+                            {
+                                foreach(StrawmanApp.Entities.LETTERS_COMMENT_DATA letter in letters){
+                                    @Html.Raw(letter.COMMENT)
+                                }
+                            }
+                            else
+                            {
                         
-                        <span>&nbsp;</span>
-                    }
+                                <span>&nbsp;</span>
+                            }
+                        </div>
+                     </div>
                 </td>
             </tr>
        
@@ -84,7 +90,7 @@
               {
                   border_transparent = "border-bottom-color:transparent;";
               }              
-              StrawmanApp.Entities.LETTERS_COMMENT_DATA letter = data.Where(m => m.LETTER_ID == item.GROUP_ID).FirstOrDefault();
+              List<StrawmanApp.Entities.LETTERS_COMMENT_DATA> letters = data.Where(m => m.LETTER_ID == item.GROUP_ID).Select(m=>m).ToList();
                           
             <tr class="table-row" style="display:table-row">
                 <td class="table-cell" style="display:table-cell;width:60px;@border_transparent">
@@ -110,15 +116,21 @@
                     @Html.DisplayFor(m => item.NAME)
                 </td>
                 <td class="table-cell" style="display:table-cell">
-                    @if (letter != null)
-                    {
-                        @Html.DisplayFor(m => letter.COMMENT);
-                    }
-                    else
-                    {
+                    <div class="comment-wrapper" style="position:relative;" data-letter-id="@item.GROUP_ID.ToString()" data-target="@StrawmanApp.Entities.CommentTypes.MANAGEMENT_LETTER" data-value-name="@Html.DisplayFor(m => item.NAME)">
+                        <div class="comment-container">
+                            @if (letters != null)
+                            {
+                                foreach(StrawmanApp.Entities.LETTERS_COMMENT_DATA letter in letters){
+                                    @Html.Raw(letter.COMMENT);
+                                }
+                            }
+                            else
+                            {
                         
-                        <span>&nbsp;</span>
-                    }
+                            <span>&nbsp;</span>
+                            }
+                        </div>
+                    </div>
                 </td>
             </tr>
         
@@ -145,7 +157,7 @@
             if(lst3.IndexOf(item) != lst3.Count -1){
                 border_transparent = "border-bottom-color:transparent;";
             }
-            StrawmanApp.Entities.LETTERS_COMMENT_DATA letter = data.Where(m => m.LETTER_ID == item.GROUP_ID).FirstOrDefault();
+            List<StrawmanApp.Entities.LETTERS_COMMENT_DATA> letters = data.Where(m => m.LETTER_ID == item.GROUP_ID).Select(m=>m).ToList();
             <tr class="table-row" style="display:table-row; ">
             <td class="table-cell" style="display:table-cell;width:60px;@border_transparent">&nbsp;</td>                        
             @if (channel_name != item.CHANNEL_NAME)
@@ -158,11 +170,22 @@
             else
             {
             <td class="table-cell" style="display:table-cell">
+                <div class="comment-wrapper" style="position:relative;" data-letter-id="@item.GROUP_ID.ToString()" data-target="@StrawmanApp.Entities.CommentTypes.MANAGEMENT_LETTER" data-value-name="@Html.DisplayFor(m => item.NAME)">
                 <span style="font-weight:bold">@Html.DisplayFor(m => item.NAME):</span><br />
-                @if (letter != null)
-                {
-                    <p>@Html.DisplayFor(m => letter.COMMENT)</p>
-                }
+                    <div class="comment-container">
+                    @if (letters != null)
+                    {   
+                        foreach(StrawmanApp.Entities.LETTERS_COMMENT_DATA letter in letters){
+                            @Html.Raw(letter.COMMENT)
+                        }
+                    }
+                    else
+                    {
+                        
+                    <span>&nbsp;</span>
+                    }
+                    </div>
+                </div>
             </td>            
             }             
             </tr>

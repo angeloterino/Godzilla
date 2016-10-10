@@ -882,6 +882,12 @@ namespace StrawmanApp.Controllers
                 case Helpers.StrawmanViews.BOYBYCHANNEL.id:
                     _partialView = Helpers.StrawmanViews.BOYBYCHANNEL.Scripts.forms;
                     break;
+                case Helpers.StrawmanViews.MONTHLY_COMMENTS.id:
+                    _partialView = Helpers.StrawmanViews.MONTHLY_COMMENTS.Scripts.forms;
+                    break;
+                case Helpers.StrawmanViews.MANAGEMENT_LETTERS.id:
+                    _partialView = Helpers.StrawmanViews.MANAGEMENT_LETTERS.Scripts.forms;
+                    break;
 
             }
             return PartialView(_partialView);

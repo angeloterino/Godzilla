@@ -22,10 +22,10 @@ namespace StrawmanApp.Controllers
 
         [Authorize]
         [HttpGet]
-        public ActionResult Comments(string market, string brand, string channel)
+        public ActionResult Comments(string market, string brand, string channel, string id, string source)
         {
             this.SetViewBag();
-            if(!string.IsNullOrEmpty(market) && !string.IsNullOrEmpty(brand) && !string.IsNullOrEmpty(channel))
+            if (!string.IsNullOrEmpty(market) && !string.IsNullOrEmpty(brand) && !string.IsNullOrEmpty(channel))
             {
                 List<MANAGEMENT_LETTERS_REL> lst = (List<MANAGEMENT_LETTERS_REL>)StrawmanDBLibray.DBLibrary.GetComments(StrawmanDataTables.MANAGEMENT_LETTERS_REL);
                 lst = lst.Where(m => m.BRAND == decimal.Parse(brand) && m.MARKET == decimal.Parse(market) && m.CHANNEL == decimal.Parse(channel)).Select(m => m).ToList();
@@ -59,23 +59,77 @@ namespace StrawmanApp.Controllers
                     return PartialView(COMMENTS_VIEW, model);
                 }
             }
+            else
+            {
+                //Comentarios Montly Comments y Managemet Letters
+                switch (source)
+                {
+                    case Entities.CommentTypes.MONTHLY_COMMENTS:
+                        List<LETTERS_COMMENT_DATA> cmt = (List<LETTERS_COMMENT_DATA>)StrawmanDBLibray.DBLibrary.GetCommentsByMasterId(id);
+                        //List<LETTERS_COMMENT_DATA> cmt = lst.First().MANAGEMENT_LETTERS_MASTER.LETTERS_COMMENT_DATA.Where(m => m.YEAR_PERIOD == Helpers.PeriodUtil.Year && m.MONTH_PERIOD == Helpers.PeriodUtil.Month).Select(m => m).ToList();
+                        List<Entities.CommentsModel> model = cmt
+                            .Where(m=>m.TYPE == source && m.YEAR_PERIOD == Helpers.PeriodUtil.Year && m.MONTH_PERIOD == Helpers.PeriodUtil.Month)
+                            .Select(m => new Entities.CommentsModel
+                        {
+                            letter_id = (int?)m.ID,
+                            month = (int)m.MONTH_PERIOD,
+                            year = (int)m.YEAR_PERIOD,
+                            text = m.COMMENT,
+                            market = market,
+                            brand = brand,
+                            channel = channel,
+                            date = m.DATE,
+                            user = m.USER,
+                        }).ToList();
+                        return PartialView(COMMENTS_VIEW, model);
+
+                    case Entities.CommentTypes.MANAGEMENT_LETTER:
+                        List<LETTERS_COMMENT_DATA> cml = (List<LETTERS_COMMENT_DATA>)StrawmanDBLibray.DBLibrary.GetCommentsByMasterId(id);
+                        //List<LETTERS_COMMENT_DATA> cmt = lst.First().MANAGEMENT_LETTERS_MASTER.LETTERS_COMMENT_DATA.Where(m => m.YEAR_PERIOD == Helpers.PeriodUtil.Year && m.MONTH_PERIOD == Helpers.PeriodUtil.Month).Select(m => m).ToList();
+                        List<Entities.CommentsModel> mlmodel = cml
+                            .Where(m =>m.TYPE == source && m.YEAR_PERIOD == Helpers.PeriodUtil.Year && m.MONTH_PERIOD == Helpers.PeriodUtil.Month)
+                            .Select(m => new Entities.CommentsModel
+                        {
+                            letter_id = (int?)m.ID,
+                            month = (int)m.MONTH_PERIOD,
+                            year = (int)m.YEAR_PERIOD,
+                            text = m.COMMENT,
+                            market = market,
+                            brand = brand,
+                            channel = channel,
+                            date = m.DATE,
+                            user = m.USER,
+                        }).ToList();
+                        return PartialView(COMMENTS_VIEW, mlmodel);
+                }
+            }
             return null;
         }
 
         [Authorize]
         [HttpGet]
-        public ActionResult NewComment(string market, string brand, string channel, string name)
+        public ActionResult NewComment(string market, string brand, string channel, string name, string source, string id)
         {
-            MANAGEMENT_LETTERS_REL rel = (MANAGEMENT_LETTERS_REL)StrawmanDBLibray.DBLibrary.GetMasterRel(channel, market, brand);
             Models.FormUtilModel.TextArea model = new Models.FormUtilModel.TextArea
             {
                 id="comment",
                 name = name,
-                data_attributes = "new"
+                data_attributes = "new",
+                source = source
             };
-            if (rel != null)
-            {
-                model.comment_id = rel.ID.ToString();
+            switch(source){
+                case Entities.CommentTypes.MANAGEMENT_LETTER:
+                case Entities.CommentTypes.MONTHLY_COMMENTS:
+                    model.letter_id = id;
+                    break;
+                default:
+                MANAGEMENT_LETTERS_REL rel = (MANAGEMENT_LETTERS_REL)StrawmanDBLibray.DBLibrary.GetMasterRel(channel, market, brand);
+                
+                if (rel != null)
+                {
+                    model.comment_id = rel.ID.ToString();
+                }
+                break;
             }
             return PartialView(NEW_COMMENT, model);
         }
@@ -84,30 +138,46 @@ namespace StrawmanApp.Controllers
         public ActionResult EditComment(string id)
         {
             LETTERS_COMMENT_DATA letter = (LETTERS_COMMENT_DATA)StrawmanDBLibray.DBLibrary.GetCommentsById(id);
-            MANAGEMENT_LETTERS_REL rel = (MANAGEMENT_LETTERS_REL)StrawmanDBLibray.DBLibrary.GetMasterRelByLetterId(letter.LETTER_ID.ToString());
-            MANAGEMENT_LETTERS_MASTER master = (MANAGEMENT_LETTERS_MASTER) StrawmanDBLibray.DBLibrary.GetCommentsMasterById(letter.LETTER_ID.ToString());
             Models.FormUtilModel.TextArea model = new Models.FormUtilModel.TextArea
             {
                 id = "comment",
                 comment = letter.COMMENT,
-                data_attributes = "edit"
+                data_attributes = "edit",
+                letter_id = letter.LETTER_ID.ToString(),
+                comment_id = id,
+                source = letter.TYPE
             };
             if (letter != null)
             {
-                model.letter_id = letter.ID.ToString();
-                model.market = rel.MARKET.ToString();
-                model.brand = rel.BRAND.ToString();
-                model.channel = rel.CHANNEL.ToString();
-                model.name = master.NAME;
+                switch (letter.TYPE)
+                {
+                    default:
+                        MANAGEMENT_LETTERS_REL rel = (MANAGEMENT_LETTERS_REL)StrawmanDBLibray.DBLibrary.GetMasterRelByLetterId(letter.LETTER_ID.ToString());
+                        MANAGEMENT_LETTERS_MASTER master = (MANAGEMENT_LETTERS_MASTER)StrawmanDBLibray.DBLibrary.GetCommentsMasterById(letter.LETTER_ID.ToString());
+
+                        model.letter_id = letter.ID.ToString();
+                        model.market = rel.MARKET.ToString();
+                        model.brand = rel.BRAND.ToString();
+                        model.channel = rel.CHANNEL.ToString();
+                        model.name = master.NAME;
+                        break;
+                    case Entities.CommentTypes.MANAGEMENT_LETTER:
+                    case Entities.CommentTypes.MONTHLY_COMMENTS:
+                        model.name = letter.TYPE;
+                        break;
+                }
             }
             return PartialView(NEW_COMMENT, model);
         }
         [Authorize]
         [HttpPost]
-        public ActionResult InsertComment(FormCollection data)
+        public ActionResult InsertComment(Models.FormUtilModel.TextArea data)
         {
             int result = 0;
-            switch (data["data_attributes"])
+            string type = string.IsNullOrEmpty(data.comment) || data.comment.Trim().Length == 0?"delete":data.data_attributes;
+            string source = data.source;
+
+            switch (type)
             {
                 case "new":
                     //insertar el nuevo comment
@@ -121,47 +191,82 @@ namespace StrawmanApp.Controllers
                     //    List<LETTERS_COMMENT_DATA> letters_tmp = (List<LETTERS_COMMENT_DATA>)StrawmanDBLibray.DBLibrary.GetCommentsByMasterId(master.ID.ToString());
                     //    letters_tmp.ForEach(letters.A);// (EntityCollection<LETTERS_COMMENT_DATA>)StrawmanDBLibray.DBLibrary.GetCommentsByMasterId(master.ID.ToString());
                     //}
-                    LETTERS_COMMENT_DATA letter = new LETTERS_COMMENT_DATA
+                    switch (source)
                     {
-                      COMMENT = data["comment"],
-                      USER = Helpers.UserUtils.UserName,
-                      YEAR_PERIOD = Helpers.PeriodUtil.Year,
-                      MONTH_PERIOD = Helpers.PeriodUtil.Month,
-                      TYPE = COMMENT_TYPE,
-                      DATE = DateTime.Now,
-                    };
+                        default:
+                            LETTERS_COMMENT_DATA letter = new LETTERS_COMMENT_DATA
+                            {
+                                COMMENT = data.comment,
+                                USER = Helpers.UserUtils.UserName,
+                                YEAR_PERIOD = Helpers.PeriodUtil.Year,
+                                MONTH_PERIOD = Helpers.PeriodUtil.Month,
+                                TYPE = COMMENT_TYPE,
+                                DATE = DateTime.Now,
+                            };
 
-                    MANAGEMENT_LETTERS_MASTER master = new MANAGEMENT_LETTERS_MASTER
-                    {
-                            COUNTRY = Helpers.CountryUtil.Country,
-                            NAME = data["name"],
-                            CHANNEL = decimal.Parse(data["channel"].ToString()),
-                            MAIN_GROUP = 0,
-                            GROUP = 0,
-                            CHANNEL_GROUP = decimal.Parse(data["channel"].ToString()),
+                            MANAGEMENT_LETTERS_MASTER master = new MANAGEMENT_LETTERS_MASTER
+                            {
+                                COUNTRY = Helpers.CountryUtil.Country,
+                                NAME = data.name,
+                                CHANNEL = decimal.Parse(data.channel.ToString()),
+                                CHANNEL_GROUP = decimal.Parse(data.channel.ToString()),
 
-                    };
+                            };
 
-                    MANAGEMENT_LETTERS_REL rel = new MANAGEMENT_LETTERS_REL
-                    {
-                        ID = data["comment_id"] != null? decimal.Parse(data["comment_id"].ToString()):0,
-                        CHANNEL = decimal.Parse(data["channel"].ToString()),
-                        BRAND = decimal.Parse(data["brand"].ToString()),
-                        MARKET = decimal.Parse(data["market"].ToString()),
-                    };
+                            MANAGEMENT_LETTERS_REL rel = new MANAGEMENT_LETTERS_REL
+                            {
+                                ID = data.comment_id != null ? decimal.Parse(data.comment_id.ToString()) : 0,
+                                CHANNEL = decimal.Parse(data.channel.ToString()),
+                                BRAND = decimal.Parse(data.brand.ToString()),
+                                MARKET = decimal.Parse(data.market.ToString()),
+                            };
 
-                    result = StrawmanDBLibray.DBLibrary.SaveComment(letter,master,rel);
-                    break;
-                case "edit":
-                    //editar comment por id
-                    if (data["letter_id"] != null)
-                    {
-                        LETTERS_COMMENT_DATA letter_ed = (LETTERS_COMMENT_DATA)StrawmanDBLibray.DBLibrary.GetCommentsById(data["letter_id"]);
-                        letter_ed.COMMENT = data["comment"];
-                        letter_ed.DATE = DateTime.Now;
-                        result = StrawmanDBLibray.DBLibrary.SaveCommentData(StrawmanDataTables.LETTERS_COMMENT_DATA, letter_ed);
+                            result = StrawmanDBLibray.DBLibrary.SaveComment(letter, master, rel);
+                        break;
+                        case Entities.CommentTypes.MANAGEMENT_LETTER:
+                        case Entities.CommentTypes.MONTHLY_COMMENTS:
+                            LETTERS_COMMENT_DATA m_letter = new LETTERS_COMMENT_DATA
+                            {
+                                LETTER_ID = decimal.Parse(data.letter_id),
+                                COMMENT = data.comment,
+                                USER = Helpers.UserUtils.UserName,
+                                YEAR_PERIOD = Helpers.PeriodUtil.Year,
+                                MONTH_PERIOD = Helpers.PeriodUtil.Month,
+                                TYPE = source,
+                                DATE = DateTime.Now,
+                            };
+                            result = StrawmanDBLibray.DBLibrary.SaveComment(m_letter, null, null);
+
+                            break;
                     }
                     break;
+                case "delete":
+                case "edit":
+                    //editar comment por id
+                    if (data.letter_id != null)
+                    {
+                        string _id = data.letter_id;
+                        switch (source)
+                        {
+                            case Entities.CommentTypes.MONTHLY_COMMENTS:
+                            case Entities.CommentTypes.MANAGEMENT_LETTER:
+                                _id = data.comment_id;
+                                break;
+                        }
+                        LETTERS_COMMENT_DATA letter_ed = (LETTERS_COMMENT_DATA)StrawmanDBLibray.DBLibrary.GetCommentsById(_id);
+                        if (type == "edit")
+                        {
+                            letter_ed.COMMENT = data.comment;
+                            letter_ed.DATE = DateTime.Now;
+                            result = StrawmanDBLibray.DBLibrary.SaveCommentData(StrawmanDataTables.LETTERS_COMMENT_DATA, letter_ed);
+                        }
+                        else
+                        {
+                            result = StrawmanDBLibray.DBLibrary.RemoveComment(StrawmanDataTables.LETTERS_COMMENT_DATA, letter_ed);
+                        }
+                    }
+                    break;
+                
             }
             return new JsonResult() { Data = new { Success = true, Result = result } };
         }

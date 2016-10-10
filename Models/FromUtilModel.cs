@@ -88,6 +88,7 @@ namespace StrawmanApp.Models
             public string market { get; set; }
             public string brand { get; set; }
             public string channel { get; set; }
+            [AllowHtml]
             public string comment { get; set; }
 
             public int rows { get; set; }
@@ -143,6 +144,7 @@ namespace StrawmanApp.Models
         public string classes { get; set; }
         public bool is_required { get; set; }
         public string _for {get;set;}
+        public string source { get; set; }
     }
 
     public class FormComponents

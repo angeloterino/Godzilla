@@ -742,10 +742,10 @@ namespace StrawmanApp.Controllers
                         {
                             _id = p.Key._id,
                             channel = p.Sum(s => s.channel),
-                            brand = p.Max(s => s.brand),
+                            brand = p.Max(s => s.base_id) + p.Sum(s=>s.channel),
                             boy_name = p.LastOrDefault().boy_name,
                             vgroup = p.LastOrDefault().vgroup,
-                            market = p.Max(s => s.market),
+                            market = p.Max(s => s.base_id) + p.Sum(s => s.channel),
                             market_col1 = p.Sum(s => s.market_col1),
                             market_pc = Helpers.StrawmanCalcs.CalcPCVSPY((decimal)total.FirstOrDefault(m=>m._id == p.Key._id).market_col2, (decimal)p.Sum(s => s.market_col1)),
                             sellin_col1 = p.Sum(s => s.sellin_col1),
@@ -770,10 +770,10 @@ namespace StrawmanApp.Controllers
                         {
                             _id = p.Key._id,
                             channel = p.Sum(s=>s.channel),
-                            brand = p.Max(s => s.brand),
+                            brand = p.Max(s => s.base_id) + p.Sum(s => s.channel),
                             boy_name = p.LastOrDefault().boy_name,
                             vgroup = p.LastOrDefault().vgroup,
-                            market = p.Max(s => s.market),
+                            market = p.Max(s => s.base_id) + p.Sum(s => s.channel),
                             market_col1 = p.Sum(s => s.market_col1),
                             market_col2 = p.Sum(s => s.market_col1) - _int.FirstOrDefault(m=>m._id == p.Key._id).market_col1,
                             market_pc = Helpers.StrawmanCalcs.CalcPCVSPY((decimal)total.FirstOrDefault(m => m._id == p.Key._id).market_col2, (decimal)p.Sum(s => s.market_col1)),
@@ -806,10 +806,10 @@ namespace StrawmanApp.Controllers
                         {
                             _id = p.Key._id,
                             channel = p.Sum(s => s.channel),
-                            brand = p.Max(s => s.brand),
+                            brand = p.Max(s => s.base_id) * p.Sum(s => s.channel),
                             boy_name = p.LastOrDefault().boy_name,
                             vgroup = p.LastOrDefault().vgroup,
-                            market = p.Max(s => s.market),
+                            market = p.Max(s => s.base_id) + p.Sum(s => s.channel),
                             market_col1 = p.Sum(s => s.market_col1),
                             market_pc = Helpers.StrawmanCalcs.CalcPCVSPY((decimal)_le.FirstOrDefault(m => m._id == p.Key._id).market_col1, (decimal)p.Sum(s => s.market_col1)),
                             sellin_col1 = p.Sum(s => s.sellin_col1),
@@ -832,10 +832,10 @@ namespace StrawmanApp.Controllers
                         {
                             _id = p.Key._id,
                             channel = p.Sum(s=>s.channel),
-                            brand = p.Max(s => s.brand),
+                            brand = p.Max(s => s.base_id) + p.Sum(s => s.channel),
                             boy_name = p.LastOrDefault().boy_name,
                             vgroup = p.LastOrDefault().vgroup,
-                            market = p.Max(s => s.market),
+                            market = p.Max(s => s.base_id) + p.Sum(s => s.channel),
                             market_col1 = p.Sum(s => s.market_col1),
                             market_col2 = p.Sum(s => s.market_col2),
                             market_pc = Helpers.StrawmanCalcs.CalcPCVSPY((decimal)p.Sum(s => s.market_col1), (decimal)p.Sum(s => s.market_col2)),
@@ -881,9 +881,10 @@ namespace StrawmanApp.Controllers
                         {
                             _id = (decimal)m.id,
                             channel = m.channel,
-                            brand = m.brand * m.base_id,
+                            brand = m.brand,
                             boy_name = m.name,
-                            market = m.market * m.base_id,
+                            market = m.market,
+                            base_id = m.base_id,
                             market_col1 = l.market_col1 * (double)(m.market_config == null ? 1 : m.market_config),
                             market_col2 = l.market_col2 * (double)(m.market_config == null ? 1 : m.market_config),
                             sellin_col1 = l.sellin_col1 * (double)(m.sellin_config == null ? 1 : m.sellin_config),
@@ -901,6 +902,7 @@ namespace StrawmanApp.Controllers
                         .Select(p => new Models.BoyMassMarketModels
                         {
                             _id = p.Key._id,
+                            base_id = p.Max(s=>s.base_id),
                             channel = p.Key._channel,
                             brand = p.Max(s => s.brand),
                             boy_name = p.LastOrDefault().boy_name,
@@ -919,12 +921,12 @@ namespace StrawmanApp.Controllers
         }
 
         #region Public Functions
-        public List<Models.BoyMassMarketModels> GetMasterData(string channel)
+        public List<Models.BoyMassMarketModels> GetMasterData(string _channel)
         {
-            SetChannel(channel);
+            SetChannel(_channel);
             SetSessionData(BOYYTDDATA, GetBoyYTDData("YTD"));
 
-            return GetSessionData(BOYYTDDATA);
+            return GetSessionData(BOYYTDDATA).Where(m=>m.channel == channel).ToList();
         }
         #endregion
         //

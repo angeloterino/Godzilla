@@ -32,6 +32,8 @@ namespace StrawmanApp
                         "~/Scripts/forms/boyForms*"));
             bundles.Add(new ScriptBundle("~/bundles/commentsForm").Include(
                         "~/Scripts/forms/commentsForm*"));
+            bundles.Add(new ScriptBundle("~/bundles/tinymce").Include(
+                        "~/Scripts/tinymce/tinymce*"));
             bundles.Add(new StyleBundle("~/Content/css").Include(
                         "~/Content/site.css",
                         "~/Content/CustomStyle.css"));
