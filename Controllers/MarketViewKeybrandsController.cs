@@ -326,6 +326,7 @@ namespace StrawmanApp.Controllers
                             .GroupBy(m => new { _key = (decimal)m.vid })
                             .Select(m => new Models.StrawmanViewSTDModel
                             {
+                                vid = m.Key._key,
                                 pcvspy1 = Helpers.StrawmanCalcs.CalcPCVSPY(m.Sum(p => p.col1), m.Sum(p => p.col2)),
                                 pcvspy2 = Helpers.StrawmanCalcs.CalcPCVSPY(m.Sum(p => p.col2), m.Sum(p => p.col3)),
                                 pcvspy3 = Helpers.StrawmanCalcs.CalcPCVSPY(m.Sum(p => p.col3), m.Sum(p => p.col4)),

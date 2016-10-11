@@ -31,7 +31,7 @@ namespace StrawmanApp.Controllers
         {
             List<StrawmanDBLibray.Entities.v_WRK_BRAND_BOY_DATA> bdata = (List<StrawmanDBLibray.Entities.v_WRK_BRAND_BOY_DATA>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.WRK_BRAND_BOY, true);
             List<StrawmanDBLibray.Entities.v_WRK_BRAND_TOTAL_DATA> tdata = (List<StrawmanDBLibray.Entities.v_WRK_BRAND_TOTAL_DATA>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.WRK_BRAND_TOTAL, true);
-            IEnumerable<Models.StrawmanViewSTDModel> tbase =
+            List<Models.StrawmanViewSTDModel> tbase =
                 bdata.Where(m => m.YEAR_PERIOD == Helpers.PeriodUtil.Year && m.MONTH_PERIOD == Helpers.PeriodUtil.Month && m.BRAND < 9000 && m.MARKET < 9000)
                     .AsEnumerable()
                     .Join(tdata.Where(m => m.YEAR_PERIOD == Helpers.PeriodUtil.Year && m.MONTH_PERIOD == Helpers.PeriodUtil.Month && m.BRAND < 9000 && m.MARKET < 9000).AsEnumerable()
@@ -50,7 +50,7 @@ namespace StrawmanApp.Controllers
                         col4 = (decimal?)m.b.INTERNAL,
                         col5 = (decimal?)m.b.LE,
                         col6 = (decimal?)m.b.PBP,
-                    }).AsEnumerable();
+                    }).ToList();
             List<Models.StrawmanViewSTDModel> mst = (List<Models.StrawmanViewSTDModel>)GetDataViewMaster();
 
             return new MarketViewKeybrandsController().GetGroupedData(tbase, mst, Classes.StrawmanViews.PCVSPY);
