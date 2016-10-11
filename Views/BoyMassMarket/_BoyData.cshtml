@@ -83,6 +83,12 @@
         @if ((bool)ViewData["sellin"])
         {
         <tr class="grid-row sellin">
+            @if (!(bool)ViewData["share"])
+            {
+                if(item.brand_name !=null && item.brand_name != item.boy_name){
+            <td class="grid-cell" style="text-align:left; vertical-align:middle; width:50%;">@Html.DisplayFor(m => item.brand_name)</td>
+                }
+            }
             <td class="grid-cell sellin">
                 NTS (values)</td>
         </tr>    

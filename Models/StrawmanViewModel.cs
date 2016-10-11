@@ -125,5 +125,9 @@ namespace StrawmanApp.Models
         public decimal? _pbpwc { get; set; }
         public decimal? vparent { get; set; }
         public bool is_wc { get { return _is_wc; } set { _is_wc = value; } }
+
+        public decimal? config { get; set; }
+
+        public decimal? col3_wc { get; set; }
     }
 }

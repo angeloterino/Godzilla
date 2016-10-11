@@ -806,7 +806,7 @@ namespace StrawmanApp.Controllers
                         {
                             _id = p.Key._id,
                             channel = p.Sum(s => s.channel),
-                            brand = p.Max(s => s.base_id) * p.Sum(s => s.channel),
+                            brand = p.Max(s => s.base_id) + p.Sum(s => s.channel),
                             boy_name = p.LastOrDefault().boy_name,
                             vgroup = p.LastOrDefault().vgroup,
                             market = p.Max(s => s.base_id) + p.Sum(s => s.channel),

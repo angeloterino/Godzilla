@@ -345,8 +345,7 @@ namespace StrawmanApp.Controllers
         }
         public ActionResult GetDataView()
         {
-            ViewBag.ViewFranchiseData = GetDataViewData();
-            SetSessionObject(BRAND_VIEW_FRANCHISE_DATA, ViewBag.ViewFranchiseData);
+            ViewBag.ViewFranchiseData = GetSessionObject(BRAND_VIEW_FRANCHISE_DATA, GetDataViewData());
             return PartialView(DATAVIEW);
         }
 
@@ -373,9 +372,17 @@ namespace StrawmanApp.Controllers
             Helpers.Session.SetSession(key, obj);
         }
 
+        private object GetSessionObject(string key, object obj)
+        {
+        
+            if(Helpers.Session.GetSession(key) == null && obj != null)
+                SetSessionObject(key, obj);
+            return Helpers.Session.GetSession(key);
+        }
+
         private object GetSessionObject(string key)
         {
-            return Helpers.Session.GetSession(key);
+            return GetSessionObject(key, null);
         }
 
         #endregion

@@ -264,9 +264,31 @@ namespace StrawmanApp.Controllers
             return GetSessionData(key, false);
         }
 
+        #region Public Functions
+        public object GetBrandViewData(string type)
+        {
+            switch (type)
+            {
+                case StrawmanDBLibray.Classes.StrawmanDataTables.WRK_BRAND_MAT:
+                    return this.GetDataMAT();
+                case StrawmanDBLibray.Classes.StrawmanDataTables.WRK_BRAND_MONTH:
+                    return this.GetDataMonth();
+                case StrawmanDBLibray.Classes.StrawmanDataTables.WRK_BRAND_YTD:
+                    return this.GetDataYTD();
+                case StrawmanDBLibray.Classes.StrawmanDataTables.WRK_BRAND_BTG:
+                    return this.GetDataBTG();
+                case StrawmanDBLibray.Classes.StrawmanDataTables.WRK_BRAND_BOY:
+                    return this.GetDataBOY();
+                case StrawmanDBLibray.Classes.StrawmanDataTables.WRK_BRAND_TOTAL:
+                    return this.GetDataTotalCustom();
+                case StrawmanDBLibray.Classes.StrawmanDataTables.WRK_BRAND_PCVSPY:
+                    return this.GetDataPCVSPY();
+            }
+            return null;
+        }
+        #endregion
         //
         // GET: /BrandView/Details/5
-
         public ActionResult Details(int id)
         {
             return View();

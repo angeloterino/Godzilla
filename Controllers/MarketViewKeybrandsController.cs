@@ -9,9 +9,6 @@ namespace StrawmanApp.Controllers
     [Authorize]
     public class MarketViewKeybrandsController : Controller
     {
-        private Models.GodzillaWRKDataContext db;
-        private List<Models.WRK_KEYBRANDS_BASE> tbase;
-
         private static string _path = "~/Views/MarketViewKeybrands/";
         private string dataview = _path + "_MarketDataView.cshtml";
         private string matview = _path + "_Market_MAT.cshtml";
@@ -24,166 +21,140 @@ namespace StrawmanApp.Controllers
 
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
         public ActionResult GetPCVSPY() {
-            using (
-            db = new Models.GodzillaWRKDataContext())
-            {
-                db.CommandTimeout = 500000;
-                ViewBag.MarketViewKeybrandsPCVSPY = GetPCVSPYData();
-            }
+            new Helpers.Session().CacheStatus = true;
+            ViewBag.MarketViewKeybrandsPCVSPY = GetPCVSPYData();
             return PartialView(pcvspyview);
         }
 
         private dynamic GetPCVSPYData()
         {
-            var query = from p in db.WRK_KEYBRANDS_PCVSPies
-                        where p.DATA == "MARKET" && p.TYPE == "MARKET" && p.ID != 999
-                        && (p.YEAR_PERIOD == Helpers.PeriodUtil.Year && p.MONTH_PERIOD == Helpers.PeriodUtil.Month)
-                        select new Models.StrawmanViewSTDModel { pcvspy1 = (decimal?)p.COL1, pcvspy2 = (decimal?)p.COL2, pcvspy3 = (decimal?)p.COL3, pcvspy4 = (decimal?)p.COL4, pcvspy5 = (decimal?)p.COL5, vid = (decimal)p.ID }
-                        ;
-            return query.OrderBy(m=>m.vid).ToList();
+            List<StrawmanDBLibray.Entities.v_WRK_MARKET_BOY_DATA> bdata = (List<StrawmanDBLibray.Entities.v_WRK_MARKET_BOY_DATA>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.WRK_MARKET_BOY, true);
+            List<StrawmanDBLibray.Entities.v_WRK_MARKET_TOTAL_DATA> tdata = (List<StrawmanDBLibray.Entities.v_WRK_MARKET_TOTAL_DATA>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.WRK_MARKET_TOTAL, true);
+            List<Models.StrawmanViewSTDModel> tbase =
+                bdata.Where(m => m.YEAR_PERIOD == Helpers.PeriodUtil.Year && m.MONTH_PERIOD == Helpers.PeriodUtil.Month && m.BRAND < 9000 && m.MARKET < 9000)
+                    .AsEnumerable()
+                    .Join(tdata.Where(m => m.YEAR_PERIOD == Helpers.PeriodUtil.Year && m.MONTH_PERIOD == Helpers.PeriodUtil.Month && m.BRAND < 9000 && m.MARKET < 9000).AsEnumerable()
+                            , b => new { _channel = b.CHANNEL, _market = b.MARKET, _brand = b.BRAND }
+                            , t => new { _channel = t.CHANNEL, _market = t.MARKET, _brand = t.BRAND }
+                            , (b, t) => new { b = b, t = t })
+                    .AsEnumerable()
+                    .Select(m => new Models.StrawmanViewSTDModel
+                    {
+                        channel = m.b.CHANNEL,
+                        market = m.b.MARKET,
+                        brand = m.b.BRAND,
+                        col1 = m.t.THREE_AGO,
+                        col2 = m.t.TWO_AGO,
+                        col3 = m.t.LAST,
+                        col4 = (decimal?)m.b.INTERNAL,
+                        col5 = (decimal?)m.b.LE,
+                        col6 = (decimal?)m.b.PBP,
+                    }).ToList();
+            List<Models.StrawmanViewSTDModel> mst = (List<Models.StrawmanViewSTDModel>)GetDataViewMaster();
+
+            return GetGroupedData(tbase, mst, Classes.StrawmanViews.PCVSPY); 
         }
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
         public ActionResult GetBOY() {
-            using (db = new Models.GodzillaWRKDataContext())
-            {
-                db.CommandTimeout = 500000;
-                ViewBag.MarketViewKeybrandsBOY = GetBOYData();             
-            }
+            ViewBag.MarketViewKeybrandsBOY = GetBOYData();             
             return PartialView(boyview);
         }
 
         private dynamic GetBOYData()
         {
-            var query = from p in db.WRK_KEYBRANDS_BOYs
-                        where p.DATA == "MARKET" && p.TYPE == "MARKET" && p.ID != 999
-                        && (p.YEAR_PERIOD == Helpers.PeriodUtil.Year && p.MONTH_PERIOD == Helpers.PeriodUtil.Month)
-                        select new Models.StrawmanViewSTDModel { _internal = (decimal?)p.COL1, _le = (decimal?)p.COL2, _pbp = (decimal?)p.COL3, vid = (decimal)p.ID };
-            return query.OrderBy(m=>m.vid).ToList();
+            List<Models.StrawmanViewSTDModel> tbase = (List<Models.StrawmanViewSTDModel>)new MarketViewController().GetMarketViewData(StrawmanDBLibray.Classes.StrawmanDataTables.WRK_MARKET_BOY);
+            List<Models.StrawmanViewSTDModel> mst = (List<Models.StrawmanViewSTDModel>)GetDataViewMaster();
+
+            return GetGroupedData(tbase, mst, Classes.StrawmanViews.BOY); 
         }
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
         public ActionResult GetTotalCustom() {
-            using (db = new Models.GodzillaWRKDataContext())
-            {
-                db.CommandTimeout = 50000;
-                ViewBag.MarketViewKeybrandsTotalCustom = GetTotalCustomData();               
-            }
+            ViewBag.MarketViewKeybrandsTotalCustom = GetTotalCustomData();               
             return PartialView(totalcustomview);
         }
 
         private dynamic GetTotalCustomData()
         {
-            tbase = Helpers.Session.GetSession("v_WRK_KEYBRANDS_BASE") != null ? (List<Models.WRK_KEYBRANDS_BASE>)Helpers.Session.GetSession("v_WRK_KEYBRANDS_BASE") : db.WRK_KEYBRANDS_BASEs.Select(m => m).ToList();
-            var query = from p in tbase
-                        where p.DATA == "MARKET" && p.TYPE == "TOTAL"
-                        && (p.YEAR_PERIOD == Helpers.PeriodUtil.Year && p.MONTH_PERIOD == Helpers.PeriodUtil.Month)
-                        select new Models.StrawmanViewSTDModel { col1 = p.COL1, col2 = p.COL2, col3 = p.COL3, vid = (decimal)p.ID };
-            return query.OrderBy(m=>m.vid).ToList(); 
+            List<Models.StrawmanViewSTDModel> tbase = (List<Models.StrawmanViewSTDModel>)new MarketViewController().GetMarketViewData(StrawmanDBLibray.Classes.StrawmanDataTables.WRK_MARKET_TOTAL);
+            List<Models.StrawmanViewSTDModel> mst = (List<Models.StrawmanViewSTDModel>)GetDataViewMaster();
+
+            return GetGroupedData(tbase, mst, Classes.StrawmanViews.TOTAL); 
         }
 
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
         public ActionResult GetBTG() {
-            using (
-            db = new Models.GodzillaWRKDataContext())
-            {
-                db.CommandTimeout = 500000;
-                ViewBag.MarketViewKeybrandsBTG = GetBTGData();
-            }
+            ViewBag.MarketViewKeybrandsBTG = GetBTGData();
             return PartialView(btgview);
         }
 
         private dynamic GetBTGData()
         {
+            List<Models.StrawmanViewSTDModel> tbase = (List<Models.StrawmanViewSTDModel>)new MarketViewController().GetMarketViewData(StrawmanDBLibray.Classes.StrawmanDataTables.WRK_MARKET_BTG);
+            List<Models.StrawmanViewSTDModel> mst = (List<Models.StrawmanViewSTDModel>)GetDataViewMaster();
 
-            var query = from p in db.WRK_KEYBRANDS_BTGs
-                        where p.DATA == "MARKET" && p.TYPE == "MARKET" && p.ID != 999
-                        && (p.YEAR_PERIOD == Helpers.PeriodUtil.Year && p.MONTH_PERIOD == Helpers.PeriodUtil.Month)
-                        select new Models.StrawmanViewSTDModel { col1 = (decimal?)p.COL1, col2 = (decimal?)p.COL2, pcvspy = (decimal?)p.PCVSPY, vid = (decimal)p.ID };
-            return query.OrderBy(m=>m.vid).ToList(); 
+            return GetGroupedData(tbase, mst, Classes.StrawmanViews.BTG); 
         }
 
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
         public ActionResult GetYTD()
         {
-            using (
-            db = new Models.GodzillaWRKDataContext())
-            {
-                ViewBag.MarketViewKeybrandsYTD = GetYTDData();
-            }
+            ViewBag.MarketViewKeybrandsYTD = GetYTDData();
             return PartialView(ytdview);
         }
         
         private dynamic GetYTDData()
         {
-            tbase = Helpers.Session.GetSession("v_WRK_KEYBRANDS_BASE") != null ? (List<Models.WRK_KEYBRANDS_BASE>)Helpers.Session.GetSession("v_WRK_KEYBRANDS_BASE") : db.WRK_KEYBRANDS_BASEs.Select(m => m).ToList();
-            var query = from p in tbase
-                        where p.DATA == "MARKET" &&  p.TYPE == "YTD"
-                        && (p.YEAR_PERIOD == Helpers.PeriodUtil.Year && p.MONTH_PERIOD == Helpers.PeriodUtil.Month)
-                        select new Models.StrawmanViewSTDModel { col1 = p.COL1, col2 = p.COL2, pcvspy = p.PCVSPY, vid = (decimal)p.ID };
-            return query.OrderBy(m=>m.vid).ToList(); 
+            List<Models.StrawmanViewSTDModel> tbase = (List<Models.StrawmanViewSTDModel>)new MarketViewController().GetMarketViewData(StrawmanDBLibray.Classes.StrawmanDataTables.WRK_MARKET_YTD);
+            List<Models.StrawmanViewSTDModel> mst = (List<Models.StrawmanViewSTDModel>)GetDataViewMaster();
+
+            return GetGroupedData(tbase, mst, Classes.StrawmanViews.YTD); 
         }
 
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
         public ActionResult GetMonth()
         {
-            using (
-            db = new Models.GodzillaWRKDataContext())
-            {
-                ViewBag.MarketViewKeybrandsMonth = GetMonthData();
-                db.CommandTimeout = 50000;
-            }
+            ViewBag.MarketViewKeybrandsMonth = GetMonthData();
             return PartialView(monthview);
         }
 
         private dynamic GetMonthData()
         {
-            tbase = Helpers.Session.GetSession("v_WRK_KEYBRANDS_BASE") != null ? (List<Models.WRK_KEYBRANDS_BASE>)Helpers.Session.GetSession("v_WRK_KEYBRANDS_BASE") : db.WRK_KEYBRANDS_BASEs.Select(m => m).ToList();
-            var query = from p in tbase
-                        where p.DATA == "MARKET" && p.TYPE == "MONTH"
-                        && (p.YEAR_PERIOD == Helpers.PeriodUtil.Year && p.MONTH_PERIOD == Helpers.PeriodUtil.Month)
-                        select new Models.StrawmanViewSTDModel { col1 = p.COL1, col2 = p.COL2, pcvspy = p.PCVSPY, vid = (decimal)p.ID };
-            return query.OrderBy(m=>m.vid).ToList(); 
+            List<Models.StrawmanViewSTDModel> tbase = (List<Models.StrawmanViewSTDModel>)new MarketViewController().GetMarketViewData(StrawmanDBLibray.Classes.StrawmanDataTables.WRK_MARKET_MONTH);
+            List<Models.StrawmanViewSTDModel> mst = (List<Models.StrawmanViewSTDModel>)GetDataViewMaster();
+
+            return GetGroupedData(tbase, mst, Classes.StrawmanViews.MONTH);
         }
 
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
         public ActionResult GetMAT()
         {
-            using (
-            db = new Models.GodzillaWRKDataContext())
-            {
-                ViewBag.MarketViewKeybrandsMAT = GetMATData();
-            }
+            ViewBag.MarketViewKeybrandsMAT = GetMATData();
             return PartialView(matview);
         }
 
         private dynamic GetMATData()
         {
-            tbase = Helpers.Session.GetSession("v_WRK_KEYBRANDS_BASE") != null ? (List<Models.WRK_KEYBRANDS_BASE>)Helpers.Session.GetSession("v_WRK_KEYBRANDS_BASE") : db.WRK_KEYBRANDS_BASEs.Select(m => m).ToList();
-            var query = from p in tbase
-                        where p.DATA == "MARKET" && p.TYPE == "MAT"
-                        && (p.YEAR_PERIOD == Helpers.PeriodUtil.Year && p.MONTH_PERIOD == Helpers.PeriodUtil.Month)
-                        select new Models.StrawmanViewSTDModel { col1 = p.COL1, col2 = p.COL2, pcvspy = p.PCVSPY, vid = (decimal)p.ID };
-            return query.OrderBy(m=>m.vid).ToList(); 
+            List<Models.StrawmanViewSTDModel> tbase = (List<Models.StrawmanViewSTDModel>)new MarketViewController().GetMarketViewData(StrawmanDBLibray.Classes.StrawmanDataTables.WRK_MARKET_MAT);
+            List<Models.StrawmanViewSTDModel> mst = (List<Models.StrawmanViewSTDModel>)GetDataViewMaster();
+
+            return GetGroupedData(tbase, mst, Classes.StrawmanViews.MAT);
         }
 
         public ActionResult GetDataView()
         {
-            using (db = new Models.GodzillaWRKDataContext())
-            {
-                db.CommandTimeout = 500000;
-                ViewBag.MarketViewKeybrandsData = GetDataViewData();
-            }
+            ViewBag.MarketViewKeybrandsData = GetSessionObject(KEYBRANDS_MASTER, GetDataViewData());
             return PartialView(dataview);
         }
 
         private dynamic GetDataViewData()
-        {            
-            Helpers.Session.SetSession("v_WRK_KEYBRANDS_BASE", db.WRK_KEYBRANDS_BASEs.Where(p=>p.ID != 999).Select(m => m).ToList());
-            tbase = Helpers.Session.GetSession("v_WRK_KEYBRANDS_BASE") != null ? (List<Models.WRK_KEYBRANDS_BASE>) Helpers.Session.GetSession("v_WRK_KEYBRANDS_BASE") : db.WRK_KEYBRANDS_BASEs.Select(m=>m).ToList();
-            var query = from p in tbase
-                        where p.DATA == "MARKET" && p.TYPE == "MAT" 
-                        && (p.YEAR_PERIOD == Helpers.PeriodUtil.Year && p.MONTH_PERIOD == Helpers.PeriodUtil.Month)
-                        select new Models.MarketViewChannelModels { name = p.NAME, vid = (decimal) p.ID };
-            return query.OrderBy(m=>m.vid).ToList(); 
+        {
+            List<StrawmanDBLibray.Entities.v_KEYBRANDS_MASTER> db = (List<StrawmanDBLibray.Entities.v_KEYBRANDS_MASTER>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.v_KEYBRANDS_MASTER, true);
+            return db.Select(p => new Models.MarketViewChannelModels { name = p.NAME, vid = (decimal)p.ID }).Distinct().ToList();
+        }
+        private dynamic GetDataViewMaster()
+        {
+            List<StrawmanDBLibray.Entities.v_KEYBRANDS_MASTER> db = (List<StrawmanDBLibray.Entities.v_KEYBRANDS_MASTER>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.v_KEYBRANDS_MASTER, true);
+            return db.Select(p => new Models.StrawmanViewSTDModel { brand = p.BRAND, market = p.MARKET, channel = p.CHANNEL, vgroup = p.GROUP, vid = (decimal)p.ID, config = p.CONFIG_BRAND }).ToList();
         }
 
         //
@@ -194,6 +165,7 @@ namespace StrawmanApp.Controllers
             return View();
         }
 
+        #region Default Functions
         //
         // GET: /MarketViewKeybrands/Details/5
 
@@ -279,6 +251,124 @@ namespace StrawmanApp.Controllers
                 return View();
             }
         }
-        
+        #endregion
+
+        #region Private Funcitions
+        private void SetSessionObject(string key, object obj)
+        {
+            Helpers.Session.SetSession(key, obj);
+        }
+        private object GetSessionObject(string key, object obj)
+        {
+            object ret = Helpers.Session.GetSession(key);
+            if (obj != null && ret == null)
+            {
+                ret = obj;
+                SetSessionObject(key, ret);
+            }
+            return ret;
+        }
+        private object GetSessionObject(string key)
+        {
+            return GetSessionObject(key, null);
+        }
+
+        private dynamic GetSessionData(string key, bool wc)
+        {
+            return Helpers.Session.GetSessionData(key, wc);
+        }
+
+        private dynamic GetSessionData(string key)
+        {
+            return GetSessionData(key, false);
+        }
+
+        private List<Models.StrawmanViewSTDModel> SetWCChannels(List<Models.StrawmanViewSTDModel> obj)
+        {
+            List<StrawmanDBLibray.Entities.WRK_VIEWS_VARIABLES> var = (List<StrawmanDBLibray.Entities.WRK_VIEWS_VARIABLES>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.WRK_VIEWS_VARIABLES, true);
+            List<StrawmanDBLibray.Entities.WRK_VIEWS_VARIABLES> wc_channels = var.Where(m => m.VIEW == Classes.Default.Variables.WC_CHANNELS).Select(m => m).ToList();
+            foreach (Models.StrawmanViewSTDModel item in obj)
+            {
+                bool is_wc = wc_channels.Exists(m => m.VALUE == item.channel.ToString());
+                item.col1_wc = is_wc ? item.col1_wc : item.col1;
+                item.col2_wc = is_wc ? item.col2_wc : item.col2;
+                item.is_wc = is_wc;
+
+            }
+            return obj;
+        }
+        #endregion
+
+        #region Public Functions
+        public List<Models.StrawmanViewSTDModel> GetGroupedData(dynamic tbase, List<Models.StrawmanViewSTDModel> mst, string type)
+        {
+            var data = mst.GroupJoin(((List<Models.StrawmanViewSTDModel>)tbase).AsEnumerable(), m => new { m.market, m.brand, m.channel }, d => new { d.market, d.brand, d.channel }, (m, d) => new { m = m, d = d })
+                                .SelectMany(f => f.d, (m, d) => new { m = m.m, d = d }).ToList()
+                                .Select(p => new Models.StrawmanViewSTDModel
+                                {
+                                    col1 = (p.d.col1??0) * (p.m.config??1),
+                                    col2 = (p.d.col2??0) * (p.m.config ?? 1),
+                                    col3 = (p.d.col3??0) * (p.m.config ?? 1),
+                                    col4 = (p.d.col4??0) * (p.m.config ?? 1),
+                                    col5 = (p.d.col5??0) * (p.m.config ?? 1),
+                                    col6 = (p.d.col6??0) * (p.m.config ?? 1),
+                                    col1_wc = (p.d.col1_wc??0) * (p.m.config ?? 1),
+                                    col2_wc = (p.d.col2_wc??0) * (p.m.config ?? 1),
+                                    vid = (decimal)p.m.vid,
+                                    channel = p.m.channel
+                                });
+            switch (type)
+            {
+                case Classes.StrawmanViews.PCVSPY:
+                    
+                    return SetWCChannels(data.ToList())
+                            .AsEnumerable()
+                            .GroupBy(m => new { _key = (decimal)m.vid })
+                            .Select(m => new Models.StrawmanViewSTDModel
+                            {
+                                pcvspy1 = Helpers.StrawmanCalcs.CalcPCVSPY(m.Sum(p => p.col1), m.Sum(p => p.col2)),
+                                pcvspy2 = Helpers.StrawmanCalcs.CalcPCVSPY(m.Sum(p => p.col2), m.Sum(p => p.col3)),
+                                pcvspy3 = Helpers.StrawmanCalcs.CalcPCVSPY(m.Sum(p => p.col3), m.Sum(p => p.col4)),
+                                pcvspy4 = Helpers.StrawmanCalcs.CalcPCVSPY(m.Sum(p => p.col3), m.Sum(p => p.col5)),
+                                pcvspy5 = Helpers.StrawmanCalcs.CalcPCVSPY(m.Sum(p => p.col5), m.Sum(p => p.col6)),
+                            }).ToList();
+                
+                case Classes.StrawmanViews.BOY:
+                case Classes.StrawmanViews.TOTAL:
+
+                    return SetWCChannels(data.ToList())
+                            .AsEnumerable()
+                            .GroupBy(m => new { _key = (decimal)m.vid })
+                            .Select(m => new Models.StrawmanViewSTDModel
+                            {
+                                vid = m.Key._key,
+                                col1 = m.Sum(p => p.col1),
+                                col2 = m.Sum(p => p.col2),
+                                col3 = m.Sum(p => p.col3),
+                            }).ToList();
+                
+                default:
+
+                    return SetWCChannels(data.ToList())
+                            .AsEnumerable()
+                            .GroupBy(m => new { _key = (decimal)m.vid })
+                            .Select(m => new Models.StrawmanViewSTDModel
+                            {
+                                vid = m.Key._key,
+                                col1 = m.Sum(p => p.col1),
+                                col2 = m.Sum(p => p.col2),
+                                col1_wc = m.Sum(p => p.col1_wc),
+                                col2_wc = m.Sum(p => p.col2_wc),
+                                pcvspy = Helpers.StrawmanCalcs.CalcPCVSPY(m.Sum(p => p.col1), m.Sum(p => p.col2)),
+                                pcvspy_wc = Helpers.StrawmanCalcs.CalcPCVSPY(m.Sum(p => p.col1_wc), m.Sum(p => p.col2_wc)),
+                            }).ToList();
+            }
+        }
+        #endregion
+
+        #region Constants
+        private const string KEYBRANDS_MASTER = "KEYBRANDS_MASTER";
+        #endregion
+
     }
 }

@@ -511,6 +511,23 @@ namespace StrawmanApp.Helpers
                         ret = lst.ToList();
                     }
                     break;
+                case StrawmanDataTables.v_KEYBRANDS_MASTER:
+                    if (!cache)
+                    {
+                        List<v_KEYBRANDS_MASTER> lst = (List<v_KEYBRANDS_MASTER>)StrawmanDBLibray.DBLibrary.GetKeybrandsData(table);
+                        ret = lst.ToList();
+                    }
+                    else
+                    {
+                        List<v_KEYBRANDS_MASTER> lst = (List<v_KEYBRANDS_MASTER>)Helpers.Session.GetSession(table);
+                        if (lst == null)
+                        {
+                            Session.SetSession(table, StrawmanDBLibray.DBLibrary.GetKeybrandsData(table));
+                            lst = (List<v_KEYBRANDS_MASTER>)Helpers.Session.GetSession(table);
+                        }
+                        ret = lst.ToList();
+                    }
+                    break;
                 case StrawmanDataTables.v_WRK_MANAGEMENT_LETTERS_DATA:
                     if (!cache)
                     {

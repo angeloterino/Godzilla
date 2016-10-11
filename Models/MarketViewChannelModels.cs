@@ -52,6 +52,8 @@ namespace StrawmanApp.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText = "0")]
         public decimal? pcvspy_wc { get; set; }
         public bool is_wc { get; set; }
+
+        public decimal? col3_wc { get; set; }
     }
     public partial class ViewModels
     {

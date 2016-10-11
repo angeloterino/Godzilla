@@ -236,6 +236,7 @@ namespace StrawmanApp.Controllers
         //        (decimal?)(bwc.Find(m => m.BRAND == i.BRAND && m.CHANNEL == i.CHANNEL && m.MARKET == i.MARKET).LE)
         //        ,(decimal?)(bwc.Find(m => m.BRAND == i.BRAND && m.CHANNEL == i.CHANNEL && m.MARKET == i.MARKET).PBP)));
         //}
+        
         //
         // GET: /MarketView/Details/5
 
@@ -244,6 +245,7 @@ namespace StrawmanApp.Controllers
             return View();
         }
 
+        #region Default Functions
         //
         // GET: /MarketView/Create
 
@@ -321,7 +323,31 @@ namespace StrawmanApp.Controllers
                 return View();
             }
         }
+        #endregion
 
+        #region Public Functions
+        public object GetMarketViewData(string type)
+        {
+            switch (type)
+            {
+                case StrawmanDBLibray.Classes.StrawmanDataTables.WRK_MARKET_MAT:
+                    return this.GetDataMAT();
+                case StrawmanDBLibray.Classes.StrawmanDataTables.WRK_MARKET_MONTH:
+                    return this.GetDataMonth();
+                case StrawmanDBLibray.Classes.StrawmanDataTables.WRK_MARKET_YTD:
+                    return this.GetDataYTD();
+                case StrawmanDBLibray.Classes.StrawmanDataTables.WRK_MARKET_BTG:
+                    return this.GetDataBTG();
+                case StrawmanDBLibray.Classes.StrawmanDataTables.WRK_MARKET_BOY:
+                    return this.GetDataBOY();
+                case StrawmanDBLibray.Classes.StrawmanDataTables.WRK_MARKET_TOTAL:
+                    return this.GetDataTotalCustom();
+                case StrawmanDBLibray.Classes.StrawmanDataTables.WRK_MARKET_PCVSPY:
+                    return this.GetDataPCVSPY();
+            }
+            return null;
+        }
+        #endregion
         private bool cache_status = true;
 
         private const string marketDataView = "~/Views/MarketView/_MarketDataView.cshtml";
