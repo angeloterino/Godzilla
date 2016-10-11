@@ -149,7 +149,11 @@ namespace StrawmanApp.Controllers
         private dynamic GetDataViewData()
         {
             List<StrawmanDBLibray.Entities.v_KEYBRANDS_MASTER> db = (List<StrawmanDBLibray.Entities.v_KEYBRANDS_MASTER>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.v_KEYBRANDS_MASTER, true);
-            return db.Select(p => new Models.MarketViewChannelModels { name = p.NAME, vid = (decimal)p.ID }).Distinct().ToList();
+            return db.Select(p => new { _name = p.NAME, _vid = (decimal)p.ID })
+                   .AsEnumerable()
+                   .GroupBy(m=>new{_name = m._name, _vid = m._vid}).AsEnumerable()
+                   .ToList().Select(m=> new Models.MarketViewChannelModels{name = m.Key._name, vid = m.Key._vid}).ToList();
+                   
         }
         private dynamic GetDataViewMaster()
         {
