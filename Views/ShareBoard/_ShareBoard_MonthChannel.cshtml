@@ -1,15 +1,15 @@
 ﻿@model dynamic
 <tr><td colspan="6">&nbsp;</td></tr>
 @{  decimal? t = 0;
+    string _style = "text-align:center;";
     List<StrawmanApp.Entities.ShareBoardModel> lst = (List<StrawmanApp.Entities.ShareBoardModel>)Model;
     foreach (StrawmanApp.Models.MarketViewChannelModels item in ViewBag.MarketViewChannelsMonth)
     {
-        string _style = "";
         StrawmanApp.Entities.ShareBoardModel data = lst.Find(m => m.channel == item.vchannel);
-        _style = "background-color: rgb(255,0,0);color:rgb(255,255,255);";
-        if (item.vchannel == 9) { _style = "background-color: rgb(0,102,255);color:rgb(255,255,255);"; }
-        if (item.vchannel == 999999) { _style = "background-color: rgb(0,255,0);color:rgb(0,0,0);"; }  
-            <tr class="grid-row" style="text-align:center;@_style">     
+        _style += item.style;
+        ViewDataDictionary _styleData = new ViewDataDictionary { { "_style", _style }, { "channel", item == null ? 0 : item.vchannel } };
+        bool is_wc = item.is_wc != null && item.is_wc; 
+            <tr class="grid-row" @{Html.RenderPartial("~/Views/StrawmanViews/MasterTable/_TrStyleChannel.cshtml", new ViewDataDictionary { { "_style", _style }, { "channel", item.vchannel }});}>     
                 <td class="grid-cell">@Html.DisplayFor(m => data.month_col1)</td>
                 <td class="grid-cell">@Html.DisplayFor(m => data.month_col2)</td>
                 <td class="grid-cell">@Html.DisplayFor(m => data.month_col3)</td>

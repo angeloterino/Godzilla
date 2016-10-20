@@ -22,7 +22,7 @@ namespace StrawmanApp.Controllers
             string[] _channel = {"MASS", "OTC", "BEAUTY", "TOTAL"};
             //Vamos a enviar los canales configurados por el grupo BOYJJByChannel (tipo 22);
             List<StrawmanDBLibray.Entities.GROUP_MASTER> channels = (List<StrawmanDBLibray.Entities.GROUP_MASTER>)StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.GROUP_MASTER,true);
-            decimal? _type = this.GetGroupTypeByView(BY_CHANNEL_CONTROLLER);
+            decimal? _type = StrawmanCalcs.GetGroupTypeByView(BY_CHANNEL_CONTROLLER);
             if (_type != null)
             {
                 _channel = channels.Where(m => m.TYPE == _type).Select(m => m.ID.ToString()).ToArray();
@@ -862,7 +862,7 @@ namespace StrawmanApp.Controllers
             List<StrawmanDBLibray.Entities.GROUP_CONFIG> gchannels = (List<StrawmanDBLibray.Entities.GROUP_CONFIG>)StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.GROUP_CONFIG, true);
             List<StrawmanDBLibray.Entities.GROUP_MASTER> gmaster = (List<StrawmanDBLibray.Entities.GROUP_MASTER>)StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.GROUP_MASTER, true);
             List<StrawmanDBLibray.Entities.BOY_CONFIG> gconfig = (List<StrawmanDBLibray.Entities.BOY_CONFIG>)StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.BOY_CONFIG, true);
-            var grp = gchannels.Where(m => m.TYPE_ID == (decimal?)this.GetGroupTypeByView(BY_CHANNEL_CONTROLLER)).AsEnumerable()
+            var grp = gchannels.Where(m => m.TYPE_ID == (decimal?)StrawmanCalcs.GetGroupTypeByView(BY_CHANNEL_CONTROLLER)).AsEnumerable()
                 .Join(gconfig, c => new { c.MARKET, c.BRAND }, n => new { n.MARKET, n.BRAND }, (c, n) => new
                 {
                     id = c.GROUP_ID,
@@ -1112,21 +1112,21 @@ namespace StrawmanApp.Controllers
 
         private void SetGroupType(int? type)
         {
-            decimal? by_channel_view = GetGroupTypeByView(BY_CHANNEL_CONTROLLER);
+            decimal? by_channel_view = StrawmanCalcs.GetGroupTypeByView(BY_CHANNEL_CONTROLLER);
             if (type == null)
                 group_type = by_channel_view == null ? 23 : (int)by_channel_view;
             else
                 group_type = type;
         }
 
-        private decimal? GetGroupTypeByView(string view)
-        {
-            List<StrawmanDBLibray.Entities.WRK_VIEWS_VARIABLES> vars = (List<StrawmanDBLibray.Entities.WRK_VIEWS_VARIABLES>)StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.WRK_VIEWS_VARIABLES, true);
-            string type = vars.FirstOrDefault(m => m.VIEW == view).VALUE;
-            decimal _type = 0;
-            if (type == null || !decimal.TryParse(type, out _type))
-                return null;
-            return _type;
-        }
+        //private decimal? GetGroupTypeByView(string view)
+        //{
+        //    List<StrawmanDBLibray.Entities.WRK_VIEWS_VARIABLES> vars = (List<StrawmanDBLibray.Entities.WRK_VIEWS_VARIABLES>)StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.WRK_VIEWS_VARIABLES, true);
+        //    string type = vars.FirstOrDefault(m => m.VIEW == view).VALUE;
+        //    decimal _type = 0;
+        //    if (type == null || !decimal.TryParse(type, out _type))
+        //        return null;
+        //    return _type;
+        //}
     }
 }

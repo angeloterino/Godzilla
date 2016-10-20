@@ -108,10 +108,11 @@ namespace StrawmanApp.Controllers
             //List<Models.MarketDataModels> lst = null;
             List<StrawmanDBLibray.Entities.v_STRWM_MARKET_DATA> data = (List<StrawmanDBLibray.Entities.v_STRWM_MARKET_DATA>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.v_STRWM_MARKET_DATA, true);
             List<StrawmanDBLibray.Entities.WRK_VIEWS_VARIABLES> var = (List<StrawmanDBLibray.Entities.WRK_VIEWS_VARIABLES>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.WRK_VIEWS_VARIABLES, true);
-            var = var.Where(m => m.VIEW == Classes.Default.Variables.STRAWMAN_COLORS)
+            List<StrawmanDBLibray.Entities.WRK_VIEWS_VARIABLES> wc_channels = var.Where(m => m.VIEW == Classes.Default.Variables.WC_CHANNELS).Select(m => m).ToList();
+            List<StrawmanDBLibray.Entities.WRK_VIEWS_VARIABLES> colors = var.Where(m => m.VIEW == Classes.Default.Variables.STRAWMAN_COLORS)
                     .Select(m => m).ToList();
             List<Models.MarketDataModels> aux = data
-                .GroupJoin(var, l => new { ID = "BRAND:" + l.BRAND.ToString() + ";MARKET:" + l.MARKET.ToString() }, v => new { ID = v.NAME }, (l, v) => new { l = l, v = v })
+                .GroupJoin(colors, l => new { ID = "BRAND:" + l.BRAND.ToString() + ";MARKET:" + l.MARKET.ToString() }, v => new { ID = v.NAME }, (l, v) => new { l = l, v = v })
                 .SelectMany(f => f.v.DefaultIfEmpty(), (l, v) => new { l = l.l, v = v }).ToList()
                 .Select(p => new Models.MarketDataModels
                 {
@@ -124,7 +125,8 @@ namespace StrawmanApp.Controllers
                     source = p.l.SOURCE,
                     vgroup = p.l.GROUP,
                     vorder = p.l.ORDER,
-                    style = p.v == null ? "" : Helpers.StyleUtils.GetBGColor(p.v.VALUE, true)
+                    style = p.v == null ? "" : Helpers.StyleUtils.GetBGColor(p.v.VALUE, true),
+                    is_wc = wc_channels.Exists(m => m.VALUE == p.l.CHANNEL.ToString())
                 }).ToList();
             return aux;
             //    var query = from p in table
@@ -135,7 +137,14 @@ namespace StrawmanApp.Controllers
         private dynamic GetDataViewChannel()
         {
             List<StrawmanDBLibray.Entities.GROUP_MASTER> lst = (List<StrawmanDBLibray.Entities.GROUP_MASTER>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.GROUP_MASTER, true);
-            return lst.Where(m => m.TYPE == 20).Distinct().Select(p => new Models.MarketViewChannelModels { name = p.NAME, vorder = p.ID, vid = p.ID, vchannel = p.ID }).ToList();
+            List<StrawmanDBLibray.Entities.WRK_VIEWS_VARIABLES> var = (List<StrawmanDBLibray.Entities.WRK_VIEWS_VARIABLES>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.WRK_VIEWS_VARIABLES, true);
+            List<StrawmanDBLibray.Entities.WRK_VIEWS_VARIABLES> colors = var.Where(m => m.VIEW == Classes.Default.Variables.STRAWMAN_CHANNELS_COLORS)
+                    .Select(m => m).ToList();
+            return lst
+                    .GroupJoin(colors, l => new { ID = l.ID }, v => new { ID = decimal.Parse(v.NAME) }, (l, v) => new { l = l, v = v })
+                    .Where(m => m.l.TYPE == 20).Distinct()
+                    .SelectMany(f => f.v.DefaultIfEmpty(), (l, v) => new { l = l.l, v = v }).AsEnumerable()
+                    .Select(p => new Models.MarketViewChannelModels { name = p.l.NAME, vorder = p.l.ID, vid = p.l.ID, vchannel = p.l.ID, style = p.v == null ? "" : Helpers.StyleUtils.GetBGColor(p.v.VALUE, true), }).ToList();
             //List<Models.MarketViewChannelModels> lst = null;
             //using (StrawmanApp.Models.ChannelsDataClassesDataContext db = new StrawmanApp.Models.ChannelsDataClassesDataContext())
             //{
@@ -176,7 +185,40 @@ namespace StrawmanApp.Controllers
         #region YTD Data
         private dynamic GetYTDData(string type)
         {
-            List<Entities.ShareBoardModel> lst = (List<Entities.ShareBoardModel>)GetStrawmanData("v_SHAREBOARD_YTD", type);
+            switch(type){
+                case "FRANCHISE":
+                    return ((List<Entities.ShareBoardModel>)SetFranchiseData(new MarketViewFranchiseController().GetYTDFranchiseData(), new BrandViewFranchiseController().GetYTDFranchiseData()))
+                        .Select(p => new Entities.ShareBoardModel
+                                {
+                                    ytd_col1 = p.col1,
+                                    ytd_col2 = p.col2,
+                                    ytd_col3 = p.col3,
+                                    ytd_col4 = p.col4,
+                                    ytd_col5 = p.col5,
+                                    ytd_col6 = p.col6,
+                                    order = p.order,
+                                    group = p.group,
+                                    channel = p.channel,
+                                    id = p.id
+                                }).ToList();
+                case "KEYBRANDS":
+                    return ((List<Entities.ShareBoardModel>)SetKeybrandsData(new MarketViewKeybrandsController().GetYTDKeybrandsData(), new BrandViewKeybrandsController().GetYTDKeybrandsData()))
+                        .Select(p => new Entities.ShareBoardModel
+                                {
+                                    ytd_col1 = p.col1,
+                                    ytd_col2 = p.col2,
+                                    ytd_col3 = p.col3,
+                                    ytd_col4 = p.col4,
+                                    ytd_col5 = p.col5,
+                                    ytd_col6 = p.col6,
+                                    order = p.order,
+                                    group = p.group,
+                                    channel = p.channel,
+                                    id = p.id
+                                }).ToList();
+                default:
+                    return (List<Entities.ShareBoardModel>)GetStrawmanData("v_SHAREBOARD_YTD", type);
+            }
             //List<Entities.ShareBoardModel> lst = null;
             //using (Entities.GodzillaEntity.GodzillaEntities db = new Entities.GodzillaEntity.GodzillaEntities())
             //{
@@ -186,7 +228,6 @@ namespace StrawmanApp.Controllers
             //                .Select(p => new Entities.ShareBoardModel { market = p.MARKET, brand = p.BRAND, order = p.GROUP_ORDER, group = p.GROUP, channel = p.CHANNEL, ytd_col1 = p.MARKET_GROUTH, ytd_col2 = p.BRAND_GROUTH, ytd_col3 = p.MARKET_SHARE, ytd_col4 = p.PT_PLUS_MINUS, ytd_col5 = (double?)p.MARKET_SIZE, ytd_col6 = (double?)p.BRAND_SIZE });
             //    lst = query.ToList();
             //}
-            return lst;
         }
         private dynamic GetYTDData()
         {
@@ -213,7 +254,41 @@ namespace StrawmanApp.Controllers
         #region Month Data
         private dynamic GetMonthData(string type)
         {
-            List<Entities.ShareBoardModel> lst = (List<Entities.ShareBoardModel>)GetStrawmanData("v_SHAREBOARD_MONTH", type);
+            switch (type)
+            {
+                case "FRANCHISE":
+                    return ((List<Entities.ShareBoardModel>)SetFranchiseData(new MarketViewFranchiseController().GetMonthFranchiseData(), new BrandViewFranchiseController().GetMonthFranchiseData()))
+                        .Select(p => new Entities.ShareBoardModel
+                                {
+                                    month_col1 = p.col1,
+                                    month_col2 = p.col2,
+                                    month_col3 = p.col3,
+                                    month_col4 = p.col4,
+                                    month_col5 = (decimal?)p.col5,
+                                    month_col6 = (decimal?)p.col6,
+                                    order = p.order,
+                                    group = p.group,
+                                    channel = p.channel,
+                                    id = p.id
+                                }).ToList();
+                case "KEYBRANDS":
+                    return ((List<Entities.ShareBoardModel>)SetKeybrandsData(new MarketViewKeybrandsController().GetMonthKeybrandsData(), new BrandViewKeybrandsController().GetMonthKeybrandsData()))
+                        .Select(p => new Entities.ShareBoardModel
+                        {
+                            month_col1 = p.col1,
+                            month_col2 = p.col2,
+                            month_col3 = p.col3,
+                            month_col4 = p.col4,
+                            month_col5 = (decimal?)p.col5,
+                            month_col6 = (decimal?)p.col6,
+                            order = p.order,
+                            group = p.group,
+                            channel = p.channel,
+                            id = p.id
+                        }).ToList();
+                default:
+                    return (List<Entities.ShareBoardModel>)GetStrawmanData("v_SHAREBOARD_MONTH", type);
+            }
             //List<Entities.ShareBoardModel> lst = null;
             //using (Entities.GodzillaEntity.GodzillaEntities db = new Entities.GodzillaEntity.GodzillaEntities())
             //{
@@ -223,7 +298,6 @@ namespace StrawmanApp.Controllers
             //                .Select(p => new Entities.ShareBoardModel { market = p.MARKET, brand = p.BRAND, channel = p.CHANNEL, order = p.GROUP_ORDER, group = p.GROUP, month_col1 = p.MARKET_GROUTH, month_col2 = p.BRAND_GROUTH, month_col3 = p.MARKET_SHARE, month_col4 = p.PT_PLUS_MINUS, month_col5 = p.MARKET_SIZE, month_col6 = p.BRAND_SIZE });
             //    lst = query.ToList();
             //}
-            return lst;
         }
         private dynamic GetMonthData()
         {
@@ -251,7 +325,41 @@ namespace StrawmanApp.Controllers
         #region MAT Data
         private dynamic GetMATData(string type)
         {
-            List<Entities.ShareBoardModel> lst = (List<Entities.ShareBoardModel>)GetStrawmanData("v_SHAREBOARD_MAT", type);
+            switch (type)
+            {
+                case "FRANCHISE":
+                    return ((List<Entities.ShareBoardModel>)SetFranchiseData(new MarketViewFranchiseController().GetMATFranchiseData(), new BrandViewFranchiseController().GetMATFranchiseData()))
+                        .Select(p => new Entities.ShareBoardModel
+                        {
+                            mat_col1 = p.col1,
+                            mat_col2 = p.col2,
+                            mat_col3 = p.col3,
+                            mat_col4 = p.col4,
+                            mat_col5 = p.col5,
+                            mat_col6 = p.col6,
+                            order = p.order,
+                            group = p.group,
+                            channel = p.channel,
+                            id = p.id
+                        }).ToList();
+                case "KEYBRANDS":
+                    return ((List<Entities.ShareBoardModel>)SetKeybrandsData(new MarketViewKeybrandsController().GetMATKeybrandsData(), new BrandViewKeybrandsController().GetMATKeybrandsData()))
+                        .Select(p => new Entities.ShareBoardModel
+                        {
+                            mat_col1 = p.col1,
+                            mat_col2 = p.col2,
+                            mat_col3 = p.col3,
+                            mat_col4 = p.col4,
+                            mat_col5 = p.col5,
+                            mat_col6 = p.col6,
+                            order = p.order,
+                            group = p.group,
+                            channel = p.channel,
+                            id = p.id
+                        }).ToList();
+                default:
+                    return (List<Entities.ShareBoardModel>)GetStrawmanData("v_SHAREBOARD_MAT", type);
+            }
             //List<Entities.ShareBoardModel> lst = null;
             //using (Entities.GodzillaEntity.GodzillaEntities db = new Entities.GodzillaEntity.GodzillaEntities())
             //{
@@ -261,7 +369,6 @@ namespace StrawmanApp.Controllers
             //                .Select(p => new Entities.ShareBoardModel { market = p.MARKET, brand = p.BRAND, channel = p.CHANNEL, order = p.GROUP_ORDER, group = p.GROUP, mat_col1 = p.MARKET_GROUTH, mat_col2 = p.BRAND_GROUTH, mat_col3 = p.MARKET_SHARE, mat_col4 = p.PT_PLUS_MINUS, mat_col5 = (double?)p.MARKET_SIZE, mat_col6 = (double?)p.BRAND_SIZE });
             //    lst = query.ToList();
             //}
-            return lst;
         }
         private dynamic GetMATData()
         {
@@ -526,6 +633,48 @@ namespace StrawmanApp.Controllers
                                     id = p.Key.id 
                                 })
                         .ToList();
+        }
+
+        private object SetFranchiseData(List<Models.MarketViewChannelModels> mrklst, List<Models.MarketViewChannelModels> brdlst)
+        {
+            var lst = mrklst.Join(brdlst, m => new { _id = m.vid }, b => new { _id = b.vid }, (m, b) => new { m = m, b = b }).ToList();
+            //List<Models.MarketViewChannelModels> mst = (List<Models.MarketViewChannelModels>)GetDataViewFranchise();
+            return lst.Select(p => new Entities.ShareBoardModel
+            {
+                col1 = Helpers.StrawmanCalcs.CalcPCVSPY(p.m.col1, p.m.col2),
+                col2 = Helpers.StrawmanCalcs.CalcPCVSPY(p.b.col1, p.b.col2),
+                col3 = Helpers.StrawmanCalcs.CalcShare(p.m.col2, p.b.col2),
+                col4 = Helpers.StrawmanCalcs.CalcShare(p.m.col2, p.b.col2) - Helpers.StrawmanCalcs.CalcShare(p.m.col1, p.b.col1),
+                col5 = (double?)p.m.col2 / 1000,
+                col6 = (double?)p.b.col2 / 1000,
+                order = p.m.vorder,
+                group = p.m.vgroup,
+                channel = p.m.vchannel,
+                id = p.m.vid
+            }).ToList();
+
+            return null;
+        }
+
+        private object SetKeybrandsData(List<Models.StrawmanViewSTDModel> mrklst, List<Models.StrawmanViewSTDModel> brdlst)
+        {
+            List<Models.MarketViewChannelModels> mst = (List<Models.MarketViewChannelModels>)GetDataViewKeybrands();
+            var lst = mrklst.Join(brdlst, m => new { _id = m.vid }, b => new { _id = b.vid }, (m, b) => new { m = m, b = b }).ToList();
+            //List<Models.MarketViewChannelModels> mst = (List<Models.MarketViewChannelModels>)GetDataViewFranchise();
+            return lst.Select(p => new Entities.ShareBoardModel
+            {
+                col1 = Helpers.StrawmanCalcs.CalcPCVSPY(p.m.col1, p.m.col2),
+                col2 = Helpers.StrawmanCalcs.CalcPCVSPY(p.b.col1, p.b.col2),
+                col3 = Helpers.StrawmanCalcs.CalcShare(p.m.col2, p.b.col2),
+                col4 = Helpers.StrawmanCalcs.CalcShare(p.m.col2, p.b.col2) - Helpers.StrawmanCalcs.CalcShare(p.m.col1, p.b.col1),
+                col5 = (double?)p.m.col2 / 1000,
+                col6 = (double?)p.b.col2 / 1000,
+                order = p.m.vorder,
+                group = p.m.vgroup,
+                channel = p.m.channel,
+                id = (decimal)p.m.vid
+            }).ToList();
+            return null;
         }
         #endregion
 

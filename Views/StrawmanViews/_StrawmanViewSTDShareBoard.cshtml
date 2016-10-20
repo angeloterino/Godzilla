@@ -3,6 +3,7 @@
 @{    
     string[] _colData = (string[])ViewData["_colData"];
     string[] _colType = (string[])ViewData["_colType"];
+    string[] _colStyle = (string[])ViewData["_colStyle"];
     StrawmanApp.Models.StrawmanSTDView itemaux = Model.itemaux;
     string _style = "text-align:center;";
     string _styleView = ViewData["styleView"] == null ? "_TrStyle" : ViewData["styleView"].ToString();
@@ -12,7 +13,8 @@
         _colData = _colData,
         _colType = _colType,
         styleView = _styleView,
-        styleData = _styleData
+        styleData = _styleData,
+        _colStyle = _colStyle
         };
 
     if (itemaux.col1 == null && itemaux.col2 == null && itemaux.col3 == null)

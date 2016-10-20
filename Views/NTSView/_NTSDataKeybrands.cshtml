@@ -8,7 +8,7 @@
     List<StrawmanApp.Models.StrawmanViewSTDModel> items = (List<StrawmanApp.Models.StrawmanViewSTDModel>)ViewBag.NTSData;
     foreach (StrawmanApp.Models.MarketViewChannelModels itemaux in Model)
     {
-        StrawmanApp.Models.StrawmanViewSTDModel item = items.Find(m => m.channel == itemaux.vchannel && m.vid == itemaux.vid && m.vgroup == itemaux.vgroup && m.vorder == itemaux.vorder);
+        StrawmanApp.Models.StrawmanViewSTDModel item = items.Find(m => m.vid == itemaux.vid);
         ViewDataDictionary _styleData = new ViewDataDictionary { { "_style", _style }, { "id", item == null?itemaux.vid:item.vid } };
         StrawmanApp.Models.StrawmanSTDView viewaux = new StrawmanApp.Models.StrawmanSTDView
         {

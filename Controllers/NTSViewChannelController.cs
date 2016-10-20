@@ -48,21 +48,22 @@ namespace StrawmanApp.Controllers
             grp = grp.Where(m => m.ID == 20).Select(m => m).ToList();
             List<StrawmanDBLibray.Entities.GROUP_CONFIG> cfg = (List<StrawmanDBLibray.Entities.GROUP_CONFIG>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.GROUP_CONFIG, true);
             cfg = cfg.Where(m => m.TYPE_ID == grp.First().ID).Distinct().Select(m => m).ToList();
-            List<StrawmanDBLibray.Entities.WRK_NTS_VIEW_DATA> data = (List<StrawmanDBLibray.Entities.WRK_NTS_VIEW_DATA>)GetSessionData(NTSTables.WRK_NTS_VIEW_DATA);
-            data = data
-                    .Where(m => m.YEAR_PERIOD == Helpers.PeriodUtil.Year - _year && m.MONTH_PERIOD == Helpers.PeriodUtil.Month && m.TYPE == NTSType)
-                    .ToList();
+            //List<StrawmanDBLibray.Entities.WRK_NTS_VIEW_DATA> data = (List<StrawmanDBLibray.Entities.WRK_NTS_VIEW_DATA>)GetSessionData(NTSTables.WRK_NTS_VIEW_DATA);
+            List<Models.StrawmanViewSTDModel> data = (List<Models.StrawmanViewSTDModel>)new NTSViewController().GetDataByNTSType(NTSType, cad);
+            //data = data
+            //        .Where(m => m.YEAR_PERIOD == Helpers.PeriodUtil.Year - _year && m.MONTH_PERIOD == Helpers.PeriodUtil.Month && m.TYPE == NTSType)
+            //        .ToList();
             List<Models.StrawmanViewSTDModel> aux = data
-                    .Join(cfg, c => new { c.BRAND, c.MARKET }, d => new { d.BRAND, d.MARKET }, (c, d) => new { c = c, d = d })
+                    .Join(cfg, c => new { _brand = c.brand, _market = c.market }, d => new { _brand = d.BRAND, _market = d.MARKET }, (c, d) => new { c = c, d = d })
                     .Select(p => new Models.StrawmanViewSTDModel
                     {
                         vid = p.d.GROUP_ID,
-                        vorder = p.c.GROUP_ORDER,
-                        vgroup = p.c.GROUP,
-                        market = p.c.MARKET,
-                        brand = p.c.BRAND,
-                        channel = p.c.CHANNEL,
-                        col1 = p.c.AMOUNT
+                        vorder = p.c.vorder,
+                        vgroup = p.c.vgroup,
+                        market = p.c.market,
+                        brand = p.c.brand,
+                        channel = p.c.channel,
+                        col1 = p.c.col1
                     })
                     .ToList();
             return aux

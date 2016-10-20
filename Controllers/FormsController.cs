@@ -776,39 +776,39 @@ namespace StrawmanApp.Controllers
                         data.Find(m => m.TYPE == var_type).SELLOUT_COL1 = (decimal?)qint.sellout_col1;
                         data.Find(m => m.TYPE == var_type).SELLOUT_COL2 = (decimal?)qint.sellout_col2;
                         data.Find(m => m.TYPE == var_type).SELLOUT_PC = qint.sellout_pc;
-                        data.Find(m => m.TYPE == var_type).CONVERSION_RATE_COL1 = CheckDiv(data.Find(m => m.TYPE == var_type).SELLIN_COL1 , data.Find(m => m.TYPE == var_type).SELLOUT_COL1);
-                        data.Find(m => m.TYPE == var_type).CONVERSION_RATE_COL2 = CheckDiv(data.Find(m => m.TYPE == var_type).SELLIN_COL2 , data.Find(m => m.TYPE == var_type).SELLOUT_COL2);
-                        data.Find(m => m.TYPE == var_type).SHARE_COL1 = CheckDiv(data.Find(m => m.TYPE == var_type).SELLOUT_COL1 , data.Find(m => m.TYPE == var_type).MARKET_COL1);
-                        data.Find(m => m.TYPE == var_type).SHARE_COL2 = CheckDiv(data.Find(m => m.TYPE == var_type).SELLOUT_COL2 , data.Find(m => m.TYPE == var_type).MARKET_COL2);
+                        data.Find(m => m.TYPE == var_type).CONVERSION_RATE_COL1 = CheckDiv(data.Find(m => m.TYPE == var_type).SELLIN_COL1 , data.Find(m => m.TYPE == var_type).SELLOUT_COL1,null);
+                        data.Find(m => m.TYPE == var_type).CONVERSION_RATE_COL2 = CheckDiv(data.Find(m => m.TYPE == var_type).SELLIN_COL2 , data.Find(m => m.TYPE == var_type).SELLOUT_COL2,null);
+                        data.Find(m => m.TYPE == var_type).SHARE_COL1 = CheckDiv(data.Find(m => m.TYPE == var_type).SELLOUT_COL1 , data.Find(m => m.TYPE == var_type).MARKET_COL1,null);
+                        data.Find(m => m.TYPE == var_type).SHARE_COL2 = CheckDiv(data.Find(m => m.TYPE == var_type).SELLOUT_COL2 , data.Find(m => m.TYPE == var_type).MARKET_COL2,null);
                         SetBOYPercent(ref data, var_type);
-                        data.Find(m => m.TYPE == var_type).SHARE_PC = (Math.Round((decimal)data.Find(m => m.TYPE == var_type).SHARE_COL1, 2) - Math.Round((decimal)data.Find(m => m.TYPE == "TOTAL").SHARE_COL2, 2));
+                        data.Find(m => m.TYPE == var_type).SHARE_PC = CheckShare(data.Find(m => m.TYPE == var_type).SHARE_COL1, data.Find(m => m.TYPE == "TOTAL").SHARE_COL2);
 
                         //LE
                         var_type = "LE";
 
                         data.Find(m => m.TYPE == var_type).MARKET_COL1 = (decimal?)qle.market_col1;
                         data.Find(m => m.TYPE == var_type).MARKET_COL2 = (decimal?)qle.market_col1 -(decimal?)qint.market_col1;
-                        data.Find(m => m.TYPE == var_type).MARKET_PC = CheckDiv((decimal?)qle.market_col1, data.Find(m => m.TYPE == "TOTAL").MARKET_COL2) - 1;
-                        data.Find(m => m.TYPE == var_type).MARKET_PC_COL2 = CheckDiv((decimal?)qle.market_col1, (decimal?)qint.market_col1) - 1;
+                        data.Find(m => m.TYPE == var_type).MARKET_PC = CheckDiv((decimal?)qle.market_col1, data.Find(m => m.TYPE == "TOTAL").MARKET_COL2,null) - 1;
+                        data.Find(m => m.TYPE == var_type).MARKET_PC_COL2 = CheckDiv((decimal?)qle.market_col1, (decimal?)qint.market_col1,null) - 1;
                         data.Find(m => m.TYPE == var_type).SELLIN_COL1 = (decimal?)qle.sellin_col1;
                         data.Find(m => m.TYPE == var_type).SELLIN_COL2 = (decimal?)qle.sellin_col1 - (decimal?)qint.sellin_col1;
-                        data.Find(m => m.TYPE == var_type).SELLIN_PC = CheckDiv((decimal?)qle.sellin_col1, data.Find(m => m.TYPE == "TOTAL").SELLIN_COL2) - 1;
-                        data.Find(m => m.TYPE == var_type).SELLIN_PC_COL2 = CheckDiv((decimal?)qle.sellin_col1, (decimal?)qint.sellin_col1) - 1;
+                        data.Find(m => m.TYPE == var_type).SELLIN_PC = CheckDiv((decimal?)qle.sellin_col1, data.Find(m => m.TYPE == "TOTAL").SELLIN_COL2,null) - 1;
+                        data.Find(m => m.TYPE == var_type).SELLIN_PC_COL2 = CheckDiv((decimal?)qle.sellin_col1, (decimal?)qint.sellin_col1,null) - 1;
                         data.Find(m => m.TYPE == var_type).SELLOUT_COL1 = (decimal?)qle.sellout_col1;
                         data.Find(m => m.TYPE == var_type).SELLOUT_COL2 = (decimal?)qle.sellout_col1 - (decimal?)qint.sellout_col1;
-                        data.Find(m => m.TYPE == var_type).SELLOUT_PC = CheckDiv((decimal?)qle.sellout_col1, data.Find(m => m.TYPE == "TOTAL").SELLOUT_COL2) - 1;
-                        data.Find(m => m.TYPE == var_type).SELLOUT_PC_COL2 = CheckDiv((decimal?)qle.sellout_col1, (decimal?)qint.sellout_col1) - 1;
-                        data.Find(m => m.TYPE == var_type).CONVERSION_RATE_COL1 = CheckDiv(data.Find(m => m.TYPE == var_type).SELLIN_COL1, data.Find(m => m.TYPE == var_type).SELLOUT_COL1);
-                        data.Find(m => m.TYPE == var_type).CONVERSION_RATE_COL2 = CheckDiv(data.Find(m => m.TYPE == var_type).SELLIN_COL2, data.Find(m => m.TYPE == var_type).SELLOUT_COL2);
-                        data.Find(m => m.TYPE == var_type).SHARE_COL1 = CheckDiv(data.Find(m => m.TYPE == var_type).SELLOUT_COL1, data.Find(m => m.TYPE == var_type).MARKET_COL1);
-                        data.Find(m => m.TYPE == var_type).SHARE_COL2 = CheckDiv(data.Find(m => m.TYPE == var_type).SELLOUT_COL2, data.Find(m => m.TYPE == var_type).MARKET_COL2);
+                        data.Find(m => m.TYPE == var_type).SELLOUT_PC = CheckDiv((decimal?)qle.sellout_col1, data.Find(m => m.TYPE == "TOTAL").SELLOUT_COL2,null) - 1;
+                        data.Find(m => m.TYPE == var_type).SELLOUT_PC_COL2 = CheckDiv((decimal?)qle.sellout_col1, (decimal?)qint.sellout_col1,null) - 1;
+                        data.Find(m => m.TYPE == var_type).CONVERSION_RATE_COL1 = CheckDiv(data.Find(m => m.TYPE == var_type).SELLIN_COL1, data.Find(m => m.TYPE == var_type).SELLOUT_COL1,null);
+                        data.Find(m => m.TYPE == var_type).CONVERSION_RATE_COL2 = CheckDiv(data.Find(m => m.TYPE == var_type).SELLIN_COL2, data.Find(m => m.TYPE == var_type).SELLOUT_COL2,null);
+                        data.Find(m => m.TYPE == var_type).SHARE_COL1 = CheckDiv(data.Find(m => m.TYPE == var_type).SELLOUT_COL1, data.Find(m => m.TYPE == var_type).MARKET_COL1,null);
+                        data.Find(m => m.TYPE == var_type).SHARE_COL2 = CheckDiv(data.Find(m => m.TYPE == var_type).SELLOUT_COL2, data.Find(m => m.TYPE == var_type).MARKET_COL2,null);
                         //BTG
                         data.Find(m => m.TYPE == var_type).MARKET_BTG = (decimal?)qle.market_col2;
                         data.Find(m => m.TYPE == var_type).SELLIN_BTG = (decimal?)qle.sellin_col2;
                         data.Find(m => m.TYPE == var_type).SELLOUT_BTG = (decimal?)qle.sellout_col2;
                         SetBOYPercent(ref data, var_type);
-                        data.Find(m => m.TYPE == var_type).SHARE_PC = (Math.Round((decimal)data.Find(m => m.TYPE == var_type).SHARE_COL1, 2)  - Math.Round((decimal)data.Find(m => m.TYPE == "TOTAL").SHARE_COL2, 2));
-                        data.Find(m => m.TYPE == var_type).SHARE_PC_COL2 = (Math.Round((decimal)data.Find(m => m.TYPE == var_type).SHARE_COL1, 2)  - Math.Round((decimal)data.Find(m => m.TYPE == "INT").SHARE_COL1, 2));
+                        data.Find(m => m.TYPE == var_type).SHARE_PC = CheckShare(data.Find(m => m.TYPE == var_type).SHARE_COL1, data.Find(m => m.TYPE == "TOTAL").SHARE_COL2);
+                        data.Find(m => m.TYPE == var_type).SHARE_PC_COL2 = CheckShare(data.Find(m => m.TYPE == var_type).SHARE_COL1,data.Find(m => m.TYPE == "INT").SHARE_COL1);
 
                         //PBP
                         var_type = "PBP";
@@ -822,12 +822,12 @@ namespace StrawmanApp.Controllers
                         data.Find(m => m.TYPE == var_type).SELLOUT_COL1 = (decimal?)qpbp.sellout_col1;
                         data.Find(m => m.TYPE == var_type).SELLOUT_COL2 = (decimal?)qpbp.sellout_col2;
                         data.Find(m => m.TYPE == var_type).SELLOUT_PC = qpbp.sellout_pc;
-                        data.Find(m => m.TYPE == var_type).CONVERSION_RATE_COL1 = CheckDiv(data.Find(m => m.TYPE == var_type).SELLIN_COL1, data.Find(m => m.TYPE == var_type).SELLOUT_COL1);
-                        data.Find(m => m.TYPE == var_type).CONVERSION_RATE_COL2 = CheckDiv(data.Find(m => m.TYPE == var_type).SELLIN_COL2, data.Find(m => m.TYPE == var_type).SELLOUT_COL2);
-                        data.Find(m => m.TYPE == var_type).SHARE_COL1 = CheckDiv(data.Find(m => m.TYPE == var_type).SELLOUT_COL1, data.Find(m => m.TYPE == var_type).MARKET_COL1);
-                        data.Find(m => m.TYPE == var_type).SHARE_COL2 = CheckDiv(data.Find(m => m.TYPE == var_type).SELLOUT_COL2, data.Find(m => m.TYPE == var_type).MARKET_COL2);
+                        data.Find(m => m.TYPE == var_type).CONVERSION_RATE_COL1 = CheckDiv(data.Find(m => m.TYPE == var_type).SELLIN_COL1, data.Find(m => m.TYPE == var_type).SELLOUT_COL1,null);
+                        data.Find(m => m.TYPE == var_type).CONVERSION_RATE_COL2 = CheckDiv(data.Find(m => m.TYPE == var_type).SELLIN_COL2, data.Find(m => m.TYPE == var_type).SELLOUT_COL2,null);
+                        data.Find(m => m.TYPE == var_type).SHARE_COL1 = CheckDiv(data.Find(m => m.TYPE == var_type).SELLOUT_COL1, data.Find(m => m.TYPE == var_type).MARKET_COL1,null);
+                        data.Find(m => m.TYPE == var_type).SHARE_COL2 = CheckDiv(data.Find(m => m.TYPE == var_type).SELLOUT_COL2, data.Find(m => m.TYPE == var_type).MARKET_COL2,null);
                         SetBOYPercent(ref data, var_type);
-                        data.Find(m => m.TYPE == var_type).SHARE_PC = (Math.Round((decimal)data.Find(m => m.TYPE == var_type).SHARE_COL1, 2) - Math.Round((decimal)data.Find(m => m.TYPE == "LE").SHARE_COL1, 2));
+                        data.Find(m => m.TYPE == var_type).SHARE_PC = CheckShare(data.Find(m => m.TYPE == var_type).SHARE_COL1, data.Find(m => m.TYPE == "LE").SHARE_COL1);
                         //TOGO
                         var_type = "TOGO";
 
@@ -837,10 +837,10 @@ namespace StrawmanApp.Controllers
                         data.Find(m => m.TYPE == var_type).SELLIN_PC = qle.sellin_pc;
                         data.Find(m => m.TYPE == var_type).SELLOUT_COL2 = (decimal?)qle.sellout_col2;
                         data.Find(m => m.TYPE == var_type).SELLOUT_PC = qle.sellout_pc;
-                        data.Find(m => m.TYPE == var_type).CONVERSION_RATE_COL2 = CheckDiv(data.Find(m => m.TYPE == var_type).SELLIN_COL2, data.Find(m => m.TYPE == var_type).SELLOUT_COL2);
-                        data.Find(m => m.TYPE == var_type).SHARE_COL2 = CheckDiv(data.Find(m => m.TYPE == var_type).SELLOUT_COL2, data.Find(m => m.TYPE == var_type).MARKET_COL2);
+                        data.Find(m => m.TYPE == var_type).CONVERSION_RATE_COL2 = CheckDiv(data.Find(m => m.TYPE == var_type).SELLIN_COL2, data.Find(m => m.TYPE == var_type).SELLOUT_COL2,null);
+                        data.Find(m => m.TYPE == var_type).SHARE_COL2 = CheckDiv(data.Find(m => m.TYPE == var_type).SELLOUT_COL2, data.Find(m => m.TYPE == var_type).MARKET_COL2,null);
                         SetBOYPercent(ref data, var_type);
-                        data.Find(m => m.TYPE == var_type).SHARE_PC = (Math.Round((decimal)data.Find(m => m.TYPE == var_type).SHARE_COL2, 2) - Math.Round((decimal)data.Find(m => m.TYPE == var_type).SHARE_COL1, 2));
+                        data.Find(m => m.TYPE == var_type).SHARE_PC = CheckShare(data.Find(m => m.TYPE == var_type).SHARE_COL2, data.Find(m => m.TYPE == var_type).SHARE_COL1);
                     }
                     //Actualizar datos de los sumatorios y de los canales
                     //localizamos los datos de los registros a actualizar. 
@@ -867,12 +867,12 @@ namespace StrawmanApp.Controllers
                                 TYPE = m.m.TYPE,
                                 MARKET = m.m.MARKET,
                                 BRAND = m.m.BRAND,
-                                MARKET_COL1 = m.m.MARKET_COL1 * (decimal?)(m.n.MARKET_CONFIG == null ? 1 : m.n.MARKET_CONFIG),
-                                MARKET_COL2 = m.m.MARKET_COL2 * (decimal?)(m.n.MARKET_CONFIG == null ? 1 : m.n.MARKET_CONFIG),
-                                SELLIN_COL1 = m.m.SELLIN_COL1 * (decimal?)(m.n.SELLIN_CONFIG == null ? 1 : m.n.SELLIN_CONFIG),
-                                SELLIN_COL2 = m.m.SELLIN_COL2 * (decimal?)(m.n.SELLIN_CONFIG == null ? 1 : m.n.SELLIN_CONFIG),
-                                SELLOUT_COL1 = m.m.SELLOUT_COL1 * (decimal?)(m.n.SELLOUT_CONFIG == null ? 1 : m.n.SELLOUT_CONFIG),
-                                SELLOUT_COL2 = m.m.SELLOUT_COL2 * (decimal?)(m.n.SELLOUT_CONFIG == null ? 1 : m.n.SELLOUT_CONFIG),
+                                MARKET_COL1 = m.m.MARKET_COL1 * (decimal?)(m.n.MARKET_CONFIG?? 1),
+                                MARKET_COL2 = m.m.MARKET_COL2 * (decimal?)(m.n.MARKET_CONFIG ?? 1),
+                                SELLIN_COL1 = m.m.SELLIN_COL1 * (decimal?)(m.n.SELLIN_CONFIG ?? 1),
+                                SELLIN_COL2 = m.m.SELLIN_COL2 * (decimal?)(m.n.SELLIN_CONFIG ?? 1),
+                                SELLOUT_COL1 = m.m.SELLOUT_COL1 * (decimal?)(m.n.SELLOUT_CONFIG ?? 1),
+                                SELLOUT_COL2 = m.m.SELLOUT_COL2 * (decimal?)(m.n.SELLOUT_CONFIG ?? 1),
                                 MARKET_BTG = m.m.MARKET_BTG,
                                 SELLIN_BTG = m.m.SELLIN_BTG,
                                 SELLOUT_BTG = m.m.SELLOUT_BTG,
@@ -897,7 +897,7 @@ namespace StrawmanApp.Controllers
                                 MARKET = m.Max(t => t.MARKET) + 9000,
                                 BRAND = m.Max(t => t.BRAND) + 9000
                             }).ToList();
-                        if (sum == null) continue;//No es necesario actualizar el sumatorio de los que no consolidan ya que no tienen.
+                        if (sum.Count == 0) continue;//No es necesario actualizar el sumatorio de los que no consolidan ya que no tienen.
                         var _int = sum.Find(n=>n.TYPE == "INT");
                         var _le = sum.Find(n => n.TYPE == "LE");
                         var _pbp = sum.Find(n => n.TYPE == "PBP");
@@ -982,7 +982,7 @@ namespace StrawmanApp.Controllers
                                         MARKET = m.Max(t => t.MARKET),
                                         BRAND = m.Max(t => t.BRAND)
                                     }).ToList();
-                        if (cgroup == null) continue;
+                        if (cgroup.Count == 0) continue;
                         var _int = cgroup.Find(n => n.TYPE == "INT");
                         var _le = cgroup.Find(n => n.TYPE == "LE");
                         var _pbp = cgroup.Find(n => n.TYPE == "PBP");
@@ -1181,12 +1181,12 @@ namespace StrawmanApp.Controllers
                     gaux.MARKET_COL2 = (double?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux2).MARKET_COL1 - (double?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux3).MARKET_COL2;
                     gaux.SELLIN_COL2 = (double?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux2).SELLIN_COL1 - (double?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux3).SELLIN_COL2;
                     gaux.SELLOUT_COL2 = (double?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux2).SELLOUT_COL1 - (double?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux3).SELLOUT_COL2;
-                    gaux.MARKET_CHGE = CheckDiv((decimal?)gaux.MARKET_COL2 , (decimal?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).MARKET_COL1) - 1;
-                    gaux.SELLIN_CHGE = CheckDiv((decimal?)gaux.SELLIN_COL2 , (decimal?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLIN_COL1) - 1;
-                    gaux.SELLOUT_CHGE = CheckDiv((decimal?)gaux.SELLOUT_COL2 ,((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLOUT_COL1) - 1;
-                    gaux.SHARE_COL2 = CheckDiv(gaux.SELLOUT_COL2 , gaux.MARKET_COL2);
-                    gaux.SHARE_CHGE = CheckDiv(gaux.SHARE_COL2 , CheckDiv (((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLOUT_COL1 , (decimal?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).MARKET_COL1)) * 100;
-                    gaux.CONVERSION_RATE_COL2 = CheckDiv(gaux.SELLIN_COL2 , gaux.SELLOUT_COL2);
+                    gaux.MARKET_CHGE = CheckDiv((decimal?)gaux.MARKET_COL2 , (decimal?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).MARKET_COL1,null) - 1;
+                    gaux.SELLIN_CHGE = CheckDiv((decimal?)gaux.SELLIN_COL2 , (decimal?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLIN_COL1,null) - 1;
+                    gaux.SELLOUT_CHGE = CheckDiv((decimal?)gaux.SELLOUT_COL2 ,((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLOUT_COL1,null) - 1;
+                    gaux.SHARE_COL2 = CheckDiv(gaux.SELLOUT_COL2 , gaux.MARKET_COL2,null);
+                    gaux.SHARE_CHGE = CheckDiv(gaux.SHARE_COL2 , CheckDiv (((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLOUT_COL1 , (decimal?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).MARKET_COL1,null), 100);
+                    gaux.CONVERSION_RATE_COL2 = CheckDiv(gaux.SELLIN_COL2 , gaux.SELLOUT_COL2,null);
                     return gaux;
                 case "WRK_BOY_DATA":
                     //aux = INT, aux2 = LE, aux3 = TOTAL
@@ -1200,14 +1200,14 @@ namespace StrawmanApp.Controllers
                             daux.SELLIN_COL2 = (decimal?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLIN_COL2;
                             daux.SELLOUT_COL1 = (decimal?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLOUT_COL1;
                             daux.SELLOUT_COL2 = (decimal?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLOUT_COL2;
-                            daux.MARKET_PC = (CheckDiv(((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).MARKET_COL1 ,((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux3).MARKET_COL2) - 1)*100;
-                            daux.SELLIN_PC = (CheckDiv(((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLIN_COL1 ,((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux3).SELLIN_COL2) - 1)*100;
-                            daux.SELLOUT_PC = (CheckDiv(((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLOUT_COL1 ,((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux3).SELLOUT_COL2) - 1)*100;
-                            daux.SHARE_COL1 = CheckDiv(daux.SELLOUT_COL1 ,daux.MARKET_COL1)*100;
-                            daux.SHARE_COL2 = CheckDiv(daux.SELLOUT_COL2 ,daux.MARKET_COL2)*100;
-                            daux.SHARE_PC = daux.SHARE_COL1 -  ((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux3).SHARE_COL2 ;
-                            daux.CONVERSION_RATE_COL1 = CheckDiv(daux.SELLIN_COL1 , daux.SELLOUT_COL1)*100;
-                            daux.CONVERSION_RATE_COL2 = CheckDiv(daux.SELLIN_COL2 , daux.SELLOUT_COL2)*100;
+                            daux.MARKET_PC = (CheckDiv(((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).MARKET_COL1 ,((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux3).MARKET_COL2,null) - 1)*100;
+                            daux.SELLIN_PC = (CheckDiv(((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLIN_COL1 ,((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux3).SELLIN_COL2,null) - 1)*100;
+                            daux.SELLOUT_PC = (CheckDiv(((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLOUT_COL1 ,((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux3).SELLOUT_COL2,null) - 1)*100;
+                            daux.SHARE_COL1 = CheckDiv(daux.SELLOUT_COL1 ,daux.MARKET_COL1,100);
+                            daux.SHARE_COL2 = CheckDiv(daux.SELLOUT_COL2 ,daux.MARKET_COL2,100);
+                            daux.SHARE_PC = CheckShare(daux.SHARE_COL1, ((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux3).SHARE_COL2);
+                            daux.CONVERSION_RATE_COL1 = CheckDiv(daux.SELLIN_COL1 , daux.SELLOUT_COL1,100);
+                            daux.CONVERSION_RATE_COL2 = CheckDiv(daux.SELLIN_COL2 , daux.SELLOUT_COL2,100);
                             return daux;
                         case "LE":
                             //aux = LE, aux2 = INT, aux3 = TOTAL
@@ -1217,18 +1217,18 @@ namespace StrawmanApp.Controllers
                             daux.SELLIN_COL2 = daux.SELLIN_COL1 - (decimal?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux2).SELLIN_COL1;
                             daux.SELLOUT_COL1 = (decimal?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLOUT_COL1;
                             daux.SELLOUT_COL2 = daux.SELLOUT_COL1 - (decimal?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux2).SELLOUT_COL1;
-                            daux.MARKET_PC = (CheckDiv(((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).MARKET_COL1, ((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux3).MARKET_COL2) - 1)*100;
-                            daux.SELLIN_PC = (CheckDiv(((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLIN_COL1, ((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux3).SELLIN_COL2) - 1)*100;
-                            daux.SELLOUT_PC = (CheckDiv(((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLOUT_COL1, ((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux3).SELLOUT_COL2) - 1)*100;
-                            daux.MARKET_PC_COL2 = (CheckDiv(((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).MARKET_COL1, ((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux2).MARKET_COL1) - 1)*100;
-                            daux.SELLIN_PC_COL2 = (CheckDiv(((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLIN_COL1, ((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux2).SELLIN_COL1) - 1) * 100;
-                            daux.SELLOUT_PC_COL2 = (CheckDiv(((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLOUT_COL1, ((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux2).SELLOUT_COL1) - 1) * 100;
-                            daux.SHARE_COL1 = CheckDiv(daux.SELLOUT_COL1, daux.MARKET_COL1) * 100;
+                            daux.MARKET_PC = (CheckDiv(((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).MARKET_COL1, ((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux3).MARKET_COL2,null) - 1)*100;
+                            daux.SELLIN_PC = (CheckDiv(((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLIN_COL1, ((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux3).SELLIN_COL2,null) - 1)*100;
+                            daux.SELLOUT_PC = (CheckDiv(((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLOUT_COL1, ((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux3).SELLOUT_COL2,null) - 1)*100;
+                            daux.MARKET_PC_COL2 = (CheckDiv(((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).MARKET_COL1, ((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux2).MARKET_COL1,null) - 1)*100;
+                            daux.SELLIN_PC_COL2 = (CheckDiv(((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLIN_COL1, ((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux2).SELLIN_COL1,null) - 1) * 100;
+                            daux.SELLOUT_PC_COL2 = (CheckDiv(((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLOUT_COL1, ((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux2).SELLOUT_COL1,null) - 1) * 100;
+                            daux.SHARE_COL1 = CheckDiv(daux.SELLOUT_COL1, daux.MARKET_COL1, 100);
                             //daux.SHARE_COL2 = CheckDiv(daux.SELLOUT_COL2, daux.MARKET_COL2) * 100;
-                            daux.SHARE_PC = daux.SHARE_COL1 -((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux3).SHARE_COL2;
-                            daux.SHARE_PC_COL2 = daux.SHARE_COL1 - ((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux2).SHARE_COL1; 
-                            daux.CONVERSION_RATE_COL1 = CheckDiv(daux.SELLIN_COL1, daux.SELLOUT_COL1) * 100;
-                            daux.CONVERSION_RATE_COL2 = CheckDiv(daux.SELLIN_COL2, daux.SELLOUT_COL2) * 100;
+                            daux.SHARE_PC = CheckShare(daux.SHARE_COL1,((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux3).SHARE_COL2);
+                            daux.SHARE_PC_COL2 = CheckShare(daux.SHARE_COL1, ((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux2).SHARE_COL1); 
+                            daux.CONVERSION_RATE_COL1 = CheckDiv(daux.SELLIN_COL1, daux.SELLOUT_COL1, 100);
+                            daux.CONVERSION_RATE_COL2 = CheckDiv(daux.SELLIN_COL2, daux.SELLOUT_COL2, 100);
                             return daux;
                         case "PBP":
                             //aux = PBP; aux2 = LE
@@ -1238,25 +1238,25 @@ namespace StrawmanApp.Controllers
                             daux.SELLIN_COL2 = (decimal?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLIN_COL2;
                             daux.SELLOUT_COL1 = (decimal?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLOUT_COL1;
                             daux.SELLOUT_COL2 = (decimal?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLOUT_COL2;
-                            daux.MARKET_PC = (CheckDiv(((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).MARKET_COL1 , ((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux2).MARKET_COL1) - 1)*100;
-                            daux.SELLIN_PC = (CheckDiv(((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLIN_COL1 , ((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux2).SELLIN_COL1) - 1)*100;
-                            daux.SELLOUT_PC = (CheckDiv(((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLOUT_COL1 , ((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux2).SELLOUT_COL1) - 1)*100;
-                            daux.SHARE_COL1 = CheckDiv(daux.SELLOUT_COL1 , daux.MARKET_COL1) * 100;
-                            daux.SHARE_COL2 = CheckDiv(daux.SELLOUT_COL2, daux.MARKET_COL2) * 100;
-                            daux.SHARE_PC = daux.SHARE_COL1 - ((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux2).SHARE_COL1;
-                            daux.CONVERSION_RATE_COL1 = CheckDiv(daux.SELLIN_COL1, daux.SELLOUT_COL1) * 100;
-                            daux.CONVERSION_RATE_COL2 = CheckDiv(daux.SELLIN_COL2, daux.SELLOUT_COL2) * 100;
+                            daux.MARKET_PC = (CheckDiv(((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).MARKET_COL1 , ((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux2).MARKET_COL1,null) - 1)*100;
+                            daux.SELLIN_PC = (CheckDiv(((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLIN_COL1 , ((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux2).SELLIN_COL1,null) - 1)*100;
+                            daux.SELLOUT_PC = (CheckDiv(((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLOUT_COL1 , ((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux2).SELLOUT_COL1,null) - 1)*100;
+                            daux.SHARE_COL1 = CheckDiv(daux.SELLOUT_COL1 , daux.MARKET_COL1, 100);
+                            daux.SHARE_COL2 = CheckDiv(daux.SELLOUT_COL2, daux.MARKET_COL2, 100);
+                            daux.SHARE_PC = CheckShare(daux.SHARE_COL1,((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux2).SHARE_COL1);
+                            daux.CONVERSION_RATE_COL1 = CheckDiv(daux.SELLIN_COL1, daux.SELLOUT_COL1, 100);
+                            daux.CONVERSION_RATE_COL2 = CheckDiv(daux.SELLIN_COL2, daux.SELLOUT_COL2, 100);
                             return daux;
                         case "TOGO":
                             daux.MARKET_COL2 = (decimal?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux2).MARKET_COL1 - (decimal?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux3).MARKET_COL2;
                             daux.SELLIN_COL2 = (decimal?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux2).SELLIN_COL1 - (decimal?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux3).SELLIN_COL2;
                             daux.SELLOUT_COL2 = (decimal?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux2).SELLOUT_COL1 - (decimal?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux3).SELLOUT_COL2;
-                            daux.MARKET_PC = (CheckDiv(daux.MARKET_COL2 , (decimal?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).MARKET_COL1) - 1)*100;
-                            daux.SELLIN_PC = (CheckDiv(daux.SELLIN_COL2 , (decimal?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLIN_COL1) - 1)*100;
-                            daux.SELLOUT_PC = (CheckDiv(daux.SELLOUT_COL2 , (decimal?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLOUT_COL1) - 1)*100;
-                            daux.SHARE_COL2 = CheckDiv(daux.SELLOUT_COL2, daux.MARKET_COL2) * 100;
-                            daux.SHARE_PC = daux.SHARE_COL2 - daux.SHARE_COL1 ;
-                            daux.CONVERSION_RATE_COL2 = CheckDiv(daux.SELLIN_COL2, daux.SELLOUT_COL2) * 100;
+                            daux.MARKET_PC = (CheckDiv(daux.MARKET_COL2 , (decimal?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).MARKET_COL1,null) - 1)*100;
+                            daux.SELLIN_PC = (CheckDiv(daux.SELLIN_COL2 , (decimal?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLIN_COL1,null) - 1)*100;
+                            daux.SELLOUT_PC = (CheckDiv(daux.SELLOUT_COL2 , (decimal?)((StrawmanDBLibray.Entities.WRK_BOY_DATA)aux).SELLOUT_COL1,null) - 1)*100;
+                            daux.SHARE_COL2 = CheckDiv(daux.SELLOUT_COL2, daux.MARKET_COL2, 100);
+                            daux.SHARE_PC = CheckShare(daux.SHARE_COL2, daux.SHARE_COL1);
+                            daux.CONVERSION_RATE_COL2 = CheckDiv(daux.SELLIN_COL2, daux.SELLOUT_COL2, 100);
                             return daux;
                     }
                     break;
@@ -1264,14 +1264,21 @@ namespace StrawmanApp.Controllers
             return null;
 
         }
-        private decimal? CheckDiv(decimal? div1, decimal? div2)
+        private decimal? CheckDiv(decimal? div1, decimal? div2,int?pc)
         {
-            return CheckDiv((double?)div1, (double?)div2);
+            return CheckDiv((double?)div1, (double?)div2, pc);
         }
-        private decimal? CheckDiv(double? div1, double? div2)
+        private decimal? CheckDiv(double? div1, double? div2, int? pc)
         {
-            if (div2 == 0 || div1 == null || div2== null) return 0;
-            return (decimal?)(div1 / div2);
+            if (div1 == null || div2 == null) return null;
+            if (div2 == 0) return 0;
+            return (decimal?)(div1 / div2) * (pc??1);
+        }
+        private decimal? CheckShare(decimal? col1, decimal? col2)
+        {
+            if (col1 == null || col2 == null) return null;
+            return (Math.Round((decimal)col1, 2) - Math.Round((decimal)col2, 2));
+
         }
         private void SetBOYPercent(ref List<StrawmanDBLibray.Entities.WRK_BOY_DATA> data, string type)
         {
@@ -1334,25 +1341,25 @@ namespace StrawmanApp.Controllers
 
             bool is_pc = false;
 
-            double ma_total = 0;
-            double si_total = 0;
-            double so_total = 0;
+            double? ma_total = 0;
+            double? si_total = 0;
+            double? so_total = 0;
 
-            double ma_ytd = 0;
-            double si_ytd = 0;
-            double so_ytd = 0;
+            double? ma_ytd = 0;
+            double? si_ytd = 0;
+            double? so_ytd = 0;
 
-            double ma_togo = 0;
-            double si_togo = 0;
-            double so_togo = 0;
+            double? ma_togo = 0;
+            double? si_togo = 0;
+            double? so_togo = 0;
 
-            double ma_le = 0;
-            double si_le = 0;
-            double so_le = 0;
+            double? ma_le = 0;
+            double? si_le = 0;
+            double? so_le = 0;
 
-            double ma_pbp = 0;
-            double si_pbp = 0;
-            double so_pbp = 0;
+            double? ma_pbp = 0;
+            double? si_pbp = 0;
+            double? so_pbp = 0;
 
             string _column = "", _type = "";
 
@@ -1400,17 +1407,17 @@ namespace StrawmanApp.Controllers
                                                 share_pc_int = m.SHARE_PC_COL2
                                             }).ToList();                                         
 
-            ma_total = (double)d.FirstOrDefault(i=>i.type == "TOTAL").market_col2;
-            si_total = (double)d.FirstOrDefault(i => i.type == "TOTAL").sellin_col2;
-            so_total = (double)d.FirstOrDefault(i => i.type == "TOTAL").sellout_col2;
+            ma_total = (d.FirstOrDefault(i=>i.type == "TOTAL").market_col2);
+            si_total = (d.FirstOrDefault(i => i.type == "TOTAL").sellin_col2);
+            so_total = (d.FirstOrDefault(i => i.type == "TOTAL").sellout_col2);
 
-            ma_ytd = (double)d.FirstOrDefault(i => i.type == "YTD").market_col2;
-            si_ytd = (double)d.FirstOrDefault(i => i.type == "YTD").sellin_col2;
-            so_ytd = (double)d.FirstOrDefault(i => i.type == "YTD").sellout_col2;
+            ma_ytd = (d.FirstOrDefault(i => i.type == "YTD").market_col2);
+            si_ytd = (d.FirstOrDefault(i => i.type == "YTD").sellin_col2);
+            so_ytd = (d.FirstOrDefault(i => i.type == "YTD").sellout_col2);
 
-            ma_togo = (double)d.FirstOrDefault(i => i.type == "TOGO").market_col1;
-            si_togo = (double)d.FirstOrDefault(i => i.type == "TOGO").sellin_col1;
-            so_togo = (double)d.FirstOrDefault(i => i.type == "TOGO").sellout_col1;
+            ma_togo = (d.FirstOrDefault(i => i.type == "TOGO").market_col1);
+            si_togo = (d.FirstOrDefault(i => i.type == "TOGO").sellin_col1);
+            so_togo = (d.FirstOrDefault(i => i.type == "TOGO").sellout_col1);
         
             //Hay que contar con que se pueden haber modificado los valores BTG y LE, por lo que el cálculo de PBP dependerá de ello.
             //Comprobamos que no existe la caché para el modelo y si es así obtenemos los datos que le corresponden para el cálculo.
@@ -1418,24 +1425,24 @@ namespace StrawmanApp.Controllers
             {
                 var l = d.Find(i=>i.type == "LE");
                 //Obtenemos los originale para el cálculo de PBP
-                ma_le = (double)l.market_col1;
-                si_le = (double)l.sellin_col1;
-                so_le = (double)l.sellout_col1;
+                ma_le = l.market_col1;
+                si_le = l.sellin_col1;
+                so_le = l.sellout_col1;
 
                 var p = d.Find(i => i.type == "PBP");
-                ma_pbp = (double)p.market_col1;
-                si_pbp = (double)p.sellin_col1;
-                so_pbp = (double)p.sellout_col1;
+                ma_pbp = p.market_col1;
+                si_pbp = p.sellin_col1;
+                so_pbp = p.sellout_col1;
             }
             else
             {
                 //La caché del modelo ha sido generada, por lo que tenemos que realizar el cálculo con los datos del formulario.
-                ma_le = (double)bm.BTG.market_col1;
-                si_le = (double)bm.BTG.sellin_col1;
-                so_le = (double)bm.BTG.sellout_col1;
+                ma_le = bm.BTG.market_col1;
+                si_le = bm.BTG.sellin_col1;
+                so_le = bm.BTG.sellout_col1;
             }
         
-            double ma_value = 0, ma_value2 = 0, si_value= 0, si_value2 = 0, so_value= 0, so_value2 = 0;
+            double? ma_value = 0, ma_value2 = 0, si_value= 0, si_value2 = 0, so_value= 0, so_value2 = 0;
                     
             if (column.Contains("PBP")) _type = "PBP";
             if (column.Contains("INT")) _type = "INT";
@@ -1453,14 +1460,14 @@ namespace StrawmanApp.Controllers
                 switch (_type)
                 {
                     case "PBP":
-                        ma_value = (double) CheckDiv(double.Parse(value), ma_le) - 1;
-                        si_value = (double) CheckDiv(double.Parse(value), si_le) - 1;
-                        so_value = (double) CheckDiv(double.Parse(value), so_le) - 1;
+                        ma_value = (double?) CheckDiv(double.Parse(value), ma_le,null) - 1;
+                        si_value = (double?) CheckDiv(double.Parse(value), si_le,null) - 1;
+                        so_value = (double?) CheckDiv(double.Parse(value), so_le,null) - 1;
                         break;
                     case "INT":
-                        ma_value = (double) CheckDiv(double.Parse(value), ma_total) - 1;
-                        si_value = (double) CheckDiv(double.Parse(value), si_total) - 1;
-                        so_value = (double) CheckDiv(double.Parse(value), so_total) - 1;
+                        ma_value = (double?) CheckDiv(double.Parse(value), ma_total,null) - 1;
+                        si_value = (double?) CheckDiv(double.Parse(value), si_total,null) - 1;
+                        so_value = (double?) CheckDiv(double.Parse(value), so_total,null) - 1;
                         break;
                     case "BTG":
                         double ma_btg_tmp = 0, si_btg_tmp = 0, so_btg_tmp = 0;
@@ -1472,13 +1479,13 @@ namespace StrawmanApp.Controllers
                         }
                         else //corresponde a LE
                         {
-                            ma_btg_tmp = (double.Parse(value)) - ma_ytd;
-                            si_btg_tmp = (double.Parse(value)) - si_ytd;
-                            so_btg_tmp = (double.Parse(value)) - so_ytd;
+                            ma_btg_tmp = (double.Parse(value)) - (ma_ytd??0);
+                            si_btg_tmp = (double.Parse(value)) - (si_ytd??0);
+                            so_btg_tmp = (double.Parse(value)) - (so_ytd??0);
                         }
-                        ma_value = (double) CheckDiv(ma_btg_tmp, ma_togo) - 1;
-                        si_value = (double) CheckDiv(si_btg_tmp, si_togo) - 1;
-                        so_value = (double) CheckDiv(so_btg_tmp, so_togo) - 1;
+                        ma_value = (double?) CheckDiv(ma_btg_tmp, ma_togo,null) - 1;
+                        si_value = (double?) CheckDiv(si_btg_tmp, si_togo,null) - 1;
+                        so_value = (double?) CheckDiv(so_btg_tmp, so_togo,null) - 1;
                         break;
                 }
                 switch (_column)
@@ -1528,25 +1535,25 @@ namespace StrawmanApp.Controllers
                 switch (_type)
                 {
                     case "PBP":
-                        ma_value = ((double)calc + 1) * (ma_le);
-                        si_value = ((double)calc + 1) * (si_le);
-                        so_value = ((double)calc + 1) * (so_le);
+                        ma_value = (calc + 1) * (ma_le??0);
+                        si_value = (calc + 1) * (si_le??0);
+                        so_value = (calc + 1) * (so_le??0);
                         break;
                     case "INT":
-                        ma_value = ((double)calc + 1) * (ma_total);
-                        si_value = ((double)calc + 1) * (si_total);
-                        so_value = ((double)calc + 1) * (so_total);
+                        ma_value = (calc + 1) * (ma_total??0);
+                        si_value = (calc + 1) * (si_total??0);
+                        so_value = (calc + 1) * (so_total??0);
                         break;
                     case "BTG":
 
                         //Calculos para la columna BTG modificada.
-                        ma_value = ((double)calc + 1) * (ma_togo);
-                        si_value = ((double)calc + 1) * (si_togo);
-                        so_value = ((double)calc + 1) * (so_togo); 
+                        ma_value = (calc + 1) * (ma_togo??0);
+                        si_value = (calc + 1) * (si_togo??0);
+                        so_value = (calc + 1) * (so_togo??0); 
                         //recalculamos el valor de LE.
-                        ma_value2 = ma_value + ma_ytd;
-                        si_value2 = si_value + si_ytd;
-                        so_value2 = so_value + so_ytd;
+                        ma_value2 = ma_value + (ma_ytd??0);
+                        si_value2 = si_value + (si_ytd??0);
+                        so_value2 = so_value + (so_ytd??0);
                         break;
                 }
                 //asignamos el valor calculado a la varible genérica org_val y org_val2 (solo para BTG).
@@ -1575,11 +1582,11 @@ namespace StrawmanApp.Controllers
                 // Cantidades
                 double pbp_value = 0;
                 //En el caso de que se modifique LE (BTG) hay que obtener el entero para PBP de la caché para volver a calcular el porcentaje:            
-                if (_column == "MARKET") pbp_value = bm == null? ma_pbp: (double)bm.PBP.market_col1;
-                if (_column == "SELLOUT")pbp_value = bm == null? so_pbp: (double)bm.PBP.sellout_col1;                      
-                if (_column == "SELLIN") pbp_value = bm == null? si_pbp: (double)bm.PBP.sellin_col1;
+                if (_column == "MARKET") pbp_value = bm == null? (ma_pbp??0): (double)bm.PBP.market_col1;
+                if (_column == "SELLOUT")pbp_value = bm == null? (so_pbp??0): (double)bm.PBP.sellout_col1;                      
+                if (_column == "SELLIN") pbp_value = bm == null? (si_pbp??0): (double)bm.PBP.sellin_col1;
 
-                pbp_val = (double?)CheckDiv(pbp_value ,org_val2) -1; //(pbp_value_pc) / org_val) - 1; 
+                pbp_val = (double?)CheckDiv(pbp_value ,org_val2,null) -1; //(pbp_value_pc) / org_val) - 1; 
             }
             try
             {
@@ -1661,9 +1668,9 @@ namespace StrawmanApp.Controllers
                         bf.INT.sellin_pc = column.Contains("SELLIN") ? bm.INT.sellin_pc:bf.INT.sellin_pc;
                         bf.INT.sellout_pc = column.Contains("SELLOUT") ? bm.INT.sellout_pc : bf.INT.sellout_pc;
 
-                        bf.LE.market_pc_int = column.Contains("MARKET") ?(CheckDiv(bf.LE.market_col1, bf.INT.market_col1) - 1) * 100:bf.LE.market_pc_int;
-                        bf.LE.sellin_pc_int = column.Contains("SELLIN") ?(CheckDiv(bf.LE.sellin_col1, bf.INT.sellin_col1) - 1) * 100:bf.LE.sellin_pc_int;
-                        bf.LE.sellout_pc_int = column.Contains("SELLOUT") ?(CheckDiv(bf.LE.sellout_col1, bf.INT.sellout_col1) - 1) * 100:bf.LE.sellout_pc_int;
+                        bf.LE.market_pc_int = column.Contains("MARKET") ?(CheckDiv(bf.LE.market_col1, bf.INT.market_col1,null) - 1) * 100:bf.LE.market_pc_int;
+                        bf.LE.sellin_pc_int = column.Contains("SELLIN") ?(CheckDiv(bf.LE.sellin_col1, bf.INT.sellin_col1,null) - 1) * 100:bf.LE.sellin_pc_int;
+                        bf.LE.sellout_pc_int = column.Contains("SELLOUT") ?(CheckDiv(bf.LE.sellout_col1, bf.INT.sellout_col1,null) - 1) * 100:bf.LE.sellout_pc_int;
 
                         break;
                     case "PBP":
@@ -1685,16 +1692,16 @@ namespace StrawmanApp.Controllers
                         bf.BTG.market_pc = column.Contains("MARKET") ?bm.BTG.market_pc:bf.BTG.market_pc;
                         bf.BTG.sellin_pc = column.Contains("SELLIN") ?bm.BTG.sellin_pc:bf.BTG.sellin_pc;
                         bf.BTG.sellout_pc = column.Contains("SELLOUT") ?bm.BTG.sellout_pc:bf.BTG.sellout_pc;
-                        bf.LE.market_pc = column.Contains("MARKET") ? (CheckDiv(bf.LE.market_col1, d.Find(m => m.type == "TOTAL").market_col2) - 1) * 100 : bf.LE.market_pc;
-                        bf.LE.sellout_pc = column.Contains("SELLOUT") ? (CheckDiv(bf.LE.sellout_col1, d.Find(m => m.type == "TOTAL").sellout_col2) - 1) * 100 : bf.LE.sellout_pc;
-                        bf.LE.sellin_pc = column.Contains("SELLIN") ? (CheckDiv(bf.LE.sellin_col1, d.Find(m => m.type == "TOTAL").sellin_col2) - 1) * 100 : bf.LE.sellin_pc;
+                        bf.LE.market_pc = column.Contains("MARKET") ? (CheckDiv(bf.LE.market_col1, d.Find(m => m.type == "TOTAL").market_col2,null) - 1) * 100 : bf.LE.market_pc;
+                        bf.LE.sellout_pc = column.Contains("SELLOUT") ? (CheckDiv(bf.LE.sellout_col1, d.Find(m => m.type == "TOTAL").sellout_col2,null) - 1) * 100 : bf.LE.sellout_pc;
+                        bf.LE.sellin_pc = column.Contains("SELLIN") ? (CheckDiv(bf.LE.sellin_col1, d.Find(m => m.type == "TOTAL").sellin_col2,null) - 1) * 100 : bf.LE.sellin_pc;
 
                         bf.LE.market_col2 = column.Contains("MARKET") ?bf.LE.market_col1 - bf.INT.market_col1:bf.LE.market_col2;
                         bf.LE.sellin_col2 = column.Contains("SELLIN") ?bf.LE.sellin_col1 - bf.INT.sellin_col1:bf.LE.sellin_col2;
                         bf.LE.sellout_col2 = column.Contains("SELLOUT") ?bf.LE.sellout_col1 - bf.INT.sellout_col1:bf.LE.sellout_col2;
-                        bf.LE.market_pc_int = column.Contains("MARKET") ?(CheckDiv(bf.LE.market_col1, bf.INT.market_col1) - 1) * 100:bf.LE.market_pc_int;
-                        bf.LE.sellin_pc_int = column.Contains("SELLIN") ?(CheckDiv(bf.LE.sellin_col1, bf.INT.sellin_col1) - 1) * 100:bf.LE.sellin_pc_int;
-                        bf.LE.sellout_pc_int = column.Contains("SELLOUT") ?(CheckDiv(bf.LE.sellout_col1, bf.INT.sellout_col1) - 1) * 100:bf.LE.sellout_pc_int;
+                        bf.LE.market_pc_int = column.Contains("MARKET") ?(CheckDiv(bf.LE.market_col1, bf.INT.market_col1,null) - 1) * 100:bf.LE.market_pc_int;
+                        bf.LE.sellin_pc_int = column.Contains("SELLIN") ?(CheckDiv(bf.LE.sellin_col1, bf.INT.sellin_col1,null) - 1) * 100:bf.LE.sellin_pc_int;
+                        bf.LE.sellout_pc_int = column.Contains("SELLOUT") ?(CheckDiv(bf.LE.sellout_col1, bf.INT.sellout_col1,null) - 1) * 100:bf.LE.sellout_pc_int;
 
                         bf.PBP.market_col1 = column.Contains("MARKET") ?bm.PBP.market_col1:bf.PBP.market_col1;
                         bf.PBP.sellin_col1 = column.Contains("SELLIN") ?bm.PBP.sellin_col1:bf.PBP.sellin_col1;
@@ -1704,16 +1711,16 @@ namespace StrawmanApp.Controllers
                         bf.PBP.sellout_pc = column.Contains("SELLOUT") ?bm.PBP.sellout_pc:bf.PBP.sellout_pc;
                         break;
                 }
-                bf.INT.share_col1 = CheckDiv(bm.INT.sellout_col1, bm.INT.market_col1) * 100;
-                bf.LE.share_col1 = CheckDiv(bm.BTG.sellout_col1, bm.BTG.market_col1) * 100;
-                bf.BTG.share_col2 = CheckDiv(bm.BTG.sellout_col2, bm.BTG.market_col2) * 100;
-                bf.PBP.share_col1 = CheckDiv(bm.PBP.sellout_col1, bm.PBP.market_col1) * 100;
+                bf.INT.share_col1 = CheckDiv(bm.INT.sellout_col1, bm.INT.market_col1, 100);
+                bf.LE.share_col1 = CheckDiv(bm.BTG.sellout_col1, bm.BTG.market_col1, 100);
+                bf.BTG.share_col2 = CheckDiv(bm.BTG.sellout_col2, bm.BTG.market_col2, 100);
+                bf.PBP.share_col1 = CheckDiv(bm.PBP.sellout_col1, bm.PBP.market_col1, 100);
 
-                bf.BTG.share_pc = Math.Round((decimal)bf.BTG.share_col1, 2, MidpointRounding.ToEven) - Math.Round((decimal)bf.BTG.share_col2, 2, MidpointRounding.ToEven);
-                bf.LE.share_pc = Math.Round((decimal)bf.LE.share_col1, 2, MidpointRounding.ToEven) - Math.Round((decimal)d.Find(m => m.type == "TOTAL").share_col2, 2, MidpointRounding.ToEven);
-                bf.LE.share_pc_int = Math.Round((decimal)bf.LE.share_col1, 2, MidpointRounding.ToEven) - Math.Round((decimal)bf.INT.share_col1, 2, MidpointRounding.ToEven);
-                bf.PBP.share_pc = Math.Round((decimal)bf.PBP.share_col1, 2, MidpointRounding.ToEven) - Math.Round((decimal)bf.BTG.share_col1, 2, MidpointRounding.ToEven);
-                bf.INT.share_pc = Math.Round((decimal)bf.INT.share_col1, 2, MidpointRounding.ToEven) - Math.Round((decimal)d.Find(m => m.type == "TOTAL").share_col2, 2, MidpointRounding.ToEven);
+                bf.BTG.share_pc = CheckShare(bf.BTG.share_col1, bf.BTG.share_col2);
+                bf.LE.share_pc = CheckShare(bf.LE.share_col1, d.Find(m => m.type == "TOTAL").share_col2);
+                bf.LE.share_pc_int = CheckShare(bf.LE.share_col1,bf.INT.share_col1);
+                bf.PBP.share_pc = CheckShare(bf.PBP.share_col1,bf.BTG.share_col1);
+                bf.INT.share_pc = CheckShare(bf.INT.share_col1,d.Find(m => m.type == "TOTAL").share_col2);
 
                 bf.INT.conversion_rate = null;
                 bf.INT.conversion_rate1 = null;
@@ -1759,7 +1766,7 @@ namespace StrawmanApp.Controllers
                 {
                     Data = new { ErrorMessage = ex.Message, Success = false },
                     ContentEncoding = System.Text.Encoding.UTF8,
-                    JsonRequestBehavior = JsonRequestBehavior.DenyGet
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
                 };
             }
         }

@@ -53,7 +53,8 @@ namespace StrawmanApp.Controllers
                     }).ToList();
             List<Models.StrawmanViewSTDModel> mst = (List<Models.StrawmanViewSTDModel>)GetDataViewMaster();
 
-            return new MarketViewKeybrandsController().GetGroupedData(tbase, mst, Classes.StrawmanViews.PCVSPY);
+            return new MarketViewKeybrandsController().GetGroupedData(tbase, mst, Classes.StrawmanViews.PCVSPY)
+                .Union(new MarketViewKeybrandsController().GetGroupedByConfig(tbase, KEYBRANDS_VIEW, Classes.StrawmanViews.PCVSPY)).ToList();
         }
 
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
@@ -66,8 +67,15 @@ namespace StrawmanApp.Controllers
         {
             List<Models.StrawmanViewSTDModel> tbase = (List<Models.StrawmanViewSTDModel>)new BrandViewController().GetBrandViewData(StrawmanDBLibray.Classes.StrawmanDataTables.WRK_BRAND_BOY);
             List<Models.StrawmanViewSTDModel> mst = (List<Models.StrawmanViewSTDModel>)GetDataViewMaster();
+            foreach (Models.StrawmanViewSTDModel item in tbase)
+            {
+                item.col1 = item._internal;
+                item.col2 = item._le;
+                item.col3 = item._pbp;
+            }
 
-            return new MarketViewKeybrandsController().GetGroupedData(tbase, mst, Classes.StrawmanViews.BOY);
+            return new MarketViewKeybrandsController().GetGroupedData(tbase, mst, Classes.StrawmanViews.BOY)
+                .Union(new MarketViewKeybrandsController().GetGroupedByConfig(tbase, KEYBRANDS_VIEW, Classes.StrawmanViews.BOY)).ToList();
         }
 
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
@@ -81,7 +89,8 @@ namespace StrawmanApp.Controllers
             List<Models.StrawmanViewSTDModel> tbase = (List<Models.StrawmanViewSTDModel>)new BrandViewController().GetBrandViewData(StrawmanDBLibray.Classes.StrawmanDataTables.WRK_BRAND_TOTAL);
             List<Models.StrawmanViewSTDModel> mst = (List<Models.StrawmanViewSTDModel>)GetDataViewMaster();
 
-            return new MarketViewKeybrandsController().GetGroupedData(tbase, mst, Classes.StrawmanViews.TOTAL);
+            return new MarketViewKeybrandsController().GetGroupedData(tbase, mst, Classes.StrawmanViews.TOTAL)
+                .Union(new MarketViewKeybrandsController().GetGroupedByConfig(tbase, KEYBRANDS_VIEW, Classes.StrawmanViews.TOTAL)).ToList();
         }
 
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
@@ -96,7 +105,8 @@ namespace StrawmanApp.Controllers
             List<Models.StrawmanViewSTDModel> tbase = (List<Models.StrawmanViewSTDModel>)new BrandViewController().GetBrandViewData(StrawmanDBLibray.Classes.StrawmanDataTables.WRK_BRAND_BTG);
             List<Models.StrawmanViewSTDModel> mst = (List<Models.StrawmanViewSTDModel>)GetDataViewMaster();
 
-            return new MarketViewKeybrandsController().GetGroupedData(tbase, mst, Classes.StrawmanViews.BTG);
+            return new MarketViewKeybrandsController().GetGroupedData(tbase, mst, Classes.StrawmanViews.BTG)
+                .Union(new MarketViewKeybrandsController().GetGroupedByConfig(tbase, KEYBRANDS_VIEW, Classes.StrawmanViews.BTG)).ToList();
         }
 
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
@@ -111,7 +121,8 @@ namespace StrawmanApp.Controllers
             List<Models.StrawmanViewSTDModel> tbase = (List<Models.StrawmanViewSTDModel>)new BrandViewController().GetBrandViewData(StrawmanDBLibray.Classes.StrawmanDataTables.WRK_BRAND_YTD);
             List<Models.StrawmanViewSTDModel> mst = (List<Models.StrawmanViewSTDModel>)GetDataViewMaster();
 
-            return new MarketViewKeybrandsController().GetGroupedData(tbase, mst, Classes.StrawmanViews.YTD);
+            return new MarketViewKeybrandsController().GetGroupedData(tbase, mst, Classes.StrawmanViews.YTD)
+                .Union(new MarketViewKeybrandsController().GetGroupedByConfig(tbase, KEYBRANDS_VIEW, Classes.StrawmanViews.YTD)).ToList();
         }
 
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
@@ -126,7 +137,8 @@ namespace StrawmanApp.Controllers
             List<Models.StrawmanViewSTDModel> tbase = (List<Models.StrawmanViewSTDModel>)new BrandViewController().GetBrandViewData(StrawmanDBLibray.Classes.StrawmanDataTables.WRK_BRAND_MONTH);
             List<Models.StrawmanViewSTDModel> mst = (List<Models.StrawmanViewSTDModel>)GetDataViewMaster();
 
-            return new MarketViewKeybrandsController().GetGroupedData(tbase, mst, Classes.StrawmanViews.MONTH);
+            return new MarketViewKeybrandsController().GetGroupedData(tbase, mst, Classes.StrawmanViews.MONTH)
+                .Union(new MarketViewKeybrandsController().GetGroupedByConfig(tbase, KEYBRANDS_VIEW, Classes.StrawmanViews.MONTH)).ToList();
         }
 
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
@@ -141,7 +153,8 @@ namespace StrawmanApp.Controllers
             List<Models.StrawmanViewSTDModel> tbase = (List<Models.StrawmanViewSTDModel>) new BrandViewController().GetBrandViewData(StrawmanDBLibray.Classes.StrawmanDataTables.WRK_BRAND_MAT);
             List<Models.StrawmanViewSTDModel> mst = (List<Models.StrawmanViewSTDModel>) GetDataViewMaster();
 
-            return new MarketViewKeybrandsController().GetGroupedData(tbase, mst,Classes.StrawmanViews.MAT);
+            return new MarketViewKeybrandsController().GetGroupedData(tbase, mst, Classes.StrawmanViews.MAT)
+                .Union(new MarketViewKeybrandsController().GetGroupedByConfig(tbase, KEYBRANDS_VIEW, Classes.StrawmanViews.MAT)).ToList();
         }
 
         public ActionResult GetDataView()
@@ -153,7 +166,9 @@ namespace StrawmanApp.Controllers
         private dynamic GetDataViewData()
         {
             List<StrawmanDBLibray.Entities.v_KEYBRANDS_MASTER> db = (List<StrawmanDBLibray.Entities.v_KEYBRANDS_MASTER>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.v_KEYBRANDS_MASTER, true);
-            return db.Select(p=> new Models.MarketViewChannelModels { name = p.NAME, vid = (decimal) p.ID }).Distinct().ToList();
+            return db.Select(p => new { _name = p.NAME, _vid = (decimal)p.ID }).AsEnumerable()
+                   .GroupBy(m => new { _name = m._name, _vid = m._vid }).AsEnumerable()
+                   .ToList().Select(m => new Models.MarketViewChannelModels { name = m.Key._name, vid = m.Key._vid }).Union(new  MarketViewKeybrandsController().GetGroupedByConfigView(KEYBRANDS_VIEW)).ToList();
         }
         private dynamic GetDataViewMaster()
         {
@@ -256,6 +271,24 @@ namespace StrawmanApp.Controllers
             }
         }
         #endregion
+        
+        #region Public Functions
+        [ChildActionOnly]
+        public List<Models.StrawmanViewSTDModel> GetMATKeybrandsData()
+        {
+            return this.GetMATData();
+        }
+        [ChildActionOnly]
+        public List<Models.StrawmanViewSTDModel> GetMonthKeybrandsData()
+        {
+            return this.GetMonthData();
+        }
+        [ChildActionOnly]
+        public List<Models.StrawmanViewSTDModel> GetYTDKeybrandsData()
+        {
+            return this.GetYTDData();
+        }
+        #endregion
 
         #region Custom Functions
 
@@ -306,6 +339,7 @@ namespace StrawmanApp.Controllers
         #endregion
         #region Constants
         private const string KEYBRANDS_MASTER = "KEYBRANDS_MASTER";
+        private const string KEYBRANDS_VIEW = "KEYBRANDS_BRAND_VIEW";
         #endregion
     }
 }

@@ -44,17 +44,49 @@ namespace StrawmanApp.Controllers
         private dynamic GetDataByType(string NTSType, int? cad)
         {
             int _year = cad == null? 0:(int)cad;
-            List<StrawmanDBLibray.Entities.v_WRK_NTS_DATA_KEYBRANDS> data = (List<StrawmanDBLibray.Entities.v_WRK_NTS_DATA_KEYBRANDS>)GetSessionData(NTSTables.v_WRK_NTS_DATA_KEYBRANDS);
-            List<StrawmanDBLibray.Entities.v_WRK_NTS_DATA_CHANNEL> channel = (List<StrawmanDBLibray.Entities.v_WRK_NTS_DATA_CHANNEL>)GetSessionData(NTSTables.v_WRK_NTS_DATA_CHANNEL);
-            data = data.Union(channel.Where(m=>m.ID>= 9).Select(m=>new StrawmanDBLibray.Entities.v_WRK_NTS_DATA_KEYBRANDS{
-                 ROW_ID = long.Parse(m.ID.ToString()),
-                 ID = m.ID,
-                 GROUP = null,
-                 AMOUNT = m.AMOUNT,
-                 YEAR_PERIOD = (decimal)m.YEAR_PERIOD,
-                 MONTH_PERIOD = (decimal)m.MONTH_PERIOD,
-                 TYPE = m.TYPE,
-            })).ToList();
+            //List<StrawmanDBLibray.Entities.WRK_NTS_VIEW_DATA> data = (List<StrawmanDBLibray.Entities.WRK_NTS_VIEW_DATA>)GetSessionData(NTSTables.WRK_NTS_VIEW_DATA);
+            List<StrawmanDBLibray.Entities.WRK_NTS_VIEW_DATA> data = (List<StrawmanDBLibray.Entities.WRK_NTS_VIEW_DATA>)GetSessionData(NTSTables.WRK_NTS_VIEW_DATA);
+            List<Models.StrawmanViewSTDModel> master = GetDataViewMaster();
+            var ret = data.Where(m => (m.YEAR_PERIOD == Helpers.PeriodUtil.Year - _year && m.MONTH_PERIOD == Helpers.PeriodUtil.Month) && m.TYPE == NTSType).AsEnumerable()
+                    .Join(master, d => new { _market = d.MARKET, _brand = d.BRAND }, m => new { _market = m.market, _brand = m.brand }, (d, m) => new Models.StrawmanViewSTDModel
+                    {
+                        market = m.market,
+                        brand = m.brand,
+                        channel = m.channel,
+                        vid = m.vid,
+                        vgroup = m.vgroup,
+                        vorder = m.vorder,
+                        config = m.config,
+                        col1 = d.AMOUNT
+                    }).ToList();
+            return ret
+                    .GroupBy(m => new { _vid = m.vid })
+                    .Select(m => new Models.StrawmanViewSTDModel
+                    {
+                        vid = m.Key._vid,
+                        vorder = m.Key._vid,
+                        vgroup = 0,
+                        col1 = m.Sum(p => (p.col1 * p.config)),
+                        market = 0
+                    }).Union(new MarketViewKeybrandsController().GetGroupedByConfig(
+                                                                        data.Where(m => (m.YEAR_PERIOD == Helpers.PeriodUtil.Year - _year && m.MONTH_PERIOD == Helpers.PeriodUtil.Month) && m.TYPE == NTSType)
+                                                                        .Select(m=>new Models.StrawmanViewSTDModel{
+                                                                            market = m.MARKET,
+                                                                            brand = m.BRAND,
+                                                                            channel = m.CHANNEL,
+                                                                            col1 = m.AMOUNT
+                                                                        }).ToList()
+                                                                        , KEYBRANDS_MARKET_VIEW, Classes.StrawmanViews.NTS)).ToList();
+            //List<StrawmanDBLibray.Entities.v_WRK_NTS_DATA_CHANNEL> channel = (List<StrawmanDBLibray.Entities.v_WRK_NTS_DATA_CHANNEL>)GetSessionData(NTSTables.v_WRK_NTS_DATA_CHANNEL);
+            //data = data.Union(channel.Where(m=>m.ID>= 9).Select(m=>new StrawmanDBLibray.Entities.v_WRK_NTS_DATA_KEYBRANDS{
+            //     ROW_ID = long.Parse(m.ID.ToString()),
+            //     ID = m.ID,
+            //     GROUP = null,
+            //     AMOUNT = m.AMOUNT,
+            //     YEAR_PERIOD = (decimal)m.YEAR_PERIOD,
+            //     MONTH_PERIOD = (decimal)m.MONTH_PERIOD,
+            //     TYPE = m.TYPE,
+            //})).ToList();
             return data.Where(m => (m.YEAR_PERIOD == Helpers.PeriodUtil.Year - _year && m.MONTH_PERIOD == Helpers.PeriodUtil.Month) && m.TYPE == NTSType)
                         .Select(p => new Models.StrawmanViewSTDModel
                         {
@@ -80,10 +112,20 @@ namespace StrawmanApp.Controllers
                     lst = (List<Models.StrawmanViewSTDModel>)SetDataView(lst, (List<Models.StrawmanViewSTDModel>)GetDataPBP(), NTSColumns.PBP);
                     return lst;
                 default:
-                    List<StrawmanDBLibray.Entities.v_ENTITY_WRK_KEYBRANDS_BASE> data = (List<StrawmanDBLibray.Entities.v_ENTITY_WRK_KEYBRANDS_BASE>)GetSessionData(StrawmanDataTables.v_ENTITY_WRK_KEYBRANDS_BASE);
-                    return data.Where(p => p.DATA == StrawmanViews.MARKET && p.TYPE == StrawmanColumns.MAT && p.YEAR_PERIOD == Helpers.PeriodUtil.Year && p.MONTH_PERIOD == Helpers.PeriodUtil.Month)
-                                .Select(p => new Models.MarketViewChannelModels { name = p.NAME, vgroup = 0, vorder = (decimal)p.ID, vid = (decimal)p.ID }).ToList();
+                    //List<StrawmanDBLibray.Entities.v_ENTITY_WRK_KEYBRANDS_BASE> data = (List<StrawmanDBLibray.Entities.v_ENTITY_WRK_KEYBRANDS_BASE>)GetSessionData(StrawmanDataTables.v_ENTITY_WRK_KEYBRANDS_BASE);
+                    //return data.Where(p => p.DATA == StrawmanViews.MARKET && p.TYPE == StrawmanColumns.MAT && p.YEAR_PERIOD == Helpers.PeriodUtil.Year && p.MONTH_PERIOD == Helpers.PeriodUtil.Month)
+                    //            .Select(p => new Models.MarketViewChannelModels { name = p.NAME, vgroup = 0, vorder = (decimal)p.ID, vid = (decimal)p.ID }).ToList();
+                    List<StrawmanDBLibray.Entities.v_KEYBRANDS_MASTER> db = (List<StrawmanDBLibray.Entities.v_KEYBRANDS_MASTER>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.v_KEYBRANDS_MASTER, true);
+                    return db.Select(p => new { _name = p.NAME, _vid = (decimal)p.ID }).AsEnumerable()
+                           .GroupBy(m => new { _name = m._name, _vid = m._vid }).AsEnumerable()
+                           .ToList().Select(m => new Models.MarketViewChannelModels { name = m.Key._name, vid = m.Key._vid }).Union(new MarketViewKeybrandsController().GetGroupedByConfigView(KEYBRANDS_BRANDS_VIEW)).ToList();
             }
+        }
+
+        private dynamic GetDataViewMaster()
+        {
+            List<StrawmanDBLibray.Entities.v_KEYBRANDS_MASTER> db = (List<StrawmanDBLibray.Entities.v_KEYBRANDS_MASTER>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.v_KEYBRANDS_MASTER, true);
+            return db.Select(p => new Models.StrawmanViewSTDModel { brand = p.BRAND, market = p.MARKET, channel = p.CHANNEL, vgroup = p.GROUP, vid = (decimal)p.ID, config = p.CONFIG_BRAND }).ToList();
         }
 
         private dynamic SetDataView(List<Models.StrawmanViewSTDModel> data, List<Models.StrawmanViewSTDModel> source, string type)
@@ -149,6 +191,8 @@ namespace StrawmanApp.Controllers
             public const string _PATH = "~/Views/NTSView/";
             public const string NTSVIEW = _PATH + "_NTSDataKeybrands.cshtml";
         }
+        private const string KEYBRANDS_BRANDS_VIEW = "KEYBRANDS_BRAND_VIEW";
+        private const string KEYBRANDS_MARKET_VIEW = "KEYBRANDS_MASTER_VIEW";
         #endregion
 
     }

@@ -49,7 +49,7 @@ namespace StrawmanApp.Controllers
                     .Join(mster.Where(m => m.TYPE == Classes.StrawmanViews.BRAND).AsEnumerable()
                     , d => new { _channel = d.CHANNEL, _market = d.MARKET, _brand = d.BRAND }, m => new { _channel = m.CHANNEL, _market = m.MARKET, _brand = (decimal?)m.BRAND }, (d, m) => new { d = d, m = m })
                     .AsEnumerable()
-                    .Select(p => new Models.MarketViewChannelModels { col1 = p.d.THREE_AGO, col2 = p.d.TWO_AGO, col3 = p.d.LAST, col4 = (decimal?)p.d.INTERNAL * p.m.CFG, col5 = (decimal?)p.d.LE * p.m.CFG, col6 = (decimal?)p.d.PBP * p.m.CFG, vid = (decimal)p.m.FRANCHISE_ID, vparent = p.m.PARENT_ID })
+                    .Select(p => new Models.MarketViewChannelModels { col1 = p.d.THREE_AGO * p.m.CFG, col2 = p.d.TWO_AGO * p.m.CFG, col3 = p.d.LAST * p.m.CFG, col4 = (decimal?)p.d.INTERNAL * p.m.CFG, col5 = (decimal?)p.d.LE * p.m.CFG, col6 = (decimal?)p.d.PBP * p.m.CFG, vid = (decimal)p.m.FRANCHISE_ID, vparent = p.m.PARENT_ID })
                     .AsEnumerable();
             return new MarketViewFranchiseController().GetFormatedData(q, Classes.StrawmanColumns.PCVSPY);
             //using (Models.GodzillaWRKDataContext db = new Models.GodzillaWRKDataContext())
@@ -385,6 +385,23 @@ namespace StrawmanApp.Controllers
             return GetSessionObject(key, null);
         }
 
+        #endregion
+        #region Public Functions
+        [ChildActionOnly]
+        public List<Models.MarketViewChannelModels> GetMATFranchiseData()
+        {
+            return this.GetMATData();
+        }
+        [ChildActionOnly]
+        public List<Models.MarketViewChannelModels> GetMonthFranchiseData()
+        {
+            return this.GetMonthData();
+        }
+        [ChildActionOnly]
+        public List<Models.MarketViewChannelModels> GetYTDFranchiseData()
+        {
+            return this.GetYTDData();
+        }
         #endregion
 
         #region Default Functions

@@ -6,6 +6,14 @@
     {
         StrawmanApp.Entities.ShareBoardModel item = items.Find(m => m.brand == itemaux.brand && m.market == itemaux.market && m.channel == itemaux.channel);
         bool _last = item == null ? false : Model.Last(m => m.channel == itemaux.channel).brand == item.brand;
+        string _styleView = StrawmanApp.Classes.Default.PartialViews.TR_STYLE;
+        string _style = "text-align:center;" + itemaux.style;
+        ViewDataDictionary _styleData = new ViewDataDictionary { 
+                                        { "_style", _style }, 
+                                        { "order", itemaux.vorder } ,
+                                        { "group", itemaux.vgroup } ,
+                                        { "market", itemaux.market } 
+                                        };
         StrawmanApp.Models.StrawmanSTDView viewaux = new StrawmanApp.Models.StrawmanSTDView
         {
             market = itemaux.market,
@@ -49,6 +57,6 @@
                 item == null ? null : item.ytd_col5 < 0 && (itemaux.vorder != itemaux.vgroup && itemaux.vorder <= itemaux.vgroup) ? "color:rgb(255,0,0);" : "",
                 item == null ? null : item.ytd_col6 < 0 && (itemaux.vorder != itemaux.vgroup && itemaux.vorder <= itemaux.vgroup) ? "color:rgb(255,0,0);" : "",
                 };
-        Html.RenderPartial("~/Views/StrawmanViews/_StrawmanViewSTDShareBoard.cshtml", new StrawmanApp.Models.StrawmanSTDViewModel { item = view, itemaux = viewaux }, new ViewDataDictionary { { "_colData", _colData }, { "_colType", _colType }, { "_colStyle", _colStyle }, { "_last", _last } });
+        Html.RenderPartial("~/Views/StrawmanViews/_StrawmanViewSTDShareBoard.cshtml", new StrawmanApp.Models.StrawmanSTDViewModel { item = view, itemaux = viewaux }, new ViewDataDictionary { { "_colData", _colData }, { "_colType", _colType }, { "_colStyle", _colStyle }, { "_last", _last },{ "styleView", _styleView },{"styleData",_styleData} });
     } 
 }

@@ -10,23 +10,23 @@
     var _two_year = _current_year - 2;
     var _three_year = _current_year - 3;
 }
-<table class="wrapper mastertable" style="display:none;"><tr>
+<table class="wrapper mastertable" style="display:none;" id="mastertable"><tr>
 <td style ="vertical-align:top;">
     <div class="market grid-wrap">
         <table id ="Market_DataView" class="table ellipsis table-striped grid-table" style="min-width:590px;">
         <thead>
          <tr style="font-size: 1.5em; height: 108px;">
-         <th style="width:41%;"><strong>@ViewBag.MarketTitle</strong></th>
-         <!--<th class="left-collapsable" style="width:12%;font-weight:100;">@ViewBag.DataTitle</th>-->
-         <!--<th class="left-collapsable" style="width:12%;font-weight:100;">@ViewBag.SourceTitle</th>-->
-         <th style="width:35%;"><strong>@ViewBag.BrandTitle</strong></th>
+         <th style="width:41%;" rowspan="2" colspan="2"><strong>@ViewBag.MarketTitle</strong></th>
+         <th style="width:35%;" rowspan="2" colspan="2"><strong>@ViewBag.BrandTitle</strong></th>
          </tr>
+         <tr></tr>
          </thead>
          <tbody></tbody>
         </table>
     </div>
 </td>
-<td class="collapsable" style="padding-left:5px;vertical-align:top;">
+<td style="width: 5px;"> </td>
+<td class="collapsable" style="vertical-align:top;padding-left: 5px;">
     <div class="market grid-wrap">
         <table id ="Market_MonthView" class="table table-striped grid-table" style="min-width:300px;">
          <thead>
@@ -41,7 +41,8 @@
         </table>
     </div>
 </td>
-<td class="collapsable" style="padding-left:5px;vertical-align:top;">
+<td style="width: 5px;"> </td>
+<td class="collapsable" style="vertical-align:top;padding-left: 5px;">
     <div class="market grid-wrap">
         <table id="Market_YTDView" class="table table-striped grid-table" style="min-width:300px;">
         <thead>
@@ -56,7 +57,8 @@
         </table>
     </div>
 </td>
-<td class="collapsable" style="padding-left:5px;vertical-align:top;">
+<td style="width: 5px;"> </td>
+<td class="collapsable" style="vertical-align:top;padding-left: 5px;">
     <div class="market grid-wrap">
         <table id="Market_MATView" class="table table-striped grid-table" style="min-width:300px;">
         <thead>
@@ -71,7 +73,8 @@
         </table>
     </div>
 </td>
-<td class="collapsable" style="padding-left:5px;vertical-align:top;">
+<td style="width: 5px;"> </td>
+<td class="collapsable" style="vertical-align:top;padding-left: 5px;">
     <div class="market grid-wrap">
         <table id ="Market_BTGView" class="table table-striped grid-table" style="min-width:300px;">
         <thead>
@@ -86,7 +89,8 @@
         </table>
     </div>
 </td>
-<td class="collapsable" style="padding-left:5px;vertical-align:top;">
+<td style="width: 5px;"> </td>
+<td class="collapsable" style="vertical-align:top;padding-left: 5px;">
     <div class="brandTotaCustom grid-wrap">
         <table id ="Market_TotalCustomView" class="table table-striped grid-table" style="min-width:300px;">
         <thead>
@@ -101,7 +105,8 @@
         </table>
     </div>
 </td>
-<td class="collapsable" style="padding-left:5px;vertical-align:top;">
+<td style="width: 5px;"> </td>
+<td class="collapsable" style="vertical-align:top;padding-left: 5px;">
     <div class="market grid-wrap">
         <table id="Market_BOYView" class="table table-striped grid-table" style="min-width:300px;">
         <thead>
@@ -116,7 +121,8 @@
         </table>
     </div>
 </td>
-<td class="collapsable" style="padding-left:5px;vertical-align:top;">
+<td style="width: 5px;"> </td>
+<td class="collapsable" style="vertical-align:top;padding-left: 5px;">
     <div class="market grid-wrap">
         <table id="Market_PCVSPYView" class="table table-striped grid-table" style="min-width:500px;">
         <thead>
@@ -145,7 +151,8 @@
         </table>
     </div>
 </td>*@
-<td class="collapsable" style="padding-left:5px;vertical-align:top;">
+<td style="width: 5px;"> </td>
+<td class="collapsable" style="vertical-align:top;padding-left: 5px;">
     <div class="brand grid-wrap">
         <table id ="Brand_MonthView" class="table table-striped grid-table" style="min-width:300px;">
         <thead>
@@ -160,7 +167,8 @@
         </table>
     </div>
 </td>
-<td class="collapsable" style="padding-left:5px;vertical-align:top;">
+<td style="width: 5px;"> </td>
+<td class="collapsable" style="vertical-align:top;padding-left: 5px;">
     <div class="brand grid-wrap">
         <table id="Brand_YTDView" class="table table-striped grid-table" style="min-width:300px;">
         <thead>
@@ -175,7 +183,8 @@
         </table>
     </div>
 </td>
-<td class="collapsable" style="padding-left:5px;vertical-align:top;">
+<td style="width: 5px;"> </td>
+<td class="collapsable" style="vertical-align:top;padding-left: 5px;">
     <div class="brande grid-wrap">
         <table id="Brand_MATView" class="table table-striped grid-table" style="min-width:300px;">
         <thead>
@@ -190,7 +199,8 @@
         </table>
     </div>
 </td>
-<td class="collapsable" style="padding-left:5px;vertical-align:top;">
+<td style="width: 5px;"> </td>
+<td class="collapsable" style="vertical-align:top;padding-left: 5px;">
     <div class="brand grid-wrap">
         <table id ="Brand_BTGView" class="table table-striped grid-table" style="min-width:300px;">
         <thead>
@@ -205,7 +215,8 @@
         </table>
     </div>
 </td>
-<td class="collapsable" style="padding-left:5px;vertical-align:top;">
+<td style="width: 5px;"> </td>
+<td class="collapsable" style="vertical-align:top;padding-left: 5px;">
     <div class="brand grid-wrap">
         <table id ="Brand_TotalCustomView" class="table table-striped grid-table" style="min-width:300px;">
         <thead>
@@ -220,7 +231,8 @@
         </table>
     </div>
 </td>
-<td class="collapsable" style="padding-left:5px;vertical-align:top;">
+<td style="width: 5px;"> </td>
+<td class="collapsable" style="vertical-align:top;padding-left: 5px;">
     <div class="brand grid-wrap">
         <table id="Brand_BOYView" class="table table-striped grid-table" style="min-width:300px;">
         <thead>
@@ -235,7 +247,8 @@
         </table>
     </div>
 </td>
-<td class="collapsable" style="padding-left:5px;vertical-align:top;">
+<td style="width: 5px;"> </td>
+<td class="collapsable" style="vertical-align:top;padding-left: 5px;">
     <div class="brand grid-wrap">
         <table id="Brand_PCVSPYView" class="table table-striped grid-table" style="min-width:500px;">
         <thead>
@@ -252,7 +265,8 @@
         </table>
     </div>
 </td>
-<td class="collapsable" style="padding-left:5px;vertical-align:top;">
+<td style="width: 5px;"> </td>
+<td class="collapsable" style="vertical-align:top;padding-left: 5px;">
     <div class="brand grid-wrap">
         <table id="NTSView" class="table table-striped grid-table" style="min-width:500px;">
         <thead>

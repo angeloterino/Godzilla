@@ -60,6 +60,21 @@ namespace StrawmanApp.Controllers
         {
             int _year = cad == null ? 0 : (int)cad;
             List<StrawmanDBLibray.Entities.WRK_NTS_VIEW_DATA> data = (List<StrawmanDBLibray.Entities.WRK_NTS_VIEW_DATA>)GetSessionData(NTSTables.WRK_NTS_VIEW_DATA);
+            var ret = data.Where(m => m.YEAR_PERIOD == Helpers.PeriodUtil.Year - _year && m.MONTH_PERIOD == Helpers.PeriodUtil.Month && m.TYPE == NTSType && m.BRAND < 9000 && m.MARKET < 9000)
+                .Select(p => new Models.StrawmanViewSTDModel
+                {
+                    market = p.MARKET,
+                    brand = p.BRAND,
+                    channel = p.CHANNEL,
+                    col1 = p.AMOUNT,
+                    vgroup = p.GROUP,
+                    vorder = p.GROUP_ORDER
+                })
+                .AsEnumerable();
+            GroupData(ref ret);
+            return ret.ToList();
+
+            //List<StrawmanDBLibray.Entities.WRK_NTS_VIEW_DATA> data = (List<StrawmanDBLibray.Entities.WRK_NTS_VIEW_DATA>)GetSessionData(NTSTables.WRK_NTS_VIEW_DATA);
             //if (NTSType.EndsWith(NTSTypes._WC))
             //{
             //    string NTSTypeWC = NTSType.Replace(NTSTypes._WC, "");
@@ -88,19 +103,26 @@ namespace StrawmanApp.Controllers
             //                vorder = p.GROUP_ORDER
             //            }).ToList();
             //}
-            return data.Where(m => (m.YEAR_PERIOD == Helpers.PeriodUtil.Year - _year && m.MONTH_PERIOD == Helpers.PeriodUtil.Month) && m.TYPE == NTSType)
-                        .Select(p => new Models.StrawmanViewSTDModel
-                        {
-                            market = p.MARKET,
-                            brand = p.BRAND,
-                            channel = p.CHANNEL,
-                            col1 = p.AMOUNT,
-                            vgroup = p.GROUP,
-                            vorder = p.GROUP_ORDER
-                        })
-                        .ToList();
+            //return data.Where(m => (m.YEAR_PERIOD == Helpers.PeriodUtil.Year - _year && m.MONTH_PERIOD == Helpers.PeriodUtil.Month) && m.TYPE == NTSType)
+            //            .Select(p => new Models.StrawmanViewSTDModel
+            //            {
+            //                market = p.MARKET,
+            //                brand = p.BRAND,
+            //                channel = p.CHANNEL,
+            //                col1 = p.AMOUNT,
+            //                vgroup = p.GROUP,
+            //                vorder = p.GROUP_ORDER
+            //            })
+            //            .ToList();
 
         }
+
+        [ChildActionOnly]
+        public dynamic GetDataByNTSType(string NTSType, int? cad)
+        {
+            return GetDataByType(NTSType, cad);
+        }
+
         private dynamic GetData(string key)
         {
             switch (key)
@@ -221,6 +243,157 @@ namespace StrawmanApp.Controllers
         private dynamic GetSessionData(string key)
         {
             return GetSessionData(key, false);
+        }
+
+        private void GroupData(ref IEnumerable<Models.StrawmanViewSTDModel> obj)
+        {
+            //Grupos
+            List<StrawmanDBLibray.Entities.CALCS_MARKETS_CONFIG> config = (List<StrawmanDBLibray.Entities.CALCS_MARKETS_CONFIG>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.CALCS_MARKETS_CONFIG, new Helpers.Session().CacheStatus);
+            List<StrawmanDBLibray.Entities.BRAND_MASTER> data = (List<StrawmanDBLibray.Entities.BRAND_MASTER>)GetSessionData(StrawmanDBLibray.Classes.StrawmanDataTables.BRAND_MASTER);
+            List<StrawmanDBLibray.Entities.v_STRWM_MARKET_DATA> mstr = (List<StrawmanDBLibray.Entities.v_STRWM_MARKET_DATA>)GetSessionData(StrawmanDataTables.v_STRWM_BRAND_DATA);
+            var cfg = mstr.Where(m=>m.MARKET < 9000 && m.BRAND < 9000).AsEnumerable().Join(config, c => new { _market = (decimal)c.MARKET, _brand = (decimal)c.BRAND }, d => new { _market = d.MARKET, _brand = d.BRAND }, (c, d) => new
+            {
+                market = (decimal?)c.MARKET,
+                brand = (decimal?)c.BRAND,
+                channel = (decimal?)c.CHANNEL,
+                gconfig = d.GROUPCFG,
+                sconfig = d.SUPERCFG,
+                cconfig = d.CHANNELCFG,
+                vorder = c.ORDER,
+                vgroup = data.FirstOrDefault(m=>m.MARKET == c.MARKET && m.ID == c.BRAND && m.CHANNEL == c.CHANNEL).GROUP,
+                sgroup = data.FirstOrDefault(m=>m.MARKET == c.MARKET && m.ID == c.BRAND && m.CHANNEL == c.CHANNEL).SUPER_GROUP
+            }).AsEnumerable();
+            var tobj = cfg.GroupJoin(obj, d => new { _market = d.market, _brand = d.brand, _channel = d.channel }, o => new { _market = o.market, _brand = o.brand, _channel = o.channel }, (d, o) => new { d = d, o = o })
+                      .AsEnumerable()
+                      //.GroupBy(m => new { _vgroup = m.d.vgroup })
+                      .SelectMany(f=>f.o.DefaultIfEmpty(),(d,o)=>new {d = d.d, o=o})
+                      .AsEnumerable()
+                      .Select(m => new
+                      {
+                          market = m.d.market,
+                          brand = m.d.brand,
+                          channel = m.d.channel,
+                          col1 = (m.o == null ? 0 : m.o.col1),
+                          gcol1 = (m.o == null?0:m.o.col1) * m.d.gconfig,
+                          scol1 = (m.o == null?0:m.o.col1) * m.d.sconfig,
+                          chcol1 = (m.o == null?0:m.o.col1) * m.d.cconfig,
+                          vgroup = m.d.vgroup,
+                          vorder = m.d.vorder
+
+                      }).AsEnumerable();
+            var grp = cfg.Join(tobj, d => new { _market = d.market, _brand = d.brand, _channel = d.channel }, o => new { _market = o.market, _brand = o.brand, _channel = o.channel }, (d, o) => new { d = d, o = o })
+                      .AsEnumerable()
+                      .GroupBy(m => new { _vgroup = m.d.vgroup })
+                      .Select(m => new Models.StrawmanViewSTDModel
+                      {
+                          market = m.Max(p => p.d.market) + 9000,
+                          brand = m.Max(p => p.d.brand) + 9000,
+                          channel = m.Max(p => p.d.channel),
+                          col1 = m.Sum(p => p.o.gcol1),
+                          vgroup = m.Key._vgroup,
+                          vorder = m.Max(p => p.o.vorder)
+
+                      }).AsEnumerable();
+            obj = obj.Union(grp).AsEnumerable();
+            //Supergrupos
+            var sgrp = cfg.Join(tobj, d => new { _market = d.market, _brand = d.brand, _channel = d.channel }, o => new { _market = o.market, _brand = o.brand, _channel = o.channel }, (d, o) => new { d = d, o = o })
+                      .AsEnumerable()
+                      .GroupBy(m => new { _vgroup = m.d.sgroup })
+                      .Select(m => new Models.StrawmanViewSTDModel
+                      {
+                          market = m.Max(p => p.d.market) + 9900,
+                          brand = m.Max(p => p.d.brand) + 9900,
+                          channel = m.Max(p => p.d.channel),
+                          col1 = m.Sum(p => p.o.scol1),
+                          vgroup = m.Key._vgroup,
+                          vorder = m.Max(p => p.o.vorder)
+
+                      }).AsEnumerable();
+            obj = obj.Union(sgrp).AsEnumerable();
+
+            //Channels
+            var chgrp = cfg.Join(tobj, d => new { _market = d.market, _brand = d.brand, _channel = d.channel }, o => new { _market = o.market, _brand = o.brand, _channel = o.channel }, (d, o) => new { d = d, o = o })
+                      .AsEnumerable()
+                      .GroupBy(m => new { _channel = m.d.channel})
+                      .Select(m => new Models.StrawmanViewSTDModel
+                      {
+                          market = m.Max(p => p.d.market) + 900000,
+                          brand = m.Max(p => p.d.brand) + 900000,
+                          channel = m.Key._channel,
+                          col1 = m.Sum(p => p.o.chcol1),
+                          vgroup = m.Max(p => p.d.vgroup),
+                          vorder = m.Max(p => p.o.vorder)
+
+                      }).AsEnumerable();
+            obj = obj.Union(chgrp).AsEnumerable();
+            //Custom groups
+            List<StrawmanDBLibray.Entities.GROUP_CONFIG> gcfg = (List<StrawmanDBLibray.Entities.GROUP_CONFIG>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.GROUP_CONFIG, new Helpers.Session().CacheStatus);
+            List<StrawmanDBLibray.Entities.GROUP_MASTER> gmst = (List<StrawmanDBLibray.Entities.GROUP_MASTER>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.GROUP_MASTER, new Helpers.Session().CacheStatus);
+            var ccfg = mstr.Where(m => m.MARKET < 9000 && m.BRAND < 9000).AsEnumerable()
+                        .Join(gcfg, c => new { _market = c.MARKET, _brand = c.BRAND }, d => new { _market = d.MARKET, _brand = d.BRAND }, (c, d) => new
+                            {
+                                market = c.MARKET,
+                                brand = c.BRAND,
+                                channel = c.CHANNEL,
+                                cfg = d.CONFIG,
+                                vorder = c.GROUP,
+                                vtype = d.TYPE_ID,
+                                vgroup = d.GROUP_ID,
+                                vbase = gmst.FirstOrDefault(m=>m.ID == d.GROUP_ID).BASE_ID
+                            }).AsEnumerable();
+
+            var tgrp = ccfg.Where(m => m.vtype == 6).AsEnumerable();
+            var cgrp = tgrp
+                        .Join(tobj, d => new { _market = d.market, _brand = d.brand, _channel = d.channel }, o => new { _market = o.market, _brand = o.brand, _channel = o.channel }, (d, o) => new { d = d, o = o })
+                        .AsEnumerable()
+                        .GroupBy(m => new { _vgroup = m.d.vgroup, _vbase = m.d.vbase })
+                       .Select(m => new Models.StrawmanViewSTDModel
+                          {
+                              market = (m.Max(p => p.d.market) + m.Key._vbase.Value),
+                              brand = (m.Max(p => p.d.brand) + m.Key._vbase.Value),
+                              channel = m.Max(p => p.d.channel),
+                              col1 = m.Sum(p => p.o.col1*p.d.cfg),
+                              vgroup = m.Key._vgroup,
+                              vorder = m.Max(p => p.o.vorder)
+
+                          }).AsEnumerable();
+            obj = obj.Union(cgrp).AsEnumerable();
+            //Custom WC
+            var twcgrp = ccfg.Where(m => m.vtype == 15 || m.vtype == 16).AsEnumerable();
+            var cwcgrp = twcgrp
+                        .Join(tobj, d => new { _market = d.market, _brand = d.brand, _channel = d.channel }, o => new { _market = o.market, _brand = o.brand, _channel = o.channel }, (d, o) => new { d = d, o = o })
+                        .AsEnumerable()
+                        .GroupBy(m => new { _vgroup = m.d.vgroup, _vbase = m.d.vbase })
+                       .Select(m => new Models.StrawmanViewSTDModel
+                       {
+                           market = (m.Max(p => p.d.market) + m.Key._vbase.Value),
+                           brand = (m.Max(p => p.d.brand) + m.Key._vbase.Value),
+                           channel = m.Max(p => p.d.channel),
+                           col1 = m.Sum(p => p.o.col1 * p.d.cfg),
+                           vgroup = m.Key._vgroup,
+                           vorder = m.Max(p => p.o.vorder)
+
+                       }).AsEnumerable();
+            obj = obj.Union(cwcgrp).AsEnumerable();
+            //Channels WC
+            var thwcgrp = ccfg.Where(m => m.vtype == 18).AsEnumerable();
+            List<StrawmanDBLibray.Entities.GROUP_TYPES> gtyp = (List<StrawmanDBLibray.Entities.GROUP_TYPES>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.GROUP_TYPES, new Helpers.Session().CacheStatus);
+            var chwcgrp = thwcgrp
+                        .Join(tobj, d => new { _market = d.market, _brand = d.brand, _channel = d.channel }, o => new { _market = o.market, _brand = o.brand, _channel = o.channel }, (d, o) => new { d = d, o = o })
+                        .AsEnumerable()
+                        .GroupBy(m => new { _vgroup = m.d.vgroup, _vbase = m.d.vbase })
+                       .Select(m => new Models.StrawmanViewSTDModel
+                       {
+                           market = (m.Max(p => p.d.market) + gtyp.FirstOrDefault(s=>s.ID == m.Max(p=>p.d.vtype)).BASE_ID),
+                           brand = (m.Max(p => p.d.brand) + gtyp.FirstOrDefault(s => s.ID == m.Max(p => p.d.vtype)).BASE_ID),
+                           channel = m.Max(p => p.d.channel),
+                           col1 = m.Sum(p => p.o.col1 * p.d.cfg),
+                           vgroup = m.Key._vgroup,
+                           vorder = m.Max(p => p.o.vorder)
+
+                       }).AsEnumerable();
+            obj = obj.Union(chwcgrp).AsEnumerable();
+            //Total
         }
         //private dynamic GetSessionData(string key)
         //{

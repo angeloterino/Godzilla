@@ -16,6 +16,40 @@ namespace StrawmanApp.Helpers
             int _month = PeriodUtil.Month;
             switch (table)
             {
+                case StrawmanDataTables.CALCS_BRANDS_CONFIG:
+                    if (!cache)
+                    {
+                        List<CALCS_BRANDS_CONFIG> lst = (List<CALCS_BRANDS_CONFIG>)StrawmanDBLibray.DBLibrary.GetStrawmanConfig(table);
+                        ret = lst.ToList();
+                    }
+                    else
+                    {
+                        List<CALCS_BRANDS_CONFIG> lst = (List<CALCS_BRANDS_CONFIG>)Helpers.Session.GetSession(table);
+                        if (lst == null)
+                        {
+                            Session.SetSession(table, StrawmanDBLibray.DBLibrary.GetStrawmanConfig(table));
+                            lst = (List<CALCS_BRANDS_CONFIG>)Helpers.Session.GetSession(table);
+                        }
+                        ret = lst.ToList();
+                    }
+                    break;
+                case StrawmanDataTables.CALCS_MARKETS_CONFIG:
+                    if (!cache)
+                    {
+                        List<CALCS_MARKETS_CONFIG> lst = (List<CALCS_MARKETS_CONFIG>)StrawmanDBLibray.DBLibrary.GetStrawmanConfig(table);
+                        ret = lst.ToList();
+                    }
+                    else
+                    {
+                        List<CALCS_MARKETS_CONFIG> lst = (List<CALCS_MARKETS_CONFIG>)Helpers.Session.GetSession(table);
+                        if (lst == null)
+                        {
+                            Session.SetSession(table, StrawmanDBLibray.DBLibrary.GetStrawmanConfig(table));
+                            lst = (List<CALCS_MARKETS_CONFIG>)Helpers.Session.GetSession(table);
+                        }
+                        ret = lst.ToList();
+                    }
+                    break;
                 case StrawmanDataTables.BOY_CONFIG:
                     if (!cache)
                     {
