@@ -288,6 +288,27 @@ namespace StrawmanApp.Controllers
         {
             return this.GetYTDData();
         }
+        [ChildActionOnly]
+        public List<Models.StrawmanViewSTDModel> GetBrandViewData(string type)
+        {
+            switch (type)
+            {
+                case Classes.StrawmanViews.MONTH:
+                    return this.GetMonthData();
+                case Classes.StrawmanViews.YTD:
+                    return this.GetYTDData();
+                case Classes.StrawmanViews.MAT:
+                    return this.GetMATData();
+                case Classes.StrawmanViews.BTG:
+                    return this.GetBTGData();
+                case Classes.StrawmanViews.TOTAL:
+                    return this.GetTotalCustomData();
+                case Classes.StrawmanViews.BOY:
+                    return this.GetBOYData();
+                default:
+                    return null;
+            }
+        }
         #endregion
 
         #region Custom Functions

@@ -15,7 +15,7 @@
                 {
                         <td class="grid-cell">&nbsp;</td>
                 }else{
-                        <td class="grid-cell">@Html.DisplayFor(m => item.col1)@_pc</td>    
+                        <td data-type="pc" class="grid-cell">@Html.DisplayFor(m => item.col1)@_pc</td>    
                 }
                 @if (item.col2 == null)
                 {
@@ -23,7 +23,7 @@
                 }
                 else
                 {                                        
-                        <td class="grid-cell">@Html.DisplayFor(m => item.col2)@_pc</td>
+                        <td data-type="pc" class="grid-cell">@Html.DisplayFor(m => item.col2)@_pc</td>
                 }
                 @if (item.col3 == null)
                 {
@@ -39,7 +39,7 @@
                 }
                 else
                 {
-                        <td class="grid-cell">@Html.DisplayFor(m => item.col4)@_pc</td>
+                        <td data-type="amount" class="grid-cell">@Html.DisplayFor(m => item.col4)@_pc</td>
                 }                    
                 @if (item.col5 == null)
                 {
@@ -47,7 +47,7 @@
                 }
                 else
                 { 
-                        <td class="grid-cell">@Html.DisplayFor(m => item.col5)@_pc</td>
+                        <td data-type="amount" class="grid-cell">@Html.DisplayFor(m => item.col5)@_pc</td>
                 }                    
                     
             </tr>       

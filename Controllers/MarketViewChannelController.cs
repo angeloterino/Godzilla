@@ -335,7 +335,17 @@ namespace StrawmanApp.Controllers
             }
             return ret;
         }
-        
+
+        public dynamic GetDataViewChannel()
+        {
+            return GetDataViewData();
+        }
+        [ChildActionOnly]
+        public List<Models.StrawmanViewSTDModel> GetMarketViewData(string type)
+        {
+            return this.GetData(type);
+        }
+
         //
         // GET: /MarketViewChannel/
 

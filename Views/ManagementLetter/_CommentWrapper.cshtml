@@ -1,0 +1,21 @@
+﻿@model ViewDataDictionary
+@{
+    StrawmanDBLibray.Entities.v_WRK_MANAGEMENT_LETTERS item = (StrawmanDBLibray.Entities.v_WRK_MANAGEMENT_LETTERS)Model["item"];
+    List<StrawmanDBLibray.Entities.LETTERS_COMMENT_DATA> letters = (List<StrawmanDBLibray.Entities.LETTERS_COMMENT_DATA>)Model["letters"];
+}
+<div class="comment-wrapper" style="position:relative;min-height:60px;width:100%;" data-value-market="@item.MARKET.ToString()" data-value-brand ="@item.BRAND.ToString()" data-value-channel="@item.CHANNEL.ToString()" data-letter-id="@item.GROUP_ID.ToString()" data-target="@StrawmanApp.Entities.CommentTypes.MANAGEMENT_LETTER" data-value-name="@Html.DisplayFor(m => item.NAME)">
+    <div class="comment-container">
+        @if (letters != null)
+        {
+            foreach (StrawmanDBLibray.Entities.LETTERS_COMMENT_DATA letter in letters)
+            {
+                @Html.Raw(letter.COMMENT)
+            }
+        }
+        else
+        {
+                        
+            <span>&nbsp;</span>
+        }
+    </div>
+</div>

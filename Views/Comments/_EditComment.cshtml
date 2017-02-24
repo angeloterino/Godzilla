@@ -14,6 +14,7 @@
     
     @Html.EditorFor(m => m.comment, new { rows = 12, @class = "panel panel-default", @data_type = Model.data_attributes, @style= "width:100%" });
     @Html.HiddenFor(m => m.data_attributes);
+    @Html.HiddenFor(m => m.group);
     @Html.HiddenFor(m => m.channel);
     @Html.HiddenFor(m => m.brand);
     @Html.HiddenFor(m => m.market);

@@ -111,7 +111,7 @@ namespace StrawmanApp.Controllers
             List<StrawmanDBLibray.Entities.WRK_VIEWS_VARIABLES> wc_channels = var.Where(m => m.VIEW == Classes.Default.Variables.WC_CHANNELS).Select(m => m).ToList();
             List<StrawmanDBLibray.Entities.WRK_VIEWS_VARIABLES> colors = var.Where(m => m.VIEW == Classes.Default.Variables.STRAWMAN_COLORS)
                     .Select(m => m).ToList();
-            List<Models.MarketDataModels> aux = data
+            List<Models.MarketDataModels> aux = data.Where(m => m.STATUS == "A").AsEnumerable()
                 .GroupJoin(colors, l => new { ID = "BRAND:" + l.BRAND.ToString() + ";MARKET:" + l.MARKET.ToString() }, v => new { ID = v.NAME }, (l, v) => new { l = l, v = v })
                 .SelectMany(f => f.v.DefaultIfEmpty(), (l, v) => new { l = l.l, v = v }).ToList()
                 .Select(p => new Models.MarketDataModels
@@ -125,6 +125,7 @@ namespace StrawmanApp.Controllers
                     source = p.l.SOURCE,
                     vgroup = p.l.GROUP,
                     vorder = p.l.ORDER,
+                    vgorder = p.l.GROUP_ORDER,
                     style = p.v == null ? "" : Helpers.StyleUtils.GetBGColor(p.v.VALUE, true),
                     is_wc = wc_channels.Exists(m => m.VALUE == p.l.CHANNEL.ToString())
                 }).ToList();
@@ -625,8 +626,8 @@ namespace StrawmanApp.Controllers
                                     col2 = Helpers.StrawmanCalcs.CalcPCVSPY(p.Sum(w => w.brand_col1), p.Sum(w => w.brand_col2)),
                                     col3 = Helpers.StrawmanCalcs.CalcShare(p.Sum(w => w.market_col2),p.Sum(w=>w.brand_col2)),
                                     col4 = Helpers.StrawmanCalcs.CalcShare(p.Sum(w => w.market_col2), p.Sum(w => w.brand_col2)) - Helpers.StrawmanCalcs.CalcShare(p.Sum(w => w.market_col1), p.Sum(w => w.brand_col1)),
-                                    col5 = (double?)p.Sum(w => w.market_col2)/1000,
-                                    col6 = (double?)p.Sum(w => w.brand_col2)/1000,
+                                    col5 = (double?)p.Sum(w => w.market_col2),
+                                    col6 = (double?)p.Sum(w => w.brand_col2),
                                     order = p.Max(w => w.order), 
                                     group = p.Max(w => w.group), 
                                     channel = p.Max(w => w.channel), 
@@ -645,8 +646,8 @@ namespace StrawmanApp.Controllers
                 col2 = Helpers.StrawmanCalcs.CalcPCVSPY(p.b.col1, p.b.col2),
                 col3 = Helpers.StrawmanCalcs.CalcShare(p.m.col2, p.b.col2),
                 col4 = Helpers.StrawmanCalcs.CalcShare(p.m.col2, p.b.col2) - Helpers.StrawmanCalcs.CalcShare(p.m.col1, p.b.col1),
-                col5 = (double?)p.m.col2 / 1000,
-                col6 = (double?)p.b.col2 / 1000,
+                col5 = (double?)p.m.col2,
+                col6 = (double?)p.b.col2,
                 order = p.m.vorder,
                 group = p.m.vgroup,
                 channel = p.m.vchannel,
@@ -667,14 +668,27 @@ namespace StrawmanApp.Controllers
                 col2 = Helpers.StrawmanCalcs.CalcPCVSPY(p.b.col1, p.b.col2),
                 col3 = Helpers.StrawmanCalcs.CalcShare(p.m.col2, p.b.col2),
                 col4 = Helpers.StrawmanCalcs.CalcShare(p.m.col2, p.b.col2) - Helpers.StrawmanCalcs.CalcShare(p.m.col1, p.b.col1),
-                col5 = (double?)p.m.col2 / 1000,
-                col6 = (double?)p.b.col2 / 1000,
+                col5 = (double?)p.m.col2,
+                col6 = (double?)p.b.col2,
                 order = p.m.vorder,
                 group = p.m.vgroup,
                 channel = p.m.channel,
                 id = (decimal)p.m.vid
             }).ToList();
             return null;
+        }
+
+        public dynamic GetShareBoardChannelData(string type)
+        {
+            switch (type)
+            {
+                case "YTD":
+                    return GetYTDDataChannel();
+                case "MAT":
+                    return GetMATDataChannel();
+                default:
+                    return GetMonthDataChannel();
+            }
         }
         #endregion
 

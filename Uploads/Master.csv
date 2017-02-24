@@ -1,0 +1,67 @@
+﻿0;Listerine;1;1;Enjuagues Bucales Mass;January;Nielsen
+0;Oraldine;1;1;Enjuagues Bucales Mass;January;Nielsen
+1;NULL;1;999999999;TOTAL ENJUAGUES BUCALES;January;Nielsen
+1;J´s Baby Bath;2;5;Bath+M.pp (B+T);January;Nielsen
+1;J´s Baby Cologne;2;4;Cologne Baby;January;Nielsen
+1;J´s Baby Haircare;2;3;Haircare (B+T);January;Nielsen
+1;J´s Baby Milks & Creams;2;9;Milks+Creams (B+T);January;Nielsen
+1;J´s Baby Mixed Packs;2;6;Mixed Packs (B+T);January;Nielsen
+1;J´s Baby Nappies;2;10;Nappy (B);January;Nielsen
+1;J´s Baby Oil;2;7;Oil (B+T);January;Nielsen
+1;J´s Baby Powder;2;8;Powder (B);January;Nielsen
+2;NULL;2;999999999;TOTAL Baby Toiletries;January;Nielsen
+2;J´s Baby Wipes;3;11;Wipes (B);January;Nielsen
+3;NULL;3;999999999;TOTAL WHIPES;January;Nielsen
+4;J´s Geles de Ducha;5;13;Geles de Ducha;January;Nielsen
+5;NULL;5;999999999;TOTAL GELES DE DUCHA;January;Nielsen
+5;J´s Champu;6;12;Champus (Ad+Inf);January;Nielsen
+6;NULL;6;999999999;TOTAL Jabón de tocador líquido;January;Nielsen
+6;LPM Champú;7;12;Champus (Ad+Inf);January;Nielsen
+6;LPM Mascarillas;7;15;Mascarillas & Acondicionadores;January;Nielsen
+7;NULL;7;999999999;TOTAL CUIDADO DEL CABELLO;January;Nielsen
+7;LPM Geles de Ducha;8;13;Geles de Ducha;January;Nielsen
+8;NULL;8;999999999;TOTAL GELES DE DUCHA;January;Nielsen
+8;LPM Body Moisture;9;16;Hidratación Corporal;January;Nielsen
+9;NULL;9;999999999;TOTAL BODY MOISTURE;January;Nielsen
+9;LPM Hands;10;17;manos;January;Nielsen
+10;NULL;10;999999999;TOTAL HANDS;January;Nielsen
+11;Carefree;12;18;Protege Slip;January;Nielsen
+11;OB;12;19;Tampones;January;Nielsen
+12;NULL;12;999999999;TOTAL HIGIENE INTIMA FEMENINA;January;Nielsen
+12;Clean & Clear;13;21;Limpiadores Faciales;NULL;NULL
+12;Clean & Clear;13;22;Medicated Facial;NULL;NULL
+13;NULL;13;999999999;TOTAL LIMPIADORES FACIALES;NULL;NULL
+14;Frenadol;15;23;Cold & Flu;January;IMS
+14;Frenagar;15;24;Sore Throat;January;IMS
+14;Frenasal;15;25;Descongestants;January;IMS
+14;Iniston;15;26;Cough;January;IMS
+14;Reactine;15;27;Allergy;January;IMS
+15;NULL;15;999999999;TOTAL RESPIRATORY HEALTH;January;IMS
+16;Micralax;17;29;Laxatives;January;IMS
+16;Rovi;17;29;Laxatives;January;IMS
+17;NULL;17;999999999;TOTAL DIGESTIVE HEALTH;January;IMS
+17;Vispring;18;30;Eye Care;January;IMS
+18;NULL;18;999999999;TOTAL EYE CARE;January;IMS
+18;nicorette;19;31;Smoking Cessation;January;IMS
+19;NULL;19;999999999;TOTAL SMOKING CESSATION;January;IMS
+19;Natusan;20;32;Pomadas Bebé;January;IMS
+20;NULL;20;999999999;TOTAL Pomadas Bebé;January;IMS
+20;Others RoC Facial;21;35;Others Facial;January;IMS
+20;RoC Cleansers;21;34;Facial Cleansers;January;IMS
+20;RoC Moisturisers;21;33;Facial Moisturisers;January;IMS
+21;NULL;21;999999999;TOTAL FACIAL MARKET;January;IMS
+21;RoC Anticeluliticos;22;36;Anticeluliticos;January;IMS
+21;Roc Body;22;49;Hidratación Corporal;January;IMS
+22;NULL;22;999999999;TOTAL BODY MARKET;January;IMS
+25;Neutrogena Foot;26;40;Cuidado de Pies;January;IMS
+25;Neutrogena Hands;26;38;Cuidado de Manos;January;IMS
+25;Neutrogena Lips;26;39;Cuidado de Labios;January;IMS
+26;NULL;26;999999999;TOTAL Neutrogena MARKETS;January;IMS
+27;Compeed Ampollas;28;41;Ampollas;January;IMS
+27;Compeed Callos;28;42;Callos;January;IMS
+27;Compeed Durezas;28;44;Durezas ;January;IMS
+27;Compeed Juanetes;28;43;Juanetes;January;IMS
+27;Compeed Others;28;45;Otros apósitos piés;January;IMS
+28;NULL;28;999999999;TOTAL FOOT CARE MARKET;January;IMS
+28;Compeed Calenturas;29;46;Antivirales;January;IMS
+29;NULL;29;999999999;TOTAL COLD SORE MARKET;January;IMS

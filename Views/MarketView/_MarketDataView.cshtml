@@ -6,18 +6,22 @@
     foreach (StrawmanApp.Models.MarketDataModels item in data)
     {
         string _style = "text-align:center;" + item.style;
+        string _data_type = (item.vgorder == item.vorder) ? "partial" : "";
         StrawmanApp.Models.MarketDataModels mod = data.Last(m=>m.channel== item.channel);
-        if (item.vorder != item.vgroup && !item.source.Contains("CHANNEL") && mod != item)
+        if (item.vorder != item.vgorder && !item.source.Contains("CHANNEL") && !item.source.Contains("CUSTOM") && mod != item)
         {
-            <tr class="grid-row" style="text-align:center;"> 
+            _data_type = "data-type=\"group_" + item.vgorder + "\"";
+            <tr class="grid-row" @Html.Raw(_data_type) style="text-align:center;"> 
                 <td class="grid-cell" style="text-align: right; font-weight:bold;" colspan="2">@Html.DisplayFor(m=>item.market_name)</td>
                 <td class="grid-cell" style="text-align: right; font-weight:bold;" colspan="2">@Html.DisplayFor(m=>item.brand_name)</td>
             </tr>
         }else{
-            <tr class="grid-row" @{Html.RenderPartial("~/Views/StrawmanViews/MasterTable/_TrStyle.cshtml", new ViewDataDictionary { { "_style", _style }, { "group", item.vgroup }, { "order", item.vorder },{"market",item.market} });}> 
-                <td colspan="4" class="grid-cell" style="text-align: right; font-weight:bold;">@Html.DisplayFor(m => item.market_name)</td>
+            _data_type = "data-type=\"group_" + item.vgorder + "\"";
+            string _data_target = "data-target=\"group_" + item.vgorder + "\"";
+            <tr class="grid-row" @Html.Raw(_data_type) @Html.Raw(_data_target) @{Html.RenderPartial("~/Views/StrawmanViews/MasterTable/_TrStyle.cshtml", new ViewDataDictionary { { "_style", _style }, { "group", item.vgorder }, { "order", item.vorder },{"market",item.market}, {"source", item.source} });}> 
+                <td colspan="4" data-type="grouper" class="grid-cell" style="text-align: right; font-weight:bold;">@Html.DisplayFor(m => item.market_name)</td>
             </tr>        
-            if (item.vorder > item.vgroup || mod == item)
+            if ((item.vorder > item.vgorder && !item.source.Contains ("CUSTOM") )|| mod == item)
             {
                 Html.RenderPartial("~/Views/StrawmanViews/MasterTable/_BlankRow.cshtml", new ViewDataDictionary { { "colspan", 4 } }); 
             }

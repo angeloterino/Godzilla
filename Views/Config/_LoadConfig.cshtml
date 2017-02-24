@@ -1,8 +1,8 @@
-﻿<div class="panel panel-default wrapper">
+﻿<div class="panel panel-default wrapper" data-controller="Config" data-action ="LoadConfig" style="margin: 1px;position: absolute;right: 0;left: 0;bottom: 0;overflow: auto;top: 75px;">
     <div class="panel-header"><li class="fa fa-cog fa-2x" style="margin: 5px;"></li><label class="panel-title" style="display: inline;">Configuration</label></div>
-    <div class="panel-body"></div>
+    <div class="panel-body config" ></div>
     <div class="panel-footer">
-        <div class="bottom close-viewer" style="margin:10px 0;"> <input type ="submit" value="Save Config" class="btn pull-right default-wrapper" /></div>
+        <div class="bottom close-viewer" style="margin:10px 0;"> <button data-type ="save" data-action="SaveConfigData" data-controller="Config" class="btn btn-success pull-right default-wrapper" ><li class="fa fa-save"></li> @StrawmanApp.Helpers.MessageByLanguage.Save</button></div>
         <div class="clearfix"></div>
     </div>
 </div>

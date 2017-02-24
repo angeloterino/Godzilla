@@ -3,8 +3,8 @@
     ViewBag.Title = "LoaderView";
     Layout = "~/Views/Shared/_StrwLayout.cshtml";
 }
-<div style="width:100%;height:100%; padding-top:15%">
-<div class="panel panel-default form-wrapper">
+<div style="width:100%;height:100%;padding-top:5px;">
+<div class="panel panel-default form-wrapper" style="width:100%;">
 @{
     string _filename = Model.fileName;
     int _filetype = Model.fileType;
@@ -14,10 +14,17 @@
     <div>@ViewBag.Message</div>
         if (ddl != null)
         {
-            <div>@Html.DropDownListFor(m => ddl.SelectedItemId, new SelectList(ddl.Items, "Value", "Text"),new { @class = "form-control"})</div>
+            <div class="float-left" style="width: 30%;margin-right: 10px;">@Html.DropDownListFor(m => ddl.SelectedItemId, new SelectList(ddl.Items, "Value", "Text",_filetype),new { @class = "form-control"})</div>
         }
-    <div class="form-control" style="margin-top:20px; margin-bottom:20px;padding:0;"><input type ="file" name ="file" style="margin: 0 auto;" title="Examinar"  /></div>
-        <div class="btn-group float-right" style="margin:10px 0;"> <input type ="submit" value="Upload file" class="btn btn-default" /></div>
+    <div class="form-control float-left" style="margin-right: 10px;padding:0;width: 50%;"><input type ="file" name ="file" style="margin: 0 auto;" title="Examinar"  /></div>
+        <div class="btn-group float-left" > 
+            <input type ="submit" value="Upload file" class="btn btn-default" style="font-size:15px;margin-top: 0;border-color: #3c9a5f;padding: 8px 12px;"/>
+            @if (Model.isUpdated)
+            {
+            <button class="btn btn-success" data-type ="submit_data" data-file-name ="@_filename" data-file-type="@_filetype"><li class="fa fa-cog"></li> Run loader</button>
+            <script lang="javascript" type="text/javascript">$(document).ready(function () { LoadData('ProcessFile', 'Forms', '@_filename', '@_filetype'); });</script>
+            }
+        </div>
         <div class="">
         @if (Model.onError)
         {
@@ -26,13 +33,9 @@
         </div>
         <div class="clear" style="clear:both;"></div>
     }
-    if (Model.isUpdated)
-    {
-        <script lang="javascript" type="text/javascript">$(document).ready(function () { LoadData('ProcessFile', 'Form', '@_filename', '@_filetype'); });</script>
-    }
 }
 </div>
     @if(Model.isUpdated){
-        Html.RenderAction("LoadConfig", "Config");
+        Html.RenderPartial("~/Views/Config/_LoadConfig.cshtml");
     }
 </div>

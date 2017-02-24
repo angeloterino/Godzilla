@@ -3,6 +3,7 @@
     int _order = int.Parse(ViewData["order"].ToString());
     int _group = int.Parse(ViewData["group"].ToString());
     int _market = int.Parse(ViewData["market"].ToString());
+    object _source = ViewData["source"];
     if(!_style.Contains("background-color")){
         if (!_style.Contains("color"))
         {
@@ -13,6 +14,10 @@
         if (_order == _group) { _style += "background-color: rgb(128,0,128);"; }
         if (_market > 9000 && _market < 9900) { _style += "background-color: rgb(204,192,218);"; }
         if (_order > _group) { _style += "background-color: rgb(255,0,0);"; } 
+        if (_source!= null)
+        {
+            if (_source.ToString().Contains("CUSTOM")) { _style += "background-color: rgb(128,0,128);"; } 
+        }
     }
 }
 style = "@_style"

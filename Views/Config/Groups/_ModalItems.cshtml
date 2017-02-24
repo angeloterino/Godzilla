@@ -1,0 +1,37 @@
+﻿@model ViewDataDictionary
+<div class="modal-content wrapper">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="@ViewBag.ModalId">@ViewBag.ModalTitle</h4>
+      </div>
+    <div class="modal-nav">
+        @if (Model["source_select"] != null)
+         {
+             Html.RenderPartial("~/Views/Config/Groups/_SelectSource.cshtml", (List<SelectListItem>)Model["source_select"]);
+         }
+        @if(Model["channels_names"]!= null && ((string[])Model["channels_names"])[0] != "default" )
+         {
+            Html.RenderPartial("~/Views/Config/Users/_ChannelsTabs.cshtml", new ViewDataDictionary {{"clearfix", false }});
+         }
+    </div>
+    <div class="modal-body">
+     @using (Ajax.BeginForm(Model["action"].ToString(), Model["controller"].ToString(), new AjaxOptions { HttpMethod = "Post", OnSuccess = "UpdateSuccess", OnFailure = "UpdateFailure", OnBegin = "SubmitForm" }, new { form_id = "ActiveForm" }))
+        {
+        string active = "active in";
+        <div class="config tab-content">
+        @foreach (string _channel in (string[]) Model["channels_names"])
+        {
+            <div class="tab-pane fade @active" id ="@_channel">
+            @{  
+                Html.RenderAction(Model["partial"].ToString(), new{_group = Model["group"], _channel = _channel, _source = Model["source"]});
+                active = "";
+            }
+            </div>
+        }
+        </div>
+        }
+    </div>
+    <div class="modal-footer" style="padding: 5px;"><button class="btn btn-success" value="@ViewBag.ButtonText" data-type="save"><li class="fa fa-save"></li> @ViewBag.ButtonText</button></div>
+</div>

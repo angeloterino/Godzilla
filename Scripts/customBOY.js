@@ -1,4 +1,4 @@
-﻿$.getScript('../../Scripts/table.utils/table.blocker.js');
+$.getScript('../../Scripts/table.utils/table.blocker.js');
 strawmanVars = new Object();
 var _lastrow, _lastcolor, _lastfontcolor;
 var _paths = 'BoyViews';
@@ -36,6 +36,8 @@ initializeTables = function () {
     for (i = 0; i < _viewsids.length; i++) {
         $('#' + _paths + _viewsids[i] + '').html('');
     }
+    $('.mastertable').scrollTop(0);
+    $('#left-column').remove();
 }
 loadTables = function(pathindex, controlindex) {
     $('.loading-bar').css({ 'border-color': 'rgb(0,0,220)' });
@@ -94,6 +96,7 @@ loadTables = function(pathindex, controlindex) {
         $('.loading-bar').animate({ 'border-color': 'rgb(0,220,0)' }, 'fast');
         $('.loading-bar').animate({ width: '100%', 'border-color': 'rgb(0,220,0)' }, 'fast', function () {
             $periodCombo();
+            checkCookies();
             $('.load-mask').animate({ opacity: 'hide' }, 'fast', function () { $(this).hide() });
             if (!$.resetForms) CloneLeftBOYColumn('BoyViews_BoyData');            
         });

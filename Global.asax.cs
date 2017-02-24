@@ -46,7 +46,7 @@ namespace StrawmanApp
             if (Request.QueryString.Count > 0) 
             {
                 if (Request.QueryString["menu_id"] != null) Helpers.Session.SetSession("menu_id", Request.QueryString["menu_id"]);
-                if (Request.QueryString["cache"] != null) new Helpers.Session().CacheStatus = bool.Parse(Request.QueryString["cache"] ?? "true");
+                if (Request.QueryString["cache"] != null) Helpers.Session.CacheStatus = bool.Parse(Request.QueryString["cache"] ?? "true");
             }
         }
     }

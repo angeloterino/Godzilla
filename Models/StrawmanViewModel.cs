@@ -26,6 +26,7 @@ namespace StrawmanApp.Models
         public System.Web.Mvc.ViewDataDictionary styleData;
         public string _class;
         public string _attr;
+        public string[] _colPureData;
         public string[] _colData;
         public string[] _colType;
         public string[] _colStyle;
@@ -66,6 +67,8 @@ namespace StrawmanApp.Models
         public double? pccol3 { get; set; }
         public double? pccol4 { get; set; }
         public double? pccol5 { get; set; }
+
+        public string source { get; set; }
     }
 
     public class StrawmanViewSTDModel

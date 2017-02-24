@@ -6,4 +6,7 @@
   <li class=""><a data-toggle="tab" href="#otc" aria-expanded="false">OTC</a></li>
 </ul>
 </div>
+@if (ViewData != null && ViewData["clearfix"] != null && (bool)ViewData["clearfix"])
+{
 <div class="clear-fix"></div>
+}

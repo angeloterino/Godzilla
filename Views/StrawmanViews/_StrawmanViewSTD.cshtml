@@ -4,11 +4,14 @@
     string[] _colData = (string[])ViewData["_colData"];
     string[] _colType = (string[])ViewData["_colType"];
     StrawmanApp.Models.StrawmanSTDView itemaux = Model.itemaux;
+    StrawmanApp.Models.StrawmanSTDView item = Model.item;
+    string[] _colPureData = new string[] { item == null ? "" : item.col1.ToString(), item == null ? "" : item.col2.ToString(), item == null ? "" : item.col3.ToString(), item == null ? "" : item.col4.ToString(), item == null ? "" : item.col5.ToString(), item == null ? "" : item.col6.ToString() };
     string _style = "text-align:center;";
     string _styleView = ViewData["styleView"] == null ? "_TrStyle" : ViewData["styleView"].ToString();
     bool _last = ViewData["_last"] == null ? false : (bool)ViewData["_last"];
-    ViewDataDictionary _styleData = (ViewData["styleData"] == null) ? new ViewDataDictionary() { { "_style", _style }, { "group", itemaux.vgroup }, { "order", itemaux.vorder }, { "market", itemaux.market }, { "channel", itemaux.channel } } : (ViewDataDictionary)ViewData["styleData"];
+    ViewDataDictionary _styleData = (ViewData["styleData"] == null) ? new ViewDataDictionary() { { "_style", _style }, { "group", itemaux.vgroup }, { "order", itemaux.vorder }, { "market", itemaux.market }, { "channel", itemaux.channel },{"",itemaux.source} } : (ViewDataDictionary)ViewData["styleData"];
     StrawmanApp.Models.StrwawmanTrViewModel model = new StrawmanApp.Models.StrwawmanTrViewModel{
+        _colPureData = _colPureData,
         _colData = _colData,
         _colType = _colType,
         styleView = _styleView,
@@ -28,7 +31,7 @@
     else
     {
         Html.RenderPartial("~/Views/StrawmanViews/MasterTable/_TrView.cshtml", model);
-        if ((itemaux.vorder > itemaux.vgroup && (itemaux.market != null && itemaux.brand != null)) || _last)
+        if ((itemaux.vorder > itemaux.vgroup && (itemaux.source != null && !itemaux.source.Contains("CUSTOM")) && (itemaux.market != null && itemaux.brand != null)) || _last)
         {
             Html.RenderPartial("~/Views/StrawmanViews/MasterTable/_BlankRow.cshtml", new ViewDataDictionary { { "colspan", 3 } });
         }

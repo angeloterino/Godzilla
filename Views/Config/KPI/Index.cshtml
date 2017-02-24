@@ -1,0 +1,8 @@
+﻿@model List<StrawmanApp.Entities.KpiModel>
+@using (Ajax.BeginForm("SaveKPIForm", "Config", new AjaxOptions { HttpMethod = "Post", OnSuccess = "UpdateSuccess", OnFailure = "UpdateFailure", OnBegin = "SubmitForm" }, new { form_id = "ActiveForm" }))
+{
+<table id="KPI_MARKET_SHARE" class="table table-striped grid-table" style="position:absolute;top:0;left:0;">         
+    @{Html.RenderAction("GetTableHead","KPI", new { table_name = "BRAND_CONTRIBUTION" });}
+    <tbody>@{Html.RenderPartial("~/Views/Config/KPI/_Column.cshtml", Model, new ViewDataDictionary {{ "masterdata", ViewBag.MasterData }});}</tbody>
+</table>
+}

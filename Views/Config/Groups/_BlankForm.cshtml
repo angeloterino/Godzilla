@@ -1,5 +1,5 @@
 ﻿@{
-    using (Ajax.BeginForm(ViewData["action"].ToString(), ViewData["controller"].ToString(),new AjaxOptions { HttpMethod = "Post", OnSuccess = "UpdateSuccess", OnFailure = "UpdateFailure", OnBegin = "SubmitForm" }, new { form_id = "ActiveForm" }))
+    using (Ajax.BeginForm(ViewData["action"].ToString(), ViewData["controller"].ToString(), new AjaxOptions { HttpMethod = "Post", OnSuccess = ViewData["updateSuccess"] != null ? ViewData["updateSuccess"].ToString() : "UpdateSuccess", OnFailure = "UpdateFailure", OnBegin = "SubmitForm" }, new { form_id = "ActiveForm" }))
 {
 }
 }

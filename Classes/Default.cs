@@ -68,11 +68,28 @@ namespace StrawmanApp.Classes
             public const string INPUT_CHANNEL_ID = "channel_id";
             public const string MARKET_NAME_ID = "market_name";
             public const string BRAND_NAME_ID = "brand_name";
+            public const string GROUP_NAME_ID = "group_name";
             public const string CHANNEL_ID = "channel";
-
+            public const string NTS_CONFIG_ID = "nts_config";
+            public const string NTS_ID = "nts";
+            public const string ROSETTA_CONFIG_ID = "rosetta_config";
+            public const string ROSSETA_ID = "rosetta";
             public const string MARKET_ID = "market";
             public const string BRAND_ID = "brand";
             public const string GROUP_ID ="group";
+            public const string MARKET_CONFIG_ID = "market_config";
+            public const string MARKET_GROUP_CONFIG_ID = "market_group_config";
+            public const string MARKET_SUPERGROUP_CONFIG_ID = "market_supergroup_config";
+            public const string MARKET_CHANNEL_CONFIG_ID = "market_channel_config";
+            public const string MARKET_KEYBRANDS_CONFIG_ID = "market_keybrands_config";
+            public const string MARKET_FRANCHISE_CONFIG_ID = "market_franchise_config";
+            public const string BRAND_CONFIG_ID = "brand_config";
+            public const string BRAND_GROUP_CONFIG_ID = "brand_group_config";
+            public const string BRAND_SUPERGROUP_CONFIG_ID = "brand_supergroup_config";
+            public const string BRAND_CHANNEL_CONFIG_ID = "brand_channel_config";
+            public const string BRAND_KEYBRANDS_CONFIG_ID = "brand_keybrands_config";
+            public const string BRAND_FRANCHISE_CONFIG_ID = "brand_franchise_config";
+            public const string ORDER_ID = "order";
 
             public const string HIDDEN_TYPE = "form_type";
             public const string HIDDEN_NEW = "new";
@@ -108,8 +125,25 @@ namespace StrawmanApp.Classes
 
                 public static string MARKET_NAME_ID = Attributes.MARKET_NAME_ID.formated();
                 public static string BRAND_NAME_ID = Attributes.BRAND_NAME_ID.formated();
+                public static string GROUP_NAME_ID = Attributes.GROUP_NAME_ID.formated();
                 public static string CHANNEL_ID = Attributes.CHANNEL_ID.formated();
                 public static string BRAND_ID = Attributes.BRAND_ID.formated();
+                public static string NTS_CONFIG_ID = Attributes.NTS_CONFIG_ID.formated();
+                public static string ROSETTA_CONFIG_ID = Attributes.ROSETTA_CONFIG_ID.formated();
+
+                public static string MARKET_CONFIG_ID = Attributes.MARKET_CONFIG_ID.formated();
+                public static string MARKET_GROUP_CONFIG_ID = Attributes.MARKET_GROUP_CONFIG_ID.formated();
+                public static string MARKET_SUPERGROUP_CONFIG_ID = Attributes.MARKET_SUPERGROUP_CONFIG_ID.formated();
+                public static string MARKET_CHANNEL_CONFIG_ID = Attributes.MARKET_CHANNEL_CONFIG_ID.formated();
+                public static string MARKET_FRANCHISE_CONFIG_ID = Attributes.MARKET_FRANCHISE_CONFIG_ID.formated();
+                public static string MARKET_KEYBRANDS_CONFIG_ID = Attributes.MARKET_KEYBRANDS_CONFIG_ID.formated();
+                public static string BRAND_CONFIG_ID = Attributes.BRAND_CONFIG_ID.formated();
+                public static string BRAND_GROUP_CONFIG_ID = Attributes.BRAND_GROUP_CONFIG_ID.formated();
+                public static string BRAND_SUPERGROUP_CONFIG_ID = Attributes.BRAND_SUPERGROUP_CONFIG_ID.formated();
+                public static string BRAND_CHANNEL_CONFIG_ID = Attributes.BRAND_CHANNEL_CONFIG_ID.formated();
+                public static string BRAND_FRANCHISE_CONFIG_ID = Attributes.BRAND_FRANCHISE_CONFIG_ID.formated();
+                public static string BRAND_KEYBRANDS_CONFIG_ID = Attributes.BRAND_KEYBRANDS_CONFIG_ID.formated();
+                public static string ORDER_ID = Attributes.ORDER_ID.formated();
             }
 
         }

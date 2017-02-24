@@ -1,0 +1,15 @@
+﻿@model List<StrawmanApp.Models.MasterDataModels>
+@using GridMvc.Html;  
+@Html.Grid((List<StrawmanApp.Models.MasterDataModels>)Model).Columns(columns =>
+           {
+               columns.Add().Encoded(false).Sanitized(false).SetWidth(10).Css("checkbox-control").RenderValueAs(o=>@<div></div>);
+               columns.Add(foo => foo.nts_name).Encoded(false).Sanitized(false).RenderValueAs(o=>Html.TextBoxFor(m=> o.nts_name, new{@class="form-control"}).ToHtmlString());
+               columns.Add(foo => foo.order).Encoded(false).Sanitized(false).RenderValueAs(o => Html.TextBoxFor(m => o.order, new { @class = "form-control" }).ToHtmlString());
+               columns.Add().Encoded(false).Sanitized(false).SetWidth("5%").RenderValueAs(o =>
+                @<div>
+                <button type="button" data-type="save" data-target-id="@o.id" data-controller="Save" class="btn btn-success" title="Save"><li class="fa fa-save"></li></button>
+                <button type="button" data-type="close" data-target-id="@o.id" data-controller="close" class="btn btn-defalult" title="Close"><li class="fa fa-times"></li></button>
+                @Html.HiddenFor(m=>o.id)
+                @Html.HiddenFor(m=>o.type)
+                </div>);
+    }).Selectable(false)

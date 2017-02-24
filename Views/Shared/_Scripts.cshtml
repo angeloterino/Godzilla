@@ -59,20 +59,24 @@
           }
           break;
       case "Config":
+      case "GroupsConfig":
+      case "UserManagment":
+      case "BOYConfig":
+      case "DataConfig":
           {
                @Scripts.Render("~/bundles/jqueryval");
+               @Scripts.Render("~/bundles/jqueryui");
                <script src="@Url.Content(contentUrl)"></script>      
           }
           break;
-      case "UserManagment":
-      case "BOYConfig":
+    case "KPI":
           {
-               @Scripts.Render("~/bundles/jqueryval");
-               <script src="@Url.Content(contentUrl)"></script>  
+              <script src="@Url.Content(contentUrl)"></script>
+              Html.RenderAction("CheckPermissions", "Config", new { view = StrawmanApp.Helpers.StrawmanViews.KPI.id });
           }
           break;
           default:
-                                                        {
+          {
             <script src="@Url.Content(contentUrl)"></script>      
           }
           break;

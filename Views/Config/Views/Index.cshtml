@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "~/Views/Shared/_StrwLayout.cshtml";
+    string options = ViewBag.Options;
+    string masterList = ViewBag.MasterList;
+}
+<div style="margin: 2em 2em 0px; max-width: 400px;">
+    @{Html.RenderAction(options, new { _option = ViewBag.OptionsValue });}
+</div>
+<div style="margin: 2em; float: left; min-width: 400px;" class="panel panel-primary">
+    <div class="panel-heading"><h3 class="panel-title">Grupos</h3></div>
+    <div class="panel-body" id="list-groups" style="overflow:auto; height:520px;padding:0px;" >@{Html.RenderAction(masterList, new { _option = ViewBag.MasterListOption });}</div>
+    <div class="panel-footer">
+        <a class="btn btn-default" style="border:1px solid #ccc;" data-disabled="CHANNEL" data-btn-type="new-group" data-btn-target-id="modal_items" data-btn-target-url="NewDataGroup">@StrawmanApp.Helpers.MessageByLanguage.New</a>
+        <a class="btn btn-default pull-right" style="border:1px solid #ccc;" data-disabled="CHANNEL" data-btn-type="edit-group" data-btn-target-id="modal_items" data-btn-target-url="EditDataGroup">@StrawmanApp.Helpers.MessageByLanguage.Edit</a>
+    </div>
+</div>
+<div style="margin: 2em; float: left; min-width: 400px;" class="panel panel-primary" id="items_viewer">
+    <div class="panel-heading"><h3 class="panel-title">@StrawmanApp.Helpers.MessageByLanguage.Items</h3></div>
+</div>
+<div class="clear" style="clear:both"></div>
+<div style ="margin: 2em; float: left; display: none; min-width: 400px;" class="panel panel-primary">
+    <div class="panel-body" id = "group-list"></div>
+</div>
+<div class="clear" style="clear:both"></div>
+@{Html.RenderPartial("~/Views/Shared/_Modal.cshtml", new ViewDataDictionary {{"modal_name","modal_items"}});}
+

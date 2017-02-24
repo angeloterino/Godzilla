@@ -9,12 +9,12 @@
         _style += item.style;
         ViewDataDictionary _styleData = new ViewDataDictionary { { "_style", _style }, { "channel", item == null ? 0 : item.vchannel } };
             <tr class="grid-row" @{Html.RenderPartial("~/Views/StrawmanViews/MasterTable/_TrStyleChannel.cshtml", new ViewDataDictionary { { "_style", _style }, { "channel", item.vchannel }});}>     
-                <td class="grid-cell">@Html.DisplayFor(m => data.col1)</td>
-                <td class="grid-cell">@Html.DisplayFor(m => data.col2)</td>
-                <td class="grid-cell">@Html.DisplayFor(m => data.col3)</td>
-                <td class="grid-cell">@Html.DisplayFor(m => data.col4)</td>
-                <td class="grid-cell">@Html.DisplayFor(m => data.col5)</td>
-                <td class="grid-cell">@Html.DisplayFor(m => data.col6)</td>  
+                <td data-type="pc" data-value="@Html.DisplayFor(m => data.col1)" class="grid-cell">@Html.DisplayFor(m => data.col1)</td>
+                <td data-type="pc" data-value="@Html.DisplayFor(m => data.col2)" class="grid-cell">@Html.DisplayFor(m => data.col2)</td>
+                <td data-type="pc" data-value="@Html.DisplayFor(m => data.col3)"class="grid-cell">@Html.DisplayFor(m => data.col3)</td>
+                <td data-value="@Html.DisplayFor(m => data.col4)" class="grid-cell">@Html.DisplayFor(m => data.col4)</td>
+                <td data-type="amount" data-value="@data.col5" class="grid-cell">@Html.DisplayFor(m => data.col5)</td>
+                <td data-type="amount" data-value="@data.col6" class="grid-cell">@Html.DisplayFor(m => data.col6)</td>  
             </tr>
         t = item.vgroup;
     } 

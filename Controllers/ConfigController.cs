@@ -26,20 +26,178 @@ namespace StrawmanApp.Controllers
             
             return View(model);
         }
+        #region LoadConfig
         public ActionResult LoadConfig()
         {
             //TODO: 
             //Obtener los datos a mostrar en el formulario
             //Datos maestros:
-            List<StrawmanDBLibray.Entities.v_STRWM_MARKET_DATA> master = (List<StrawmanDBLibray.Entities.v_STRWM_MARKET_DATA>)StrawmanDBLibray.DBLibrary.GetMarketData(StrawmanDataTables.v_STRWM_MARKET_DATA,Helpers.PeriodUtil.Year,Helpers.PeriodUtil.Month);
+            List<StrawmanDBLibray.Classes.ExcelLoader> lst = (List<StrawmanDBLibray.Classes.ExcelLoader>)TempData.Peek("LoadNTS");
+            List<StrawmanDBLibray.Entities.BRAND_MASTER> bmster = (List<StrawmanDBLibray.Entities.BRAND_MASTER>)StrawmanDBLibray.Repository.BRAND_MASTER.getAll();
+            List<StrawmanDBLibray.Entities.MARKET_MASTER> mmster = (List<StrawmanDBLibray.Entities.MARKET_MASTER>)StrawmanDBLibray.Repository.MARKET_MASTER.getAll();
+            List<StrawmanDBLibray.Entities.CHANNEL_MASTER> cmster = (List<StrawmanDBLibray.Entities.CHANNEL_MASTER>)StrawmanDBLibray.Repository.CHANNEL_MASTER.getAll();
+            var preview_data = mmster.Join(bmster, m => new { _market = m.ID, _group = m.GROUP }, b => new { _market = (decimal)b.MARKET, _group = b.GROUP }, (m, b) => new { market = m, brand = b }).AsEnumerable();
+            decimal tmp = -1;
+            dynamic model = null;
+            string partial = LOAD_CONFIG;
+            int fileType = int.Parse(TempData.Peek("fileType").ToString());
             Models.ConfigModels cm = new Models.ConfigModels();
-            cm.strwm_market_data = master.Where(m => m.MARKET < 9000 && m.BRAND < 9000).Select(m => m).ToList();
+            switch (fileType)
+            {
+                case 1:
+                    List<StrawmanDBLibray.Entities.NTS_MASTER> nmster = (List<StrawmanDBLibray.Entities.NTS_MASTER>)StrawmanDBLibray.Repository.NTS_MASTER.getAll();
+                    var data = preview_data.Select(m => new Models.ItemsConfigModel
+                    {
+                        channel = m.brand.CHANNEL.ToString(),
+                        market = m.market.ID.ToString(),
+                        brand = m.brand.ID.ToString(),
+                        brand_description = m.brand.NAME,
+                        market_description = m.market.NAME,
+                        channel_description = cmster.Where(n=>n.ID == m.brand.CHANNEL).Select(s=>s.NAME).FirstOrDefault(),
+                        list_data = Helpers.FormControlsUtil.SelectAddBlank(lst.Select(n => new { MARKET_NAME = n.col13}).Distinct().AsEnumerable()
+                        .Select(n => new SelectListItem
+                        {
+                            Value = n.MARKET_NAME,
+                            Text = n.MARKET_NAME,
+                            Selected = nmster.Exists(s=> s.MARKET_NAME == n.MARKET_NAME && m.market.ID.ToString() == s.MARKET && m.brand.ID.ToString() == s.BRAND)
+                        }).ToList()),
+                        nts_data = nmster.Select(n => new Models.NTS_Data
+                        {
+                            brand = decimal.TryParse(n.BRAND, out tmp) ? tmp : default(decimal?),
+                            channel = decimal.TryParse(n.CHANNEL, out tmp) ? tmp : default(decimal?),
+                            market = decimal.TryParse(n.MARKET, out tmp) ? tmp : default(decimal?),
+                            id = n.ID,
+                            market_name = n.MARKET_NAME
+                        }).ToList(),
+                        nts_name = nmster.Where(n => n.MARKET == m.market.ID.ToString() && n.BRAND == m.brand.ID.ToString()).Select(s => s.MARKET_NAME).FirstOrDefault(),
+                    });
+                    model = data.ToList();
+                    partial = LOAD_CONFIG_NTS;
+                break;
+                default:
+                    List<StrawmanDBLibray.Entities.ROSETTA_LOADER> rmster = (List<StrawmanDBLibray.Entities.ROSETTA_LOADER>)StrawmanDBLibray.Repository.ROSETTA_LOADER.getAll();
+                    var m_union = mmster.Select(m => new Models.MarketDataModels { market = m.ID, brand = (decimal)0, channel = (decimal)m.CHANNEL, market_name = m.NAME }).ToList();
+                    var b_union = bmster.Select(m => new Models.MarketDataModels { market = (decimal)m.MARKET, brand = m.ID, channel = (decimal)m.CHANNEL, market_name = m.NAME }).ToList();
+                    var umster = m_union.Union(b_union).AsEnumerable().OrderBy(m => m.channel).ThenBy(m => m.market).ThenBy(m => m.brand).ToList();
+                    //var umster = emster.OrderBy(m => new { m.channel, m.market, m.brand }).ToList();
+                    var ddata = umster.Select(m => new Models.ItemsConfigModel 
+                    { 
+                        channel = m.channel.ToString(),
+                        market = m.market.ToString(),
+                        brand = m.brand.ToString(),
+                        channel_description = cmster.Find(n=> n.ID == m.channel).NAME,
+                        brand_description = bmster.Exists(n=>n.ID == m.brand)?bmster.Find(n=>n.ID == m.brand).NAME:null,
+                        market_description = mmster.Find(n=>n.ID == m.market).NAME,
+                        type = !bmster.Exists(n=>n.ID == m.brand)?"MARKET":"BRAND",
+                        list_data = Helpers.FormControlsUtil.SelectAddBlank(lst.Where(s=> lst.IndexOf(s) > 0).Select(n => new SelectListItem
+                        {
+                            Value = (lst.IndexOf(n)).ToString(),
+                            Text = (lst.IndexOf(n)).ToString() + " - " + n.col1 + " - " + n.col2 + " - " + n.col3 + " - " + n.col4,
+                            Selected = rmster.Exists(s=> s.EXCEL_ROW == lst.IndexOf(n) + 1 && m.market == s.MARKET_ID && ((m.brand == 0 && s.BRAND_ID == null) || m.brand == s.BRAND_ID))
+                        }).ToList()),
+                        nielsen_data = rmster.Select(n=> new Models.Nielsen_Data{
+                             brand = n.BRAND_ID,
+                             market = n.MARKET_ID,
+                             brand_description = n.BRAND,
+                             market_description = n.DESCRIPTION,
+                             id = n.ID,
+                             excel_row = n.EXCEL_ROW
+                        }).ToList(),
+                        excel_row = rmster.Where(n => n.BRAND_ID == m.brand && n.MARKET_ID == m.market).Select(s => s.EXCEL_ROW).FirstOrDefault(),
+                    });
+                    model = ddata.ToList();
+                    partial = LOAD_CONFIG_NIELSEN;
+                break;
+            }
             //Columnas del excel:
             //Datos configurados:
             //  NTS:
             //  IMS/Nielsen: 
-            return PartialView(LOAD_CONFIG);
+            return PartialView(partial, model);
         }
+        [Authorize]
+        public ActionResult SaveConfigItem(string market, string brand, string channel, string source, string value)
+        {
+            List<Models.MasterConfig> mst = new List<Models.MasterConfig>(); 
+            if (Helpers.Session.GetSession("MODELS_MASTER_CONFIG") != null)
+            {
+                mst = (List<Models.MasterConfig>)Helpers.Session.GetSession(MODELS_MASTER_CONFIG);
+            }
+            if (mst.Exists(m => m.market == market && m.brand == brand && m.channel == channel && m.source == source))
+                mst.Find(m => m.market == market && m.brand == brand && m.channel == channel && m.source == source).value = value;
+            else
+                mst.Add(new Models.MasterConfig { market = market, brand = brand, channel = channel, source = source, value = value });
+            Helpers.Session.SetSession(MODELS_MASTER_CONFIG, mst);
+            return Json(new { Success = true,status = "success" }, JsonRequestBehavior.AllowGet);
+        }
+        [Authorize]
+        [HttpPost]
+        public ActionResult SaveConfigData()
+        {
+            int ret = -1;
+            List<Models.MasterConfig> items = (List<Models.MasterConfig>)Helpers.Session.GetSession(MODELS_MASTER_CONFIG);
+            List<StrawmanDBLibray.Classes.ExcelLoader> lst = (List<StrawmanDBLibray.Classes.ExcelLoader>)TempData.Peek("LoadNTS");
+            if(Helpers.UserUtils.Permissions.GetPermissions()){
+                foreach (Models.MasterConfig item in items)
+                {
+                    switch (item.source)
+                    {
+                        case "NTS":
+                            List<StrawmanDBLibray.Classes.ExcelLoader> litems = lst.Where(m => m.col13 == item.value).Select(m => m).ToList();
+                            StrawmanDBLibray.Entities.NTS_MASTER nmst = new StrawmanDBLibray.Entities.NTS_MASTER
+                            {
+                                MARKET_NAME = item.value,
+                                BRAND = item.brand,
+                                MARKET = item.market,
+                                CHANNEL = item.channel,
+                                Mat_Local_Class_2 = "",
+                                Mat_Local_Class_3 = "",
+                                Mat_Local_Class_4 = "",
+                                STRAWMAN_CHECK = item.value,
+                            };
+                            foreach (StrawmanDBLibray.Classes.ExcelLoader litem in litems)
+                            {
+                                nmst.Mat_Local_Class_2 = litem.col3;
+                                nmst.Mat_Local_Class_3 = litem.col4;
+                                nmst.Mat_Local_Class_4 = litem.col5;
+                                if (item.value != null)
+                                {
+                                    ret = StrawmanDBLibray.Repository.NTS_MASTER.SaveItem(nmst);
+                                }
+                                else
+                                {
+                                    ret = StrawmanDBLibray.Repository.NTS_MASTER.DeleteItem(nmst);
+                                }
+                            }
+                            break;
+                        default:
+                            int _index = 0;
+                            if (int.TryParse(item.value, out _index))
+                            {
+                                StrawmanDBLibray.Classes.ExcelLoader ritem = lst[_index];
+                                StrawmanDBLibray.Entities.ROSETTA_LOADER ros = new StrawmanDBLibray.Entities.ROSETTA_LOADER
+                                {
+                                    MARKET_ID = decimal.Parse(item.market),
+                                    BRAND_ID = decimal.Parse(item.brand),
+                                    CHANNEL_ID = decimal.Parse(item.channel),
+                                    EXCEL_ROW = _index
+                                };
+                                if (_index > 0)
+                                {
+                                    ret = StrawmanDBLibray.Repository.ROSETTA_LOADER.SaveItem(ros);
+                                }
+                                else
+                                {
+                                    ret = StrawmanDBLibray.Repository.ROSETTA_LOADER.DeleteItem(ros);
+                                }
+                            }
+                            break;
+                    }
+                }
+            }
+            return Json(new { Success = ret>0,status = ret > 0 ? "success" : "fail" }, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
         public ActionResult CurrencyBanner()
         {
             string change_value = "";
@@ -295,9 +453,10 @@ namespace StrawmanApp.Controllers
                                             brand_name = p.BRAND_NAME,
                                             id = p.ID,
                                             config_name = Models.ConfigOperationsModel.GetOppName(p.CONFIG),
-                                            source = p.SOURCE
+                                            source = p.SOURCE,
                                         }).ToList();
             //Devolver vista parcial de Grid con opciones de edición
+            ViewBag.Group = group ?? 1;
             return PartialView(GROUP_CONFIG, model);
         }
         public ActionResult GetEditForGroupMaster(int _id)
@@ -308,7 +467,245 @@ namespace StrawmanApp.Controllers
         {
             return GetGroupEditFor(StrawmanDataTables.GROUP_CONFIG, _id);
         }
-
+        public ActionResult AddItemConfig(string _group, string _source)
+        {
+            List<SelectListItem> sources = Models.ConfigOperationsModel.GetDefaultSourceList(_source);
+            //    new List<SelectListItem>();
+            //sources.Add(new SelectListItem
+            //{
+            //    Text = "Default",
+            //    Value ="",
+            //    Selected = string.IsNullOrEmpty(_source)
+            //});
+            //sources.Add(new SelectListItem
+            //{
+            //    Text ="Channel",
+            //    Value ="CHANNEL",
+            //    Selected = !string.IsNullOrEmpty(_source) && _source == "CHANNEL"
+            //});
+            //sources.Add(new SelectListItem
+            //{
+            //    Text ="Franchise",
+            //    Value ="FRANCHISE",
+            //    Selected = !string.IsNullOrEmpty(_source) && _source == "FRANCHISE"
+            //});
+            //sources.Add(new SelectListItem
+            //{
+            //    Text = "Keybrands",
+            //    Value ="KEYBRANDS",
+            //    Selected = !string.IsNullOrEmpty(_source) && _source == "KEYBRANDS"
+            //});
+            string[] _channels_names = new string[]{ "mass", "beauty", "otc" };
+            if (!string.IsNullOrEmpty(_source)) { _channels_names = new string[] {"default"}; }
+            ViewDataDictionary vd = new ViewDataDictionary
+            {
+                {"group", _group},
+                {"source",_source},
+                {"channels", new string[]{Helpers.Channels.MASS.ToString(),Helpers.Channels.BEAUTY.ToString(),Helpers.Channels.OTC.ToString()}},
+                {"channels_names", _channels_names},
+                {"partial","GetGroupItemsByChannel"},
+                {"action", "SaveItemsConfig"},
+                {"controller","Config"},
+                {"source_select", sources}
+            };
+            ViewBag.ModalTitle = Helpers.MessageByLanguage.AddItem;
+            ViewBag.ButtonText = Helpers.MessageByLanguage.Save;
+            return PartialView(GROUP_MODAL_ITEMS, vd);
+        }
+        public ActionResult GetGroupItemsByChannel(string _group, string _channel, string _source)
+        {
+            List<StrawmanDBLibray.Entities.GROUP_CONFIG> cfg = (List<StrawmanDBLibray.Entities.GROUP_CONFIG>)Helpers.StrawmanDBLibrayData.Get(StrawmanDataTables.GROUP_CONFIG);
+            //List<StrawmanDBLibray.Entities.BRAND_MASTER> bmster = (List<StrawmanDBLibray.Entities.BRAND_MASTER>)Helpers.StrawmanDBLibrayData.Get(StrawmanDataTables.BRAND_MASTER);
+            //List<StrawmanDBLibray.Entities.MARKET_MASTER> mmster = (List<StrawmanDBLibray.Entities.MARKET_MASTER>)Helpers.StrawmanDBLibrayData.Get(StrawmanDataTables.MARKET_MASTER);
+            List<StrawmanDBLibray.Entities.MARKET_GROUPS> groups = (List<StrawmanDBLibray.Entities.MARKET_GROUPS>)Helpers.StrawmanDBLibrayData.Get(StrawmanDataTables.MARKET_GROUPS);
+            _channel = _channel.Contains(" ")?_channel.Substring(0, _channel.IndexOf(" ")): _channel;
+            int channel = (int.TryParse(_channel, out channel) ? channel : Helpers.StrawmanConstants.getChannel(_channel.ToUpper()));
+            var cache = Helpers.Session.GetSession(GROUP_CFG_DATA);
+            var data = cfg.Where(m => m.GROUP_ID == int.Parse(_group)).Select(m => m).ToList();
+            if (cache != null)
+            {
+                var tmp = (List<StrawmanDBLibray.Entities.GROUP_CONFIG>)cache;
+                if (tmp.Exists(m => m.GROUP_ID == int.Parse(_group)))
+                    data = tmp;
+            }
+            else
+            {
+                Helpers.Session.SetSession(GROUP_CFG_DATA, data);
+            }
+            object ms = null;
+            switch (_source)
+            {
+                case "CHANNEL":
+                    List<Models.MarketViewChannelModels> cdata = (List<Models.MarketViewChannelModels>)new MarketViewChannelController().GetDataViewChannel();
+                    ms = cdata
+                        //bmster.Join(mmster, b => new { _market = (decimal)b.MARKET }, m => new { _market = m.ID }, (b, m) => new { b = b, m = m }).AsEnumerable()
+                    .Select(d => new Models.ItemsConfigModel
+                    {
+                        selected = data.Exists(e => e.MARKET == d.vid && e.BRAND == d.vid),
+                        market = d.vid.ToString(),
+                        brand = d.vid.ToString(),
+                        channel = d.vchannel.ToString(),
+                        market_description = d.name,
+                        brand_description = d.name,
+                        group_id = _group,
+                    }).ToList();
+                    break;
+                case "FRANCHISE":
+                    List<StrawmanDBLibray.Entities.v_WRK_FRANCHISE_DATA> fdata = (List<StrawmanDBLibray.Entities.v_WRK_FRANCHISE_DATA>)Helpers.StrawmanDBLibrayData.Get(StrawmanDataTables.v_WRK_FRANCHISE_DATA);
+                    ms = fdata
+                        //bmster.Join(mmster, b => new { _market = (decimal)b.MARKET }, m => new { _market = m.ID }, (b, m) => new { b = b, m = m }).AsEnumerable()
+                    .Select(d => new Models.ItemsConfigModel
+                    {
+                        selected = data.Exists(e => e.MARKET == d.ID && e.BRAND == d.ID),
+                        brand = d.ID.ToString(),
+                        market = d.ID.ToString(),
+                        market_description = d.NAME,
+                        group_id = _group,
+                    }).ToList();
+                    break;
+                case "KEYBRANDS":
+                    List<Models.MarketViewChannelModels> kdata = new MarketViewKeybrandsController().GetKeybrandsMasterData();
+                    //List<StrawmanDBLibray.Entities.v_KEYBRANDS_MASTER> kdata = (List<StrawmanDBLibray.Entities.v_KEYBRANDS_MASTER>)Helpers.StrawmanDBLibrayData.Get(StrawmanDataTables.v_KEYBRANDS_MASTER);
+                    ms = kdata
+                        //bmster.Join(mmster, b => new { _market = (decimal)b.MARKET }, m => new { _market = m.ID }, (b, m) => new { b = b, m = m }).AsEnumerable()
+                    .Select(d => new Models.ItemsConfigModel
+                    {
+                        selected = data.Exists(e => e.MARKET == d.vid && e.BRAND == d.vid),
+                        brand = d.vid.ToString(),
+                        market = d.vid.ToString(),
+                        market_description = d.name,
+                        group_id = _group,
+                    }).ToList();
+                    break;
+                default:
+                    List<StrawmanDBLibray.Entities.v_STRWM_MARKET_DATA> sdata = (List<StrawmanDBLibray.Entities.v_STRWM_MARKET_DATA>)Helpers.StrawmanDBLibrayData.Get(StrawmanDataTables.v_STRWM_MARKET_DATA);
+                    ms = sdata.Where(m => m.CHANNEL == channel)
+                        //bmster.Join(mmster, b => new { _market = (decimal)b.MARKET }, m => new { _market = m.ID }, (b, m) => new { b = b, m = m }).AsEnumerable()
+                    .Select(d => new Models.ItemsConfigModel
+                    {
+                        selected = data.Exists(e => e.MARKET == d.MARKET && e.BRAND == d.BRAND),
+                        brand = d.BRAND.ToString(),
+                        market = d.MARKET.ToString(),
+                        channel = d.CHANNEL.ToString(),
+                        market_description = d.NAME,
+                        brand_description = d.BRAND_NAME ?? d.NAME,
+                        group_id = _group,
+                        group_description = groups.Where(g => g.ID == d.GROUP).FirstOrDefault().NAME,
+                    }).ToList();
+                    break;
+            }
+            ViewBag.Controller = "GetGroupItemsByChannel";
+            ViewBag.FormAction =  "SaveItemsConfig";
+            ViewBag.FormController = "Config";
+            return PartialView(GROUP_ITEMS, (List<Models.ItemsConfigModel>)ms);
+        }
+        public ActionResult SetGroupCfg(string _channel, string _market, string _brand, string _group, string _checked)
+        {
+            var data = Helpers.Session.GetSession(GROUP_CFG_DATA);
+            List<StrawmanDBLibray.Entities.v_STRWM_MARKET_DATA> sdata = (List<StrawmanDBLibray.Entities.v_STRWM_MARKET_DATA>)Helpers.StrawmanDBLibrayData.Get(StrawmanDataTables.v_STRWM_MARKET_DATA);
+            if (data != null)
+            {
+                var tmp = (List<StrawmanDBLibray.Entities.GROUP_CONFIG>)data;
+                if (tmp.Exists(m => m.GROUP_ID == int.Parse(_group) && m.MARKET == int.Parse(_market) && m.BRAND == int.Parse(_brand)))
+                {
+                    if (!bool.Parse(_checked))
+                        tmp.Remove(tmp.Where(m => m.GROUP_ID == int.Parse(_group) && m.MARKET == int.Parse(_market) && m.BRAND == int.Parse(_brand)).FirstOrDefault());
+                }
+                else
+                {
+                    if (bool.Parse(_checked))
+                        tmp.Add(new StrawmanDBLibray.Entities.GROUP_CONFIG
+                        {
+                            BRAND = int.Parse(_brand),
+                            MARKET = int.Parse (_market),
+                            CONFIG = 1,
+                            GROUP_ID = int.Parse(_group),
+                            TYPE_ID = tmp.FirstOrDefault().TYPE_ID,
+                            SOURCE = tmp.FirstOrDefault().SOURCE,
+                            BRAND_NAME = sdata.Where(m=>m.CHANNEL == int.Parse(_channel) && m.MARKET == int.Parse(_market) && m.BRAND == int.Parse(_brand)).FirstOrDefault().BRAND_NAME
+                        });
+                }
+                Helpers.Session.SetSession(GROUP_CFG_DATA, tmp);
+            }
+            return Json(new { success = "success"}, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult SaveGroupConfig(FormCollection collection)
+        {
+            string status = "ok";
+            string _source = !String.IsNullOrEmpty(collection["o.source"]) ? collection["o.source"].ToString() : null;
+            string _config = !String.IsNullOrEmpty(collection["o.config"]) ? collection["o.config"].ToString() : null;
+            string _name = !String.IsNullOrEmpty(collection["o.brand_name"]) ? collection["o.brand_name"].ToString() : null;
+            string _id = !String.IsNullOrEmpty(collection["o.id"]) ? collection["o.id"].ToString() : null;
+            string _base_id = !String.IsNullOrEmpty(collection["o.base_id"]) ? collection["o.base_id"].ToString() : null;
+            string _level = !String.IsNullOrEmpty(collection["o.level"]) ? collection["o.level"].ToString() : null;
+            switch (collection["o.type"])
+            {
+                case StrawmanDataTables.GROUP_CONFIG:
+                    if(!String.IsNullOrEmpty(_id))
+                    {
+                        StrawmanDBLibray.Entities.GROUP_CONFIG cfg = StrawmanDBLibray.Repository.GROUP_CONFIG.getById(int.Parse(_id));
+                        string _duplicate = !String.IsNullOrEmpty(collection["o.duplicate"]) ? collection["o.duplicate"].ToString() : null;
+                        if (_duplicate == null)
+                        {
+                            cfg.CONFIG = int.Parse(_config ?? "1");
+                            cfg.SOURCE = _source == "None" || _source == "Default" ? null : _source.ToUpper();
+                            if (!String.IsNullOrEmpty(_name)) cfg.BRAND_NAME = _name;
+                            StrawmanDBLibray.Repository.GROUP_CONFIG.SaveItem(cfg);
+                        }
+                        else
+                        {
+                            StrawmanDBLibray.Entities.GROUP_CONFIG tmp = new StrawmanDBLibray.Entities.GROUP_CONFIG()
+                            {
+                                MARKET = cfg.MARKET,
+                                BRAND = cfg.BRAND,
+                                CONFIG = cfg.CONFIG,
+                                SOURCE = cfg.SOURCE,
+                                BRAND_NAME = cfg.BRAND_NAME,
+                                GROUP_ID = cfg.GROUP_ID,
+                                TYPE_ID = cfg.TYPE_ID
+                            };
+                            StrawmanDBLibray.Repository.GROUP_CONFIG.SaveItem(tmp);
+                        }
+                    }
+                    break;
+                case StrawmanDataTables.GROUP_MASTER:
+                    if (!String.IsNullOrEmpty(_id))
+                    {
+                        StrawmanDBLibray.Entities.GROUP_MASTER mst = StrawmanDBLibray.Repository.GROUP_MASTER.getById(int.Parse(_id));
+                        mst.LEVEL = _level!=null?int.Parse(_level): default(int?);
+                        mst.BASE_ID = int.Parse(_base_id??"0");
+                        mst.NAME = _name;
+                        StrawmanDBLibray.Repository.GROUP_MASTER.SaveItem(mst);
+                    }
+                    break;
+            }
+            return Json(new { status = status }, JsonRequestBehavior.AllowGet);
+        }
+        [Authorize]
+        public ActionResult DeleteGroup(string _id, string _source)
+        {
+            string status = "ok";
+            int id = 0;
+            if (int.TryParse(_id, out id))
+            {
+                switch (_source)
+                {
+                    case StrawmanDataTables.GROUP_CONFIG:
+                        var cache =  (List<StrawmanDBLibray.Entities.GROUP_CONFIG>)Helpers.Session.GetSession(GROUP_CFG_DATA);
+                        if (cache != null && cache.Exists(m => m.ID == id))
+                        {
+                            cache.Remove(cache.Where(m => m.ID == id).FirstOrDefault());
+                            Helpers.Session.SetSession(GROUP_CFG_DATA, cache);
+                        }
+                        StrawmanDBLibray.Repository.GROUP_CONFIG.DeleteItemById(id);
+                        break;
+                    case StrawmanDataTables.GROUP_MASTER:
+                        StrawmanDBLibray.Repository.GROUP_MASTER.DeleteItemById(id);
+                        break;
+                }
+            }
+            return Json(new { status = status }, JsonRequestBehavior.AllowGet);
+        }
         private ActionResult GetGroupEditFor(string table, int _id)
         {
             switch (table)
@@ -318,17 +715,35 @@ namespace StrawmanApp.Controllers
                     List<Models.MasterDataModels> model_g_c = new List<Models.MasterDataModels>();
                     model_g_c.Add(new Models.MasterDataModels
                     {
+                        type = table,
                         brand_name = cfg.BRAND_NAME,
                         id = cfg.ID,
                         config_name = Models.ConfigOperationsModel.GetOppName(cfg.CONFIG),
                         config_list = Models.ConfigOperationsModel.GetOppList(cfg.CONFIG),
                         config = cfg.CONFIG,
-                        source = cfg.SOURCE
+                        source = cfg.SOURCE,
+                        source_list = Models.ConfigOperationsModel.GetSourceList(cfg.SOURCE, (int?)cfg.TYPE_ID)
+
                     });
                     return PartialView(GROUP_CONFIG_EDIT, model_g_c);
+                case StrawmanDataTables.GROUP_MASTER:
+                    StrawmanDBLibray.Entities.GROUP_MASTER cfgm = StrawmanDBLibray.Repository.GROUP_MASTER.getById(_id);
+                    List<StrawmanDBLibray.Entities.GROUP_MASTER> mstrs = StrawmanDBLibray.Repository.GROUP_MASTER.getAll().Where(m => m.TYPE == cfgm.TYPE).Select(m => m).ToList();
+                    List<Models.MasterDataModels> model_g_m = new List<Models.MasterDataModels>();
+                    model_g_m.Add(new Models.MasterDataModels
+                    {
+                        type = table,
+                        brand_name = cfgm.NAME,
+                        id = cfgm.ID,
+                        base_id = cfgm.BASE_ID,
+                        level_list = Models.ConfigOperationsModel.GetOppLevelList(cfgm.LEVEL,mstrs.Where(m=>m.ID != _id).Select(m=>m).ToList()),
+                        level = cfgm.LEVEL,
+                    });
+                    return PartialView(GROUP_MASTER_EDIT, model_g_m);
             }
             return null;
         }
+        
         #endregion
         #region PreviewData
 
@@ -606,6 +1021,14 @@ namespace StrawmanApp.Controllers
                     List<StrawmanDBLibray.Entities.CHANNEL_MASTER> cst = (List<StrawmanDBLibray.Entities.CHANNEL_MASTER>)Helpers.StrawmanDBLibrayData.Get(table, true);
                     ret = cst.Find(m => m.ID == _id).NAME;
                     break;
+                case StrawmanDBLibray.Classes.StrawmanDataTables.NTS_MASTER:
+                    StrawmanDBLibray.Entities.NTS_MASTER nst = StrawmanDBLibray.Repository.NTS_MASTER.getById(_id);
+                    ret = nst.MARKET_NAME;
+                    break;
+                case StrawmanDBLibray.Classes.StrawmanDataTables.ROSETTA_LOADER:
+                    StrawmanDBLibray.Entities.ROSETTA_LOADER rst = StrawmanDBLibray.Repository.ROSETTA_LOADER.getById(_id);
+                    ret = rst.DESCRIPTION;
+                    break;
             }
             return ret;
         }
@@ -656,6 +1079,94 @@ namespace StrawmanApp.Controllers
                 Value = m.ID.ToString(),
                 Selected = m.ID == _selected
             }).ToList();
+        }
+        public List<SelectListItem> GetStrawmanConfig(int? _channel, int? _market, int? _brand, string type, string column)
+        {
+            List<SelectListItem> items = new List<SelectListItem>();
+            switch (type)
+            {
+                case Classes.StrawmanViews.MARKET:
+                    List<StrawmanDBLibray.Entities.CALCS_MARKETS_CONFIG> mcfg = (List<StrawmanDBLibray.Entities.CALCS_MARKETS_CONFIG>)StrawmanDBLibray.Repository.CALCS_MARKETS_CONFIG.getAll();
+                    StrawmanDBLibray.Entities.CALCS_MARKETS_CONFIG mitem = mcfg.Find(m => m.MARKET == _market && m.BRAND == _brand);
+                    switch (column)
+                    {
+                        //GROUP
+                        case Classes.Default.Attributes.MARKET_GROUP_CONFIG_ID:
+                            items = Models.ConfigOperationsModel.GetOppList(mitem.GROUPCFG);
+                            break;
+                        //SUPREGROUP
+                        case Classes.Default.Attributes.MARKET_SUPERGROUP_CONFIG_ID:
+                            items = Models.ConfigOperationsModel.GetOppList(mitem.SUPERCFG);
+                            break;
+                        //CHANNEL
+                        case Classes.Default.Attributes.MARKET_CHANNEL_CONFIG_ID:
+                            items = Models.ConfigOperationsModel.GetOppList(mitem.CHANNELCFG);
+                            break;
+                        //FRANCHISE
+                        case Classes.Default.Attributes.MARKET_FRANCHISE_CONFIG_ID:
+                            items = Models.ConfigOperationsModel.GetOppList(mitem.FRANCHISECFG);
+                            break;
+                        //KEYBRANDS
+                        case Classes.Default.Attributes.MARKET_KEYBRANDS_CONFIG_ID:
+                            items = Models.ConfigOperationsModel.GetOppList(mitem.KEYBRANDSCFG);
+                            break;
+                    }
+                    break;
+                case Classes.StrawmanViews.BRAND:
+                    List<StrawmanDBLibray.Entities.CALCS_BRANDS_CONFIG> bcfg = (List<StrawmanDBLibray.Entities.CALCS_BRANDS_CONFIG>)StrawmanDBLibray.Repository.CALCS_BRANDS_CONFIG.getAll();
+                    StrawmanDBLibray.Entities.CALCS_BRANDS_CONFIG bitem = bcfg.Find(m => m.MARKET == _market && m.BRAND == _brand);
+                    switch (column)
+                    {
+                        //GROUP
+                        case Classes.Default.Attributes.BRAND_GROUP_CONFIG_ID:
+                            items = Models.ConfigOperationsModel.GetOppList(bitem.GROUPCFG);
+                            break;
+                        //SUPREGROUP
+                        case Classes.Default.Attributes.BRAND_SUPERGROUP_CONFIG_ID:
+                            items = Models.ConfigOperationsModel.GetOppList(bitem.SUPERCFG);
+                            break;
+                        //CHANNEL
+                        case Classes.Default.Attributes.BRAND_CHANNEL_CONFIG_ID:
+                            items = Models.ConfigOperationsModel.GetOppList(bitem.CHANNELCFG);
+                            break;
+                        //FRANCHISE
+                        case Classes.Default.Attributes.BRAND_FRANCHISE_CONFIG_ID:
+                            items = Models.ConfigOperationsModel.GetOppList(bitem.FRANCHISECFG);
+                            break;
+                        //KEYBRANDS
+                        case Classes.Default.Attributes.BRAND_KEYBRANDS_CONFIG_ID:
+                            items = Models.ConfigOperationsModel.GetOppList(bitem.KEYBRANDSCFG);
+                            break;
+                    }
+                    break;
+            }
+            return items;
+        }
+        public List<SelectListItem> GetLoaderConfig(string type, int _channel, int _market, int _brand)
+        {
+            switch (type)
+            {
+                case "NTS":
+                    StrawmanDBLibray.Entities.NTS_MASTER nmst = StrawmanDBLibray.Repository.NTS_MASTER.get(_channel, _market, _brand);
+                    List<StrawmanDBLibray.Entities.NTS_MASTER> nlst = (List<StrawmanDBLibray.Entities.NTS_MASTER>)StrawmanDBLibray.Repository.NTS_MASTER.getAll();
+                    return nlst.Select(m => new SelectListItem
+                    {
+                        Value = m.ID.ToString(),
+                        Text = m.MARKET_NAME,
+                        Selected = m.ID == (nmst == null?-1:nmst.ID)
+                    }).ToList();
+                case "IMS_NIELSEN":
+                    StrawmanDBLibray.Entities.ROSETTA_LOADER rmst = StrawmanDBLibray.Repository.ROSETTA_LOADER.get(_channel, _market, _brand);
+                    List<StrawmanDBLibray.Entities.ROSETTA_LOADER> rlst = (List<StrawmanDBLibray.Entities.ROSETTA_LOADER>)StrawmanDBLibray.Repository.ROSETTA_LOADER.getAll();
+                    return rlst.Select(m => new SelectListItem
+                    {
+                        Value = m.ID.ToString(),
+                        Text = m.DESCRIPTION,
+                        Selected = m.ID == (rmst == null ? -1 : rmst.ID)
+                    }).ToList();
+                default:
+                    return null;
+            }
         }
         #endregion
 
@@ -888,6 +1399,9 @@ namespace StrawmanApp.Controllers
                 case Helpers.StrawmanViews.MANAGEMENT_LETTERS.id:
                     _partialView = Helpers.StrawmanViews.MANAGEMENT_LETTERS.Scripts.forms;
                     break;
+                case Helpers.StrawmanViews.KPI.id:
+                    _partialView = Helpers.StrawmanViews.KPI.Scripts.forms;
+                    break;
 
             }
             return PartialView(_partialView);
@@ -957,16 +1471,33 @@ namespace StrawmanApp.Controllers
         {
             ViewBag.MenuUrl = BOY_CONFIG;
             ViewBag.TabUrl = CONTROLLER_NAME + "/" + BOY_CONFIG;
-            List<StrawmanDBLibray.Entities.BOY_CONFIG> list = StrawmanDBLibray.Repository.BOY_CONFIG.getAll();
-            List<SelectListItem> channels = GetChannelList(Helpers.Channels.MASS);
             Models.GenericConfigModel model = new Models.GenericConfigModel();
             model.path = BOY_CONFIG_PATH;
-            foreach (int channel in channels.Select(m => int.Parse(m.Value)).Distinct())
-            {
-                model.tables.Add(new Models.TableConfig
+            return View(BOY_CONFIG_VIEW, model);
+        }
+        public ActionResult GetBOYGroups()
+        {
+            List<StrawmanApp.Models.MasterDataModels> model = new List<StrawmanApp.Models.MasterDataModels>();
+            List<StrawmanDBLibray.Entities.BOY_CONFIG> list = StrawmanDBLibray.Repository.BOY_CONFIG.getAll();
+            model = 
+                list.Where(m=>m.NTS_ORDER !=0).Select(m => new { name = m.NTS_NAME, order = m.NTS_ORDER }).Distinct().AsEnumerable()
+                .Select(m => new Models.MasterDataModels
                 {
-                    id = "boy_config",
-                    content = list.Where(m => m.CHANNEL == channel).Select(m => new Models.MasterDataModels
+                    nts_name = m.name,
+                    order = m.order,
+                }).Distinct().OrderBy(m => m.order).ToList();
+                return PartialView(BOY_GROUPS, model);
+        }
+        public ActionResult GetBOYConfigItems(string order)
+        {
+            Models.GenericConfigModel model = new Models.GenericConfigModel();
+            List<StrawmanDBLibray.Entities.BOY_CONFIG> list = StrawmanDBLibray.Repository.BOY_CONFIG.getAll();
+            List<SelectListItem> channels = GetChannelList(Helpers.Channels.MASS);
+            model.path = BOY_CONFIG_PATH;
+            Models.TableConfig table = new Models.TableConfig
+            {
+                id = "boy_config",
+                content = list.Where(m => m.NTS_ORDER == int.Parse(order)).Select(m => new Models.MasterDataModels
                     {
                         channel = m.CHANNEL,
                         channel_name = channels.Find(s => decimal.Parse(s.Value) == m.CHANNEL).Text,
@@ -980,15 +1511,495 @@ namespace StrawmanApp.Controllers
                         nts_calc_name = StrawmanDBLibray.Repository.BOY_CONFIG.GetCalcStatus(m.SELLIN_CONFIG, StrawmanDBLibray.Repository.BOY_CONFIG.Columns.SELLIN_CONFIG),
                         config_name = StrawmanDBLibray.Repository.BOY_CONFIG.GetCalcStatus(m.CONSOLIDATE, StrawmanDBLibray.Repository.BOY_CONFIG.Columns.CONSOLIDATE),
                     }).ToList(),
-                    view = BOY_CONFIG_TABLE_VIEW
-                });
+                view = BOY_CONFIG_TABLE_VIEW,
+                default_val = int.Parse(order)
+            };
+            model.tables.Add(table);
+            return PartialView(model.content_view, model);
+        }
+        public ActionResult EditBOYGroup(string _id)
+        {
+            List<StrawmanApp.Models.MasterDataModels> model = new List<Models.MasterDataModels>();
+            List<StrawmanDBLibray.Entities.BOY_CONFIG> list = StrawmanDBLibray.Repository.BOY_CONFIG.getAll();
+            model = list.Where(m => m.NTS_ORDER != 0).Select(m => new { name = m.NTS_NAME, order = m.NTS_ORDER }).Distinct().AsEnumerable()
+                .Where(m => m.order == int.Parse(_id)).Select(m => new Models.MasterDataModels
+                {
+                    nts_name = m.name,
+                    order = m.order,
+                    id=m.order,
+                    type = "group"
+                }).ToList();
+            return PartialView(BOY_GROUPS_EDIT, model);
+        }
+        #endregion
+
+        #region KPIConfig
+        public ActionResult KPIEditor(string source)
+        {
+            List<Entities.KpiModel> lst = new KPIController().GetKPIDataP("MASTER_DATA");
+            List<Entities.KpiModel> model = new KPIController().GetKPIDataP("v_BRAND_CONTRIBUTION");
+            ViewBag.MasterData = lst;
+            return PartialView(KPI_EDITOR, model);
+        }
+
+        public ActionResult SaveKPIForm(List<Entities.KpiModel> data)
+        {
+            string status = "success";
+            string message = SUCCESS_MESSAGE;
+            System.Collections.Specialized.NameValueCollection form_data = Request.Form;
+            int counter = 0;
+            List<StrawmanDBLibray.Entities.BRAND_CONTRIBUTION> _data = new List<StrawmanDBLibray.Entities.BRAND_CONTRIBUTION>();
+            foreach (string index in form_data.GetValues("item.KPI"))
+            {
+                string[] val_COL1 = form_data.GetValues("item.COL1");
+                string[] val_COL2 = form_data.GetValues("item.COL2");
+                string[] val_COL3 = form_data.GetValues("item.COL3");
+                StrawmanDBLibray.Entities.BRAND_CONTRIBUTION mdl = new StrawmanDBLibray.Entities.BRAND_CONTRIBUTION()
+                {
+                    KPI_ID = decimal.Parse(index),
+                    COL1 = decimal.Parse(val_COL1[counter]),
+                    COL2 = decimal.Parse(val_COL2[counter]),
+                    COL3 = decimal.Parse(val_COL3[counter]),
+                    YEAR_PERIOD = Helpers.PeriodUtil.Year,
+                    MONTH_PERIOD = Helpers.PeriodUtil.Month
+                };
+                _data.Add(mdl);
+                counter++;
             }
-            model.navigator = new Models.Navigator{ content = channels, view = CHANNEL_PILLS_VIEW };
-            return View(BOY_CONFIG_VIEW, model);
+            int ret = StrawmanDBLibray.Repository.BRAND_CONTRIBUTION.saveList(_data);
+            if (ret < 0) status = "error";
+            return Json(new { status = status, message = message }, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
+        #region Manage View Groups Data
+        [Authorize]
+        public ActionResult DataGroup()
+        {
+            return GetDataGroupFor("0");
+        }
+
+        [Authorize]
+        private ActionResult GetDataGroupFor(string _option) 
+        {
+            string _view = VIEW_DATA_GROUP;
+
+            ViewBag.Options = "GetOptionsGroupFor";
+            ViewBag.OptionsValue = _option;
+
+            ViewBag.MasterList = "GetGroupMasterListFor";
+            ViewBag.MasterListOption = _option;
+
+            ViewBag.Title = "DataConfig";
+            
+            return View(_view);
+        }
+
+        [ChildActionOnly]
+        public ActionResult GetOptionsGroupFor(string _option)
+        {
+            List<SelectListItem> model = new List<SelectListItem>();
+            model.Add(new SelectListItem{Text = "Group",Value = "GROUP",Selected = true});
+            model.Add(new SelectListItem{Text ="Super-Group",Value ="SUPER"});
+            model.Add(new SelectListItem { Text = "Channel", Value = "CHANNEL" });
+            ViewBag.SelectName = "select_group";
+            return PartialView(SELECT_LIST_VIEW, model);
+        }
+        [Authorize]
+        public ActionResult GetGroupMasterListFor(string _option)
+        {
+            List<Models.ItemsConfigModel> model = new List<Models.ItemsConfigModel>();
+            List<StrawmanDBLibray.Entities.v_STRWM_MARKET_DATA> data = (List<StrawmanDBLibray.Entities.v_STRWM_MARKET_DATA>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.v_STRWM_MARKET_DATA, false);
+            List<StrawmanDBLibray.Entities.CHANNEL_MASTER> cmster = StrawmanDBLibray.Repository.CHANNEL_MASTER.getAll();
+            switch (_option)
+            {
+                case "SUPER":
+                    List<StrawmanDBLibray.Entities.BRAND_MASTER> bmster = StrawmanDBLibray.Repository.BRAND_MASTER.getAll();
+                    model = data.Where(m => (m.SOURCE == "SUPER") && ((m.YEAR_PERIOD == Helpers.PeriodUtil.Year && m.MONTH_PERIOD == Helpers.PeriodUtil.Month) || (m.YEAR_PERIOD == null && m.MONTH_PERIOD == null))).Select(m =>
+                        new Models.ItemsConfigModel
+                        {
+                         market_description = m.NAME,
+                         brand_description = m.BRAND_NAME?? m.NAME,
+                         market = m.MARKET.ToString(),
+                         brand = m.BRAND.ToString(),
+                         channel = m.CHANNEL.ToString(),
+                         channel_description = cmster.Find(s=>s.ID == m.CHANNEL).NAME,
+                         id = (int) bmster.Where(s => s.GROUP == m.GROUP).First().SUPER_GROUP,
+                         group_id = m.GROUP.ToString(),
+                        }).ToList();
+                    break;
+                case "CHANNEL":
+                    model = data.Where(m => (m.SOURCE == "CHANNEL") && ((m.YEAR_PERIOD == Helpers.PeriodUtil.Year && m.MONTH_PERIOD == Helpers.PeriodUtil.Month) || (m.YEAR_PERIOD == null && m.MONTH_PERIOD == null))).Select(m =>
+                        new Models.ItemsConfigModel
+                        {
+                            market_description = m.NAME,
+                            brand_description = m.BRAND_NAME ?? m.NAME,
+                            market = m.MARKET.ToString(),
+                            brand = m.BRAND.ToString(),
+                            channel = m.CHANNEL.ToString(),
+                            channel_description = cmster.Find(s => s.ID == m.CHANNEL).NAME,
+                            id = (int)m.CHANNEL,
+                            group_id = m.GROUP.ToString(),
+                        }).ToList();
+                    break;
+                default:
+                    model = data.Where(m => (m.SOURCE == "TOTAL" || m.SOURCE == "UNIQUE") && ((m.YEAR_PERIOD == Helpers.PeriodUtil.Year && m.MONTH_PERIOD == Helpers.PeriodUtil.Month) || (m.YEAR_PERIOD == null && m.MONTH_PERIOD == null))).Select(m =>
+                        new Models.ItemsConfigModel
+                        {
+                         market_description = m.NAME,
+                         brand_description = m.BRAND_NAME?? m.NAME,
+                         market = m.MARKET.ToString(),
+                         brand = m.BRAND.ToString(),
+                         channel = m.CHANNEL.ToString(),
+                         channel_description = cmster.Find(s=>s.ID == m.CHANNEL).NAME,
+                         id = (int)m.GROUP,
+                         group_id = m.GROUP.ToString(),
+                        }).ToList();
+                    break;
+            }
+            ViewBag.ActionName = "UpdateGroupItems";
+            ViewBag.FormType = FormTypes.MASTER_DATA;
+            ViewBag.SelectedId = _option;
+            return PartialView(MASTER_DATA_LIST_VIEW, model);
+        }
+        [Authorize]
+        public ActionResult GetGroupItemsListFor(string _option, string _group)
+        {
+            List<Models.ItemsConfigModel> model = new List<Models.ItemsConfigModel>();
+            List<StrawmanDBLibray.Entities.CALCS_MARKETS_CONFIG> mfind = null;
+            List<StrawmanDBLibray.Entities.CALCS_BRANDS_CONFIG> bfind = null;
+            List<StrawmanDBLibray.Entities.v_STRWM_MARKET_DATA> data = (List<StrawmanDBLibray.Entities.v_STRWM_MARKET_DATA>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.v_STRWM_MARKET_DATA,false);
+            List<StrawmanDBLibray.Entities.CHANNEL_MASTER> cmster = StrawmanDBLibray.Repository.CHANNEL_MASTER.getAll();
+            List<StrawmanDBLibray.Entities.CALCS_MARKETS_CONFIG> mcfg = StrawmanDBLibray.Repository.CALCS_MARKETS_CONFIG.getAll();
+            List<StrawmanDBLibray.Entities.CALCS_BRANDS_CONFIG> bcfg = StrawmanDBLibray.Repository.CALCS_BRANDS_CONFIG.getAll();
+            data = data.Where(m => m.BRAND < 9000 && m.MARKET < 9000 && m.YEAR_PERIOD == Helpers.PeriodUtil.Year && m.MONTH_PERIOD == Helpers.PeriodUtil.Month).Select(m => m).ToList();
+            switch (_option)
+            {
+                case "SUPER":
+                    List<StrawmanDBLibray.Entities.BRAND_MASTER> bmster = StrawmanDBLibray.Repository.BRAND_MASTER.getAll();
+                    //bmster = bmster.Where(m => m.SUPER_GROUP == int.Parse(_group)).Select(m => m).ToList();
+                    data = data.Join(bmster.Where(m => m.SUPER_GROUP == int.Parse(_group)).Select(m => m).AsEnumerable(), d => new { id = (decimal)d.BRAND }, b => new { id = b.ID }, (d, b) => new { d = d }).AsEnumerable()
+                           .Select(m => m.d).ToList();
+                    mfind = mcfg.Select(m => new StrawmanDBLibray.Entities.CALCS_MARKETS_CONFIG { BRAND = m.BRAND, MARKET = m.MARKET, GROUPCFG = m.SUPERCFG }).ToList();
+                    bfind = bcfg.Select(m => new StrawmanDBLibray.Entities.CALCS_BRANDS_CONFIG { BRAND = m.BRAND, MARKET = m.MARKET, GROUPCFG = m.SUPERCFG }).ToList();
+                    break;
+                case "CHANNEL":
+                    data = data.Where(m => m.CHANNEL == int.Parse(_group)).Select(m => m).ToList();
+                    mfind = mcfg.Select(m => new StrawmanDBLibray.Entities.CALCS_MARKETS_CONFIG { BRAND = m.BRAND, MARKET = m.MARKET, GROUPCFG = m.CHANNELCFG }).ToList();
+                    bfind = bcfg.Select(m => new StrawmanDBLibray.Entities.CALCS_BRANDS_CONFIG { BRAND = m.BRAND, MARKET = m.MARKET, GROUPCFG = m.CHANNELCFG }).ToList();
+                    break;
+                default:
+                    data = data.Where(m => m.GROUP == int.Parse(_group)).Select(m => m).ToList();
+                    mfind = mcfg.Select(m => new StrawmanDBLibray.Entities.CALCS_MARKETS_CONFIG { BRAND = m.BRAND, MARKET = m.MARKET, GROUPCFG = m.GROUPCFG }).ToList();
+                    bfind = bcfg.Select(m => new StrawmanDBLibray.Entities.CALCS_BRANDS_CONFIG { BRAND = m.BRAND, MARKET = m.MARKET, GROUPCFG = m.GROUPCFG }).ToList();
+                    break;
+            }
+            model = data.Select(m =>
+                new Models.ItemsConfigModel
+                {
+                    market_description = m.NAME,
+                    brand_description = m.BRAND_NAME ?? m.NAME,
+                    market = m.MARKET.ToString(),
+                    brand = m.BRAND.ToString(),
+                    channel = m.CHANNEL.ToString(),
+                    channel_description = cmster.Find(s => s.ID == m.CHANNEL).NAME,
+                    id = (int)m.BRAND,
+                    market_config = mfind.Exists(s=>s.BRAND == m.BRAND)? mfind.Find(s=>s.BRAND == m.BRAND).GROUPCFG:0,
+                    brand_config = bfind.Exists(s=>s.BRAND == m.BRAND)? bfind.Find(s => s.BRAND == m.BRAND).GROUPCFG:0,
+                    group_id = m.GROUP.ToString(),
+                }).ToList();
+            ViewBag.Option = _option;
+            ViewBag.ActionName = "UpdateGroupItemsConfig";
+            ViewBag.FormType = FormTypes.UPDATE_CONFIG;
+            ViewBag.SelectedId = _option;
+            return PartialView(MASTER_DATA_LIST_VIEW, model);
+        }
+        [Authorize]
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
+        public ActionResult EditItemsDataGroup(string _option, string _channel, string _group)
+        {
+            List<Models.ItemsConfigModel> model = new List<Models.ItemsConfigModel>();
+            int channel = int.Parse(_channel);
+            List<StrawmanDBLibray.Entities.BRAND_MASTER> bmster = StrawmanDBLibray.Repository.BRAND_MASTER.getAll();
+            List<StrawmanDBLibray.Entities.MARKET_MASTER> mmster = StrawmanDBLibray.Repository.MARKET_MASTER.getAll();
+            List<StrawmanDBLibray.Entities.CHANNEL_MASTER> cmster = StrawmanDBLibray.Repository.CHANNEL_MASTER.getAll();
+            switch (_option)
+            {
+                case "CHANNEL":
+                    model = bmster.Where(m => m.CHANNEL == channel).Select(m => new Models.ItemsConfigModel
+                    {
+                        market_description = mmster.Find(s => s.ID == m.MARKET).NAME,
+                        market = m.MARKET.ToString(),
+                        brand_description = m.NAME,
+                        brand = m.ID.ToString(),
+                        channel_description = cmster.Find(s => s.ID == m.CHANNEL).NAME,
+                        channel = _channel,
+                        id = (int)m.ID,
+                        group_id = m.GROUP.ToString(),
+                        selected = m.CHANNEL.ToString() == _group
+                    }).ToList();
+                    break;
+                case "SUPER":
+                    model = bmster.Where(m => m.CHANNEL == channel).Select(m => new Models.ItemsConfigModel
+                    {
+                        market_description = mmster.Find(s => s.ID == m.MARKET).NAME,
+                        market = m.MARKET.ToString(),
+                        brand_description = m.NAME,
+                        brand = m.ID.ToString(),
+                        channel_description = cmster.Find(s => s.ID == m.CHANNEL).NAME,
+                        channel = _channel,
+                        id = (int)m.ID,
+                        group_id = m.GROUP.ToString(),
+                        selected = m.SUPER_GROUP.ToString() == _group
+                    }).ToList();
+                    break;
+                default:
+                    model = bmster.Where(m => m.CHANNEL == channel).Select(m => new Models.ItemsConfigModel
+                    {
+                        market_description = mmster.Find(s => s.ID == m.MARKET).NAME,
+                        market = m.MARKET.ToString(),
+                        brand_description = m.NAME,
+                        brand = m.ID.ToString(),
+                        channel_description = cmster.Find(s => s.ID == m.CHANNEL).NAME,
+                        channel = _channel,
+                        id = (int)m.ID,
+                        group_id = m.GROUP.ToString(),
+                        selected = m.GROUP.ToString() == _group
+                    }).ToList();
+                    break;
+            }
+            ViewBag.ActionName = "UpdateGroupItems";
+            ViewBag.SelectedId = _channel;
+            ViewBag.CurrentGroup = int.Parse(_group);
+            ViewBag.FormType = FormTypes.ADD_ITEMS;
+            return PartialView(MASTER_DATA_LIST_VIEW, model);
+        }
+        [Authorize]
+        public ActionResult NewDataGroup(string _option)
+        {
+            ViewBag.ModalId = "new_group";
+            ViewBag.ModalTitle = Helpers.MessageByLanguage.New;
+            ViewBag.DefaultForm = "NewDataGroupForm";
+            ViewBag.DefaultFormParams = new { _option = _option };
+            ViewBag.DefaultController = CONTROLLER_NAME;
+            ViewBag.DefaultFooter = "GetFooterForDataGroupForm";
+            return PartialView(new Models.FormModel().modal_view);
+        }
+        [Authorize]
+        public ActionResult EditDataGroup(string _option, string _id)
+        {
+            ViewBag.ModalId = "edit_group";
+            ViewBag.ModalTitle = Helpers.MessageByLanguage.Edit;
+            ViewBag.DefaultForm = "EditDataGroupForm";
+            ViewBag.DefaultFormParams = new { _option = _option, _id = _id };
+            ViewBag.DefaultController = CONTROLLER_NAME;
+            ViewBag.DefaultFooter = "GetFooterForDataGroupForm";
+            return PartialView(new Models.FormModel().modal_view);
+        }
+        [ChildActionOnly]
+        public ActionResult GetFooterForDataGroupForm()
+        {
+            return new FormUtilController().GetButtonsGroupByName(FormUtilController.ButtonListsTypes.SAVE_AND_CLOSE);
+        }
+        [ChildActionOnly]
+        public ActionResult EditDataGroupForm(string _option, string _id)
+        {
+            List<StrawmanDBLibray.Entities.v_STRWM_MARKET_DATA> data = (List<StrawmanDBLibray.Entities.v_STRWM_MARKET_DATA>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.v_STRWM_MARKET_DATA, false);
+            int items = data.Where(m => m.BRAND < 9000 && m.MARKET < 9000 && m.YEAR_PERIOD == Helpers.PeriodUtil.Year && m.MONTH_PERIOD == Helpers.PeriodUtil.Month && m.GROUP == int.Parse(_id)).Count();
+            StrawmanDBLibray.Entities.MARKET_GROUPS grp = StrawmanDBLibray.Repository.MARKET_GROUPS.getById(int.Parse(_id));
+            List<StrawmanDBLibray.Entities.BRAND_MASTER> brm = StrawmanDBLibray.Repository.BRAND_MASTER.getAll();
+            StrawmanDBLibray.Entities.BRAND_MASTER aux = brm.Where(m => m.GROUP == int.Parse(_id)).FirstOrDefault();
+            int channel = (int)(grp.CHANNEL ?? aux.CHANNEL);
+            Models.FormModel model = FormUtilController.GetNewGroupFormFor(_option, channel.ToString(), _id, grp.NAME, grp.ORDER.ToString(), (items>0).ToString());
+            return PartialView(model.view, model);
+        }
+        [ChildActionOnly]
+        public ActionResult NewDataGroupForm(string _option)
+        {
+            Models.FormModel model = FormUtilController.GetNewGroupFormFor(_option, null, null, null, null, null);
+            return PartialView(model.view, model);
+        }
+        [HttpPost]
+        [Authorize]
+        public ActionResult UpdateGroupItems(List<Models.ItemsConfigModel> model)
+        {
+            int ret = 0;
+            bool success = false; string message = "Data Saved";
+            List<Models.ItemsConfigModel> _model = model;
+            string[] item_brand = Request.Form["item.brand"].Split(',');
+            string[] item_market = Request.Form["item.market"].Split(',');
+            string[] item_channel = Request.Form["item.channel"].Split(',');
+            string[] item_group = Request.Form["item.group_id"].Split(',');
+            string current_group = Request.Form["current_group"];
+            int index = 0;
+            if (Helpers.UserUtils.Permissions.GetPermissions())
+            {
+                foreach (string item in item_brand)
+                {
+                    bool save = false;
+                    bool unselected = Request.Form["item_selected_" + item].Split(',')[0] == "true";
+                    bool selected = Request.Form["item_selected_" + item].Split(',')[0] == item && Request.Form["item_selected_" + item].Split(',')[1] == "true";
+                    StrawmanDBLibray.Entities.MARKET_MASTER mmster = StrawmanDBLibray.Repository.MARKET_MASTER.getById(int.Parse(item_market[index]));
+                    StrawmanDBLibray.Entities.BRAND_MASTER bmster = StrawmanDBLibray.Repository.BRAND_MASTER.getById(int.Parse(item_brand[index]));
+                    if (selected)
+                    {
+                        mmster.GROUP = int.Parse(current_group);
+                        bmster.GROUP = int.Parse(current_group);
+                        save = true;
+                    }
+                    else if (unselected)
+                    {
+                        if (mmster.GROUP == int.Parse(current_group)) { mmster.GROUP = 0; save = true; }
+                        if (bmster.GROUP == int.Parse(current_group)) { bmster.GROUP = 0; save = true; }
+                    }
+                    if (save)
+                    {
+                        ret += StrawmanDBLibray.Repository.MARKET_MASTER.Save(mmster);
+                        ret += StrawmanDBLibray.Repository.BRAND_MASTER.Save(bmster);
+                    }
+                    index++;
+                }
+            }
+            else
+                message = "No permissions for user " + Helpers.UserUtils.UserName + " for save data";
+            if (ret > 0)
+                success = true;
+            else
+                message = "Error saving data";
+            return Json(new { success = success, message = message }, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        [Authorize]
+        public ActionResult UpdateGroupItemsConfig(FormCollection collection)
+        {
+            int ret = 0;
+            bool success = false; string message = "Data Saved";
+            string[] item_brand = Request.Form["item.brand"].Split(',');
+            string[] item_market = Request.Form["item.market"].Split(',');
+            string[] item_channel = Request.Form["item.channel"].Split(',');
+            string[] item_group = Request.Form["item.group_id"].Split(',');
+            string current_group = Request.Form["current_group"];
+            string option = Request.Form["source"];
+            int index = 0;
+            if (Helpers.UserUtils.Permissions.GetPermissions())
+            {
+                FormCollection coll = collection;
+                foreach (string item in item_brand)
+                {
+                    bool unselected_ = Request.Form["market_config_" + item].Split(',')[0] == "true";
+                    bool selected_ = Request.Form["market_config_" + item].Split(',')[0] == item && Request.Form["market_config_" + item].Split(',')[1] == "true";
+                    List<StrawmanDBLibray.Entities.CALCS_MARKETS_CONFIG> mlist = StrawmanDBLibray.Repository.CALCS_MARKETS_CONFIG.getAll();
+                    List<StrawmanDBLibray.Entities.CALCS_BRANDS_CONFIG> blist = StrawmanDBLibray.Repository.CALCS_BRANDS_CONFIG.getAll();
+                    StrawmanDBLibray.Entities.CALCS_MARKETS_CONFIG mmster = mlist.Find(m=>m.BRAND == int.Parse(item));
+                    if (mmster == null) mmster = new StrawmanDBLibray.Entities.CALCS_MARKETS_CONFIG
+                    {
+                        BRAND = int.Parse(item),
+                        MARKET = int.Parse(item_market[index]),
+                    };
+                    switch (option)
+                    {
+                        case "CHANNEL":
+                            mmster.CHANNELCFG = selected_ ? 1 : mmster.CHANNELCFG ?? 0;
+                            if (unselected_) mmster.CHANNELCFG = 0;
+                            break;
+                        case "SUPER":
+                            mmster.SUPERCFG = selected_ ? 1 : mmster.SUPERCFG ?? 0;
+                            if (unselected_) mmster.SUPERCFG = 0;
+                            break;
+                        default:
+                            mmster.GROUPCFG = selected_ ? 1 : mmster.GROUPCFG ?? 0;
+                            if (unselected_) mmster.GROUPCFG = 0;
+                            break;
+                    }
+                    if (unselected_ || selected_)
+                    {
+                        ret += StrawmanDBLibray.Repository.CALCS_MARKETS_CONFIG.Save(mmster);
+                    }
+
+                    unselected_ = Request.Form["brand_config_" + item].Split(',')[0] == "true";
+                    selected_ = Request.Form["brand_config_" + item].Split(',')[0] == item && Request.Form["brand_config_" + item].Split(',')[1] == "true";
+
+                    StrawmanDBLibray.Entities.CALCS_BRANDS_CONFIG bmster = blist.Find(m => m.BRAND == int.Parse(item));
+                    if(bmster == null) bmster = new StrawmanDBLibray.Entities.CALCS_BRANDS_CONFIG
+                    {
+                        BRAND = int.Parse(item),
+                        MARKET = int.Parse(item_market[index]),
+                    };
+                    switch (option)
+                    {
+                        case "CHANNEL":
+                            bmster.CHANNELCFG = selected_ ? 1 : bmster.CHANNELCFG ?? 0;
+                            if (unselected_) bmster.CHANNELCFG = 0;
+                            break;
+                        case "SUPER":
+                            bmster.SUPERCFG = selected_ ? 1 : bmster.SUPERCFG ?? 0;
+                            if (unselected_) bmster.SUPERCFG = 0;
+                            break;
+                        default:
+                            bmster.GROUPCFG = selected_ ? 1 : bmster.GROUPCFG ?? 0;
+                            if (unselected_) bmster.GROUPCFG = 0;
+                            break;
+                    }
+                    if (unselected_ || selected_)
+                    {
+                        ret += StrawmanDBLibray.Repository.CALCS_BRANDS_CONFIG.Save(bmster);
+                    }
+                    index++;
+                }
+            }
+            else
+                message = "No permissions for user " + Helpers.UserUtils.UserName + " for save data";
+            if (ret > 0)
+                success = true;
+            else
+                message = "Error saving data";
+            return Json(new { success = success, message = message }, JsonRequestBehavior.AllowGet);
+        }
+        [Authorize]
+        public ActionResult SaveNewGroup(FormCollection collection)
+        {
+            bool success = false; int ret = -1;
+            string message = "Not data saved";
+            if (Helpers.UserUtils.Permissions.GetPermissions())
+            {
+                FormCollection coll = collection;
+                string _id = coll[Classes.Default.Attributes.ORDER_ID.formated()];
+                string _channel = coll[Classes.Default.Attributes.CHANNEL_ID.formated()];
+                string _order = coll[Classes.Default.Attributes.ORDER_ID.formated()];
+                string _name = coll[Classes.Default.Attributes.GROUP_NAME_ID.formated()];
+                string table = coll[Classes.Default.Attributes.INPUT_TABLE_ID.formated()];
+                switch (table)
+                {
+                    case StrawmanDBLibray.Classes.StrawmanDataTables.MARKET_GROUPS:
+                        StrawmanDBLibray.Entities.MARKET_GROUPS group = new StrawmanDBLibray.Entities.MARKET_GROUPS
+                        {
+                            ID = int.Parse(_id ?? "0"),
+                            NAME = _name,
+                            ORDER = int.Parse(_order ?? "0")
+                        };
+                        //Si no existe el canal asumimos que estamos actualizando solo el orden y en nombre
+                        if (_channel != null) group.CHANNEL = int.Parse(_channel);
+
+                        ret = StrawmanDBLibray.Repository.MARKET_GROUPS.Save(group);
+                        break;
+                }
+                if (ret > 0)
+                {
+                    success = true;
+                    message = "Data Saved";
+                }
+            }
+            return Json(new { success = success, message = message }, JsonRequestBehavior.AllowGet);
         }
         #endregion
 
         #region Save Forms Backend
+        public ActionResult SaveItemsConfig(List<StrawmanApp.Models.ItemsConfigModel> model)
+        {
+            List<StrawmanDBLibray.Entities.GROUP_CONFIG> items = (List<StrawmanDBLibray.Entities.GROUP_CONFIG>)Helpers.Session.GetSession(GROUP_CFG_DATA);
+            int result = StrawmanDBLibray.Repository.GROUP_CONFIG.SaveGroupConfig(items);
+            return Json(new { success = "success" }, JsonRequestBehavior.AllowGet);
+        }
         public ActionResult Save(FormCollection collection)
         {
             string status = "success";
@@ -1160,7 +2171,12 @@ namespace StrawmanApp.Controllers
 
         #region Constants
         public string CONTROLLER_NAME = "Config";
-
+        public class FormTypes
+        {
+            public static string ADD_ITEMS = "ADD_ITEMS";
+            public static string UPDATE_CONFIG = "UPDATE_CONFIG";
+            public static string MASTER_DATA = "MASTER_DATA";
+        }
         private int channel = 0;
         private const string PERIOD_YEAR_TEXT = "Año:";
         private const string PERIOD_MONTH_TEXT = "Mes:";
@@ -1188,16 +2204,21 @@ namespace StrawmanApp.Controllers
         private const string PREVIEW_DATA_GRID = PREVIEW_PATH + "/_DataGrid.cshtml";
         private const string PREVIEW_DATA_GRID_ROW = PREVIEW_PATH + "/_DataEditRow.cshtml";
 
-        private const string GROUPS_CONFIGURE = CONTROLLER + "/GroupsConfigure";
+        private const string GROUPS_CONFIGURE = CONTROLLER + "/GroupsConfig";
         private const string GROUPS_CONFIGURE_PATH = _PATH + "Forms/GroupsConfigure.cshtml";
         private const string BOOTSTRAP_TABS = _PATH + "Tabs/_BootstrapTabs.cshtml";
         private const string GROUP_MASTER = _PATH + CONTROLLER + "/Groups/_GroupMaster.cshtml";
         private const string GROUP_MASTER_EDIT = _PATH + CONTROLLER + "/Groups/_GroupMasterEdit.cshtml";
         private const string GROUP_CONFIG = _PATH + CONTROLLER + "/Groups/_GroupConfig.cshtml";
         private const string GROUP_CONFIG_EDIT = _PATH + CONTROLLER + "/Groups/_GroupConfigEdit.cshtml";
+        private const string GROUP_MODAL_ITEMS = _PATH + CONTROLLER + "/Groups/_ModalItems.cshtml";
+        private const string GROUP_ITEMS = _PATH + CONTROLLER + "/Groups/_Items.cshtml";
+        private const string GROUP_CFG_DATA = "GROUP_CFG_DATA";
 
         private const string MARKET = "MARKET";
         private const string BRAND = "BRAND";
+
+        private const string MODELS_MASTER_CONFIG = "MODELS_MASTER_CONFIG";
 
         private const string SHARED_PERIOD_SELECTOR = _PATH + "/Shared/_PeriodSelector.cshtml";
         private const string PERIOD_BANNER = _PATH + "/Shared/_PeriodBanner.cshtml";
@@ -1207,6 +2228,8 @@ namespace StrawmanApp.Controllers
         private const string CURRENCY_ADJUST = _PATH + "/Shared/_CurrencyAdjust.cshtml";
 
         private const string LOAD_CONFIG = _PATH + CONTROLLER + "/_LoadConfig.cshtml";
+        private const string LOAD_CONFIG_NTS = _PATH + CONTROLLER + "/LoadConfig/_GridNTS.cshtml";
+        private const string LOAD_CONFIG_NIELSEN = _PATH + CONTROLLER + "/LoadConfig/_GridNielsen.cshtml";
 
         private const string FORMS_CONTROLLER = "Forms";
         private const string LOADER_PREVIEW = _PATH + FORMS_CONTROLLER + "/Tables/_LoaderPreview.cshtml";
@@ -1220,9 +2243,17 @@ namespace StrawmanApp.Controllers
                              BOY_CONFIG_PATH = _PATH + CONTROLLER + "/" + BOY_CONFIG + "/",
                              BOY_CONFIG_TABLE_VIEW = BOY_CONFIG_PATH + "_DataGrid.cshtml",
                              BOY_CONFIG_VIEW = BOY_CONFIG_PATH + "Index.cshtml",
+                             BOY_GROUPS = BOY_CONFIG_PATH + "_GroupsList.cshtml",
+                             BOY_GROUPS_EDIT = BOY_CONFIG_PATH + "_GroupsListEdit.cshtml",
                              CHANNEL_PILLS_VIEW = _PATH + CONTROLLER + "/" + COMPONENTS + "/_ChannelPills.cshtml",
                              USER_CONFIGURE = "UserManagment",
                              GET_MASTER_DATA = "GetMasterData";
+        private const string KPI_EDITOR = _PATH + CONTROLLER + "/KPI/index.cshtml";
+
+        private const string VIEW_DATA_GROUP = _PATH + CONTROLLER + "/Views/Index.cshtml",
+                             MASTER_DATA_LIST_VIEW = _PATH + CONTROLLER + "/Views/_DataList.cshtml",
+                             SELECT_LIST_VIEW = _PATH + CONTROLLER + "/Views/_SelectList.cshtml"
+                             ;
 
         #endregion
     }

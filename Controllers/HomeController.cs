@@ -240,10 +240,7 @@ namespace StrawmanApp.Controllers
 
         private dynamic GetBrandData()
         {
-            var query = from p in db.v_STRWM_MARKET_DATAs
-                        where p.YEAR_PERIOD == Helpers.PeriodUtil.Year && p.MONTH_PERIOD == Helpers.PeriodUtil.Month || (p.YEAR_PERIOD == null && p.MONTH_PERIOD == null)
-                        select new Models.MarketDataModels { market = (decimal)p.ID, brand_name = p.BRAND_NAME, data = p.DATA, market_name = p.NAME, source = p.SOURCE, vgroup = p.GROUP, vorder = p.ORDER };
-            return query.ToList();      
+            return null;      
         }
 
         private dynamic GetMarketPCVSPY()
@@ -303,10 +300,7 @@ namespace StrawmanApp.Controllers
         }
         public List<StrawmanApp.Models.MarketDataModels> GetMarketData()
         {            
-            var query = from p in db.v_STRWM_MARKET_DATAs
-                        where p.YEAR_PERIOD == Helpers.PeriodUtil.Year && p.MONTH_PERIOD == Helpers.PeriodUtil.Month || (p.YEAR_PERIOD == null && p.MONTH_PERIOD == null)
-                        select new Models.MarketDataModels { market = (decimal)p.ID, brand_name = p.BRAND_NAME, data = p.DATA, market_name = p.NAME, source = p.SOURCE, vgroup = p.GROUP, vorder = p.ORDER };
-            return query.ToList();            
+            return null;            
         }
 
         #region Constants

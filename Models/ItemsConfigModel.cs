@@ -17,6 +17,12 @@ namespace StrawmanApp.Models
 
         public string brand_description { get; set; }
 
+        public string channel_description { get; set; }
+
+        public string group_description { get; set; }
+
+        public string source { get; set; }
+
         public decimal? market_month { get; set; }
 
         public decimal? market_ytd { get; set; }
@@ -42,6 +48,20 @@ namespace StrawmanApp.Models
 
 
         public string type { get; set; }
+
+        public bool selected { get; set; }
+
+        public string group_id { get; set; }
+
+        public decimal? excel_row { get; set; }
+
+        public IEnumerable<System.Web.Mvc.SelectListItem> list_data { get; set; }
+
+        public long id { get; set; }
+
+        public decimal? market_config { get; set; }
+
+        public decimal? brand_config { get; set; }
     }
     public partial class Nielsen_Data
     {
@@ -55,6 +75,10 @@ namespace StrawmanApp.Models
         public decimal? brand { get; set; }
 
         public decimal? channel { get; set; }
+
+        public decimal id { get; set; }
+
+        public decimal? excel_row { get; set; }
     }
     public partial class NTS_Data
     {
@@ -69,6 +93,8 @@ namespace StrawmanApp.Models
 
 
         public decimal id { get; set; }
+
+        public string market_name { get; set; }
     }
     public partial class Groups_Data
     {
@@ -87,5 +113,17 @@ namespace StrawmanApp.Models
         public decimal group_id { get; set; }
 
         public decimal? type_id { get; set; }
+    }
+    public partial class MasterConfig
+    {
+        public string market { get; set; }
+        public string brand { get; set; }
+        public string channel { get; set; }
+        public string source { get; set; }
+        public string value { get; set; }
+    }
+    public partial class DataConfig
+    {
+        public MasterConfig[] items { get; set; }
     }
 }

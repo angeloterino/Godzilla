@@ -6,6 +6,5 @@
                columns.Add(foo => foo.name).Titled("NAME").Sortable(true);
                 columns.Add(foo => foo.level).Titled("LEVEL").Sortable(true);
                 columns.Add(foo => foo.base_id).Titled("BASE ID").Sortable(true);
-                columns.Add(foo => foo.group_config).Titled("CONFIG").Sortable(true);
-                columns.Add().Encoded(false).Sanitized(false).SetWidth(30).RenderValueAs(o => @<button type="button" data-type="edit" data-target-id="@o.id" data-controller="GetEditMasterData" class="btn btn-default">Edit</button>);
+                columns.Add().Encoded(false).Sanitized(false).SetWidth(30).RenderValueAs(o => @<button type="button" data-type="edit" data-target-id="@o.id" data-controller="GetEditForGroupMaster" class="btn btn-default">Edit</button>);
     })

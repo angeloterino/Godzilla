@@ -1,12 +1,10 @@
 ﻿@model StrawmanApp.Models.GenericConfigModel
-<div class="panel-body">
+<div class="items-content">
     <div class="tab-content">
     @{string _class= "class=\"tab-pane fade in active\"";}
     @foreach (StrawmanApp.Models.TableConfig table in Model.tables)
     {
-        string channel_name = Model.navigator.content[Model.tables.IndexOf(table)].Text;
-        channel_name = channel_name.Contains(' ') ? channel_name.Substring(0, channel_name.IndexOf(' ')).ToLower() : channel_name;
-        <div id="@channel_name" @Html.Raw(_class)>
+        <div id="@table.id" @Html.Raw(_class)>
             @{Html.RenderPartial(table.view, table.content);}
             @{_class = "class=\"tab-pane fade\"";}
         </div>

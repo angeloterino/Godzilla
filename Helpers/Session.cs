@@ -45,7 +45,7 @@ namespace StrawmanApp.Helpers
                 }
 
             }
-            if (!new Session().CacheStatus) SetSession(session_key, null);
+            if (!Session.CacheStatus) SetSession(session_key, null);
             if (GetSession(session_key) == null)
             {
                 var obj = new object();
@@ -155,12 +155,12 @@ namespace StrawmanApp.Helpers
             return GetSession(session_key);
         }
 
-        public bool CacheStatus
+        public static bool CacheStatus
         {
-            get { return this.cache_status; }
+            get { return cache_status; }
             set { cache_status = value; }
         }
 
-        private bool cache_status = true;
+        private static bool cache_status = true;
     }
 }

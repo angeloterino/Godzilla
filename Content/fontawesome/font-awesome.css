@@ -259,6 +259,9 @@
 .fa-clock-o:before {
   content: "\f017";
 }
+.fa-clone:before{
+  content: "\f24d";
+}
 .fa-road:before {
   content: "\f018";
 }

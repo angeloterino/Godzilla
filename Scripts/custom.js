@@ -1,4 +1,4 @@
-﻿$.getScript('../../Scripts/table.utils/table.blocker.js');
+$.getScript('../../Scripts/table.utils/table.blocker.js');
 strawmanVars = new Object();
 strawmanVars.cancelLoad = false;
 strawmanVars.headerLock = false;
@@ -7,6 +7,7 @@ var _collapser = '<div class = "collapser">-</div>';
 var _lastrow, _lastcolor, _lastfontcolor;
 var _paths = 'Market';
 var _path, _marketpaths = ['/MarketView/', '/MarketViewChannel/', '/MarketViewFranchise/', '/MarketViewKeybrands/'], _brandpath = ['/BrandView/', '/BrandViewChannel/', '/BrandViewFranchise/', '/BrandViewKeybrands/'],
+_sharepaths = ['/ValueShare/', '/ValueShareChannel/', '/ValueShareFranchise/', '/ValueShareKeybrands/'];
 _ntspaths = ['/NTSView/', '/NTSViewChannel/', '/NTSViewFranchise/', '/NTSViewKeybrands/'];
 var _loader = '<tr class="removeme"><td colspan="3" rowspan="5" style="border: 0px; border-image: none; text-align: center; vertical-align: middle; min-height:100px;"><img id ="rotate" src="../images/loading_anim.gif"/></td></tr>';
 var _dvloader = '<tr class="removeme"><td colspan="4" rowspan="5" style="border: 0px; border-image: none; text-align: center; vertical-align: middle; min-height:100px;"><img id="rotate" src="../images/loading_anim.gif"/></td></tr>';
@@ -14,6 +15,8 @@ var _pvloader = '<tr class="removeme"><td colspan="5" rowspan="5" style="border:
 var _stdControls = ['GetDataView', 'GetMonth', 'GetYTD', 'GetMAT', 'GetBTG', 'GetTotalCustom', 'GetBOY', 'GetPCVSPY'];
 var _stdViewsids = ['_DataView', '_MonthView', '_YTDView', '_MATView', '_BTGView', '_TotalCustomView', '_BOYView', '_PCVSPYView'];
 var _controls, _viewsids;
+var _shareControls = ['GetLM', 'GetYTD', 'GetMAT', 'GetBTG', 'GetTotal', 'GetBOY'];
+var _shareViewsids = ['_LMView', '_YTDView', '_MATView', '_BTGView', '_TOTALView', '_BOYView'];
 var _NTScontrols = ['GetNTSView'];
 var _NTSviewid = ['View']
 $(document).ready(function () {
@@ -47,7 +50,7 @@ $(document).ready(function () {
 startLoadTables = function () {
     _viewsids = _stdViewsids;
     _controls = _stdControls;
-    total_size = _marketpaths.length * _controls.length + _brandpath.length * _controls.length;
+    total_size = _marketpaths.length * _controls.length + _brandpath.length * _controls.length + _sharepaths.length * _shareControls.length;
     partial_size = 0;
     _paths = 'Market';
     if (!$('.load-mask').is(':visible')) {
@@ -66,13 +69,17 @@ initializeTables = function () {
         $('#Market' + _viewsids[i] + ' tbody').html('');
         $('#Brand' + _viewsids[i] + ' tbody').html('');
     }
+    for (i = 0; i < _shareViewsids.length; i++)
+    {
+        $('#ValueShare' + _shareViewsids[i] + ' tbody').html('');
+    }
     $('#NTSView tbody').html('');
 }
 loadTables = function (pathindex, controlindex) {
     $('.loading-bar').css({ 'border-color': 'rgb(0,0,220)' });
     //Comprobamos la variable que indica si son Market o Brand a cargar
     //Se asigna el array con la carpeta de las vistas a la variable auxiliar.
-    var _auxpath = (_paths == 'Market') ? _marketpaths : (_paths == 'Brand') ? _brandpath : _ntspaths;
+    var _auxpath = (_paths == 'Market') ? _marketpaths : (_paths == 'Brand') ? _brandpath : (_paths == 'ValueShare')? _sharepaths: _ntspaths;
     if (pathindex < _auxpath.length) {
         //Si el indice es menor que el número de carpetas, entro.
         //Asigno a la variable de la carpeta el registro actual.
@@ -120,7 +127,11 @@ loadTables = function (pathindex, controlindex) {
     } else {
         //Hemos finalizado el array de carpetas. Comprobamos si se ha renderizado la parte de Brands.
         if (_paths != 'NTS') {
-            _paths = (_paths == 'Market') ? 'Brand' : 'NTS';
+            _paths = (_paths == 'Market') ? 'Brand' : (_paths == 'Brand') ? 'ValueShare' : 'NTS';
+            if (_paths == 'ValueShare') {
+                _viewsids = _shareViewsids;
+                _controls = _shareControls;
+            }
             if (_paths == 'NTS') {
                 _viewsids = _NTSviewid;
                 _controls = _NTScontrols;
@@ -140,6 +151,7 @@ loadTables = function (pathindex, controlindex) {
                     partial_size = 0;
                     strawmanVars.headerLock = true;
                     $('#cache_set').val(true);//Activamos la caché
+                    checkCookies();
                 });
             });
 

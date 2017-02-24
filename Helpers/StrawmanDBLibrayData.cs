@@ -9,6 +9,10 @@ namespace StrawmanApp.Helpers
 {
     public class StrawmanDBLibrayData
     {
+        public static object Get(string table)
+        {
+            return Get(table,  Helpers.Session.CacheStatus);
+        }
         public static object Get(string table, bool cache)
         {
             object ret = null;
@@ -579,6 +583,74 @@ namespace StrawmanApp.Helpers
                         ret = lst.ToList();
                     }
                     break;
+                case StrawmanDataTables.v_WRK_MANAGEMENT_LETTERS:
+                    if (!cache)
+                    {
+                        List<v_WRK_MANAGEMENT_LETTERS> lst = (List<v_WRK_MANAGEMENT_LETTERS>)StrawmanDBLibray.DBLibrary.GetComments(table);
+                        ret = lst.ToList();
+                    }
+                    else
+                    {
+                        List<v_WRK_MANAGEMENT_LETTERS> lst = (List<v_WRK_MANAGEMENT_LETTERS>)Helpers.Session.GetSession(table);
+                        if (lst == null)
+                        {
+                            Session.SetSession(table, StrawmanDBLibray.DBLibrary.GetComments(table));
+                            lst = (List<v_WRK_MANAGEMENT_LETTERS>)Helpers.Session.GetSession(table);
+                        }
+                        ret = lst.ToList();
+                    }
+                    break;
+                case StrawmanDataTables.MANAGEMENT_LETTERS_MASTER_REL:
+                    if (!cache)
+                    {
+                        List<MANAGEMENT_LETTERS_MASTER_REL> lst = (List<MANAGEMENT_LETTERS_MASTER_REL>)StrawmanDBLibray.DBLibrary.GetComments(table);
+                        ret = lst.ToList();
+                    }
+                    else
+                    {
+                        List<MANAGEMENT_LETTERS_MASTER_REL> lst = (List<MANAGEMENT_LETTERS_MASTER_REL>)Helpers.Session.GetSession(table);
+                        if (lst == null)
+                        {
+                            Session.SetSession(table, StrawmanDBLibray.DBLibrary.GetComments(table));
+                            lst = (List<MANAGEMENT_LETTERS_MASTER_REL>)Helpers.Session.GetSession(table);
+                        }
+                        ret = lst.ToList();
+                    }
+                    break;
+                case StrawmanDataTables.MANAGEMENT_LETTERS_REL:
+                    if (!cache)
+                    {
+                        List<MANAGEMENT_LETTERS_REL> lst = (List<MANAGEMENT_LETTERS_REL>)StrawmanDBLibray.DBLibrary.GetComments(table);
+                        ret = lst.ToList();
+                    }
+                    else
+                    {
+                        List<MANAGEMENT_LETTERS_REL> lst = (List<MANAGEMENT_LETTERS_REL>)Helpers.Session.GetSession(table);
+                        if (lst == null)
+                        {
+                            Session.SetSession(table, StrawmanDBLibray.DBLibrary.GetComments(table));
+                            lst = (List<MANAGEMENT_LETTERS_REL>)Helpers.Session.GetSession(table);
+                        }
+                        ret = lst.ToList();
+                    }
+                    break;
+                case StrawmanDataTables.LETTERS_COMMENT_DATA:
+                    if (!cache)
+                    {
+                        List<LETTERS_COMMENT_DATA> lst = (List<LETTERS_COMMENT_DATA>)StrawmanDBLibray.DBLibrary.GetComments(table);
+                        ret = lst.ToList();
+                    }
+                    else
+                    {
+                        List<LETTERS_COMMENT_DATA> lst = (List<LETTERS_COMMENT_DATA>)Helpers.Session.GetSession(table);
+                        if (lst == null)
+                        {
+                            Session.SetSession(table, StrawmanDBLibray.DBLibrary.GetComments(table));
+                            lst = (List<LETTERS_COMMENT_DATA>)Helpers.Session.GetSession(table);
+                        }
+                        ret = lst.ToList();
+                    }
+                    break;
                 case StrawmanDataTables.WRK_VIEWS_VARIABLES:
                     if (!cache)
                     {
@@ -714,6 +786,59 @@ namespace StrawmanApp.Helpers
                         }
                         ret = lst.ToList();
                     }
+                    break;
+
+                case StrawmanDataTables.KPI_MASTER:
+                    if (!cache)
+                    {
+                        List<KPI_MASTER> lst = (List<KPI_MASTER>)StrawmanDBLibray.DBLibrary.GetKPIData(table);
+                        ret = lst.ToList();
+                    }
+                    else
+                    {
+                        List<KPI_MASTER> lst = (List<KPI_MASTER>)Helpers.Session.GetSession(table);
+                        if (lst == null)
+                        {
+                            Session.SetSession(table, StrawmanDBLibray.DBLibrary.GetKPIData(table));
+                            lst = (List<KPI_MASTER>)Helpers.Session.GetSession(table);
+                        }
+                        ret = lst.ToList();
+                    }
+                    break;
+                case StrawmanDataTables.BRAND_CONTRIBUTION:
+                    if (!cache)
+                    {
+                        List<BRAND_CONTRIBUTION> lst = (List<BRAND_CONTRIBUTION>)StrawmanDBLibray.DBLibrary.GetKPIData(table);
+                        ret = lst.ToList();
+                    }
+                    else
+                    {
+                        List<BRAND_CONTRIBUTION> lst = (List<BRAND_CONTRIBUTION>)Helpers.Session.GetSession(table);
+                        if (lst == null)
+                        {
+                            Session.SetSession(table, StrawmanDBLibray.DBLibrary.GetKPIData(table));
+                            lst = (List<BRAND_CONTRIBUTION>)Helpers.Session.GetSession(table);
+                        }
+                        ret = lst.ToList();
+                    }
+                    break;
+                case StrawmanDataTables.STRWM_NTS_DATA:
+                    if (!cache)
+                    {
+                        List<STRWM_NTS_DATA> lst = (List<STRWM_NTS_DATA>)StrawmanDBLibray.DBLibrary.GetLoaderData(table);
+                        ret = lst.ToList();
+                    }
+                    else
+                    {
+                        List<STRWM_NTS_DATA> lst = (List<STRWM_NTS_DATA>)Helpers.Session.GetSession(table);
+                        if (lst == null)
+                        {
+                            Session.SetSession(table, StrawmanDBLibray.DBLibrary.GetLoaderData(table));
+                            lst = (List<STRWM_NTS_DATA>)Helpers.Session.GetSession(table);
+                        }
+                        ret = lst.ToList();
+                    }
+                    break;
                     break;
                     
             }

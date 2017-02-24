@@ -4,10 +4,13 @@
     string[] _colData = (string[])ViewData["_colData"];
     string[] _colType = (string[])ViewData["_colType"];
     StrawmanApp.Models.MarketViewChannelModels itemaux = Model.itemaux;
+    StrawmanApp.Models.MarketViewChannelModels item = Model.item;
+    string[] _colPureData = new string[] { item.col1.ToString(), item.col2.ToString(), item.col3.ToString(), item.col4.ToString(), item.col5.ToString(), item.col6.ToString() };
     string _style = "text-align:center;";
     string _styleView = "_TrStyleFranchise";
     ViewDataDictionary _styleData = new ViewDataDictionary() { { "_style", _style }, { "has_child", itemaux.vhas_child }, { "id", itemaux.vid }, { "parent", itemaux.vparent }, { "order", itemaux.vorder } };
     StrawmanApp.Models.StrwawmanTrViewModel model = new StrawmanApp.Models.StrwawmanTrViewModel{
+        _colPureData = _colPureData,
         _colData = _colData,
         _colType = _colType,
         styleView = _styleView,

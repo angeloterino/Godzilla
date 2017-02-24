@@ -10,12 +10,12 @@
         ViewDataDictionary _styleData = new ViewDataDictionary { { "_style", _style }, { "channel", item == null ? 0 : item.vchannel } };
         bool is_wc = item.is_wc != null && item.is_wc; 
             <tr class="grid-row" @{Html.RenderPartial("~/Views/StrawmanViews/MasterTable/_TrStyleChannel.cshtml", new ViewDataDictionary { { "_style", _style }, { "channel", item.vchannel }});}>     
-                <td class="grid-cell">@Html.DisplayFor(m => data.month_col1)</td>
-                <td class="grid-cell">@Html.DisplayFor(m => data.month_col2)</td>
-                <td class="grid-cell">@Html.DisplayFor(m => data.month_col3)</td>
-                <td class="grid-cell">@Html.DisplayFor(m => data.month_col4)</td>
-                <td class="grid-cell">@Html.DisplayFor(m => data.month_col5)</td>
-                <td class="grid-cell">@Html.DisplayFor(m => data.month_col6)</td>         
+                <td data-type="pc" data-value="@Html.DisplayFor(m => data.month_col1)" class="grid-cell">@Html.DisplayFor(m => data.month_col1)</td>
+                <td data-type="pc" data-value="@Html.DisplayFor(m => data.month_col2)" class="grid-cell">@Html.DisplayFor(m => data.month_col2)</td>
+                <td data-type="pc" data-value="@Html.DisplayFor(m => data.month_col3)" class="grid-cell">@Html.DisplayFor(m => data.month_col3)</td>
+                <td data-value="@Html.DisplayFor(m => data.month_col4)" class="grid-cell">@Html.DisplayFor(m => data.month_col4)</td>
+                <td data-type="amount" data-value="@data.month_col5" class="grid-cell">@Html.DisplayFor(m => data.month_col5)</td>
+                <td data-type="amount" data-value="@data.month_col6" class="grid-cell">@Html.DisplayFor(m => data.month_col6)</td>         
             </tr>
         t = item.vgroup;
     } 

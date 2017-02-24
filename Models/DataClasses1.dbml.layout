@@ -110,11 +110,5 @@
         <elementListCompartment Id="3dce2e47-8fc6-41a6-a352-6bc139945f65" absoluteBounds="15.515, 4.96, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="86f49839-6b9e-4974-af89-7886d11230e7" absoluteBounds="0.75, 0.75, 2, 2.9247054036458331">
-      <DataClassMoniker Name="/DataClasses1DataContext/v_STRWM_MARKET_DATA" />
-      <nestedChildShapes>
-        <elementListCompartment Id="1aa7063b-04e1-41f2-a4ad-455d4038b43a" absoluteBounds="0.76500000000000012, 1.21, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

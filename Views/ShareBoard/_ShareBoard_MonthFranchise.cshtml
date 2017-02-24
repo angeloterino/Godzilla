@@ -11,12 +11,12 @@
         ViewDataDictionary _styleData = new ViewDataDictionary() { { "_style", _style }, { "has_child", item.vhas_child }, { "id", item.vid }, { "parent", item.vparent }, { "order", item.vorder } };
         if (data == null) { data = new StrawmanApp.Entities.ShareBoardModel(); }     
             <tr class="grid-row" @{Html.RenderPartial("~/Views/StrawmanViews/MasterTable/"+_styleView+".cshtml", _styleData);}> 
-                <td class="grid-cell">@Html.DisplayFor(m => data.month_col1)</td>
-                <td class="grid-cell">@Html.DisplayFor(m => data.month_col2)</td>
-                <td class="grid-cell">@Html.DisplayFor(m => data.month_col3)</td>
-                <td class="grid-cell">@Html.DisplayFor(m => data.month_col4)</td>
-                <td class="grid-cell">@Html.DisplayFor(m => data.month_col5)</td>
-                <td class="grid-cell">@Html.DisplayFor(m => data.month_col6)</td> 
+                <td data-type="pc" data-value="@Html.DisplayFor(m => data.month_col1)" class="grid-cell">@Html.DisplayFor(m => data.month_col1)</td>
+                <td data-type="pc" data-value="@Html.DisplayFor(m => data.month_col2)" class="grid-cell">@Html.DisplayFor(m => data.month_col2)</td>
+                <td data-type="pc" data-value="@Html.DisplayFor(m => data.month_col3)" class="grid-cell">@Html.DisplayFor(m => data.month_col3)</td>
+                <td data-value="@Html.DisplayFor(m => data.month_col4)" class="grid-cell">@Html.DisplayFor(m => data.month_col4)</td>
+                <td data-type="amount" data-value="@data.month_col5" class="grid-cell">@Html.DisplayFor(m => data.month_col5)</td>
+                <td data-type="amount" data-value="@data.month_col6" class="grid-cell">@Html.DisplayFor(m => data.month_col6)</td> 
             </tr>
         t = item.vgroup;
     } 

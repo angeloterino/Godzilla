@@ -1,13 +1,16 @@
 ﻿@model StrawmanApp.Models.GenericConfigModel
 @{
-    ViewBag.Title = "UserManagment";
+    ViewBag.Title = ViewBag.MenuUrl;
     Layout = "~/Views/Shared/_StrwLayout.cshtml";
 }
-@{Html.RenderPartial(Model.header_view, Model);}    
-<div class="boy config wrapper">
-    <div class="panel panel-default">
-    <div class="panel-header">@Model.title</div>
-        @{Html.RenderPartial(Model.content_view, Model);}
-        @{Html.RenderPartial(Model.footer_view, Model);}
+<div class="boy config wrapper" style="top:45px;">
+    <div class="content col-md-12">
+        <div class="boy-groups config wrapper col-md-6" data-controller="GetBOYGroups" data-target="items" >
+            @{Html.RenderAction("GetBOYGroups");}
+        </div>
+        <div class="items config wrapper col-md-6" data-controller="BOYConfig" data-type="items">
+            @{Html.RenderAction("GetBOYConfigItems", new { order = "1"});}
+        </div>
     </div>
 </div>
+@{Html.RenderPartial("~/Views/Shared/_Modal.cshtml", new ViewDataDictionary {{"modal_name","modal_items"}});}

@@ -1,0 +1,22 @@
+﻿@{
+    string _last_year = (StrawmanApp.Helpers.PeriodUtil.Year-1).ToString();
+    string _current_year = (StrawmanApp.Helpers.PeriodUtil.Year).ToString();
+    string _col_title = ViewData["col_title"].ToString();
+    string _title = ViewData["title"].ToString();
+    string _id = "ValueShare_" + ViewData["col_title"].ToString()+"View";
+<td style="width: 5px;"> </td>
+<td class="collapsable" style="vertical-align:top;padding-left: 5px;">
+    <div class="brand grid-wrap">
+        <table id="@_id" class="table table-striped grid-table" style="min-width:150px;">
+        <thead>
+         <tr style="background-color: rgba(240,190,240,1);font-size:0.9em;height: 39px;"><th colspan="2">@_title</th></tr>
+         <tr style="background-color: rgb(153, 204, 255);height: 69px ! important;"> 
+         <th style="width:50%"><span class="last_year_control">@_last_year</span> @_col_title</th>
+         <th style="width:50%"><span class="current_year_control">@_current_year</span> @_col_title</th>
+         </tr>
+         </thead>
+         <tbody></tbody>
+        </table>
+    </div>
+</td>
+}

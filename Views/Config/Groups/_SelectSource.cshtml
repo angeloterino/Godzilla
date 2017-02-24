@@ -1,0 +1,14 @@
+﻿@model List<SelectListItem>
+<label for="select_source" class=" h5 float-left" style="padding: 2px 1em;margin-left: 5px;">Source:</label>
+<div class="float-left" style="margin:5px;">
+@if (Model != null)
+{
+    @Html.DropDownList("select_source", Model, new { @class = "form-control float-left", data_type="select_source", data_controller="AddItemConfig" })
+}else{
+<select class="form-control float-left" id="select_source">
+  <option value="">Standar</option>
+  <option value="CHANNELS">Channels</option>
+  <option value="KEYBRANDS">Keybrands</option>
+  <option value="FRANCHISE">Franchise</option>
+</select>
+}</div>

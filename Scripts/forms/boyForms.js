@@ -193,7 +193,7 @@ var RefreshData = function () {
     var _wrapper = $.saveMenu;
     $('div[data-editable=false]').attr('data-editable', true);
     if(_wrapper.length > 0) $(_wrapper).hide();
-    $.resetForms = true;
+    $.resetForms = false;
     startLoadTables();
     $($.formId).remove();
 }

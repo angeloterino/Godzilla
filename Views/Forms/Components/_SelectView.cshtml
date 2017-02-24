@@ -6,4 +6,8 @@
         opts.Add(new SelectListItem(){ Text = option.text, Value = option.value});
     }
 } *@
-@Html.DropDownListFor(m => Model.all[Model.id], Model.options, new { @class = "form-control", @data_type = Html.Raw(Model.data_attributes), @data_target = Html.Raw(Model.data_target),@for=Model._for })
+@{
+    object htmlAttributes = new { @class = "form-control", @data_type = Html.Raw(Model.data_attributes), @data_target = Html.Raw(Model.data_target), @for = Model._for};
+    if(Model.disabled != null){ htmlAttributes = new { @class = "form-control", @data_type = Html.Raw(Model.data_attributes), @data_target = Html.Raw(Model.data_target),@for=Model._for, @disabled= Model.disabled };}
+}
+@Html.DropDownListFor(m => Model.all[Model.id], Model.options, htmlAttributes)

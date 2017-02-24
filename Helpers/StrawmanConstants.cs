@@ -221,6 +221,15 @@ namespace StrawmanApp.Helpers
                 public static string forms = "~/Views/Shared/_ScriptsEnableManagement.cshtml";
             }
         }
+        public class KPI
+        {
+            public static string name = "KPI";
+            public const string id = "KPI";
+            public class Scripts
+            {
+                public static string forms = "~/Views/Shared/_ScriptsEnableManagementKPI.cshtml";
+            }
+        }
         public class BOYBYCHANNEL
         {
             public static string name = "BOYJJByChannel";
@@ -333,6 +342,23 @@ namespace StrawmanApp.Helpers
     //Funcion que devuelve los textos definidos en Texts según lenguaje (inglés por defecto)
     public static class MessageByLanguage
     {
+        public static string Order { get { switch (LanguageUtil.Lang) { case Languages.ES: return Texts.ORDER_ES; default: return Texts.ORDER_EN; } } }
+        public static string Items { get { switch (LanguageUtil.Lang) { case Languages.ES: return Texts.ITEMS_ES; default: return Texts.ITEMS_EN; } } }
+        public static string Item { get { switch (LanguageUtil.Lang) { case Languages.ES: return Texts.ITEM_ES; default: return Texts.ITEM_EN; } } }
+        public static string BrandKeybrandsConfig { get { switch (LanguageUtil.Lang) { default: return Texts.BRAND_KEYBRANDS_CONFIG; } } }
+        public static string BrandFranchiseConfig { get { switch (LanguageUtil.Lang) { default: return Texts.BRAND_FRANCHISE_CONFIG; } } }
+        public static string BrandChannelConfig { get { switch (LanguageUtil.Lang) { default: return Texts.BRAND_CHANNEL_CONFIG; } } }
+        public static string BrandSuperGroupConfig { get { switch (LanguageUtil.Lang) { default: return Texts.BRAND_SUPER_GROUP_CONFIG; } } }
+        public static string BrandGroupConfig { get { switch (LanguageUtil.Lang) { default: return Texts.BRAND_GROUP_CONFIG; } } }
+        public static string MarketKeybrandsConfig { get { switch (LanguageUtil.Lang) { default: return Texts.MARKET_KEYBRANDS_CONFIG; } } }
+        public static string MarketFranchiseConfig { get { switch (LanguageUtil.Lang) { default: return Texts.MARKET_FRANCHISE_CONFIG; } } }
+        public static string MarketChannelConfig { get { switch (LanguageUtil.Lang) { default: return Texts.MARKET_CHANNEL_CONFIG; } } }
+        public static string MarketSuperGroupConfig { get { switch (LanguageUtil.Lang) { default: return Texts.MARKET_SUPER_GROUP_CONFIG; } } }
+        public static string MarketGroupConfig { get { switch (LanguageUtil.Lang) { default: return Texts.MARKET_GROUP_CONFIG; } } }
+        public static string BrandConfig { get { switch (LanguageUtil.Lang) { default: return Texts.BRAND_CONFIG; } } }
+        public static string MarketConfig { get { switch (LanguageUtil.Lang) { default: return Texts.MARKET_CONFIG; } } }
+        public static string NTS { get { switch (LanguageUtil.Lang) { default: return Texts.NTS; } } }
+        public static string IMS_Nielsen { get { switch (LanguageUtil.Lang) { default: return Texts.IMS_NIELSEN; } } }
         public static string Save { get { switch (LanguageUtil.Lang) { case Languages.ES:return Texts.SAVE_ES; default:return Texts.SAVE_EN; } } }
         public static string Substract { get { switch (LanguageUtil.Lang) { case Languages.ES:return Texts.SUBSTRACT_ES; default: return Texts.SUBSTRACT_EN; } } }
         public static string NoAdd { get { switch (LanguageUtil.Lang) { case Languages.ES: return Texts.NO_ADD_ES; default: return Texts.NO_ADD_EN; } } }
@@ -557,7 +583,9 @@ namespace StrawmanApp.Helpers
                                                       +"Please try to close your session and login again. "
                                                       +"If the problem persists, try closing and opening a new instance of the web browser. "
                                                       +"If after all this error continues appearing, please contact with the application's manager. ";
-        private const string _ADD_ITEM_EN = "Add Item";
+        private const string _ITEMS_EN = "Items",
+                             _ITEM_EN ="Item",
+                             _ADD_ITEM_EN = "Add Item";
         private const string _CLOSE_EN = "Close";
         private const string _NAME_EN = "Name";
         private const string _GROUP_EN = "Group";
@@ -572,6 +600,21 @@ namespace StrawmanApp.Helpers
         private const string _NO_ADD_EN = "Not Add";
         private const string _SUBSTRACT_EN = "Substract";
         private const string _SAVE_EN = "Save";
+        private const string _MARKET_CONFIG_EN = "Market Config";
+        private const string _MARKET_KEYBRANDS_CONFIG = "Market Keybrands Config",
+                             _MARKET_FRANCHISE_CONFIG = "Market Franchise Config",
+                             _MARKET_CHANNEL_CONFIG = "Market Channel Config",
+                             _MARKET_SUPER_GROUP_CONFIG = "Market Super Group Config",
+                             _MARKET_GROUP_CONFIG = "Market Group Config"
+                             ;
+        private const string _BRAND_CONFIG_EN = "Brand Config";
+        private const string _BRAND_KEYBRANDS_CONFIG = "Brand Keybrands Config",
+                             _BRAND_FRANCHISE_CONFIG = "Brand Franchise Config",
+                             _BRAND_CHANNEL_CONFIG = "Brand Channel Config",
+                             _BRAND_SUPER_GROUP_CONFIG = "Brand Super Group Config",
+                             _BRAND_GROUP_CONFIG="Brand Group Config"
+                             ;
+        private const string _ORDER_EN = "Order";
         //Español
         private const string _NUEVO = "Nuevo";
         private const string _BORRAR = "Borrar";
@@ -585,7 +628,9 @@ namespace StrawmanApp.Helpers
                                                      +"Por favor, intente cerrar la sesión y vuelva a iniciar sesión. "
                                                      +"Si el problema persiste, intente cerrar y abrir una nueva instancia del navegador web. "
                                                      +"Si después de todo este error sigue apareciendo, póngase en contacto con el administrador de la aplicación.";
-        private const string _ADD_ITEM_ES = "Añadir Item";
+        private const string _ITEMS_ES = "Artículos",
+                             _ITEM_ES ="Artículo",
+                             _ADD_ITEM_ES = "Añadir Item";
         private const string _NAME_ES = "Nombre";
         private const string _GROUP_ES = "Grupo";
         private const string _CLOSE_ES = "Cerrar";
@@ -600,6 +645,10 @@ namespace StrawmanApp.Helpers
         private const string _NO_ADD_ES = "No añadir";
         private const string _SUBSTRACT_ES = "Restar";
         private const string _SAVE_ES = "Guardar";
+        private const string _ORDER_ES = "Orden";
+
+        private const string _NTS = "NTS";
+        private const string _IMS_NIELSEN ="IMS/Nielsen";
 
         //Funciones GET
         //Inglés
@@ -627,6 +676,21 @@ namespace StrawmanApp.Helpers
         public static string NO_ADD_EN { get { return _NO_ADD_EN; } }
         public static string SUBSTRACT_EN { get { return _SUBSTRACT_EN; } }
         public static string SAVE_EN { get { return _SAVE_EN; } }
+        public static string MARKET_CONFIG { get { return _MARKET_CONFIG_EN; } }
+        public static string BRAND_CONFIG { get { return _BRAND_CONFIG_EN; } }
+        public static string BRAND_KEYBRANDS_CONFIG { get { return _BRAND_KEYBRANDS_CONFIG; } }
+        public static string BRAND_FRANCHISE_CONFIG { get { return _BRAND_FRANCHISE_CONFIG; } }
+        public static string BRAND_CHANNEL_CONFIG { get { return _BRAND_CHANNEL_CONFIG; } }
+        public static string BRAND_SUPER_GROUP_CONFIG { get { return _BRAND_SUPER_GROUP_CONFIG; } }
+        public static string BRAND_GROUP_CONFIG { get { return _BRAND_GROUP_CONFIG; } }
+        public static string MARKET_KEYBRANDS_CONFIG { get { return _MARKET_KEYBRANDS_CONFIG; } }
+        public static string MARKET_FRANCHISE_CONFIG { get { return _MARKET_FRANCHISE_CONFIG; } }
+        public static string MARKET_CHANNEL_CONFIG { get { return _MARKET_CHANNEL_CONFIG; } }
+        public static string MARKET_SUPER_GROUP_CONFIG { get { return _MARKET_SUPER_GROUP_CONFIG; } }
+        public static string MARKET_GROUP_CONFIG { get { return _MARKET_GROUP_CONFIG; } }
+        public static string ITEMS_EN { get { return _ITEMS_EN; } }
+        public static string ITEM_EN { get { return _ITEM_EN; } }
+        public static string ORDER_EN { get { return _ORDER_EN; } }
         //Español
         public static string NUEVO { get { return _NUEVO; } }
         public static string BORRAR { get { return _BORRAR; } }
@@ -652,6 +716,12 @@ namespace StrawmanApp.Helpers
         public static string NO_ADD_ES { get { return _NO_ADD_ES; } }
         public static string SUBSTRACT_ES { get { return _SUBSTRACT_ES; } }
         public static string SAVE_ES { get { return _SAVE_ES; } }
+
+        public static string NTS { get { return _NTS; } }
+        public static string IMS_NIELSEN { get { return _IMS_NIELSEN; } }
+        public static string ITEMS_ES { get { return _ITEMS_ES; } }
+        public static string ITEM_ES { get { return _ITEM_ES; } }
+        public static string ORDER_ES { get { return _ORDER_ES; } }   
     }
 #endregion
 }

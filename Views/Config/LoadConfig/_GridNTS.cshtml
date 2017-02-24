@@ -1,0 +1,9 @@
+﻿@model List<StrawmanApp.Models.ItemsConfigModel>
+@using GridMvc.Html;    
+@Html.Grid((List<StrawmanApp.Models.ItemsConfigModel>)Model).Columns(columns =>
+           {
+                columns.Add(foo => foo.brand_description).Titled("BRAND").Sortable(true);
+                columns.Add(foo => foo.market_description).Titled("MARKET").Sortable(true);
+                columns.Add(foo => foo.channel_description).Titled("CHANNEL").Sortable(true);
+                columns.Add(foo => foo.nts_name).Sanitized(false).Encoded(false).Titled("NTS_CONFIG").RenderValueAs(m => Html.DropDownListFor(d => m.nts_name, m.list_data, m.nts_name, new { @class = "form-control",data_type="change_origin", data_source = "NTS", data_market= m.market, data_brand = m.brand, data_channel = m.channel  }).ToHtmlString()); 
+    }).WithPaging(20)

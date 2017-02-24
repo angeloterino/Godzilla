@@ -4,14 +4,16 @@
     string _GREEN = StrawmanApp.Helpers.StrawmanConstants.Colors.Green;
     string style_color;
     string buttom_color;
+    string font_bold = "font-weight:bold;";
+    string first_line = "border-top: 2px solid black;border-bottom: 2px solid black;";
 <table class="table" style="display:table;text-align:center;">
 <tbody>
     <tr class="table-row" style="display:table-row;font-weight:bold;">
-        <td colspan= "2" rowspan="2" class="table-cell" style="display:table-cell">&nbsp;</td>
+        <td colspan= "2" rowspan="2" class="table-cell" style="display:table-cell; border-color:transparent;border-right-color: black;">&nbsp;</td>
         <td colspan="4" class="table-cell" style="display:table-cell;">
             @ViewBag.MonthTitle
         </td>
-        <td class="table-cell" style="display:table-cell; width:20px;">&nbsp;</td>
+        <td class="table-cell" style="display:table-cell; width:20px;border-color:transparent;border-right-color: black;">&nbsp;</td>
         <td colspan="4" class="table-cell" style="display:table-cell;">
             @ViewBag.YTDTitle
         </td>
@@ -21,7 +23,7 @@
         <td class="table-cell" style="display:table-cell;width:80px;">Brand Growth</td>
         <td class="table-cell" style="display:table-cell;width:80px;">Market Share</td>
         <td class="table-cell" style="display:table-cell;width:80px;">Pt +/-</td>
-        <td class="table-cell" style="display:table-cell;">&nbsp;</td>
+        <td class="table-cell" style="display:table-cell;border-color:transparent;border-right-color: black;">&nbsp;</td>
         <td class="table-cell" style="display:table-cell;width:80px;">Market Growth</td>
         <td class="table-cell" style="display:table-cell;width:80px;">Brand Growth</td>
         <td class="table-cell" style="display:table-cell;width:80px;">Market Share</td>
@@ -31,30 +33,33 @@
 {
     buttom_color = "";
     style_color = "";
+    string border_right = "border-right-color:transparent;";    
     if (Model.IndexOf(item) != Model.Count -1){
-        buttom_color = "border-bottom-color: transparent";
+        buttom_color = "border-bottom-color: transparent;";
     }
-    <tr class="table-row" style="display:table-row">
-        <td class="table-cell" style="display:table-cell; font-weight:bold;width:280px;text-align:right;@buttom_color">@Html.DisplayFor(m=>item.name)</td>
-        <td class="table-cell" style="display:table-cell; width:45px;">&nbsp;</td>
-        <td class="table-cell" style="display:table-cell">@Html.DisplayFor(m=>item.month_market_growth)</td>
-        <td class="table-cell" style="display:table-cell;">@Html.DisplayFor(m=>item.month_brand_growth)</td>
-        <td class="table-cell" style="display:table-cell;">@Html.DisplayFor(m=>item.month_market_share)</td>
+    <tr class="table-row" style="display:table-row;">
+        <td class="table-cell" style="display:table-cell; @font_bold;width:280px;text-align:right;border-color:transparent;@border_right">@Html.DisplayFor(m=>item.name)</td>
+        <td class="table-cell" style="display:table-cell; width:45px;border-color:transparent; border-right-color: black;">&nbsp;</td>
+        <td class="table-cell" style="display:table-cell;@first_line@font_bold">@Html.DisplayFor(m=>item.month_market_growth)</td>
+        <td class="table-cell" style="display:table-cell;@first_line@font_bold">@Html.DisplayFor(m=>item.month_brand_growth)</td>
+        <td class="table-cell" style="display:table-cell;@first_line@font_bold">@Html.DisplayFor(m=>item.month_market_share)</td>
         @if (item.month_pt != null)
         {
-            style_color = "color:" + ((item.month_pt < 0) ? _RED : _GREEN);
+            style_color = "font-weight:bold;color:" + ((item.month_pt < 0) ? _RED : _GREEN);
         }
-        <td class="table-cell" style="display:table-cell;@style_color">@Html.DisplayFor(m=>item.month_pt)</td>
-        <td class="table-cell" style="display:table-cell;">&nbsp;</td>
-        <td class="table-cell" style="display:table-cell">@Html.DisplayFor(m=>item.ytd_market_growth)</td>
-        <td class="table-cell" style="display:table-cell;">@Html.DisplayFor(m=>item.ytd_brand_growth)</td>
-        <td class="table-cell" style="display:table-cell;">@Html.DisplayFor(m=>item.ytd_market_share)</td>
+        <td class="table-cell" style="display:table-cell;@first_line@style_color">@Html.DisplayFor(m=>item.month_pt)</td>
+        <td class="table-cell" style="display:table-cell;border-color:transparent; border-right-color: black;">&nbsp;</td>
+        <td class="table-cell" style="display:table-cell;@first_line@font_bold">@Html.DisplayFor(m=>item.ytd_market_growth)</td>
+        <td class="table-cell" style="display:table-cell;@first_line@font_bold">@Html.DisplayFor(m=>item.ytd_brand_growth)</td>
+        <td class="table-cell" style="display:table-cell;@first_line@font_bold">@Html.DisplayFor(m=>item.ytd_market_share)</td>
         @if (item.ytd_pt != null)
         {
-            style_color = "color:" + ((item.ytd_pt < 0) ? _RED : _GREEN);
+            style_color = "font-weight:bold;color:" + ((item.ytd_pt < 0) ? _RED : _GREEN);
         }
-        <td class="table-cell" style="display:table-cell;@style_color">@Html.DisplayFor(m=>item.ytd_pt)</td>
+        <td class="table-cell" style="display:table-cell;@first_line@style_color">@Html.DisplayFor(m=>item.ytd_pt)</td>
     </tr>
+    first_line = "";
+    font_bold = "";
 }
 </tbody>
 </table>

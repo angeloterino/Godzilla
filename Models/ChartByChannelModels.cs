@@ -93,6 +93,18 @@ namespace StrawmanApp.Models
         public decimal? order { get; set; }
 
         public string type { get; set; }
+
+        public decimal vid { get; set; }
+
+        public decimal? market_size { get; set; }
+
+        public decimal? market_share_l { get; set; }
+
+        public decimal? market_share_p { get; set; }
+
+        public decimal? grouth_c { get; set; }
+
+        public decimal? grouth_jj { get; set; }
     }
     public class ChartGenericModel
     {

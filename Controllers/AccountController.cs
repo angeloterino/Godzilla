@@ -51,6 +51,7 @@ namespace StrawmanApp.Controllers
 
             // If we got this far, something failed, redisplay form
             ModelState.AddModelError("", addModelError);
+            Response.Cookies.Clear();
             return View(model);
         }
 
@@ -61,7 +62,7 @@ namespace StrawmanApp.Controllers
         public ActionResult LogOff()
         {
             WebSecurity.Logout();
-
+            Helpers.Session.SetSession("menu_id", null);
             return RedirectToAction("Index", "Home");
         }
 

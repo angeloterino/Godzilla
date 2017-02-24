@@ -29,6 +29,9 @@ namespace StrawmanApp.Models
         public List<SelectListItem> group_list { get; set; }
         public List<SelectListItem> channel_list { get; set; }
         public List<SelectListItem> config_list { get; set; }
+        public List<SelectListItem> calc_list { get; set; }
+        public List<SelectListItem> level_list { get; set; }
+        public List<SelectListItem> order_list { get; set; }
         public decimal? config { get; set; }
         public string config_name { get; set; }
         public int? market_calc { get; set; }
@@ -39,6 +42,14 @@ namespace StrawmanApp.Models
         public string nts_calc_name { get; set; }
 
         public string status { get; set; }
+
+        public decimal? base_id { get; set; }
+
+        public decimal? level { get; set; }
+
+        public List<SelectListItem> source_list { get; set; }
+
+        public string type { get; set; }
     }
     public class MasterDataRowEditModel
     {
@@ -67,6 +78,8 @@ namespace StrawmanApp.Models
         public string id { get; set; }
         public string data_attributes { get; set; }
         public string view { get; set; }
+
+        public int default_val { get; set; }
     }
     public class Navigator
     {

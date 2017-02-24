@@ -12,6 +12,7 @@ namespace StrawmanApp.Models
         public decimal? brand { get; set; }
         public string brand_name { get; set; }
         public decimal? vgroup { get; set; }
+        public decimal? vorder { get; set; }
         public decimal? market { get; set; }
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:N0}", NullDisplayText=@"&nbsp;", HtmlEncode = false)]
         public double? market_col1 { get; set; }

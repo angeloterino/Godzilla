@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="godzilla" Class="MenuDataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=S18005030\SQLEXPRESS;Initial Catalog=godzilla;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="godzillaConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=VM22078D0\SQLEXPRESS;Initial Catalog=godzilla;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="godzillaConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.MARKET_MASTER" Member="MARKET_MASTER">
     <Type Name="MARKET_MASTER">
       <Column Name="ID" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -31,7 +31,7 @@
       <Column Name="DISABLED" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.v_TAB_MASTER" Member="v_TAB_MASTER">
+  <Table Name="dbo.v_TAB_MASTER" Member="v_TAB_MASTERs">
     <Type Name="v_TAB_MASTER">
       <Column Name="NAME" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="URL" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
@@ -39,6 +39,11 @@
       <Column Name="SELECT_DEFAULT" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
       <Column Name="[MENU URL]" Member="MENU_URL" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
       <Column Name="[MENU ID]" Member="MENU_ID" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="[CURRENCY ADJUST]" Member="CURRENCY_ADJUST" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="CURRENCY" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="[PC ADJUST]" Member="PC_ADJUST" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="WC" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="PERIOD" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

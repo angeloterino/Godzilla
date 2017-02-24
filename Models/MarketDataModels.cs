@@ -13,6 +13,7 @@ namespace StrawmanApp.Models
     {
         public decimal? vgroup { get; set; }
         public decimal? vorder { get; set; }
+        public decimal? vgorder { get; set; }
         public decimal market { get; set; }
         public decimal channel { get; set; }
         public string market_name { get; set; }

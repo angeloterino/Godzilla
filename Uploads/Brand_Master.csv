@@ -1,0 +1,51 @@
+﻿ID;MARKET;GROUP;NAME
+1;1;1;Listerine
+2;2;1;Listerine
+3;2;1;Oraldine
+4;3;2;J´s Baby Haircare
+5;4;2;J´s Baby Cologne
+6;5;2;J´s Baby Bath
+7;6;2;J´s Baby Mixed Packs
+8;7;2;J´s Baby Oil
+9;8;2;J´s Baby Powder
+10;9;2;J´s Baby Milks & Creams
+11;10;2;J´s Baby Nappies
+12;11;3;J´s Baby Wipes
+13;12;4;J´s Champu
+14;12;7;LPM Champú
+15;13;5;J´s Geles de Ducha
+16;13;8;LPM Geles de Ducha
+17;15;7;LPM Mascarillas
+18;16;9;LPM Body Moisture
+19;16;22;Roc Body
+20;16;26;Neutrogena Body
+21;17;10;LPM Hands
+22;18;12;Carefree
+23;19;12;OB
+24;21;13;Clean & Clear
+25;22;13;Clean & Clear
+26;23;15;Frenadol
+27;24;15;Frenagar
+28;25;15;Frenasal
+29;26;15;Iniston
+30;27;15;Reactine
+31;28;16;Oraldine
+32;28;16;Listerine
+33;29;17;Micralax
+34;29;17;Rovi
+35;30;18;Vispring
+37;32;20;Natusan
+38;33;21;RoC Moisturisers
+39;34;21;RoC Cleansers
+40;35;21;Others RoC Facial
+41;36;22;RoC Anticeluliticos
+42;37;23;RoC Sun
+43;38;26;Neutrogena Hands
+44;39;26;Neutrogena Lips
+45;40;26;Neutrogena Foot
+46;41;28;Compeed Ampollas
+47;42;28;Compeed Callos
+48;43;28;Compeed Juanetes
+49;44;28;Compeed Durezas
+50;45;28;Compeed Others
+51;46;29;Compeed Calenturas

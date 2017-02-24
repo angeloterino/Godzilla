@@ -1,0 +1,24 @@
+﻿@{Html.RenderPartial("~/Views/ValueShare/_StandardTitled.cshtml", new ViewDataDictionary { { "title", ViewBag.ValueShareTitle }, { "col_title", ViewBag.LMValueShareTitle } });}
+@{Html.RenderPartial("~/Views/ValueShare/_StandardTitled.cshtml", new ViewDataDictionary { { "title", ViewBag.ValueShareTitle }, { "col_title", ViewBag.YTDValueShareTitle } });}
+@{Html.RenderPartial("~/Views/ValueShare/_StandardTitled.cshtml", new ViewDataDictionary { { "title", ViewBag.ValueShareTitle }, { "col_title", ViewBag.MATValueShareTitle } });}
+@{Html.RenderPartial("~/Views/ValueShare/_StandardTitled.cshtml", new ViewDataDictionary { { "title", ViewBag.ValueShareTitle }, { "col_title", ViewBag.BTGValueShareTitle } });}
+@{Html.RenderPartial("~/Views/ValueShare/_CustomTitled.cshtml", new ViewDataDictionary { 
+        { "title", ViewBag.ValueShareTitle }, 
+        { "col1_year", (StrawmanApp.Helpers.PeriodUtil.Year - 3).ToString()}, 
+        { "col2_year", (StrawmanApp.Helpers.PeriodUtil.Year - 2).ToString()},
+        { "col3_year", (StrawmanApp.Helpers.PeriodUtil.Year - 1).ToString()},
+        { "col1_title", "" }, 
+        { "col2_title", "" },
+        { "col3_title", "" },
+        { "col_title", ViewBag.TotalValueShareTitle }
+  });}
+@{Html.RenderPartial("~/Views/ValueShare/_CustomTitled.cshtml", new ViewDataDictionary { 
+        { "title", ViewBag.ValueShareTitle }, 
+        { "col1_year", StrawmanApp.Helpers.PeriodUtil.Year.ToString()}, 
+        { "col2_year", StrawmanApp.Helpers.PeriodUtil.Year.ToString()},
+        { "col3_year", (StrawmanApp.Helpers.PeriodUtil.Year + 1).ToString()},
+        { "col1_title", ViewBag.INTERNALValueShareTitle }, 
+        { "col2_title", ViewBag.LEValueShareTitle },
+        { "col3_title", ViewBag.PBPValueShareTitle },
+        { "col_title", ViewBag.BOYValueShareTitle }
+  });}

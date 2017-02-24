@@ -1,198 +1,115 @@
-﻿@model List<StrawmanApp.Entities.v_WRK_MANAGEMENT_LETTERS>
+﻿@model List<StrawmanDBLibray.Entities.v_WRK_MANAGEMENT_LETTERS>
 @{
     string channel_name = "";
-    List<StrawmanApp.Entities.v_WRK_MANAGEMENT_LETTERS> lst1 = Model.Where(m => m.MAIN_GROUP == 1).Select(m => m).ToList();
-    List<StrawmanApp.Entities.v_WRK_MANAGEMENT_LETTERS> lst2 = Model.Where(m => m.MAIN_GROUP == 2).Select(m => m).ToList();
-    List<StrawmanApp.Entities.v_WRK_MANAGEMENT_LETTERS> lst3 = Model.Where(m => m.MAIN_GROUP == 0).Select(m => m).ToList();
-    List<StrawmanApp.Entities.LETTERS_COMMENT_DATA> data = ViewBag.LettersData;
+    List<StrawmanDBLibray.Entities.v_WRK_MANAGEMENT_LETTERS> lst1 = Model.Where(m => m.MAIN_GROUP <= 1).Select(m => m).ToList();
+    List<StrawmanDBLibray.Entities.v_WRK_MANAGEMENT_LETTERS> lst2 = Model.Where(m => m.MAIN_GROUP > 1).Select(m => m).ToList();
+    List<StrawmanDBLibray.Entities.v_WRK_MANAGEMENT_LETTERS> lst3 = Model.Where(m => !Model.Exists(s=>s.GROUP_ID == m.MAIN_GROUP)).Select(m => m).ToList();
+    List<StrawmanDBLibray.Entities.LETTERS_COMMENT_DATA> data = ViewBag.LettersData;
     string style_red = StrawmanApp.Helpers.StrawmanConstants.Colors.Red;
 
     <table class="table" id="letters1" style="display:table">
-        <tbody> 
-            <tr class="table-row" style="display:table-row">
-                <td class="table-cell" style="display:table-cell; font-weight:bold;text-align:center;border-bottom-color:transparent;">
-                    @Html.DisplayFor(m => lst1.FirstOrDefault().COUNTRY)
-                </td>
-                <td class="table-cell" style="display:table-cell; font-weight:bold;color:@style_red" colspan="3">
-                    @Html.DisplayFor(m => lst1.FirstOrDefault().MAIN_NAME)
-                </td>
-            </tr>            
+        <tbody>           
         @{channel_name = "";
-        foreach(StrawmanApp.Entities.v_WRK_MANAGEMENT_LETTERS item in lst1){
+          foreach (StrawmanDBLibray.Entities.v_WRK_MANAGEMENT_LETTERS item in lst1)
+          {
+            //Nivel 1
             string border_transparent = "";
             if (lst1.IndexOf(item) != lst1.Count - 1)
             {
                 border_transparent = "border-bottom-color:transparent;";
-            }            
-            List<StrawmanApp.Entities.LETTERS_COMMENT_DATA> letters = data.Where(m => m.LETTER_ID == item.GROUP_ID).Select(m=>m).ToList();
-               
+            }else{
+                border_transparent = "";
+            }
+            List<StrawmanDBLibray.Entities.LETTERS_COMMENT_DATA> letters = data.Select(m => m).ToList();
+            if(lst1.IndexOf(item) > 0)
+            {
             <tr class="table-row" style="display:table-row">
-                <td class="table-cell" style="display:table-cell;width:60px;@border_transparent">
-                        &nbsp;
-                </td>
-                @if (channel_name != item.CHANNEL_NAME)
-                {
-                    <td class="table-cell" style="display:table-cell;width:90px;border-bottom-color:transparent;font-weight:bold;color:@style_red;">
-                        @Html.DisplayFor(m => item.CHANNEL_NAME)
-                    </td>
-                }else{
-                    if (lst1.IndexOf(item) != lst1.Count - 1 && channel_name != lst1[lst1.IndexOf(item) + 1].CHANNEL_NAME)
-                    {
-                        border_transparent = "";
-                    }
-                    <td class="table-cell" style="display:table-cell;@border_transparent">
-                        &nbsp;
-                    </td>
-                }
-                <td class="table-cell" style="display:table-cell; width:140px">
+                <td class="table-cell" style="display:table-cell;font-weight:bold;border:0;" colspan="2">&nbsp;</td>
+            </tr> 
+            }
+            <tr class="table-row" style="display:table-row">
+                <td class="table-cell" style="display:table-cell; font-weight:bold;width:120px;color:@style_red" colspan ="2">
                     @Html.DisplayFor(m => item.NAME)
                 </td>
-                <td class="table-cell" style="display:table-cell">
-                    <div class="comment-wrapper" style="position:relative;" data-letter-id="@item.GROUP_ID.ToString()" data-target="@StrawmanApp.Entities.CommentTypes.MANAGEMENT_LETTER" data-value-name="@Html.DisplayFor(m => item.NAME)">
-                        <div class="comment-container">
-                            @if (letters != null)
-                            {
-                                foreach(StrawmanApp.Entities.LETTERS_COMMENT_DATA letter in letters){
-                                    @Html.Raw(letter.COMMENT)
-                                }
-                            }
-                            else
-                            {
-                        
-                                <span>&nbsp;</span>
-                            }
-                        </div>
-                     </div>
+            </tr>
+            <tr class="table-row" style="display:table-row" data-type="level1">
+                <td class="table-cell" style="display:table-cell" colspan="2">
+                    @{Html.RenderAction("GetCommentWrapper", new { item = item, letters = letters, get_child = false });}
                 </td>
             </tr>
-       
-                    channel_name = item.CHANNEL_NAME;
-        }
-        } 
-        <tr><td class="table-cell" style="display:table-cell;border-color:transparent;" colspan="4">&nbsp;</td></tr>
-        </tbody>
-    </table>
-    <table class="table" id ="letters2" style="display:table">
-        <tbody>   
-            <tr class="table-row" style="display:table-row">
-                <td class="table-cell" style="display:table-cell;font-weight:bold;text-align:center;border-bottom-color:transparent;">
-                    @Html.DisplayFor(m => lst2.FirstOrDefault().COUNTRY)
-                </td>
-                <td class="table-cell" style="display:table-cell;font-weight:bold;color:@style_red" colspan="3">
-                    @Html.DisplayFor(m => lst2.FirstOrDefault().MAIN_NAME)
-                </td>
-            </tr>            
-        @{channel_name = "";
-          foreach (StrawmanApp.Entities.v_WRK_MANAGEMENT_LETTERS item in lst2)
-          {
-              string border_transparent = "";
-              if (lst2.IndexOf(item) != lst2.Count - 1)
-              {
-                  border_transparent = "border-bottom-color:transparent;";
-              }              
-              List<StrawmanApp.Entities.LETTERS_COMMENT_DATA> letters = data.Where(m => m.LETTER_ID == item.GROUP_ID).Select(m=>m).ToList();
-                          
-            <tr class="table-row" style="display:table-row">
-                <td class="table-cell" style="display:table-cell;width:60px;@border_transparent">
-                        &nbsp;
-                </td>
-                @if (channel_name != item.CHANNEL_NAME)
+            if(lst2.Exists(m => m.MAIN_GROUP == item.ID)){
+            <tr class="table-row" style="display:table-row" data-type="level2">
+            <td class="table-cell" style="display:table-cell; padding:0; margin:0; border:0; border-spacing:0; border-collapse:collapse; padding-left:15px;">    
+            @foreach (StrawmanDBLibray.Entities.v_WRK_MANAGEMENT_LETTERS son in lst2.Where(m => m.MAIN_GROUP == item.ID))
+            {
+                if (lst2.Where(m => m.MAIN_GROUP == item.ID).ToList().IndexOf(son) == lst2.Where(m => m.MAIN_GROUP == item.ID).ToList().Count - 1)
                 {
-                    <td class="table-cell" style="display:table-cell;width:90px;border-bottom-color:transparent;font-weight:bold;color:@style_red;">
-                        @Html.DisplayFor(m => item.CHANNEL_NAME)
-                    </td>
+                    border_transparent = "";
                 }
                 else
                 {
-                    if (lst2.IndexOf(item) != lst2.Count - 1 && channel_name != lst2[lst2.IndexOf(item) + 1].CHANNEL_NAME)
-                    {
-                        border_transparent = "";
-                    }
-                    <td class="table-cell" style="display:table-cell;@border_transparent">
-                        &nbsp;
-                    </td>
+                    border_transparent = "";
                 }
-                <td class="table-cell" style="display:table-cell;width:140px;">
-                    @Html.DisplayFor(m => item.NAME)
-                </td>
-                <td class="table-cell" style="display:table-cell">
-                    <div class="comment-wrapper" style="position:relative;" data-letter-id="@item.GROUP_ID.ToString()" data-target="@StrawmanApp.Entities.CommentTypes.MANAGEMENT_LETTER" data-value-name="@Html.DisplayFor(m => item.NAME)">
-                        <div class="comment-container">
-                            @if (letters != null)
-                            {
-                                foreach(StrawmanApp.Entities.LETTERS_COMMENT_DATA letter in letters){
-                                    @Html.Raw(letter.COMMENT);
-                                }
+                bool has_child = lst2.Exists(m => m.MAIN_GROUP == son.GROUP_ID);
+                bool has_parent = lst2.Exists(m => m.GROUP_ID == son.MAIN_GROUP);
+                bool level2 = false;
+                //Nivel 2
+            <table class="table" style="display:table; margin-top:-1px;">
+                <tbody>
+                @{Html.RenderPartial("~/Views/ManagementLetter/_SonRow.cshtml", new ViewDataDictionary { { "style_red", style_red }, { "has_child", has_child },{"has_parent",has_parent}, { "letters_son", letters},{"son",son},{"level2",level2},{"bottom-transparent", border_transparent} });}
+                @{
+                StrawmanDBLibray.Entities.v_WRK_MANAGEMENT_LETTERS _this = son;
+                List<StrawmanDBLibray.Entities.v_WRK_MANAGEMENT_LETTERS> childs = null;
+                StrawmanDBLibray.Entities.v_WRK_MANAGEMENT_LETTERS _next = null;                                    
+                while(has_child){
+                    if(childs== null){childs = lst2.FindAll(m=>m.MAIN_GROUP == _this.GROUP_ID);}
+                    string border_bottom = "border-bottom: 0;";                    
+                    foreach(StrawmanDBLibray.Entities.v_WRK_MANAGEMENT_LETTERS child in childs){
+                        if (childs.IndexOf(child) == 0)
+                        {
+                            border_transparent = "border-top:1px solid black;";
+                            border_bottom = "";
+                        }
+                        else
+                        {
+                            border_transparent = "";
+                        }
+                        has_child = lst2.Exists(m => m.MAIN_GROUP == child.GROUP_ID);
+                        has_parent = lst2.Exists(m => m.GROUP_ID == child.MAIN_GROUP);
+                        //Subniveles
+                        <tr class="table-row" style="display:table-row">                            
+                             <td class="table-cell" style="display:table-cell; padding:0;padding-left:15px;border:0; border-spacing:0; border-collapse:collapse;">
+                                 <table class="table" style="display:table; margin-top:-1px;">
+                                    <tbody>
+                                        @{Html.RenderPartial("~/Views/ManagementLetter/_SonRow.cshtml", new ViewDataDictionary { { "style_red", style_red }, { "has_child", has_child }, { "has_parent", has_parent }, { "letters_son",letters }, { "son", child }, { "level2", level2 }, { "bottom-transparent", border_transparent } });}
+                                    </tbody>
+                                </table>
+                             </td>
+                        </tr>
+                            if(has_child){
+                                _next = childs.Count > childs.IndexOf(child) + 1?childs.ElementAt(childs.IndexOf(child) + 1):null;
+                                _this = child; level2 = true;
+                                childs = null;
+                                break;
                             }
-                            else
-                            {
-                        
-                            <span>&nbsp;</span>
-                            }
-                        </div>
-                    </div>
-                </td>
-            </tr>
-        
-                    channel_name = item.CHANNEL_NAME;
-          }
-        }
-        <tr><td class="table-cell" style="display:table-cell;border-color:transparent;" colspan="4">&nbsp;</td></tr>
-        </tbody>
-    </table>
-    <table class="table" id="letters0" style="display:table">
-        <tbody>
-            <tr class="table-row" style="display:table-row">
-                <td class="table-cell" style="display:table-cell;font-weight:bold;text-align:center; border-bottom-color:transparent;">
-                    @Html.DisplayFor(m => lst3.FirstOrDefault().COUNTRY)
-                </td>
-                <td class="table-cell" style="display:table-cell;font-weight:bold;color:@style_red">
-                    @Html.DisplayFor(m => lst3.FirstOrDefault().CHANNEL_NAME)
-                </td>
-            </tr>            
-        @{channel_name = lst3.FirstOrDefault().CHANNEL_NAME;
-          foreach (StrawmanApp.Entities.v_WRK_MANAGEMENT_LETTERS item in lst3)
-          {
-            string border_transparent = "";
-            if(lst3.IndexOf(item) != lst3.Count -1){
-                border_transparent = "border-bottom-color:transparent;";
-            }
-            List<StrawmanApp.Entities.LETTERS_COMMENT_DATA> letters = data.Where(m => m.LETTER_ID == item.GROUP_ID).Select(m=>m).ToList();
-            <tr class="table-row" style="display:table-row; ">
-            <td class="table-cell" style="display:table-cell;width:60px;@border_transparent">&nbsp;</td>                        
-            @if (channel_name != item.CHANNEL_NAME)
-            {
-
-                <td class="table-cell" style="display:table-cell;font-weight:bold;color:@style_red;">
-                    @Html.DisplayFor(m => item.CHANNEL_NAME)
-                </td>                
-            }
-            else
-            {
-            <td class="table-cell" style="display:table-cell">
-                <div class="comment-wrapper" style="position:relative;" data-letter-id="@item.GROUP_ID.ToString()" data-target="@StrawmanApp.Entities.CommentTypes.MANAGEMENT_LETTER" data-value-name="@Html.DisplayFor(m => item.NAME)">
-                <span style="font-weight:bold">@Html.DisplayFor(m => item.NAME):</span><br />
-                    <div class="comment-container">
-                    @if (letters != null)
-                    {   
-                        foreach(StrawmanApp.Entities.LETTERS_COMMENT_DATA letter in letters){
-                            @Html.Raw(letter.COMMENT)
+                        }
+                        if (_next != null && !has_child)
+                        {
+                            childs = lst2.Where(m => m.MAIN_GROUP == _next.MAIN_GROUP && m.GROUP_ID >= _next.GROUP_ID).ToList();
+                            _next = null; level2 = false;
+                            has_child = true;
                         }
                     }
-                    else
-                    {
-                        
-                    <span>&nbsp;</span>
-                    }
-                    </div>
-                </div>
-            </td>            
-            }             
+                }
+                </tbody></table>
+            }
+                </td>
+
             </tr>
-            
-            channel_name = item.CHANNEL_NAME;
-          }
-          } 
-        </tbody>       
+            }
+        }
+    }
+        </tbody>
     </table>
 }
+  

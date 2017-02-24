@@ -1,4 +1,4 @@
-﻿ColapseLeftColumn = function (column) {
+ColapseLeftColumn = function (column) {
     $('.left-collapsable').toggleClass('collapsed');
     $table = $('.left-collapsable').parent().find('table');
     $column_header = $(column).parent().find('table');
@@ -212,3 +212,46 @@ CloneLeftBOYColumn = function (left_column) {
     //    });
     //});
 }
+
+var btn_file_wrapper = $('<button/>').addClass('btn btn-default').html($('<li/>').addClass('fa fa-caret-up up'));
+var file_wrapper = $('<div/>').addClass('file-wrapper').append(btn_file_wrapper);
+$(document).ready(function(){
+   $(document).on('mouseover', 'td[data-type=grouper]', function(){
+      if($(document).find('.file-wrapper').length > 0)
+         $(this).find('.file-wrapper').hide();
+      if($(this).find('.file-wrapper').length == 0){
+          $(this).css('position','relative');
+          $(this).append($(file_wrapper).clone ());
+          var _this = this;
+          $(this).on('click','.file-wrapper button', function(){
+              var _top = $(this).closest('tr').attr('data-target');
+              var _index = $(this).closest('tr').index();
+              var _table = $(this).closest('table');
+              var _up = $(this).find('li').hasClass('up');
+              for(var i = _index - 1; i > 0; i--){
+                  var _tr = $(_table).find('tbody tr:eq(' + i + ')');
+                  if($(_tr).attr('data-type') == _top){
+                      if($(_tr).find('li').length > 0)
+                        $(_tr).find('li').attr('class','fa fa-caret-up up');
+                      if(_up)
+                        $('.table').find('tbody tr:eq(' + i + ')').hide();
+                      else
+                        $('.table').find('tbody tr:eq(' + i + ')').show();
+                  }
+              }
+              if(_up){
+                $(this).find('li').removeClass('up');
+                $(this).find('li').removeClass('fa-caret-up').addClass('fa-caret-down');
+              }else{
+                $(this).find('li').addClass('up');
+                $(this).find('li').removeClass('fa-caret-down').addClass('fa-caret-up');
+              }
+            });
+          }else{
+              $(this).find('.file-wrapper').show();
+          } 
+       }); 
+   $(document).on('mouseout','td[data-type=grouper]', function(){
+       $(this).find('.file-wrapper').hide();
+   });
+});

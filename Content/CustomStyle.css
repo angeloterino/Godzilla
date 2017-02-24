@@ -98,7 +98,7 @@ table, input {
 }
 .chart tbody>tr
 {
-    height:160px;
+    height: 120px;
 }
 .chart thead tr th
 {
@@ -200,7 +200,11 @@ a.list-group-item {
 }
 .form-wrapper
 {
-    margin: 0 auto; padding: 10px; width: 425px; clear: both; position: relative;
+    margin: 0 auto;
+    padding: 10px;
+    width: 425px;
+    clear: both;
+    position: relative;
 }
 section div.logo{
     display: inline-block;
@@ -432,7 +436,9 @@ section div.logo{
 }
 form .wrapper
 {
-    margin: 0px auto; width: 50%; min-width: 900px;
+    margin: 0px auto;
+    width: 50%;
+    min-width: 900px;
 }
 
 .message
@@ -450,7 +456,7 @@ form .wrapper
 }
 .letters.wrapper.mastertable
 {
-    max-width:1006px;
+    max-width: 1280px;
     margin:20px auto;
 }
 .letters .info table, .letters .info td
@@ -477,6 +483,7 @@ form .wrapper
 }
 .wrapper .form-control {
     padding: 0px;
+    padding-left:5px;
     height:30px;
     min-width:50px;
 }
@@ -709,4 +716,32 @@ form .select-input input[type=text]
 
   .edit-wrapper button.float-right{
     border-radius: 0px 0px 0px 5px;  
+  }
+  .file-wrapper{
+    left: 0px;top: 0px;height: 100%;position: absolute;
+  }
+  .file-wrapper button{
+    font-size: 14px;padding: 3px 6px;border-right: 1px solid;background-color: #fefbfb;
+  }
+  #ManagementLetter_Data tr:eq(2){
+    display:table-row;border-top: 2px solid!important;border-bottom: 2px solid black!important;
+  }
+  div.panel-info .panel-body{
+    float: left;
+    padding: 10px;
+    margin: 0;
+  }
+  div.panel-info .panel-heading{
+    margin: 0;
+    float: left;
+    text-align: center;
+  }
+  div.panel-info .panel-body .bottom{
+    width: 100%;float: absolute;
+  }
+  div.panel-info{
+    height: auto !important;
+    font-size: 1.5em;
+    position: relative;
+    padding: 5px !important;
   }

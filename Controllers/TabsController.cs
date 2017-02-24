@@ -30,7 +30,7 @@ namespace StrawmanApp.Controllers
 
             using (Models.MenuDataClassesDataContext db = new Models.MenuDataClassesDataContext())
             {
-                var query = from p in db.v_TAB_MASTER
+                var query = from p in db.v_TAB_MASTERs
                             where (menu_id == 0 && p.MENU_URL == (menu_url==null? title:menu_url)) ||(menu_id != 0 && p.MENU_ID == menu_id)
                             select new Models.TabItem { name = p.NAME, url = p.URL, menu_url = p.MENU_URL, select_default = p.SELECT_DEFAULT , controller = p.CONTROLLER, title = title, tab_url = tab_url };
                 tabs = query.ToList();

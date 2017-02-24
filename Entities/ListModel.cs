@@ -141,11 +141,11 @@ namespace StrawmanApp.Entities
 
     public class ShareBoardModel: StrawmanBasicModel
     {
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}%", NullDisplayText = "0" )]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText = "0" )]
         public decimal? month_col1 { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}%", NullDisplayText = "0")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText = "0")]
         public decimal? month_col2 { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}%", NullDisplayText = "0")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText = "0")]
         public decimal? month_col3 { get; set; }
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}", NullDisplayText = "0")]
         public decimal? month_col4 { get; set; }
@@ -154,11 +154,11 @@ namespace StrawmanApp.Entities
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:N0}", NullDisplayText = "0")]
         public decimal? month_col6 { get; set; }
 
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}%", NullDisplayText = "0")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText = "0")]
         public decimal? ytd_col1 { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}%", NullDisplayText = "0")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText = "0")]
         public decimal? ytd_col2 { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}%", NullDisplayText = "0")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText = "0")]
         public decimal? ytd_col3 { get; set; }
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}", NullDisplayText = "0")]
         public decimal? ytd_col4 { get; set; }
@@ -167,11 +167,11 @@ namespace StrawmanApp.Entities
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:N0}", NullDisplayText = "0")]
         public double? ytd_col6 { get; set; }
 
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}%", NullDisplayText = "0")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText = "0")]
         public decimal? mat_col1 { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}%", NullDisplayText = "0")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText = "0")]
         public decimal? mat_col2 { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}%", NullDisplayText = "0")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText = "0")]
         public decimal? mat_col3 { get; set; }
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}", NullDisplayText = "0")]
         public decimal? mat_col4 { get; set; }
@@ -193,11 +193,11 @@ namespace StrawmanApp.Entities
         public decimal? group { get; set; }
         public decimal? parent { get; set; }
 
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}%", NullDisplayText = "0")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText = "0")]
         public decimal? col1 { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}%", NullDisplayText = "0")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText = "0")]
         public decimal? col2 { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}%", NullDisplayText = "0")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText = "0")]
         public decimal? col3 { get; set; }
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}", NullDisplayText = "0")]
         public decimal? col4 { get; set; }
@@ -228,6 +228,7 @@ namespace StrawmanApp.Entities
     }
     public class KpiModel
     {
+        private bool _editable = false;
         public string NAME { get; set; }
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:N0}", NullDisplayText = "0")]
         public decimal? COL1 { get; set; }
@@ -235,15 +236,17 @@ namespace StrawmanApp.Entities
         public decimal? COL2 { get; set; }
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:N0}", NullDisplayText = "0")]
         public decimal? COL3 { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}%", NullDisplayText = "0")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText = "0")]
         public decimal? COLPC1 { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}%", NullDisplayText = "0")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText = "0")]
         public decimal? COLPC2 { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}%", NullDisplayText = "0")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText = "0")]
         public decimal? COLPC3 { get; set; }
 
         public bool isHead { get; set; }
         public bool isPC { get; set; }
+
+        public bool data_editable { get { return this._editable; } set { this._editable = value; } }
 
         public string title { get; set; }
 
@@ -314,13 +317,14 @@ namespace StrawmanApp.Entities
         public string market { get; set; }
         public string brand { get; set; }
         public string channel { get; set; }
-
+        public string group { get; set; }
         public DateTime? date { get; set; }
     }
 
     public static class CommentTypes {
         public const string MANAGEMENT_LETTER ="MANAGEMENT_LETTER";
         public const string MONTHLY_COMMENTS = "MONTHLY_COMMENTS";
+        public const string BOY_COMMENTS = "BOY_COMMENTS";
     }
 
     public class CommentType {
@@ -332,38 +336,42 @@ namespace StrawmanApp.Entities
     public class ManagementLetterModel
     {
         public string name { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}%", NullDisplayText = "0")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText = "0")]
         public decimal? ytd_col1 { get; set; }
-
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText = "0")]
         public decimal? ytd_col2 { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}%", NullDisplayText = @"&nbsp;", HtmlEncode = false)]
-        public int? ytd_col3 { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}%", NullDisplayText = "0")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText = @"&nbsp;", HtmlEncode = false)]
+        public decimal? ytd_col3 { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}", NullDisplayText = "0")]
+        public decimal? ytd_col4 { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText = "0")]
         public decimal? latest_col1 { get; set; }
-
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText = "0")]
         public decimal? latest_col2 { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}%", NullDisplayText=@"&nbsp;", HtmlEncode = false)]
-        public int? latest_col3 { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText=@"&nbsp;", HtmlEncode = false)]
+        public decimal? latest_col3 { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}", NullDisplayText = "0")]
+        public decimal? latest_col4 { get; set; }
     }
 
     public class MonthlyCommentsModel
     {
         public string name { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}%", NullDisplayText = @"&nbsp;", HtmlEncode = false)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText = @"&nbsp;", HtmlEncode = false)]
         public int? ytd_col3 { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}%", NullDisplayText = @"&nbsp;", HtmlEncode = false)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText = @"&nbsp;", HtmlEncode = false)]
         public decimal? month_market_growth { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}%", NullDisplayText = @"&nbsp;", HtmlEncode = false)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText = @"&nbsp;", HtmlEncode = false)]
         public decimal? month_brand_growth { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}%", NullDisplayText = @"&nbsp;", HtmlEncode = false)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText = @"&nbsp;", HtmlEncode = false)]
         public decimal? month_market_share { get; set; }
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}", NullDisplayText = @"&nbsp;", HtmlEncode = false)]
         public decimal? month_pt { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}%", NullDisplayText = @"&nbsp;", HtmlEncode = false)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText = @"&nbsp;", HtmlEncode = false)]
         public decimal? ytd_market_growth { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}%", NullDisplayText = @"&nbsp;", HtmlEncode = false)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText = @"&nbsp;", HtmlEncode = false)]
         public decimal? ytd_brand_growth { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}%", NullDisplayText = @"&nbsp;", HtmlEncode = false)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText = @"&nbsp;", HtmlEncode = false)]
         public decimal? ytd_market_share { get; set; }
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}", NullDisplayText = @"&nbsp;", HtmlEncode = false)]
         public decimal? ytd_pt { get; set; }
@@ -387,13 +395,13 @@ namespace StrawmanApp.Entities
         public decimal? order { get; set; }
 
         public decimal group_level { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}%", NullDisplayText = @"&nbsp;", HtmlEncode = false)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText = @"&nbsp;", HtmlEncode = false)]
         public decimal? act { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}%", NullDisplayText = @"&nbsp;", HtmlEncode = false)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText = @"&nbsp;", HtmlEncode = false)]
         public decimal? py { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}%", NullDisplayText = @"&nbsp;", HtmlEncode = false)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText = @"&nbsp;", HtmlEncode = false)]
         public decimal? ytd_share_vspy { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F1}%", NullDisplayText = @"&nbsp;", HtmlEncode = false)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:F2}%", NullDisplayText = @"&nbsp;", HtmlEncode = false)]
         public decimal? ytd_category_vspy { get; set; }
     }
     public class PeriodUtilModel

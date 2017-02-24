@@ -260,19 +260,4 @@
       <Column Name="[MONTH PERIOD]" Member="MONTH_PERIOD" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.v_STRWM_MARKET_DATA" Member="v_STRWM_MARKET_DATAs">
-    <Type Name="v_STRWM_MARKET_DATA">
-      <Column Name="CHANNEL" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="[ORDER]" Member="ORDER" Type="System.Decimal" DbType="Decimal(19,0)" CanBeNull="true" />
-      <Column Name="[GROUP]" Member="GROUP" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="ID" Type="System.Decimal" DbType="Decimal(19,0)" CanBeNull="true" />
-      <Column Name="BRAND" Type="System.Decimal" DbType="Decimal(19,0)" CanBeNull="true" />
-      <Column Name="BRAND_NAME" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="NAME" Type="System.String" DbType="NVarChar(261)" CanBeNull="true" />
-      <Column Name="DATA" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="SOURCE" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="[YEAR PERIOD]" Member="YEAR_PERIOD" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="[MONTH PERIOD]" Member="MONTH_PERIOD" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-    </Type>
-  </Table>
 </Database>

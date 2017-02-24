@@ -1,0 +1,15 @@
+﻿@model List<StrawmanApp.Models.MasterDataModels>
+@using GridMvc.Html;  
+@{string _button = "<button type=\"button\" data-type=\"new\" data-modal=\"modal\" data-controller=\"AddItemConfig\" data-source=\""+ ViewBag.Group + "\" class=\"btn btn-default\" style=\"font-weight:bold;color:white;\">New</button>";}  
+
+@Html.Grid((List<StrawmanApp.Models.MasterDataModels>)Model).Columns(columns =>
+           {
+               columns.Add().Encoded(false).Sanitized(false).SetWidth(10).Css("checkbox-control").RenderValueAs(o => @<input type="checkbox" data-type="select" data-value="@o.order" data-controller="GetBOYConfigItems" />);
+               columns.Add(foo => foo.nts_name).Titled("NAME").Sortable(true);
+               columns.Add(foo => foo.order).Titled("ORDER").Sortable(true);
+               columns.Add().Encoded(false).Sanitized(false).SetWidth("5%").Titled(_button).RenderValueAs(o =>
+                @<div>
+                    <button class="btn btn-success" type="button" data-type="edit" data-target-id="@o.order" data-target-name="@o.nts_name" data-controller="EditBOYGroup"><li class="fa fa-edit"></li> @StrawmanApp.Helpers.MessageByLanguage.Edit</button>
+                    <!--<button class="btn @o.active_class" type="button" data-type="view" data-target-market="@o.market" data-target-brand="@o.brand" data-target-channel="@o.channel"><li class="fa fa-power-off"></li></button>-->
+                </div>);
+    }).Selectable(false).WithPaging(10)

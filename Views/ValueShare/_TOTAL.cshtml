@@ -1,0 +1,4 @@
+﻿@model List<StrawmanApp.Models.StrawmanViewSTDModel>
+@{
+    Html.RenderPartial("~/Views/ValueShare/_CustomView.cshtml", new ViewDataDictionary { { "data", Model }, { "master", ViewBag.MasterData } });
+}

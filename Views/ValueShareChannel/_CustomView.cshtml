@@ -1,0 +1,28 @@
+﻿@{
+    Html.RenderPartial("~/Views/StrawmanViews/MasterTable/_TitledRow.cshtml", new ViewDataDictionary { { "colspan", 3 } });
+
+    string _styleView = "_TrStyleChannel";
+    string _style = "text-align:center;";
+    List<StrawmanApp.Models.StrawmanViewSTDModel> list = (List<StrawmanApp.Models.StrawmanViewSTDModel>)ViewData["data"];
+    foreach (StrawmanApp.Models.MarketDataModels itemaux in (List<StrawmanApp.Models.MarketDataModels>)ViewData["master"])
+    {
+        StrawmanApp.Models.StrawmanViewSTDModel item = list.Find(m =>m.channel == itemaux.channel);
+        _style += itemaux.style;
+        ViewDataDictionary _styleData = new ViewDataDictionary { { "_style", _style }, { "channel", item == null ? 0 : item.channel } };
+        bool is_wc = item.is_wc != null && item.is_wc;
+        StrawmanApp.Models.StrawmanSTDView view = item == null ? null : new StrawmanApp.Models.StrawmanSTDView
+        {
+            market = item.market,
+            brand = item.brand,
+            channel = item.channel,
+            vgroup = itemaux.vgroup,
+            vorder = itemaux.vorder,
+            col1 = (decimal?)item.pcvspy1,
+            col2 = (decimal?)item.pcvspy2,
+            col3 = (decimal?)item.pcvspy3
+        };
+        string[] _colData = new string[] { Html.DisplayFor(m => item.pcvspy1).ToString(), Html.DisplayFor(m => item.pcvspy2).ToString(), Html.DisplayFor(m => item.pcvspy3).ToString() };
+        string[] _colType = new string[] { "pc", "pc","pc"};
+        Html.RenderPartial("~/Views/StrawmanViews/_StrawmanViewSTD.cshtml", new StrawmanApp.Models.StrawmanSTDViewModel { item = view, itemaux = view }, new ViewDataDictionary { { "_colData", _colData }, { "_colType", _colType }, { "styleView", _styleView }, { "styleData", _styleData } });
+    }
+}

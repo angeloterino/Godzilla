@@ -411,6 +411,12 @@ namespace StrawmanApp.Controllers
             }
             return ret;
         }
+
+        [ChildActionOnly]
+        public List<Models.StrawmanViewSTDModel> GetBrandViewData(string type)
+        {
+            return this.GetData(type);
+        }
         //
         // GET: /BrandViewChannel/
 

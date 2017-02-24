@@ -2,30 +2,80 @@
     Layout = "~/Views/Shared/_StrwLayout.cshtml";
 }
 @{Html.RenderPartial("~/Views/Shared/_LoadMask.cshtml");}
-<div class="letters wrapper mastertable">
-<div id="ManagementLetter_Data">
-</div>
-<div class="info" style="margin:10px;">
-    <table style="text-align:center;font-size:1.3em;">
+@{
+    string yellow = StrawmanApp.Helpers.StrawmanConstants.Colors.Yellow;
+    string green = StrawmanApp.Helpers.StrawmanConstants.Colors.Green;
+    string red = StrawmanApp.Helpers.StrawmanConstants.Colors.Red;
+    string white = StrawmanApp.Helpers.StrawmanConstants.Colors.White;
+    string night_blue = StrawmanApp.Helpers.StrawmanConstants.Colors.NightBlue;
+
+    decimal nts_month = Math.Round(ViewBag.NTSMonth,2);
+    decimal nts_ytd = Math.Round(ViewBag.NTSYTD,2);
+
+    string nts_month_data = nts_month.ToString() + "%";
+    string nts_ytd_data = nts_ytd.ToString() + "%";
+    string nts_month_back = nts_month > 0?"padding:0 6px;font-weight:bold;background-color:" + green +";": "font-weight:bold;background-color:" +red+";color:"+white+";";
+    string nts_ytd_back = nts_ytd > 0 ? "padding:0 6px;font-weight:bold;background-color:" + green + ";" : "font-weight:bold;background-color:" + red + ";color:" + white + ";";
+    
+}
+<div style="max-width:1280px; margin:0 auto;">
+<div class="letters wrapper mastertable" style="position:absolute; top:0; bottom:0;margin-bottom:0;">
+<div class="info" style="margin:10px; float:left; width:28%;">
+    <table style="text-align:center;font-size:1.1em;">
         <tr>
-            <td style="width:60px;font-weight:bold;">Source:</td>
-            <td></td>
+            <td style="width:200px;color:rgb(255,255,255);text-align:center;background-color:@night_blue;"><span>Sell In</span></td>
+            <td style="width:80px;text-align:center;background-color:@yellow;"><span class="period month">@ViewBag.PeriodMonth</span></td>
+            <td style="width:45px;"></td>
         </tr>
         <tr>
-            <td style="font-weight:bold;text-align:right;"><span>Nielsen:</span></td>
-            <td style="width:120px;"><span class="period month">@ViewBag.PeriodMonth</span></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
         </tr>
         <tr>
-            <td style="font-weight:bold;text-align:right;"><span>IMS:</span></td>
-            <td><span class="period month">@ViewBag.PeriodMonth</span></td>
+            <td colspan="2" style="font-weight:bold;text-align:right;"><span class="month title">@ViewBag.MonthTitle</span></td>
+            <td style="@nts_month_back"><span class="nts month">@nts_month_data</span></td>
+        </tr
+        <tr>
+            <td style="height:10px"></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
         </tr>
         <tr>
-            <td style="font-weight:bold;text-align:right;"><span>NTS:</span></td>
-            <td><span class="period month">@ViewBag.PeriodMonth</span></td>
+            <td colspan="2" style="font-weight:bold;text-align:right;"><span class="ytd title">@ViewBag.YTDTitle</span></td>
+            <td style="@nts_ytd_back"><span class="nts ytd">@nts_ytd_data</span></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="color:rgb(255,255,255);text-align:center;background-color:@night_blue;"><span>Sell Out:</span></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>            
+        </tr>
+        <tr>
+            <td><span>Nielsen:</span></td>
+            <td style="background-color:@yellow;"><span class="period month">@ViewBag.PeriodMonth</span></td>  
+            <td></td>      
+        </tr>
+        <tr>
+            <td><span>IMS:</span></td>
+            <td style="background-color:@yellow;"><span class="period month">@ViewBag.PeriodMonth</span></td>  
+            <td></td>      
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
         </tr>
     </table>
 </div>
-<div id="ManagementLetter_Comments">
+<div id="ManagementLetter_Data" style="float: left;width: 70%;padding: 10px;">
 </div>
+<div style="overflow: auto;position: absolute;top: 200px;bottom: 0;left: 0;right: 0; box-shadow:0px 1px 2px;">
+<div id="ManagementLetter_Comments" style="margin: 0 auto;max-width: 1280px;">
+</div></div>
 @{Html.RenderPartial("~/Views/Shared/_Modal.cshtml", new ViewDataDictionary {{"modal_name","modal_comments"}});}
-</div>
+</div></div>

@@ -178,7 +178,7 @@ namespace StrawmanApp.Controllers
             List<StrawmanDBLibray.Entities.WRK_VIEWS_VARIABLES> wc_channels = var.Where(m => m.VIEW == Classes.Default.Variables.WC_CHANNELS).Select(m => m).ToList();
             List<StrawmanDBLibray.Entities.WRK_VIEWS_VARIABLES> colors = var.Where(m => m.VIEW == Classes.Default.Variables.STRAWMAN_COLORS)
                     .Select(m => m).ToList();
-            List<Models.MarketDataModels> aux = data
+            List<Models.MarketDataModels> aux = data.Where(m=>m.STATUS == "A").AsEnumerable()
                 .GroupJoin(colors, l => new { ID = "BRAND:" + l.BRAND.ToString() + ";MARKET:" + l.MARKET.ToString() }, v => new { ID = v.NAME }, (l, v) => new { l = l, v = v })
                 .SelectMany(f => f.v.DefaultIfEmpty(), (l, v) => new { l = l.l, v = v }).ToList()
                 .Select(p => new Models.MarketDataModels
@@ -192,6 +192,7 @@ namespace StrawmanApp.Controllers
                     source = p.l.SOURCE,
                     vgroup = p.l.GROUP,
                     vorder = p.l.ORDER,
+                    vgorder = p.l.GROUP_ORDER,
                     style = p.v == null ? "" : Helpers.StyleUtils.GetBGColor(p.v.VALUE, true),
                     is_wc = wc_channels.Exists(m=>m.VALUE == p.l.CHANNEL.ToString())
                 }).ToList();

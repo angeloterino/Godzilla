@@ -10,14 +10,16 @@
         ViewDataDictionary _styleData = new ViewDataDictionary { 
                                         { "_style", _style }, 
                                         { "order", itemaux.vorder } ,
-                                        { "group", itemaux.vgroup } ,
-                                        { "market", itemaux.market } 
+                                        { "group", itemaux.vgorder } ,
+                                        { "market", itemaux.market } ,
+                                        { "source", itemaux.source }  
                                         };
         StrawmanApp.Models.StrawmanSTDView viewaux = new StrawmanApp.Models.StrawmanSTDView
         {
             market = itemaux.market,
             brand = itemaux.brand,
-            vgroup = itemaux.vgroup,
+            source = itemaux.source,
+            vgroup = itemaux.vgorder,
             vorder = itemaux.vorder,
             col1 = item == null ? null : (decimal?)item.col1,
             col2 = item == null ? null : (decimal?)item.col2,

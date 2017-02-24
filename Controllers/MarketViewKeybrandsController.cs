@@ -22,7 +22,7 @@ namespace StrawmanApp.Controllers
 
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
         public ActionResult GetPCVSPY() {
-            new Helpers.Session().CacheStatus = true;
+            Helpers.Session.CacheStatus = true;
             ViewBag.MarketViewKeybrandsPCVSPY = GetPCVSPYData();
             return PartialView(pcvspyview);
         }
@@ -450,6 +450,32 @@ namespace StrawmanApp.Controllers
         public List<Models.StrawmanViewSTDModel> GetYTDKeybrandsData()
         {
             return this.GetYTDData();
+        }
+        [ChildActionOnly]
+        public List<Models.StrawmanViewSTDModel> GetMarketViewData(string type)
+        {
+            switch (type)
+            {
+                case Classes.StrawmanViews.MONTH:
+                    return this.GetMonthData();
+                case Classes.StrawmanViews.YTD:
+                    return this.GetYTDData();
+                case Classes.StrawmanViews.MAT:
+                    return this.GetMATData();
+                case Classes.StrawmanViews.BTG:
+                    return this.GetBTGData();
+                case Classes.StrawmanViews.TOTAL:
+                    return this.GetTotalCustomData();
+                case Classes.StrawmanViews.BOY:
+                    return this.GetBOYData();
+                default:
+                    return null;
+            }
+        }
+        [ChildActionOnly]
+        public List<Models.MarketViewChannelModels> GetKeybrandsMasterData()
+        {
+            return (List<Models.MarketViewChannelModels>)GetDataViewData();
         }
         #endregion
 

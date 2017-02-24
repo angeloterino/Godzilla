@@ -43,6 +43,8 @@ startLoadTables = function () {
 }
 initializeTables = function () {
     $('.mastertable').html('');
+    $('.mastertable').scrollTop(0);
+    $('#left-column').remove();
     strawmanVars.vrow = $(_vrow).clone();
 }
 loadTables = function (pathindex, controlindex, channelindex) {
@@ -106,6 +108,7 @@ loadTables = function (pathindex, controlindex, channelindex) {
         $('.loading-bar').animate({ 'border-color': 'rgb(0,220,0)' }, 'fast');
         $('.loading-bar').animate({ width: '100%', 'border-color': 'rgb(0,220,0)' }, 'fast', function () {
             $periodCombo();
+            checkCookies();
             $('.load-mask').animate({ opacity: 'hide' }, 'slow', function () { $(this).hide(); });
             if (!$.resetForms) CloneLeftBOYColumn('BoyViews_BoyData');  
         });

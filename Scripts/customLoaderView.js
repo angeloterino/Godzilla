@@ -1,17 +1,19 @@
-﻿$(document).ready(function () {
+$(document).ready(function () {
     $.getScript('../../Scripts/bootstrap.inputs/bootstrap.file-inputs.js')
     .done(function (a, b) { $('input[type=file]').bootstrapFileInput(); })
     .fail(function (a, b, c) { alert(c); });
 });
 $.strawmanVars = new Object();
-StrwmAjaxCall = function () {
+StrwmAjaxCall = function (_type) {
     $.strawmanVars.waitForResponse = true;
+    if ($.strawmanVars.controller != null && $.strawmanVars.controller.length > 0)
+        $.strawmanVars.url = '/' + $.strawmanVars.controller + '/' + $.strawmanVars.url;
     $.ajax({
         url: $.strawmanVars.url,
         data: $.strawmanVars.data,
         async: true,
         contentType: 'application/html; charset=utf-8',
-        type: 'GET',
+        type: _type,
         dataType: 'html'
     })
         .done(function (result) {
@@ -29,6 +31,7 @@ StrwmAjaxCall = function () {
         .fail(function (xhr, status) {
             //alert(status);
         });
+        $.strawmanVars.data = null;
 
 }
     //Ejecución del Trigger
@@ -36,18 +39,28 @@ StrwmAjaxCall = function () {
         $.strawmanVars.data = { 'transactionId': $.strawmanVars.transactionID[$.strawmanVars.transactionIndex] };
         $.strawmanVars.url = "ExecuteStoredProcedure";
         $.strawmanVars.result = RefreshTriggerStatus;
-        StrwmAjaxCall();
+        StrwmAjaxCall('GET');
     }
     //Carga de datos en bbdd
     var LoadData = function (_url, _controller, _file_name, _file_type) {
-        var wrapper = '.form-wrapper';
-        HideForm(wrapper, true);
         $.strawmanVars.data = { 'fileName': _file_name, 'fileType': _file_type };
         $.strawmanVars.url = _url;
         $.strawmanVars.controller = _controller;
-        $.strawmanVars.result = ExecuteTrigger;
-        StrwmAjaxCall();
+        $.strawmanVars.result = ConfigData;
+        StrwmAjaxCall('GET');
     }
+    var ConfigData = function () {
+        //$.strawmanVars.url = 'LoadConfig';
+        //$.strawmanVars.controller = 'Config';
+        $.get('/Config/LoadConfig', function (i, e, x) {
+            $(document).find('.panel-body').html(i);
+        });
+        //$.strawmanVars.result = UpdateConfigData;
+        //StrwmAjaxCall();
+    };
+    var UpdateConfigData = function () {
+        var _result = $.strawmanVars.resultData;
+    };
     //Registro del Trigger
     var RefreshTriggerStatus = function () {
         $.strawmanVars.url = "RefreshTriggerStatus";
@@ -134,9 +147,81 @@ StrwmAjaxCall = function () {
     }
     var AjaxCallWaitFor = function(){
         if (!$.strawmanVars.waitForResponse) {
-            StrwmAjaxCall();
+            StrwmAjaxCall('GET');
         }
-    }
+    };
+    var RestoreSaveButton = function(){
+      $(document).find('button li.fa').attr('class','fa fa-save');
+    };
+    $(document).on('click', 'button[data-type=save]', function (e) {
+        e.preventDefault();
+        $.strawmanVars.url = $(this).attr('data-action');
+        $.strawmanVars.controller = $(this).attr('data-controller');
+        var _this = this;
+        $(_this).find('li').attr('class', 'fa fa-spinner fa-spin');
+        $.strawmanVars.result = RestoreSaveButton;
+        $.strawmanVars.url = '/' + $.strawmanVars.controller + '/' + $.strawmanVars.url;
+        StrwmAjaxCall('GET');
+    });
+    $(document).on('change', 'select[data-type=change_origin]', function (e) {
+        var _market = $(this).attr('data-market');
+        var _brand = $(this).attr('data-brand');
+        var _channel = $(this).attr('data-channel');
+        var _source = $(this).attr('data-source');
+        var _value = $(this).val();
+        var data = { "market": _market, "brand": _brand, "channel": _channel, "source": _source, "value": _value };
+        $.strawmanVars.url = 'SaveConfigItem';
+        $.strawmanVars.controller = 'Config';
+        $.strawmanVars.result = function () { return null; }; 
+        $.strawmanVars.data = data;
+        StrwmAjaxCall('GET');
+    });
+
+    /*$(document).on('click', 'button[data-type=save]', function(e){
+       e.preventDefault();
+       var _controller = $(this).attr('data-controller');
+       if (_controller!= null) _controller = '/' + _controller;
+       var _action = $(this).attr('data-action');
+       if (_action!= null) _action = '/' + _action;
+       var _url = _controller + _action;
+       var _this = this;
+       if($.strawmanVars.change_data.length > 0){
+           $(_this).find('li').attr('class', 'fa fa-spinner fa-spin');
+           $.get(_url,$.strawmanVars.change_data, function(i,e,x){
+              var result = $.parseJSON(i);
+              if(result.status == 'success'){
+                $(_this).find('li').attr('class','fa fa-save');
+              } 
+           });
+       }
+    });*/
+
+    $(document).on('click', '.grid-pager a', function (event) {
+        event.preventDefault();
+        _target = '/' + $(this).closest('.wrapper').attr('data-controller') + '/' + $(this).closest('.wrapper').attr('data-action');
+        _href = _target + $(this).attr('href');
+        var _this = this;
+        $.get(_href, function (i, e, x) { 
+            _html = i.replace('\r\n', '').trim();
+            $obj = $.parseHTML(_html);
+            $(_this).closest('.wrapper').find('.table tbody').html($($obj).find('table tbody').html());
+            $(_this).closest('.wrapper').find('.grid-pager').html($($obj).find('.grid-pager').html());
+        });
+
+    });
+    $(document).on('click', '.grid-mvc table thead th a', function (event) {
+        event.preventDefault();
+        var _target = '/' + $(this).closest('.wrapper').attr('data-controller') + '/' + $(this).closest('.wrapper').attr('data-action');
+        _href = _target + $(this).attr('href');
+        var _this = this;
+        $.get(_href, function (i, e, x) { 
+            _html = i.replace('\r\n', '').trim();
+            $obj = $.parseHTML(_html);
+            $(_this).closest('.wrapper').find('.table tbody').html($($obj).find('table tbody').html());
+            $(_this).closest('.wrapper').find('.grid-pager').html($($obj).find('.grid-pager').html());
+            $(_this).closest('.wrapper').find('.grid-mvc table thead').html($($obj).find('table thead').html());
+        });
+    });
     $(document).ready(function () {
         $.strawmanVars.waitForResponse = false;
         $.strawmanVars.resultID = 0;
@@ -170,9 +255,9 @@ StrwmAjaxCall = function () {
             }
         });
         var _clearfix = $('<div>').addClass('clearfix');
-        var _button_wraper = $('<div>').addClass('bottom close-viewer').attr('style', 'width: 100%; bottom: 8px; position: absolute;').append(_button).append(_clearfix);
+        var _button_wraper = $('<div>').addClass('bottom close-viewer').append(_button);
         var _body = $('<div>').addClass('panel-body').append(_display_icon).append(_display_content);
-        var _cont = $('<div>').addClass('panel').addClass('panel-info').attr({ 'style': 'height: 100%; font-size: 1.5em; position: relative;', 'id': 'panel-info' }).append(_header).append(_body).append(_button_wraper)
+        var _cont = $('<div>').addClass('panel').addClass('panel-info').attr({'id': 'panel-info' }).append(_header).append(_body).append(_button_wraper)
                               .bind('changeStatus', function (e, b, html_info) {
                                   switch (b) {
                                       case 'default':
@@ -188,11 +273,26 @@ StrwmAjaxCall = function () {
                                           break;
                                   }
                               });
+        $(_clearfix).insertAfter($(_cont).find('.bottom.close-viewer'));
         $.strawmanVars.viewer = _cont;
 //      <div class="panel panel-info" style="height: 100%; font-size: 1.5em;">
 //          <div class="panel-heading"><span class="fa fa-info-circle" style="margin-right: 14px;"></span><span class="info-display">Loading process running...</span></div>
 //          <div class="panel-body"><li class="fa fa-cloud-upload" style="margin-right: 12px;"></li><span>infoinoinonf finonfofin </span></div>
 //      </div>
+    });
+    $(document).on('click','button[data-type=submit_data]',function(event){
+        event.preventDefault();
+        var _url  = 'ProcessTransaction';
+        var _controller = 'Forms';
+        var _file_name = $(this).attr('data-file-name');
+        var _file_type = $(this).attr('data-file-type');
+        var wrapper = '.form-wrapper';
+        HideForm(wrapper, true);
+        $.strawmanVars.data = { 'fileName': _file_name, 'fileType': _file_type };
+        $.strawmanVars.url = _url;
+        $.strawmanVars.controller = _controller;
+        $.strawmanVars.result = ExecuteTrigger;
+        StrwmAjaxCall('GET');
     });
 
     

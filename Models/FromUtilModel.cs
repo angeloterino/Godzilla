@@ -88,6 +88,7 @@ namespace StrawmanApp.Models
             public string market { get; set; }
             public string brand { get; set; }
             public string channel { get; set; }
+            public string group { get; set; }
             [AllowHtml]
             public string comment { get; set; }
 
@@ -144,6 +145,7 @@ namespace StrawmanApp.Models
         public string classes { get; set; }
         public bool is_required { get; set; }
         public string _for {get;set;}
+        public string disabled { get; set; }
         public string source { get; set; }
     }
 
@@ -160,8 +162,14 @@ namespace StrawmanApp.Models
         public static string _market { get; set; }
         public static string _brand { get; set; }
         public static string _group { get; set; }
+        public static string _group_name { get; set; }
+        public static string _nts { get; set; }
+        public static string _rosetta { get; set; }
         public static string _market_name { get; set; }
         public static string _brand_name { get; set; }
+        public static string _nts_config { get; set; }
+        public static string _rosetta_config { get; set; }
+        public static string _order { get; set; }
 
         public Dictionary<string, string> all = new Dictionary<string, string>()
         { 
@@ -179,6 +187,12 @@ namespace StrawmanApp.Models
             {Classes.Default.Attributes.BRAND_ID, _brand},
             {Classes.Default.Attributes.BRAND_NAME_ID, _brand_name},
             {Classes.Default.Attributes.MARKET_NAME_ID, _market_name},
+            {Classes.Default.Attributes.GROUP_NAME_ID, _group_name},
+            {Classes.Default.Attributes.ORDER_ID, _order},
+            {Classes.Default.Attributes.NTS_CONFIG_ID, _nts_config},
+            {Classes.Default.Attributes.NTS_ID, _nts},
+            {Classes.Default.Attributes.ROSSETA_ID, _rosetta},
+            {Classes.Default.Attributes.ROSETTA_CONFIG_ID, _rosetta_config}
         };
     }
     public static class ElementsView

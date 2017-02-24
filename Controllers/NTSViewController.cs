@@ -149,7 +149,7 @@ namespace StrawmanApp.Controllers
                     List<StrawmanDBLibray.Entities.WRK_VIEWS_VARIABLES> var = (List<StrawmanDBLibray.Entities.WRK_VIEWS_VARIABLES>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.WRK_VIEWS_VARIABLES, true);
                     var = var.Where(m => m.VIEW == Classes.Default.Variables.STRAWMAN_COLORS)
                             .Select(m => m).ToList();
-                    List<Models.MarketDataModels> aux = data
+                    List<Models.MarketDataModels> aux = data.Where(m => m.STATUS == "A").AsEnumerable()
                         .GroupJoin(var, l => new { ID = "BRAND:" + l.BRAND.ToString() + ";MARKET:" + l.MARKET.ToString() }, v => new { ID = v.NAME }, (l, v) => new { l = l, v = v })
                         .SelectMany(f => f.v.DefaultIfEmpty(), (l, v) => new { l = l.l, v = v }).ToList()
                         .Select(p => new Models.MarketDataModels
@@ -163,6 +163,7 @@ namespace StrawmanApp.Controllers
                             source = p.l.SOURCE,
                             vgroup = p.l.GROUP,
                             vorder = p.l.ORDER,
+                            vgorder = p.l.GROUP_ORDER,
                             style = p.v == null ? "" : Helpers.StyleUtils.GetBGColor(p.v.VALUE, true)
                         }).ToList();
                     return aux;
@@ -248,9 +249,9 @@ namespace StrawmanApp.Controllers
         private void GroupData(ref IEnumerable<Models.StrawmanViewSTDModel> obj)
         {
             //Grupos
-            List<StrawmanDBLibray.Entities.CALCS_MARKETS_CONFIG> config = (List<StrawmanDBLibray.Entities.CALCS_MARKETS_CONFIG>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.CALCS_MARKETS_CONFIG, new Helpers.Session().CacheStatus);
-            List<StrawmanDBLibray.Entities.BRAND_MASTER> data = (List<StrawmanDBLibray.Entities.BRAND_MASTER>)GetSessionData(StrawmanDBLibray.Classes.StrawmanDataTables.BRAND_MASTER);
-            List<StrawmanDBLibray.Entities.v_STRWM_MARKET_DATA> mstr = (List<StrawmanDBLibray.Entities.v_STRWM_MARKET_DATA>)GetSessionData(StrawmanDataTables.v_STRWM_BRAND_DATA);
+            List<StrawmanDBLibray.Entities.CALCS_MARKETS_CONFIG> config = (List<StrawmanDBLibray.Entities.CALCS_MARKETS_CONFIG>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.CALCS_MARKETS_CONFIG, Helpers.Session.CacheStatus);
+            List<StrawmanDBLibray.Entities.BRAND_MASTER> data = (List<StrawmanDBLibray.Entities.BRAND_MASTER>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.BRAND_MASTER, Helpers.Session.CacheStatus);
+            List<StrawmanDBLibray.Entities.v_STRWM_MARKET_DATA> mstr = (List<StrawmanDBLibray.Entities.v_STRWM_MARKET_DATA>)Helpers.StrawmanDBLibrayData.Get(StrawmanDataTables.v_STRWM_BRAND_DATA, Helpers.Session.CacheStatus);
             var cfg = mstr.Where(m=>m.MARKET < 9000 && m.BRAND < 9000).AsEnumerable().Join(config, c => new { _market = (decimal)c.MARKET, _brand = (decimal)c.BRAND }, d => new { _market = d.MARKET, _brand = d.BRAND }, (c, d) => new
             {
                 market = (decimal?)c.MARKET,
@@ -327,8 +328,8 @@ namespace StrawmanApp.Controllers
                       }).AsEnumerable();
             obj = obj.Union(chgrp).AsEnumerable();
             //Custom groups
-            List<StrawmanDBLibray.Entities.GROUP_CONFIG> gcfg = (List<StrawmanDBLibray.Entities.GROUP_CONFIG>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.GROUP_CONFIG, new Helpers.Session().CacheStatus);
-            List<StrawmanDBLibray.Entities.GROUP_MASTER> gmst = (List<StrawmanDBLibray.Entities.GROUP_MASTER>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.GROUP_MASTER, new Helpers.Session().CacheStatus);
+            List<StrawmanDBLibray.Entities.GROUP_CONFIG> gcfg = (List<StrawmanDBLibray.Entities.GROUP_CONFIG>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.GROUP_CONFIG, Helpers.Session.CacheStatus);
+            List<StrawmanDBLibray.Entities.GROUP_MASTER> gmst = (List<StrawmanDBLibray.Entities.GROUP_MASTER>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.GROUP_MASTER, Helpers.Session.CacheStatus);
             var ccfg = mstr.Where(m => m.MARKET < 9000 && m.BRAND < 9000).AsEnumerable()
                         .Join(gcfg, c => new { _market = c.MARKET, _brand = c.BRAND }, d => new { _market = d.MARKET, _brand = d.BRAND }, (c, d) => new
                             {
@@ -377,7 +378,7 @@ namespace StrawmanApp.Controllers
             obj = obj.Union(cwcgrp).AsEnumerable();
             //Channels WC
             var thwcgrp = ccfg.Where(m => m.vtype == 18).AsEnumerable();
-            List<StrawmanDBLibray.Entities.GROUP_TYPES> gtyp = (List<StrawmanDBLibray.Entities.GROUP_TYPES>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.GROUP_TYPES, new Helpers.Session().CacheStatus);
+            List<StrawmanDBLibray.Entities.GROUP_TYPES> gtyp = (List<StrawmanDBLibray.Entities.GROUP_TYPES>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.GROUP_TYPES, Helpers.Session.CacheStatus);
             var chwcgrp = thwcgrp
                         .Join(tobj, d => new { _market = d.market, _brand = d.brand, _channel = d.channel }, o => new { _market = o.market, _brand = o.brand, _channel = o.channel }, (d, o) => new { d = d, o = o })
                         .AsEnumerable()

@@ -704,6 +704,7 @@ namespace StrawmanApp.Controllers
                             conversion_rate1 = null,
                             conversion_rate2 = null,
                             vgroup = p.GROUP,
+                            vorder = p.NTS_ORDER,
                             market = p.MARKET,
                             market_col1 = (double?)p.MARKET_COL1,
                             market_col2 = (double?)p.MARKET_COL2,
@@ -862,6 +863,14 @@ namespace StrawmanApp.Controllers
             List<StrawmanDBLibray.Entities.GROUP_CONFIG> gchannels = (List<StrawmanDBLibray.Entities.GROUP_CONFIG>)StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.GROUP_CONFIG, true);
             List<StrawmanDBLibray.Entities.GROUP_MASTER> gmaster = (List<StrawmanDBLibray.Entities.GROUP_MASTER>)StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.GROUP_MASTER, true);
             List<StrawmanDBLibray.Entities.BOY_CONFIG> gconfig = (List<StrawmanDBLibray.Entities.BOY_CONFIG>)StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.BOY_CONFIG, true);
+            List<StrawmanDBLibray.Entities.CALCS_MARKETS_CONFIG> mcfg = (List<StrawmanDBLibray.Entities.CALCS_MARKETS_CONFIG>)StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.CALCS_MARKETS_CONFIG);
+            List<StrawmanDBLibray.Entities.CALCS_BRANDS_CONFIG> bcfg = (List<StrawmanDBLibray.Entities.CALCS_BRANDS_CONFIG>)StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.CALCS_BRANDS_CONFIG);
+            var cfg = mcfg.Join(bcfg, m=>new{_brand = m.BRAND, _market = m.MARKET}, b=>new{_brand = b.BRAND, _market = b.MARKET}, (m,b)=>new{m=m, b= b}).AsEnumerable().Select(m=>new {
+                _brand = m.m.BRAND,
+                _market = m.m.MARKET,
+                _brandcfg = m.b.CHANNELCFG,
+                _marketcfg = m.m.CHANNELCFG
+            }).ToList();
             var grp = gchannels.Where(m => m.TYPE_ID == (decimal?)StrawmanCalcs.GetGroupTypeByView(BY_CHANNEL_CONTROLLER)).AsEnumerable()
                 .Join(gconfig, c => new { c.MARKET, c.BRAND }, n => new { n.MARKET, n.BRAND }, (c, n) => new
                 {
@@ -870,13 +879,13 @@ namespace StrawmanApp.Controllers
                     market = c.MARKET,
                     brand = c.BRAND,
                     channel = n.CHANNEL,
-                    market_config = n.MARKET_CONFIG,
-                    sellout_config = n.SELLOUT_CONFIG,
+                    market_config = cfg.Find(m=>m._brand == c.BRAND && m._market == c.MARKET) == null?0:cfg.Find(m=>m._brand == c.BRAND && m._market == c.MARKET)._marketcfg ?? n.MARKET_CONFIG,
+                    sellout_config = cfg.Find(m=>m._brand == c.BRAND && m._market == c.MARKET) == null?0:cfg.Find(m => m._brand == c.BRAND && m._market == c.MARKET)._brandcfg ?? n.SELLOUT_CONFIG,
                     sellin_config = n.SELLIN_CONFIG,
                     name = gmaster.FirstOrDefault(m => m.ID == c.GROUP_ID).NAME
                 }).AsEnumerable();
             var chan =  grp
-                .Join(query, m => new { _brand = m.brand, _market = m.market, _channel = m.channel}, l => new { _brand = l.brand, _market = l.market, _channel = l.channel },
+                .Join(query.Where(m=>m.brand<9000&&m.market<9000).AsEnumerable(), m => new { _brand = m.brand, _market = m.market, _channel = m.channel}, l => new { _brand = l.brand, _market = l.market, _channel = l.channel },
                         (m, l) => new Models.BoyMassMarketModels
                         {
                             _id = (decimal)m.id,
@@ -885,12 +894,12 @@ namespace StrawmanApp.Controllers
                             boy_name = m.name,
                             market = m.market,
                             base_id = m.base_id,
-                            market_col1 = l.market_col1 * (double)(m.market_config == null ? 1 : m.market_config),
-                            market_col2 = l.market_col2 * (double)(m.market_config == null ? 1 : m.market_config),
-                            sellin_col1 = l.sellin_col1 * (double)(m.sellin_config == null ? 1 : m.sellin_config),
-                            sellin_col2 = l.sellin_col2 * (double)(m.sellin_config == null ? 1 : m.sellin_config),
-                            sellout_col1 = l.sellout_col1 * (double)(m.sellout_config == null ? 1 : m.sellout_config),
-                            sellout_col2 = l.sellout_col2 * (double)(m.sellout_config == null ? 1 : m.sellout_config),
+                            market_col1 = l.market_col1 * (double)(m.market_config??1),
+                            market_col2 = l.market_col2 * (double)(m.market_config??1),
+                            sellin_col1 = l.sellin_col1 * (double)(m.sellin_config??1),
+                            sellin_col2 = l.sellin_col2 * (double)(m.sellin_config??1),
+                            sellout_col1 = l.sellout_col1 * (double)(m.sellout_config??1),
+                            sellout_col2 = l.sellout_col2 * (double)(m.sellout_config??1),
                             type = l.type,
                             vgroup = l.vgroup
 

@@ -15,7 +15,7 @@
     <div style="border:0; margin:5px;min-width:250px;" data-type="data_wrapper">
     <table class="table grid-table boytable" style="border: 0px currentColor;">
         <thead>
-@*        @if (nname != tname && (item.brand < 9000 && item.market < 9000))
+      @*@if (nname != tname && (item.brand < 9000 && item.market < 9000))
         {            
          <tr>
             @if (String.IsNullOrEmpty(nname))
@@ -67,7 +67,7 @@
         {
         <tr class="grid-row share" style="">
             @if(item.brand_name !=null && item.brand_name != item.boy_name){
-            <td class="grid-cell" style="text-align:left; vertical-align:middle; width:50%;" rowspan="3">@Html.DisplayFor(m => item.brand_name)</td>
+            <td class="grid-cell" style="text-align:left; font-weight:bold; vertical-align:middle; width:50%;" rowspan="3">@Html.DisplayFor(m => item.brand_name)</td>
             }
             <td class="grid-cell">
                 % SOM</td>
@@ -104,11 +104,11 @@
             </tr>    
         </tbody></table>
         }
-        
-    <div class="comments-button" style="height: 36px; margin-top: 5px; margin-bottom: 15px;">            
+    @{Html.RenderAction("GetCommentsButton", "Comments", new { data = new ViewDataDictionary { { "market", item.market }, { "brand", item.brand }, { "channel", item.channel }, { "name", nname }, { "vorder", item.vorder } } });}    
+@*    <div class="comments-button" style="height: 36px; margin-top: 5px; margin-bottom: 15px;">            
             <button class="btn btn-default" style="margin: 0px; border: 1px solid rgb(255, 255, 255); width: 100%; color: rgb(255, 255, 255); background-color: rgb(150, 150, 255);" data-link="modal_comments"
-                data-type="btn-comment" data-value-market="@item.market" data-value-brand ="@item.brand" data-value-channel ="@item.channel" data-value-name="@nname"> Monthly Comments</button>
-    </div>
+                data-type="btn-comment" data-value-market="@item.market" data-value-brand ="@item.brand" data-value-channel ="@item.channel" data-value-name="@Html.Raw(nname)" data-value-group="@item.vorder"> Monthly Comments</button>
+    </div>*@
        
     </div> 
         tname = nname;      

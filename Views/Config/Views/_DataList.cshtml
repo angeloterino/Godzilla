@@ -1,0 +1,91 @@
+﻿@model List<StrawmanApp.Models.ItemsConfigModel>
+@{  string action_name = ViewBag.ActionName;
+    string selectedId = ViewBag.SelectedId;
+    int current_channel = 0;
+    int? current_group = ViewBag.CurrentGroup;
+    string form_type = ViewBag.FormType;
+    string _option = ViewBag.Option;
+    bool items_edit = ViewBag.FormType == StrawmanApp.Controllers.ConfigController.FormTypes.UPDATE_CONFIG;
+    bool update_items = ViewBag.FormType == StrawmanApp.Controllers.ConfigController.FormTypes.ADD_ITEMS;
+    List<StrawmanApp.Models.ItemsConfigModel> items = (List<StrawmanApp.Models.ItemsConfigModel>)Model;
+    string light_green_color = StrawmanApp.Helpers.StrawmanConstants.Colors.LigthGreen;
+    <div class="panel-body" id="list-groups" style="height:520px; overflow:auto;padding:0;" data-controller ="GetGroupItemsListFor" data-target ="items_viewer">
+    @using (Ajax.BeginForm(action_name, "Forms", new AjaxOptions { HttpMethod = "Post", OnSuccess = "UpdateSuccess('"+form_type+"','items_viewer','" + selectedId + "')" }, new { @style = "margin-bottom:0px;"}))
+    {
+        string channel = "", last = "";
+        int parent = 1, channel_aux = 0;
+        @Html.Hidden("source",_option)
+        foreach (StrawmanApp.Models.ItemsConfigModel item in items)
+        {
+            string link_text = (item.brand_description == null) ? item.nts_name : item.brand_description;
+            int index = items.FindIndex(m => m.id == item.id);
+            if (current_channel == 0) { current_channel = int.Parse(item.channel); }
+            if (index < items.Count - 1)
+            {
+                StrawmanApp.Models.ItemsConfigModel auxItem = items[index + 1];
+                channel_aux = int.Parse(auxItem.channel);
+                if (channel_aux > int.Parse(item.channel))
+                {
+                    last = "list-group-item-heading";
+                }
+                else
+                {
+                    last = "";
+                }
+            }
+            StrawmanApp.Models.ItemsConfigModel cfg = items.Find(m => m.channel == item.channel && m.brand == item.brand && m.market == item.market);
+            if (channel != item.channel_description)
+            {
+                     <span class="list-group-item list-group-item-danger" style="font-weight:bold;">@item.channel_description</span>
+                channel = item.channel_description;
+            }
+            if (form_type == StrawmanApp.Controllers.ConfigController.FormTypes.MASTER_DATA){
+                <a class="list-group-item @last" data-btn-type = "show-group" data-btn-target-id = "items_viewer"  data-btn-target-url = "SelectKPI" data-btn-param =  "@item.id">@link_text</a>
+            }
+            if (form_type == StrawmanApp.Controllers.ConfigController.FormTypes.UPDATE_CONFIG){
+                <span class="list-group-item " data-btn-type="show-group" data-btn-target-id="items_viewer" data-btn-target-url="SelectKPI" data-btn-param="@item.id">
+                    @Html.Label(link_text, new { @style = "display: inline-block;font-weight: normal;" }) 
+                    <span class="pull-right">
+                    @Html.CheckBox("market_config_" + item.brand, item.market_config==1, new { @id = "market_" + item.id.ToString(), @value = item.brand, @data_parent_id = parent,@data_type = "partial", @style="margin-left:5px;" })
+                    @Html.Label("Market",new{@for= "market_" + item.id.ToString(),@style="display: inline-block;margin-left: 5px;font-weight: normal;"})
+                    @Html.CheckBox("brand_config_" + item.brand, item.brand_config == 1, new { @id = "brand_" + item.id.ToString(), @value = item.brand, @data_parent_id = parent,@data_type = "partial", @style="margin-left:5px;" })
+                    @Html.Label("Brand",new{@for= "brand_" + item.id.ToString(),@style="display: inline-block;margin-left: 5px;font-weight: normal;"})
+                    @Html.HiddenFor(m=>item.brand)
+                    @Html.HiddenFor(m=>item.market)
+                    @Html.HiddenFor(m=>item.channel)
+                    @Html.HiddenFor(m=>item.group_id)
+                    </span>
+                </span>
+            }
+            if (form_type == StrawmanApp.Controllers.ConfigController.FormTypes.ADD_ITEMS)
+            {
+                <span class="list-group-item " data-btn-type="show-group" data-btn-target-id="items_viewer" data-btn-target-url="SelectKPI" data-btn-param="@item.id">
+                    @Html.CheckBox("item_selected_" + item.brand, item.selected, new { @id = item.id.ToString(), @value = item.brand, @data_parent_id = parent,@data_type = "partial", @style="" })
+                    @Html.HiddenFor(m=>item.brand)
+                    @Html.HiddenFor(m=>item.market)
+                    @Html.HiddenFor(m=>item.channel)
+                    @Html.HiddenFor(m=>item.group_id)
+                    @Html.Label(link_text, new {@for = item.id.ToString(), @style = "margin-left:5px;display: inline-block;font-weight: normal;" })
+                </span>
+            }
+            parent++;
+                
+        }
+        if(current_group != null) { @Html.HiddenFor(m=>current_group)  }
+    }
+    </div>
+    if(items_edit)
+    {
+    <div class="panel-footer">
+        <a class="btn btn-default" style="border:1px solid #ccc;" data-btn-type="save-group" data-btn-target-id="modal_items" data-btn-target-url="SaveDataGroup">@StrawmanApp.Helpers.MessageByLanguage.Save</a>
+        @if(_option!="CHANNEL"){<a class="btn btn-default pull-right" style="border:1px solid #ccc;" data-btn-type="add-item-group" data-btn-target-id="modal_items" data-btn-param ="@current_channel" data-btn-target-url="EditItemsDataGroup">@StrawmanApp.Helpers.MessageByLanguage.Add</a>}
+        <div class="clear-fix"></div>
+    </div>
+    }else if(update_items){
+    <div class="panel-footer">
+        <a class="btn btn-default" style="border:1px solid #ccc;" data-btn-type="save-item-group" data-btn-target-id="modal_items" data-btn-param ="@current_channel" data-btn-target-url="EditItemsDataGroup">@StrawmanApp.Helpers.MessageByLanguage.Save</a>
+        <a class="btn btn-default pull-right" style="border:1px solid #ccc;" data-btn-type="close-item-group" data-btn-target-id="modal_items" data-btn-param ="@current_channel" data-btn-target-url="EditItemsDataGroup">@StrawmanApp.Helpers.MessageByLanguage.Close</a>
+        <div class="clear-fix"></div>
+    </div>
+    }
+}

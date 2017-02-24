@@ -1,0 +1,34 @@
+﻿@{
+    string style_red = ViewData["style_red"].ToString();
+    bool has_son = (bool)ViewData["has_child"];
+    bool has_parent = (bool)ViewData["has_parent"];
+    bool level2 = (bool)ViewData["level2"];
+    string border_transparent = ViewData["bottom-transparent"].ToString();
+    //border_transparent = (level2) ? "" : border_transparent;
+    string level =  (level2) ? "level2" : "level1";
+    List<StrawmanDBLibray.Entities.LETTERS_COMMENT_DATA> letters_son = (List<StrawmanDBLibray.Entities.LETTERS_COMMENT_DATA>)ViewData["letters_son"];
+    StrawmanDBLibray.Entities.v_WRK_MANAGEMENT_LETTERS son = (StrawmanDBLibray.Entities.v_WRK_MANAGEMENT_LETTERS)ViewData["son"];
+  if(!has_son){
+    <tr class="table-row" style="display:table-row" data-type="sublevel">
+        @if(level2){ <td class="table-cell" style="display:table-cell;width:15px;border:0; border-spacing:0; border-collapse:collapse;@border_transparent"  data-type="@level">&nbsp;</td>}
+        <td class="table-cell" style="display:table-cell;width:120px;font-weight:bold;color:@style_red ;"  data-type="@level">
+            @Html.DisplayFor(m=>son.NAME)
+        </td>
+        <td class="table-cell" style="display:table-cell;" data-type="@level">
+            @{Html.RenderAction("GetCommentWrapper", new { item = son, letters = letters_son, get_child = true });}
+        </td>
+    </tr>
+    }else{
+    if(has_parent){<tr class="table-row" style="display:none" data-type="sublevel-width-son-has-parent"><td class="table-cell" style="display:table-cell;width:15px;" rowspan="3" data-type="@level">&nbsp;</td></tr>}
+    <tr class="table-row" style="display:table-row" data-type="sublevel-with-son"> 
+        <td class="table-cell" style="display:table-cell;width:120px;font-weight:bold;color:@style_red" colspan="2" data-type="@level">
+            @Html.DisplayFor(m=>son.NAME)
+        </td>
+    </tr>
+    <tr class="table-row" style="display:table-row"> 
+        <td class="table-cell" style="display:table-cell;" colspan="2" data-type="@level">
+            @{Html.RenderAction("GetCommentWrapper", new { item = son, letters = letters_son, get_child = true });}
+        </td>
+    </tr>
+  }
+}

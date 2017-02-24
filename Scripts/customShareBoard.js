@@ -1,4 +1,4 @@
-﻿$.getScript('../../Scripts/table.utils/table.blocker.js');
+$.getScript('../../Scripts/table.utils/table.blocker.js');
 
 $(document).ready(function () {
     //$('.grid-wrap').css({ 'height': '100%' });
@@ -76,6 +76,7 @@ $(document).ready(function () {
             $('.mastertable').show();
             $('.loading-bar').animate({ 'border-color': 'rgb(0,220,0)' }, 'slow');
             $('.loading-bar').animate({ width: '100%', 'border-color': 'rgb(0,220,0)' }, 'slow', function () {
+                checkCookies();
                 $('.load-mask').animate({ opacity: 'hide' }, 'slow', function () { CloneLeftColumn("ShareBoard_DataView");$(this).hide() });
             });
             

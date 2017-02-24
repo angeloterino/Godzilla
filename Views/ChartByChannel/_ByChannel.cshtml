@@ -1,81 +1,120 @@
-﻿<div style="display:table-row">
+﻿@{ string _month = new DateTime(StrawmanApp.Helpers.PeriodUtil.Year, StrawmanApp.Helpers.PeriodUtil.Month, 1).ToString("MMMM", System.Globalization.CultureInfo.InvariantCulture);}
+<div style="display:table-row">
 <div class="chart_wrapper" style="width:1380px; border:2px solid rgb(255,0,0);">
 <div class="chart_title" style="margin: 20px; height:35px; font-family:Arial; font-size:21px; font-weight:bold; background-color:rgb(255,0,0); color:rgb(255,255,255);position:relative;padding-left:20px;">
-@ViewBag.ChartTitle<div style="float:right; margin-right:20px;">Data up to February 2015</div>
+@ViewBag.ChartTitle<div style="float:right; margin-right:20px;">Data up to @_month @StrawmanApp.Helpers.PeriodUtil.Year.ToString()</div>
 </div>
 <table style="font-size:1.6em; margin:0 auto;" class="chart">
 <thead>
 <tr>
-<th colspan="3" style="width:24%;">2015 MAT Market Size<br />($ MM)</th>
-<th>2015 MAT Market <br />Share (%)</th>
-<th>2015 YTD Market <br />Share (%)</th>
-<th>2015 LM Market <br />Share (%)</th>
+<th colspan="3" style="width:24%;">@StrawmanApp.Helpers.PeriodUtil.Year.ToString() MAT Market Size<br />($ MM)</th>
+<th>@StrawmanApp.Helpers.PeriodUtil.Year.ToString() MAT Market <br />Share (%)</th>
+<th>@StrawmanApp.Helpers.PeriodUtil.Year.ToString() YTD Market <br />Share (%)</th>
+<th>@StrawmanApp.Helpers.PeriodUtil.Year.ToString() LM Market <br />Share (%)</th>
 <th style="width:5%"></th>
-<th>2015 MAT <br />Growth (%)</th>
-<th>2015 YTD <br />Growth (%)</th>
-<th>2014 LM <br />Growth (%)</th>
+<th>@StrawmanApp.Helpers.PeriodUtil.Year.ToString() MAT <br />Growth (%)</th>
+<th>@StrawmanApp.Helpers.PeriodUtil.Year.ToString() YTD <br />Growth (%)</th>
+<th>@StrawmanApp.Helpers.PeriodUtil.Year.ToString() LM <br />Growth (%)</th>
 </tr>
 </thead>
 <tbody>
 @{
     
 string _class, _v = "";
-decimal _c,_jj;
+decimal _c,_jj, _p,_l;
 foreach(StrawmanApp.Models.ChartByChannelModels item in Model){
     <tr>
     <td style="text-align:right; width:auto;">@Html.DisplayFor(m =>item.channel_name)</td>
     <td style="width:5px; border: 1px solid rgb(0,0,0); border-left:0;"></td>
     <td style="width:11.5%;"><div style="background-color:rgb(0,204,255);width:@Html.DisplayFor(m=>item.mat_market_size_pc).ToString().Replace(',','.');float:left;height:60px;border:1px solid rgb(0,0,0);border-left:0;"></div><span style="margin-top: 6%; margin-left: 2%; float: left;">@Html.DisplayFor(m=>item.mat_market_size)</span></td>
     <td> 
-        <div class="pc"><div style="background-color:rgb(255,0,255);width:@Html.DisplayFor(m => item.mat_market_share_p_pc).ToString().Replace(',', '.');float:left; height:40px;"></div><span style="margin-top: 6%; margin-left: 2%; float: left;">@Html.DisplayFor(m => item.mat_market_share_p)</span></div>
-        <div class="pc" style="clear:both;"><div style="background-color:rgb(0,0,255);width:@Html.DisplayFor(m => item.mat_market_share_l_pc).ToString().Replace(',', '.');float:left; height:40px;"></div><span style="margin-top: 6%; margin-left: 2%; float: left;">@Html.DisplayFor(m => item.mat_market_share_l)</span></div></td>
+    @{
+    _v = "";
+    _p = (decimal)item.mat_market_share_p;
+    _l = (decimal)item.mat_market_share_l;
+    if (_p < 0) { _v = "margin-left:-" + Html.DisplayFor(m => item.mat_market_share_p_pc).ToString().Replace(',', '.') + ";"; }
+    }
+        <div class="pc"><div style="background-color:rgb(255,0,255);width:@Html.DisplayFor(m => item.mat_market_share_p_pc).ToString().Replace(',', '.');float:left; height:40px;@_v"></div><span style="margin-top: 6%; margin-left: 2%; float: left;">@Html.DisplayFor(m => item.mat_market_share_p)</span></div>
+    @{
+    _v = "";
+    if (_l < 0) { _v = "margin-left:-" + Html.DisplayFor(m => item.mat_market_share_l_pc).ToString().Replace(',', '.') + ";"; }
+    }
+        <div class="pc" style="clear:both;"><div style="background-color:rgb(0,0,255);width:@Html.DisplayFor(m => item.mat_market_share_l_pc).ToString().Replace(',', '.');float:left; height:40px;@_v"></div><span style="margin-top: 6%; margin-left: 2%; float: left;">@Html.DisplayFor(m => item.mat_market_share_l)</span></div></td>
     <td>
-        <div class="pc"><div style="background-color:rgb(255,0,255);width:@Html.DisplayFor(m => item.ytd_market_share_p_pc).ToString().Replace(',', '.');float:left; height:30px;"></div><span style="margin-top: 6%; margin-left: 2%; float: left;">@Html.DisplayFor(m => item.ytd_market_share_p)</span></div>
-        <div class="pc" style="clear:both;"><div style="background-color:rgb(0,0,255);width:@Html.DisplayFor(m => item.ytd_market_share_l_pc).ToString().Replace(',', '.');float:left; height:30px;"></div><span style="margin-top: 6%; margin-left: 2%; float: left;">@Html.DisplayFor(m => item.ytd_market_share_l)</span></div></td>
+    @{
+    _v = "";
+    _p = (decimal)item.ytd_market_share_p;
+    _l = (decimal)item.ytd_market_share_l;
+    if (_p < 0) { _v = "margin-left:-" + Html.DisplayFor(m => item.ytd_market_share_p_pc).ToString().Replace(',', '.') + ";"; }
+    }
+        <div class="pc"><div style="background-color:rgb(255,0,255);width:@Html.DisplayFor(m => item.ytd_market_share_p_pc).ToString().Replace(',', '.');float:left; height:30px;@_v"></div><span style="margin-top: 6%; margin-left: 2%; float: left;">@Html.DisplayFor(m => item.ytd_market_share_p)</span></div>
+    @{
+    _v = "";
+    if (_l < 0) { _v = "margin-left:-" + Html.DisplayFor(m => item.ytd_market_share_l_pc).ToString().Replace(',', '.') + ";"; }
+    }
+        <div class="pc" style="clear:both;"><div style="background-color:rgb(0,0,255);width:@Html.DisplayFor(m => item.ytd_market_share_l_pc).ToString().Replace(',', '.');float:left; height:30px;@_v"></div><span style="margin-top: 6%; margin-left: 2%; float: left;">@Html.DisplayFor(m => item.ytd_market_share_l)</span></div></td>
     <td>
-        <div class="pc"><div style="background-color:rgb(255,0,255);width:@Html.DisplayFor(m => item.lm_market_share_p_pc).ToString().Replace(',', '.');float:left; height:30px;"></div><span style="margin-top: 6%; margin-left: 2%; float: left;">@Html.DisplayFor(m => item.lm_market_share_p)</span></div>
-        <div class="pc" style="clear:both;"><div style="background-color:rgb(0,0,255);width:@Html.DisplayFor(m => item.lm_market_share_l_pc).ToString().Replace(',', '.');float:left; height:30px;"></div><span style="margin-top: 6%; margin-left: 2%; float: left;">@Html.DisplayFor(m => item.lm_market_share_l)</span></div></td>
+    @{
+    _v = "";
+    _p = (decimal)item.lm_market_share_p;
+    _l = (decimal)item.lm_market_share_l;
+    if (_l > _p) { _class = "positive"; }
+    else { _class = "negative"; }
+    if (_p < 0) { _v = "margin-left:-" + Html.DisplayFor(m => item.lm_market_share_p_pc).ToString().Replace(',', '.') + ";"; }
+    }
+        <div class="pc"><div style="background-color:rgb(255,0,255);width:@Html.DisplayFor(m => item.lm_market_share_p_pc).ToString().Replace(',', '.');float:left; height:30px;@_v"></div><span style="margin-top: 6%; margin-left: 2%; float: left;">@Html.DisplayFor(m => item.lm_market_share_p)</span></div>
+    @{
+    _v = "";
+    if (_l < 0) { _v = "margin-left:-" + Html.DisplayFor(m => item.lm_market_share_l_pc).ToString().Replace(',', '.') + ";"; }
+    }
+        <div class="pc" style="clear:both;"><div style="background-color:rgb(0,0,255);width:@Html.DisplayFor(m => item.lm_market_share_l_pc).ToString().Replace(',', '.');float:left; height:30px;@_v"></div><span style="margin-top: 6%; margin-left: 2%; float: left;">@Html.DisplayFor(m => item.lm_market_share_l)</span></div></td>
     <td>
         &nbsp;
     </td>
     <td>
-        <div class="pc"><div style="background-color:rgb(0,204,255);width:@Html.DisplayFor(m => item.mat_grouth_c_pc).ToString().Replace(',', '.');float:left; height:30px;"></div><span style="margin-top: 6%; margin-left: 2%; float: left;">@Html.DisplayFor(m => item.mat_grouth_c)</span></div>
     @{
     _v = "";
     _c = (decimal)item.mat_grouth_c;
     _jj = (decimal)item.mat_grouth_jj;
-
-        if (_jj > _c) { _class = "positive"; }
-        else { _class = "negative"; }
-        if (_jj < 0) { _v = "margin-left:-" + Html.DisplayFor(m => item.mat_grouth_jj_pc).ToString().Replace(',', '.') + ";"; }
-            
-      }
+    if (_c < 0) { _v = "margin-left:-" + Html.DisplayFor(m => item.mat_grouth_c_pc).ToString().Replace(',', '.') + ";"; }
+    }
+        <div class="pc"><div style="background-color:rgb(0,204,255);width:@Html.DisplayFor(m => item.mat_grouth_c_pc).ToString().Replace(',', '.');float:left; height:30px;@_v"></div><span style="margin-top: 6%; margin-left: 2%; float: left;">@Html.DisplayFor(m => item.mat_grouth_c)</span></div>
+    @{
+    _v = "";
+    if (_jj > _c) { _class = "positive"; }
+    else { _class = "negative"; }
+    if (_jj < 0) { _v = "margin-left:-" + Html.DisplayFor(m => item.mat_grouth_jj_pc).ToString().Replace(',', '.') + ";"; }
+    }
         <div class="pc" style="clear:both;"><div class="@_class" style="background-color:rgb(0,204,255);width:@Html.DisplayFor(m => item.mat_grouth_jj_pc).ToString().Replace(',', '.');float:left; height:30px;@_v"></div><span style="margin-top: 6%; margin-left: 2%; float: left;">@Html.DisplayFor(m => item.mat_grouth_jj)</span></div></td>
     <td style="width:10%">
-        <div class="pc"><div style="background-color:rgb(0,204,255);width:@Html.DisplayFor(m => item.ytd_grouth_c_pc).ToString().Replace(',', '.');float:left; height:30px;"></div><span style="margin-top: 6%; margin-left: 2%; float: left;">@Html.DisplayFor(m => item.ytd_grouth_c)</span></div>
     @{
     _v = "";
     _c = (decimal)item.ytd_grouth_c;
     _jj = (decimal)item.ytd_grouth_jj;
-
-        if (_jj > _c) { _class = "positive"; }
-        else { _class = "negative"; }
-        if (_jj < 0) { _v = "margin-left:-" + Html.DisplayFor(m => item.ytd_grouth_jj_pc).ToString().Replace(',','.') + ";"; }
-            
-      }
+    if (_c < 0) { _v = "margin-left:-" + Html.DisplayFor(m => item.ytd_grouth_c_pc).ToString().Replace(',', '.') + ";"; }
+    }
+        <div class="pc"><div style="background-color:rgb(0,204,255);width:@Html.DisplayFor(m => item.ytd_grouth_c_pc).ToString().Replace(',', '.');float:left; height:30px;@_v"></div><span style="margin-top: 6%; margin-left: 2%; float: left;">@Html.DisplayFor(m => item.ytd_grouth_c)</span></div>
+    @{
+    _v = "";
+    if (_jj > _c) { _class = "positive"; }
+    else { _class = "negative"; }
+    if (_jj < 0) { _v = "margin-left:-" + Html.DisplayFor(m => item.ytd_grouth_jj_pc).ToString().Replace(',','.') + ";"; }
+    }
         <div class="pc" style="clear:both;"><div class="@_class" style="background-color:rgb(0,204,255);width:@Html.DisplayFor(m => item.ytd_grouth_jj_pc).ToString().Replace(',', '.');float:left; height:30px;@_v"></div><span style="margin-top: 6%; margin-left: 2%; float: left;">@Html.DisplayFor(m => item.ytd_grouth_jj)</span></div></td>
     <td>
-        <div class="pc"><div style="background-color:rgb(0,204,255);width:@Html.DisplayFor(m => item.lm_grouth_c_pc).ToString().Replace(',', '.');float:left; height:30px;"></div><span style="margin-top: 6%; margin-left: 2%; float: left;">@Html.DisplayFor(m => item.lm_grouth_c)</span></div>
     @{
     _v = "";
     _c = (decimal)item.lm_grouth_c;
     _jj = (decimal)item.lm_grouth_jj;
-
-        if (_jj > _c) { _class = "positive"; }
-        else { _class = "negative"; }
-        if (_jj < 0) { _v = "margin-left:-" + Html.DisplayFor(m => item.lm_grouth_jj_pc).ToString().Replace(',', '.') + ";"; }
-            
-      }
+    if (_c < 0) { _v = "margin-left:-" + Html.DisplayFor(m => item.lm_grouth_c_pc).ToString().Replace(',', '.') + ";"; }
+    }
+        <div class="pc"><div style="background-color:rgb(0,204,255);width:@Html.DisplayFor(m => item.lm_grouth_c_pc).ToString().Replace(',', '.');float:left; height:30px;@_v"></div><span style="margin-top: 6%; margin-left: 2%; float: left;">@Html.DisplayFor(m => item.lm_grouth_c)</span></div>
+    @{
+    _v = "";
+    if (_jj > _c) { _class = "positive"; }
+    else { _class = "negative"; }
+    if (_jj < 0) { _v = "margin-left:-" + Html.DisplayFor(m => item.lm_grouth_jj_pc).ToString().Replace(',', '.') + ";"; }
+    }
         <div class="pc" style="clear:both;"><div class="@_class" style="background-color:rgb(0,204,255);width:@Html.DisplayFor(m => item.lm_grouth_jj_pc).ToString().Replace(',', '.');float:left; height:30px;@_v"></div><span style="margin-top: 6%; margin-left: 2%; float: left;">@Html.DisplayFor(m => item.lm_grouth_jj)</span></div></td>
     </tr>
     }
@@ -85,16 +124,15 @@ foreach(StrawmanApp.Models.ChartByChannelModels item in Model){
 <div class="clear" style="clear:both;"></div>
 </div>
 <div class="chart_wrapper" style="width:750px; border:2px solid rgb(255,0,0);margin-left:40px;">
-<div class="chart_title" style="margin: 20px; height:35px; font-family:Arial; font-size:21px; font-weight:bold; background-color:rgb(255,0,0); color:rgb(255,255,255);position:relative;padding-left:20px; text-align:center;">
+<div class="chart_title" style="margin: 20px; height:35px; font-family:Arial; font-size:21px; font-weight:bold; background-color:rgb(255,0,0); color:rgb(255,255,255);position:relative;padding-left:20px; text-align:center;overflow:hidden;">
 @ViewBag.ChartTitle
 </div>
 <table style="font-size:1.6em; margin:0 auto;" class="chart">
 <thead>
 <tr>
-<th colspan="3" style="width:24%;">2015 PBP Market Size<br />($ MM)</th>
-<th>2015 PBP Market <br />Share (%)</th>
-<th style="width:5%"></th>
-<th>2015 PBP <br />Growth (%)</th>
+<th colspan="3" style="width:24%;">@StrawmanApp.Helpers.PeriodUtil.Year.ToString() PBP Market Size<br />($ MM)</th>
+<th>@StrawmanApp.Helpers.PeriodUtil.Year.ToString() PBP Market <br />Share (%)</th>
+<th>@StrawmanApp.Helpers.PeriodUtil.Year.ToString() PBP <br />Growth (%)</th>
 </tr>
 </thead>
 <tbody>
@@ -106,18 +144,19 @@ foreach(StrawmanApp.Models.ChartByChannelModels item in Model){
     <td> 
         <div class="pc"><div style="background-color:rgb(255,0,255);width:@Html.DisplayFor(m => item.pbp_share_p_pc).ToString().Replace(',', '.');float:left; height:40px;"></div><span style="margin-top: 6%; margin-left: 2%; float: left;">@Html.DisplayFor(m => item.pbp_share_p)</span></div>
         <div class="pc" style="clear:both;"><div style="background-color:rgb(0,0,255);width:@Html.DisplayFor(m => item.pbp_share_l_pc).ToString().Replace(',', '.');float:left; height:40px;"></div><span style="margin-top: 6%; margin-left: 2%; float: left;">@Html.DisplayFor(m => item.pbp_share_l)</span></div></td>
-    <td>    
-        <div class="pc"><div style="background-color:rgb(0,204,255);width:@Html.DisplayFor(m => item.pbp_grouth_c_pc).ToString().Replace(',', '.');float:left; height:30px;"></div><span style="margin-top: 6%; margin-left: 2%; float: left;">@Html.DisplayFor(m => item.pbp_grouth_c)</span></div>
+    <td>  
     @{
     _v = "";
     _c = (decimal)item.pbp_grouth_c;
     _jj = (decimal)item.pbp_grouth_jj;
-
-        if (_jj > _c) { _class = "positive"; }
-        else { _class = "negative"; }
-        if (_jj < 0) { _v = "margin-left:-" + Html.DisplayFor(m => item.pbp_grouth_jj_pc).ToString().Replace(',', '.') + ";"; }
-            
-      }
+    if (_c < 0) { _v = "margin-left:-" + Html.DisplayFor(m => item.pbp_grouth_c_pc).ToString().Replace(',', '.') + ";"; }
+    }  
+        <div class="pc"><div style="background-color:rgb(0,204,255);width:@Html.DisplayFor(m => item.pbp_grouth_c_pc).ToString().Replace(',', '.');float:left; height:30px;@_v"></div><span style="margin-top: 6%; margin-left: 2%; float: left;">@Html.DisplayFor(m => item.pbp_grouth_c)</span></div>
+    @{
+    if (_jj > _c) { _class = "positive"; }
+    else { _class = "negative"; }
+    if (_jj < 0) { _v = "margin-left:-" + Html.DisplayFor(m => item.pbp_grouth_jj_pc).ToString().Replace(',', '.') + ";"; }
+    }
         <div class="pc" style="clear:both;"><div class="@_class" style="background-color:rgb(0,204,255);width:@Html.DisplayFor(m => item.pbp_grouth_jj_pc).ToString().Replace(',', '.');float:left; height:30px;@_v"></div><span style="margin-top: 6%; margin-left: 2%; float: left;">@Html.DisplayFor(m => item.pbp_grouth_jj)</span></div>
     </td>
     </tr>

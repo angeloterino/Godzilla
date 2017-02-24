@@ -2,8 +2,9 @@
 @if (Model.type != StrawmanApp.Models.FormUtilModel.InputTypes.HIDDEN)
 {
     if (Model.label != null) { @Html.LabelFor(m => Model, Model.label, null) }
-
-    @Html.TextBoxFor(m => Model.all[Model.id], new { @class = "form-control", @Value = string.IsNullOrEmpty(Model.defalut_value)? "" : Model.defalut_value, @data_type = Model.data_attributes})   
+    object htmlAttributes = new { @class = "form-control", @Value = string.IsNullOrEmpty(Model.defalut_value) ? "" : Model.defalut_value, @data_type = Model.data_attributes };
+    if (Model.disabled != null) { htmlAttributes = new { @class = "form-control", @Value = string.IsNullOrEmpty(Model.defalut_value) ? "" : Model.defalut_value, @data_type = Model.data_attributes, @disabled = Model.disabled }; }
+    @Html.TextBoxFor(m => Model.all[Model.id], htmlAttributes)   
 
 }else{
     

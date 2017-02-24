@@ -1,0 +1,5 @@
+﻿@model ViewDataDictionary
+<div class="comments-button" style="height: 36px; margin-top: 5px; margin-bottom: 15px;">            
+        <button class="btn btn-default" style="margin: 0px; border: 1px solid rgb(255, 255, 255); width: 100%; color: rgb(255, 255, 255); background-color: rgb(150, 150, 255);" data-link="modal_comments"
+            data-type="btn-comment" data-value-market="@Model["market"].ToString()" data-value-brand ="@Model["brand"].ToString()" data-value-channel ="@Model["channel"].ToString()" data-value-name="@Html.Raw(Model["name"].ToString())" data-value-group="@Model["vorder"]">@Model["title"].ToString()</button>
+</div>

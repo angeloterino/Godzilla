@@ -28,7 +28,7 @@ namespace StrawmanApp.Controllers
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
         public ActionResult GetKPIBrandContribution()
         {
-            List<Entities.KpiModel> lst = GetKPIData("BRAND CONTRIBUTION");
+            List<Entities.KpiModel> lst = GetKPIData(BRAND_CONTRIBUTION);
             ViewBag.MasterData = GetKPIData(MASTER_DATA);
             return PartialView(KPICOLUMN, lst);
         }
@@ -36,9 +36,10 @@ namespace StrawmanApp.Controllers
         private List<Entities.KpiModel> GetKPIData(string _column)
         {
             List<Entities.KpiModel> lst = new List<Entities.KpiModel>();
-            List<Entities.KpiModel> table = GetKPIModel(v_WRK_KPI);
+            List<Entities.KpiModel> table = GetKPIModel(v_WRK_KPI, true);
             if (_column != MASTER_DATA)
             {
+                if (_column == BRAND_CONTRIBUTION) table = GetKPIModel(BRAND_CONTRIBUTION,false);
                 lst = table
                         .Where(m => m.KPI_COLUMN == _column)
                         .Select(m => new Entities.KpiModel
@@ -59,7 +60,7 @@ namespace StrawmanApp.Controllers
             }
             else
             {
-                lst = GetKPIModel(MASTER_DATA);
+                lst = GetKPIModel(MASTER_DATA,true);
                 
             }
             return lst;
@@ -90,7 +91,8 @@ namespace StrawmanApp.Controllers
                     break;
 
                 case "BRAND_CONTRIBUTION":
-                    mod.title = "BRAND CONTRIBUTION BY BRAND";                                      
+                    mod.title = "BRAND CONTRIBUTION BY BRAND";
+                    mod.data_editable = Helpers.UserUtils.Permissions.GetPermissions();            
                     mod.head[0].text = mod.title;
                     mod.head[3].text = (current_year).ToString() + " FINAL";                    
                     break;
@@ -98,7 +100,7 @@ namespace StrawmanApp.Controllers
                 case "MARKET_SHARE":
                     mod.title = "MARKET SHARE BY BRAND";                    
                     mod.head[0].text = mod.title;
-                    mod.head[3].text = (current_year).ToString() + " FINAL";                    
+                    mod.head[3].text = (current_year).ToString() + " LE";                    
                     break;
             }
             return PartialView(KPIHEAD, mod);
@@ -208,24 +210,17 @@ namespace StrawmanApp.Controllers
 
         private object GetSessionObject(string obj_name)
         {
-            return Session[obj_name];
+            return Helpers.Session.GetSession(obj_name);
         }
         private void SetSessionObject(string obj_name, object obj)
         {
-            if (Session[obj_name] == null)
-            {
-                Session.Add(obj_name, obj);
-            }
-            else
-            {
-                Session[obj_name] = obj;
-            }
+            Helpers.Session.SetSession(obj_name, obj);
         }
 
-        private List<Entities.KpiModel> GetKPIModel(string table_name)
+        private List<Entities.KpiModel> GetKPIModel(string table_name, bool? cache)
         {
             List<Entities.KpiModel> lst = null;
-            if (GetSessionObject(table_name) != null)
+            if (GetSessionObject(table_name) != null && (cache??true))
             {
                 return (List<Entities.KpiModel>)GetSessionObject(table_name);
             }
@@ -233,6 +228,21 @@ namespace StrawmanApp.Controllers
             {
                 switch (table_name)
                 {
+                    case BRAND_CONTRIBUTION:
+                        List<StrawmanDBLibray.Entities.BRAND_CONTRIBUTION> bcdata = (List<StrawmanDBLibray.Entities.BRAND_CONTRIBUTION>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.BRAND_CONTRIBUTION,false);
+                        List<StrawmanDBLibray.Entities.KPI_MASTER> mster = (List<StrawmanDBLibray.Entities.KPI_MASTER>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.KPI_MASTER);
+                        return mster.GroupJoin(bcdata.Where(m => (m.YEAR_PERIOD == Helpers.PeriodUtil.Year && m.MONTH_PERIOD == Helpers.PeriodUtil.Month)).AsEnumerable(), m => new { _id = m.ID }, b => new { _id = b.ID }, (m, b) => new { m = m, b = b }).AsEnumerable()
+                            .SelectMany(f => f.b.DefaultIfEmpty(), (m, b) => new { m = m.m, b = b }).AsEnumerable()
+                            .Select(m => new Entities.KpiModel
+                            {
+                                NAME = m.m.NAME,
+                                COL1 = m.b == null?0: m.b.COL1 ?? 0,
+                                COL2 = m.b == null?0: m.b.COL2 ?? 0,
+                                COL3 = m.b == null?0: m.b.COL3 ?? 0,
+                                ID = m.m.ID,
+                                KPI_COLUMN = BRAND_CONTRIBUTION,
+                                KPI = m.m.ID
+                            }).ToList();
                     case v_WRK_KPI:
                         using (Models.DataClasses1DataContext db = new Models.DataClasses1DataContext())
                         {
@@ -277,11 +287,19 @@ namespace StrawmanApp.Controllers
         }
         #endregion
 
+        #region Public Funtions
+        public List<Entities.KpiModel> GetKPIDataP(string column)
+        {
+            return GetKPIData(column);
+        }
+        #endregion
+
         private string KPICOLUMN = "~/Views/KPI/_Column.cshtml";
         private string KPIHEAD = "~/Views/KPI/_Head.cshtml";
         private static string MENU_URL = "StrawmanApp";
         private const string CONTROLLER_NAME = "KPI";
         private const string v_WRK_KPI = "v_WRK_KPI";
+        private const string BRAND_CONTRIBUTION = "v_BRAND_CONTRIBUTION";
         private const string MASTER_DATA = "MASTER_DATA";
     }
 }

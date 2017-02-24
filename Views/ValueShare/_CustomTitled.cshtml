@@ -1,0 +1,26 @@
+﻿@{
+    string _col1_year = ViewData["col1_year"].ToString();
+    string _col2_year = ViewData["col2_year"].ToString();
+    string _col3_year = ViewData["col3_year"].ToString();
+    string _col1_title = ViewData["col1_title"].ToString();
+    string _col2_title = ViewData["col2_title"].ToString();
+    string _col3_title = ViewData["col3_title"].ToString();
+    string _title = ViewData["title"].ToString();
+    string _id = "ValueShare_" + ViewData["col_title"].ToString() + "View";
+<td style="width: 5px;"> </td>
+<td class="collapsable" style="vertical-align:top;padding-left: 5px;">
+    <div class="brand grid-wrap">
+        <table id="@_id" class="table table-striped grid-table" style="min-width:200px;">
+        <thead>
+         <tr style="background-color: rgba(240,190,240,1);font-size:0.9em;height: 39px;"><th colspan="3">@_title</th></tr>
+         <tr style="background-color: rgb(153, 204, 255);height: 69px ! important;"> 
+         <th style="width:33%"><span class="last_year_control">@_col1_year</span> @_col1_title</th>
+         <th style="width:33%"><span class="last_year_control">@_col2_year</span> @_col2_title</th>
+         <th style="width:33%"><span class="current_year_control">@_col3_year</span> @_col3_title</th>
+         </tr>
+         </thead>
+         <tbody></tbody>
+        </table>
+    </div>
+</td>
+}

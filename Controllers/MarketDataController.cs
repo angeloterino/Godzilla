@@ -16,21 +16,14 @@ namespace StrawmanApp.Controllers
         {
             using (StrawmanApp.Models.DataClasses1DataContext db = new Models.DataClasses1DataContext())
             {
-                var query = from p in db.v_STRWM_MARKET_DATAs
-                            where p.YEAR_PERIOD == Helpers.PeriodUtil.Year && p.MONTH_PERIOD == Helpers.PeriodUtil.Month || (p.YEAR_PERIOD == null && p.MONTH_PERIOD == null)
-                            select new Models.MarketDataModels { market = (decimal)p.ID, brand_name = p.BRAND_NAME, data = p.DATA, market_name = p.NAME, source = p.SOURCE };
                 //ViewBag.MarketData =query.ToList().AsEnumerable();
-                return PartialView(query.ToList());
+                return PartialView();
             }
         }
         public PartialViewResult MarketView()
         {
             using (StrawmanApp.Models.DataClasses1DataContext db = new Models.DataClasses1DataContext())
             {
-                var query = from p in db.v_STRWM_MARKET_DATAs
-                            where p.YEAR_PERIOD == Helpers.PeriodUtil.Year && p.MONTH_PERIOD == Helpers.PeriodUtil.Month || (p.YEAR_PERIOD == null && p.MONTH_PERIOD == null)
-                            select new Models.MarketDataModels { market = (decimal)p.ID, brand_name = p.BRAND_NAME, data = p.DATA, market_name = p.NAME, source = p.SOURCE };
-                ViewBag.MarketData = query.ToList().AsEnumerable();
                 return PartialView();
             }
         }

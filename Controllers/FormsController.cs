@@ -743,20 +743,38 @@ namespace StrawmanApp.Controllers
                         //Actualizamos datos MARKET
                         List<StrawmanDBLibray.Entities.STRWM_BOY_DATA> sbd = db.STRWM_BOY_DATA.Where(m => m.ID == qint.market_id || m.ID == qpbp.market_id || m.ID == qle.market_id).Select(m => m).ToList();
                         sbd.Find(m => m.ID == qint.market_id).INT = qint.market_pc_f;
+                        sbd.Find(m => m.ID == qint.market_id).USER = Helpers.UserUtils.UserName;
+                        sbd.Find(m => m.ID == qint.market_id).LAST_DATE = DateTime.Now;
                         sbd.Find(m => m.ID == qle.market_id).BTG = qle.market_pc_f;
+                        sbd.Find(m => m.ID == qle.market_id).USER = Helpers.UserUtils.UserName;
+                        sbd.Find(m => m.ID == qle.market_id).LAST_DATE = DateTime.Now;
                         sbd.Find(m => m.ID == qpbp.market_id).PBP = qpbp.market_pc_f;
+                        sbd.Find(m => m.ID == qpbp.market_id).USER = Helpers.UserUtils.UserName;
+                        sbd.Find(m => m.ID == qpbp.market_id).LAST_DATE = DateTime.Now;
                        
                         //Actualizamos datos SELLOUT
                         List<StrawmanDBLibray.Entities.STRWM_BOY_DATA> sbso = db.STRWM_BOY_DATA.Where(m => m.ID == qint.sellout_id || m.ID == qpbp.sellout_id || m.ID == qle.sellout_id).Select(m => m).ToList();
                         sbso.Find(m => m.ID == qint.sellout_id).INT = qint.sellout_pc_f;
+                        sbso.Find(m => m.ID == qint.sellout_id).USER = Helpers.UserUtils.UserName;
+                        sbso.Find(m => m.ID == qint.sellout_id).LAST_DATE = DateTime.Now;
                         sbso.Find(m => m.ID == qle.sellout_id).BTG = qle.sellout_pc_f;
+                        sbso.Find(m => m.ID == qle.sellout_id).USER = Helpers.UserUtils.UserName;
+                        sbso.Find(m => m.ID == qle.sellout_id).LAST_DATE = DateTime.Now;
                         sbso.Find(m => m.ID == qpbp.sellout_id).PBP = qpbp.sellout_pc_f;
+                        sbso.Find(m => m.ID == qpbp.sellout_id).USER = Helpers.UserUtils.UserName;
+                        sbso.Find(m => m.ID == qpbp.sellout_id).LAST_DATE = DateTime.Now;
 
                         //Actualizamos datos SELLIN
                         List<StrawmanDBLibray.Entities.STRWM_BOY_DATA> sbsi = db.STRWM_BOY_DATA.Where(m => m.ID == qint.sellin_id || m.ID == qpbp.sellin_id || m.ID == qle.sellin_id).Select(m => m).ToList();
                         sbsi.Find(m => m.ID == qint.sellin_id).INT = qint.sellin_pc_f;
+                        sbsi.Find(m => m.ID == qint.sellin_id).USER = Helpers.UserUtils.UserName;
+                        sbsi.Find(m => m.ID == qint.sellin_id).LAST_DATE = DateTime.Now;
                         sbsi.Find(m => m.ID == qle.sellin_id).BTG = qle.sellin_pc_f;
+                        sbsi.Find(m => m.ID == qle.sellin_id).USER = Helpers.UserUtils.UserName;
+                        sbsi.Find(m => m.ID == qle.sellin_id).LAST_DATE = DateTime.Now;
                         sbsi.Find(m => m.ID == qpbp.sellin_id).PBP = qpbp.sellin_pc_f;
+                        sbsi.Find(m => m.ID == qpbp.sellin_id).USER = Helpers.UserUtils.UserName;
+                        sbsi.Find(m => m.ID == qpbp.sellin_id).LAST_DATE = DateTime.Now;
 
                         //Actualizamos datos WRK_BOY_DATA
                         
@@ -2289,7 +2307,7 @@ namespace StrawmanApp.Controllers
             ViewBag.MenuUrl = MENU_BOY_CONFIGURE;
             ViewBag.TabUrl = CONTROLLER_NAME + "/LoaderView";
             Models.LoaderViewModels lvm = new Models.LoaderViewModels();
-            lvm.ddl = GetDropDownList();
+            lvm.ddl = GetDropDownList(0);
             lvm.isUpdated = false;
             return View(lvm);
         }
@@ -2304,7 +2322,7 @@ namespace StrawmanApp.Controllers
             int file_type = int.Parse(Request.Form["ddl.SelectedItemId"].ToString());
 
             Models.LoaderViewModels lvm = new Models.LoaderViewModels();
-            lvm.ddl = GetDropDownList();            
+            lvm.ddl = GetDropDownList(file_type);            
             if (myFile != null && myFile.ContentLength != 0 && file_type > 0)
             {
                 string pathForSaving = Server.MapPath("~/Uploads");
@@ -2342,29 +2360,13 @@ namespace StrawmanApp.Controllers
             string spath = Server.MapPath("~/Uploads");
             string path = Path.Combine(spath, fileName);
             string ext = Path.GetExtension(path);
-            string procedure = "";
             int last_transaction = 0;
             int[] transactions = new int[]{};
             List<Models.YearTransactionModel> ylist = new List<Models.YearTransactionModel>();
 
             FileStream fis = System.IO.File.OpenRead(path);
             IExcelDataReader reader;
-
-            switch (int.Parse(fileType))
-            {
-                case 1:
-                    procedure = SP_TMP_NTS_DATA;
-                    break;
-                case 2:
-                    procedure = SP_TMP_NIELSEN_DATA;
-                    break;
-                case 3:
-                    procedure = SP_TMP_IMS_DATA;
-                    break;
-                case 4:
-                    procedure = SP_CUSTOM_LOADER;
-                    break;
-            }
+            
             if (ext.ToUpper().Equals(".XLSX"))
             {
                 reader = ExcelReaderFactory.CreateOpenXmlReader(fis);
@@ -2548,7 +2550,45 @@ namespace StrawmanApp.Controllers
                     }
                 }
                 TempData["LoadNTS"] = lst; //insertar en la tabla temporal correspondiente
-
+                TempData["fileType"] = fileType;
+                success = true;
+                }
+            else
+            {
+                message += " Tipo de archivo no permitido";
+            }
+            return new JsonResult { 
+                                Data = new { Success = success, Message = message },
+                                ContentEncoding = System.Text.Encoding.UTF8,
+                                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                                };
+        }
+        [Authorize]
+        [HttpGet]
+        public ActionResult ProcessTransaction(string fileName, string fileType)
+        {
+            List<StrawmanDBLibray.Classes.ExcelLoader> lst = (List<StrawmanDBLibray.Classes.ExcelLoader>)TempData["LoadNTS"];
+            int last_transaction = 0;
+            int[] transactions = new int[] { };
+            List<Models.YearTransactionModel> ylist = new List<Models.YearTransactionModel>();
+            bool success = false;
+            string message = "Error processing file...";
+            string procedure = "";
+            switch (int.Parse(fileType))
+            {
+                case 1:
+                    procedure = SP_TMP_NTS_DATA;
+                    break;
+                case 2:
+                    procedure = SP_TMP_NIELSEN_DATA;
+                    break;
+                case 3:
+                    procedure = SP_TMP_IMS_DATA;
+                    break;
+                case 4:
+                    procedure = SP_CUSTOM_LOADER;
+                    break;
+            }
                 //Last Transaction
                 using (Entities.GodzillaEntity.GodzillaEntities db = new Entities.GodzillaEntity.GodzillaEntities())
                 {
@@ -2865,12 +2905,7 @@ namespace StrawmanApp.Controllers
                     }
                 }
                 success = SetTransaction(fileName, procedure, ylist, transactions, last_transaction);
-            }
-            else
-            {
-                message += " Tipo de archivo no permitido";
-            }
-            return new JsonResult { 
+                return new JsonResult { 
                                 Data = new { Success = success, Message = message, Transaction = (transactions.Length == 0)?new int[]{last_transaction}:transactions },
                                 ContentEncoding = System.Text.Encoding.UTF8,
                                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
@@ -3019,7 +3054,7 @@ namespace StrawmanApp.Controllers
             return result;
         }
 
-        private Models.DropDownListModels GetDropDownList()
+        private Models.DropDownListModels GetDropDownList(int _val)
         {
             Models.DropDownListModels ddl = new Models.DropDownListModels();
             ddl.Items = new List<SelectListItem>();
@@ -3027,12 +3062,13 @@ namespace StrawmanApp.Controllers
             {
                 Text = SELECT_TEXT,
                 Value = "0",
-                Selected = true
+                Selected = _val == 0
             });
             ddl.Items.Add(new SelectListItem
             {
                 Text = NTS_TEXT,
-                Value = "1"
+                Value = "1",
+                Selected = _val == 1
             });
             //ddl.Items.Add(new SelectListItem
             //{
@@ -3047,7 +3083,8 @@ namespace StrawmanApp.Controllers
             ddl.Items.Add(new SelectListItem
             {
                 Text = CUSTOM_TEXT,
-                Value = "4"
+                Value = "4",
+                Selected = _val == 4
             });
 
             ddl.SelectedItemId = "0";

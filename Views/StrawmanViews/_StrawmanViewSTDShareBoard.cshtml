@@ -5,11 +5,14 @@
     string[] _colType = (string[])ViewData["_colType"];
     string[] _colStyle = (string[])ViewData["_colStyle"];
     StrawmanApp.Models.StrawmanSTDView itemaux = Model.itemaux;
+    StrawmanApp.Models.StrawmanSTDView item = Model.item;
+    string[] _colPureData = new string[] { item.col1.ToString(), item.col2.ToString(), item.col3.ToString(), item.col4.ToString(), item.col5.ToString(), item.col6.ToString() };
     string _style = "text-align:center;";
     string _styleView = ViewData["styleView"] == null ? "_TrStyle" : ViewData["styleView"].ToString();
     bool _last = ViewData["_last"] == null ? false : (bool)ViewData["_last"];
     ViewDataDictionary _styleData = (ViewData["styleData"] == null) ? new ViewDataDictionary() { { "_style", _style }, { "group", itemaux.vgroup }, { "order", itemaux.vorder }, { "market", itemaux.market }, { "channel", itemaux.channel } } : (ViewDataDictionary)ViewData["styleData"];
     StrawmanApp.Models.StrwawmanTrViewModel model = new StrawmanApp.Models.StrwawmanTrViewModel{
+        _colPureData = _colPureData,
         _colData = _colData,
         _colType = _colType,
         styleView = _styleView,

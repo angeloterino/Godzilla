@@ -8,7 +8,7 @@
     {
 
         StrawmanApp.Models.BoyMassMarketModels item = lstaux.FirstOrDefault(m => m.market == yitemaux.market && m.brand == yitemaux.brand && m.channel == yitemaux.channel);
-        Html.RenderPartial("~/Views/BoyMassMarket/_BoyStdCalcView.cshtml", item, new ViewDataDictionary { { "yitemaux", yitemaux }, { "header", new[] { _year.ToString() + " Internal", "% Growth VY" } } });       
+        Html.RenderPartial("~/Views/BoyMassMarket/_BoyStdCalcView.cshtml", item, new ViewDataDictionary { { "yitemaux", yitemaux }, { "header", new[] { _year.ToString() + " Internal", "% Growth VYA" } } });       
         vb_index++;
     }
 }

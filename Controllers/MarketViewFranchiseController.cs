@@ -93,9 +93,11 @@ namespace StrawmanApp.Controllers
         private dynamic GetTotalCustomData()
         {
             List<StrawmanDBLibray.Entities.v_WRK_MARKET_TOTAL_DATA> data = (List<StrawmanDBLibray.Entities.v_WRK_MARKET_TOTAL_DATA>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.WRK_MARKET_TOTAL, true);
-            List<StrawmanDBLibray.Entities.v_WRK_FRANCHISE_MASTER> mster = (List<StrawmanDBLibray.Entities.v_WRK_FRANCHISE_MASTER>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.v_WRK_FRANCHISE_MASTER, true);
-            var q = data.Where(m => m.YEAR_PERIOD == Helpers.PeriodUtil.Year && m.MONTH_PERIOD == Helpers.PeriodUtil.Month && m.BRAND < 9000 && m.MARKET < 9000).AsEnumerable()
-                    .Join(mster.Where(m => m.TYPE == Classes.StrawmanViews.MARKET).AsEnumerable()
+            List<StrawmanDBLibray.Entities.v_WRK_FRANCHISE_MASTER> mster = (List<StrawmanDBLibray.Entities.v_WRK_FRANCHISE_MASTER>)Helpers.StrawmanDBLibrayData.Get(StrawmanDBLibray.Classes.StrawmanDataTables.v_WRK_FRANCHISE_MASTER,true);
+            var ds = data.Where(m => m.YEAR_PERIOD == Helpers.PeriodUtil.Year && m.MONTH_PERIOD == Helpers.PeriodUtil.Month && m.BRAND < 9000 && m.MARKET < 9000).AsEnumerable();
+            var ms = mster.Where(m => m.TYPE == Classes.StrawmanViews.MARKET).AsEnumerable();
+            var q = ds
+                    .Join(ms
                     , d => new { _channel = d.CHANNEL, _market = d.MARKET, _brand = d.BRAND }, m => new { _channel = m.CHANNEL, _market = m.MARKET, _brand = (decimal?)m.BRAND }, (d, m) => new { d = d, m = m })
                     .AsEnumerable()
                     .Select(p => new Models.MarketViewChannelModels { col1 = p.d.THREE_AGO * p.m.CFG, col2 = (decimal?)p.d.TWO_AGO * p.m.CFG, col3 = (decimal?)p.d.LAST * p.m.CFG, col4 = 0, col5 = 0, col6 = 0, vid = (decimal)p.m.FRANCHISE_ID, vparent = p.m.PARENT_ID })
@@ -511,6 +513,27 @@ namespace StrawmanApp.Controllers
         public List<Models.MarketViewChannelModels> GetYTDFranchiseData()
         {
             return this.GetYTDData();
+        }
+        [ChildActionOnly]
+        public List<Models.MarketViewChannelModels> GetMarketViewData(string type)
+        {
+            switch (type)
+            {
+                case Classes.StrawmanViews.MONTH:
+                    return this.GetMonthData();
+                case Classes.StrawmanViews.YTD:
+                    return this.GetYTDData();
+                case Classes.StrawmanViews.MAT:
+                    return this.GetMATData();
+                case Classes.StrawmanViews.BTG:
+                    return this.GetBTGData();
+                case Classes.StrawmanViews.TOTAL:
+                    return this.GetTotalCustomData();
+                case Classes.StrawmanViews.BOY:
+                    return this.GetBOYData();
+                default:
+                    return null;
+            }
         }
         #endregion
         //

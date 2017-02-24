@@ -1,4 +1,4 @@
-﻿$.strawmanVars = new Object();
+$.strawmanVars = new Object();
 $(document).ready(function () {
     $(document).on("click", ["a[role=menuitem]", "a[role=tabitem]"], function () {
         $.strawmanVars.cancelLoad = true;
@@ -84,8 +84,8 @@ $(document).ready(function () {
         //}
     }
 
-    $(document).on('click', 'button[btn-type=btn-change-chanel]', function () {
-        var _variable = $(this).attr("btn-variable");
+    $(document).on('click', 'button[data-btn-type=btn-change-chanel]', function () {
+        var _variable = $(this).attr("data-btn-variable");
         $('.btn-success').addClass('btn-default').removeClass('btn-success');
         $(this).addClass('btn-success').removeClass('btn-default');
         $('.mastertable').append(_loader);

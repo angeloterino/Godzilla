@@ -1,0 +1,21 @@
+﻿@if (ViewBag.WC)
+{
+    Html.RenderPartial("~/Views/Shared/UtilBanner/_WC.cshtml");
+}
+@if (ViewBag.PCAdjust)
+{
+    Html.RenderPartial("~/Views/Shared/UtilBanner/_PCAdjust.cshtml");
+}
+@if (ViewBag.CurrencyAdjust)
+{
+    Html.RenderPartial("~/Views/Shared/UtilBanner/_CurrencyAdjust.cshtml");
+}
+@if (ViewBag.Currency)
+{
+    Html.RenderPartial("~/Views/Shared/UtilBanner/_Currency.cshtml");
+}
+@if (ViewBag.Period)
+{
+    Html.RenderPartial("~/Views/Shared/UtilBanner/_Period.cshtml");
+}
+<div class="clear" style="clear:both;height:0;"></div>

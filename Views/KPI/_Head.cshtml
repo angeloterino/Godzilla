@@ -1,5 +1,7 @@
 ﻿@model StrawmanApp.Entities.KpiModel
-<thead>
+@{
+    string data_editable = Model.data_editable ? " data-editable=\"true\"" : "";
+<thead @Html.Raw(data_editable)>
     <tr style="@Model.titleRowStyle"><th colspan="4">@Model.title</th></tr>
     <tr><td colspan="4" style="border:0; font-size:0.5em;">&nbsp;</td></tr>
     <tr style="@Model.headRowStyle">
@@ -9,3 +11,4 @@
     <th style="@Model.head[3].colStyle">@Model.head[3].text</th>
 </tr>
 </thead>
+}

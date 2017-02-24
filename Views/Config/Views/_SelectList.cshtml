@@ -1,0 +1,5 @@
+﻿@model List<SelectListItem>
+@{
+    string list_name = ViewBag.SelectName;
+    @Html.DropDownList(list_name,(List<SelectListItem>)Model,new { @class = "form-control", data_type="select_source", data_controller="GetGroupMasterListFor" })
+}
